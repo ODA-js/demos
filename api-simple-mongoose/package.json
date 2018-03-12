@@ -29,7 +29,6 @@
     "graphql-tag": "^2.4.2",
     "lodash": "^4.17.4",
     "log4js": "^1.1.1",
-    "mysql2": "^1.4.0",
     "oda-aor-rest": "0.1.30",
     "oda-api-common": "^0.2.15",
     "oda-api-graphql": "^0.4.23",
@@ -38,7 +37,6 @@
     "oda-isomorfic": "0.0.18",
     "oda-lodash": "^0.0.59",
     "oda-model": "^0.0.37",
-    "sqlite3": "^3.1.13",
     "subscriptions-transport-ws": "^0.9.6"
   },
   "devDependencies": {
