@@ -13,6 +13,7 @@ const client = new ApolloClient({
   networkInterface: createNetworkInterface({
     uri: loaderConfig.uri
   }),
+
 });
 
 let fn = process.argv[2] ? joinPath(process.cwd(), process.argv[2]) : joinPath(__dirname, '../../data/dump.json');

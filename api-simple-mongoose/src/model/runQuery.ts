@@ -7,7 +7,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { SystemSchema } from '../model/schema';
 import { ExecutionResult } from 'graphql';
 import { runQueryLodash } from 'oda-lodash';
-import { dbPool, dbSqlPool } from './dbPool';
+import { dbPool } from './dbPool';
 
 let schemas = () => new SystemSchema({});
 
@@ -56,7 +56,6 @@ export class SystemGraphQL {
   public static async connectors() {
     return new RegisterConnectors({
       mongoose: await dbPool.get('system'),
-      sequelize: await dbSqlPool.get('system'),
       user: passport.systemUser(),
       owner: passport.systemUser(),
     });
