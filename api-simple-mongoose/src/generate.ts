@@ -15,4 +15,7 @@ generator({
     ui: false,
     packages: ['system'],
   },
+  context: {
+    defaultAdapter: 'mongoose',
+  }
 });
