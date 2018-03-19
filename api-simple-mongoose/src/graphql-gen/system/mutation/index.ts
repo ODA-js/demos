@@ -4,7 +4,7 @@ import { LoginUserMutation } from './loginUser';
 
 export class SystemMutations extends common.types.GQLModule {
   protected _name = 'SystemMutations';
-  protected _extend = [
+  protected _composite = [
     new LoginUserMutation({}),
   ];
 }

@@ -10,10 +10,10 @@ import { mutation as connectionMutation } from './connections/mutations/resolver
 import { mutation as entityMutation } from './mutations/resolver';
 import { subscriptions as entitySubscription, resolver as subscriptionsUnions } from './subscriptions/resolver';
 
-export class ToDoItemEntity extends common.types.GQLModule {
+export class ToDoItem extends common.types.GQLModule {
   constructor(_args) {
     super(_args);
-    this._name = 'ToDoItemEntity';
+    this._name = 'ToDoItem';
     this._query = fillDefaults(this._query, query);
     this._viewer = fillDefaults(this._viewer, viewer);
     this._resolver = fillDefaults(this._resolver, resolver, subscriptionsUnions);

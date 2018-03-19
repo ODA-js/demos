@@ -1,6 +1,5 @@
 
 
-let mongoose = require('mongoose');
 import { fromGlobalId } from 'oda-api-graphql';
 import { utils } from 'oda-api-graphql';
 

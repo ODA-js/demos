@@ -6,7 +6,7 @@ import { SystemPackage } from './index';
 
 export class SystemSchema extends common.types.GQLModule {
   protected _name = 'SystemSchema';
-  protected _extend = [
+  protected _composite = [
     new SystemPackage({}),
   ];
 
