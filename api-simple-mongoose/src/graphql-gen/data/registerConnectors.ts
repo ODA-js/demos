@@ -84,11 +84,14 @@ export default class RegisterConnectors {
   }
 
   async syncDb(force: boolean = false) {
-    await this.sequelize.sync({force});
   }
 
   async close(){
-    await this.sequelize.close();
-    await this.mongoose.close();
+    if (this.sequelize && typeof this.sequelize.close === 'function'){
+      await this.sequelize.close();
+    }
+    if(this.mongoose && typeof this.mongoose.close === 'function'){
+      await this.mongoose.close();
+    }
   }
 };
