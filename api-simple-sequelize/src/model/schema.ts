@@ -1,14 +1,15 @@
 // tslint:disable:no-unused-variable
 import { common } from 'oda-gen-graphql';
+
 import { SystemPackage } from './../graphql-gen/system';
+import { CommonExtends } from './common';
 import { pubsub } from './pubsub';
-import { withFilter } from 'graphql-subscriptions';
+
 const { deepMerge } = common.lib;
 
-import { CommonExtends } from './common';
-
 export class SystemSchema extends common.types.GQLModule {
-  protected _extend = [
+  _name = 'SystemSchema';
+  protected _composite = [
     new SystemPackage({}),
     new CommonExtends({}),
   ];

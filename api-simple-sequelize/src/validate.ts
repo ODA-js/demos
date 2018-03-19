@@ -16,16 +16,6 @@ validate({
     ui: false,
     packages: true, ///['system'],
   },
-  context: {
-    typeMapper: {
-      enums: {
-        ItemStatus: ['ItemStatus'],
-        ItemViewStatus: ['ItemViewStatus'],
-        ItemOptionViewStatus: ['ItemOptionViewStatus'],
-        ProjectType: ['ProjectType'],
-      },
-    }
-  },
   logs: ['error'/* , 'fixable', 'warning', 'critics' */]
   // acl: {
   //   system: 1000,

@@ -12,9 +12,6 @@
   },
   "db": {
     "api": {
-      "url": "mongodb://localhost/api-model-editor-prod"
-    },
-    "api2": {
       "url": "mysql://<dbuser>:<dbpassword>@127.0.0.1/api-model-editor-prod"
     }
   },

@@ -24,15 +24,13 @@ import { runQueryLodash } from 'oda-lodash';
 let fn = process.argv[2] ? joinPath(process.cwd(), process.argv[2]) : joinPath(__dirname, '../../data/dump.json');
 
 
-import { dbPool, dbSqlPool } from '../model/dbPool';
+import { dbSqlPool } from '../model/dbPool';
 import { SystemGraphQL, UserGQL } from '../model/runQuery';
 import { pubsub } from '../model/pubsub';
 
 async function createContext({ schema }) {
-  let db = await dbPool.get('system');
   let sql = await dbSqlPool.get('system');
   let connectors = new RegisterConnectors({
-    mongoose: db,
     sequelize: sql,
   });
   const result = {
@@ -40,11 +38,10 @@ async function createContext({ schema }) {
     systemConnectors: await SystemGraphQL.connectors(),
     systemGQL: SystemGraphQL.query,
     userGQL: undefined,
-    db,
     sql,
     // user: passport.systemUser(),
     // owner: passport.systemUser(),
-    dbPool,
+    dbSqlPool,
     pubsub,
   };
 
@@ -79,11 +76,9 @@ createContext({ schema }).then(context => {
     then(() => dataPump.restoreDataDirect(loaderConfig.import.relate, storedQ, data, schema, context, runQueryLodash))
     .then(() => {
       context.sql.close();
-      context.db.close();
     })
     .catch(e => {
       console.error(e);
       context.sql.close();
-      context.db.close();
     });
 });

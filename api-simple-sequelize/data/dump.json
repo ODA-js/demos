@@ -6,7 +6,30 @@
       "password": "123456",
       "isAdmin": false,
       "isSystem": false,
-      "enabled": true
+      "enabled": true,
+      "todos": [
+        {
+          "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI0",
+          "name": "first item",
+          "description": "some thing!!!",
+          "done": true,
+          "dueToDate": "2018-03-12T21:00:00.000Z"
+        },
+        {
+          "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI1",
+          "name": "second item",
+          "description": "awesome thing!!!",
+          "done": true,
+          "dueToDate": "2018-03-12T21:00:00.000Z"
+        },
+        {
+          "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI2",
+          "name": "another item",
+          "description": "the different cool thing!!!",
+          "done": true,
+          "dueToDate": "2018-03-12T21:00:00.000Z"
+        }
+      ]
     },
     {
       "id": "VXNlcjpmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmY=",
@@ -17,36 +40,5 @@
       "enabled": true
     }
   ],
-  "ToDoItem": [
-    {
-      "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI0",
-      "name": "first item",
-      "description": "some thing!!!",
-      "done": true,
-      "dueToDate": "2018-03-12T21:00:00.000Z",
-      "user": {
-        "id": "VXNlcjo1YWE2NGMyMTZmOWY1NDNkMDQwZmE5YjI="
-      }
-    },
-    {
-      "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI1",
-      "name": "second item",
-      "description": "awesome thing!!!",
-      "done": true,
-      "dueToDate": "2018-03-12T21:00:00.000Z",
-      "user": {
-        "id": "VXNlcjo1YWE2NGMyMTZmOWY1NDNkMDQwZmE5YjI="
-      }
-    },
-    {
-      "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI2",
-      "name": "another item",
-      "description": "the different cool thing!!!",
-      "done": true,
-      "dueToDate": "2018-03-12T21:00:00.000Z",
-      "user": {
-        "id": "VXNlcjo1YWE2NGMyMTZmOWY1NDNkMDQwZmE5YjI="
-      }
-    }
-  ]
+  "ToDoItem": []
 }

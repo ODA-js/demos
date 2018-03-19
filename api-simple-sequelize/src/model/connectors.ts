@@ -5,7 +5,7 @@ import User from '../graphql-gen/data/User/adapter/connector';
 export default class DataConnectors extends RegisterConnectors {
   public get Viewer(): User {
     if (!this._Viewer) {
-      this._Viewer = new User({ mongoose: this.mongoose, connectors: this, user: this.user, owner: this.owner, acls: this.acls, userGroup: this.userGroup });
+      this._Viewer = new User({ sequelize: this.sequelize, connectors: this, user: this.user, owner: this.owner, acls: this.acls, userGroup: this.userGroup });
     }
     return this._Viewer;
   }

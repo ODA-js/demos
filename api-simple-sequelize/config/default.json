@@ -12,9 +12,6 @@
   },
   "db": {
     "api": {
-      "url": "mongodb://localhost/api-model-editor-test"
-    },
-    "api2": {
       "url": "sqlite://dbapi-model-editor-prod.sqlite"
     }
   },
