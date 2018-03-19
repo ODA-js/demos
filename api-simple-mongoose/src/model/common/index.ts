@@ -11,6 +11,6 @@ export class CommonExtends extends common.types.GQLModule {
     new FixupPasswordHook({}),
     new LoginUserMutation({}),
     new LodashModule({}),
-    new User({}),
+    // new User({}),
   ];
 }
