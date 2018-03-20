@@ -1,5 +1,5 @@
 {
-  "name": "api-model-editor",
+  "name": "api-simple-sequelize",
   "version": "1.0.0",
   "description": "sample api for uiTemplate",
   "main": "dist/app.js",
