@@ -1,6 +1,6 @@
 var path = require('path');
 const { generator } = require('oda-gen-graphql');
-const schema = require('../../api-model-editor/dist/schema/index').default;
+const schema = require('../../api-simple-both/dist/schema/index').default;
 const {
   UserUI,
   ToDoItemUI,
