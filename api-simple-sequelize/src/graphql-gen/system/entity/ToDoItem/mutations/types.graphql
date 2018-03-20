@@ -1,0 +1,65 @@
+# Input types for basic CUD
+
+# input type for ToDoItem
+input createToDoItemInput {
+  clientMutationId: String
+  id: ID
+  name: String
+  description: String
+  done: Boolean
+  dueToDate: Date
+  user: embedUserInput
+}
+
+
+input embedToDoItemInput {
+  clientMutationId: String
+  id: ID
+  name: String
+  description: String
+  done: Boolean
+  dueToDate: Date
+  user: embedUserInput
+}
+
+
+# Payload type for ToDoItem
+type createToDoItemPayload {
+  clientMutationId: String
+  viewer: Viewer
+  toDoItem: ToDoItemsEdge
+}
+
+# input type for ToDoItem
+input updateToDoItemInput {
+  clientMutationId: String
+  id: ID
+  name: String
+  description: String
+  done: Boolean
+  dueToDate: Date
+  user: embedUserInput
+  userUnlink: embedUserInput
+  userCreate: createUserInput
+}
+
+# Payload type for ToDoItem
+type updateToDoItemPayload {
+  clientMutationId: String
+  viewer: Viewer
+  toDoItem: ToDoItem
+}
+
+# input type for ToDoItem
+input deleteToDoItemInput {
+  clientMutationId: String
+  id: ID
+}
+
+# Payload type for ToDoItem
+type deleteToDoItemPayload {
+  clientMutationId: String
+  viewer: Viewer
+  deletedItemId: ID
+  toDoItem: ToDoItem
+}

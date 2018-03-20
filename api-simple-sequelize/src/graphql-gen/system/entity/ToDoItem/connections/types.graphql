@@ -1,0 +1,13 @@
+type ToDoItemsConnection {
+  pageInfo: PageInfo!
+  edges: [ToDoItemsEdge]
+  # put here your additional connection fields
+}
+
+type ToDoItemsEdge {
+  node: ToDoItem
+  cursor: String!
+  # put here your additiona edge fields
+}
+
+
