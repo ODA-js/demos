@@ -1,133 +1,64 @@
 {
-  "User": {
-    "edges": [
-      {
-        "node": {
-          "id": "false",
-          "userName": "user",
-          "password": "{\"salt\":\"2BkAGhnngabk4X+iyNlRmg==\",\"hash\":\"gkucuAV33vi+EOfULVbrq4fboMwOOZePDFhl/7o6X9Eitg7wfxRHOpM9FCAoLvohTOdgO7lSILI5XR/DRU75F4SnBVQ9Q8fai2i/xjV2ElQkXWEqW3wmtdBlPvrY/+NfLherZMrsLFZlCxJFN6SyJOMFdHTZ3ojLtypppXZ85cJky8jG/r4BhVnWur7Uqwg/evGNMa65AYIpJoCs85z8F/HOSgIBshXGNJcSxgXouX0LrmalnYxgKCfimCepJK7iQzp6ZS01pmDpBXKhGtE4qYFLPCccX17JPr5x0iwEmyGuCw2aEnN+vAPFxU8HHIHtif69g2emNcONXXHjwEGV8JAjYJ7ZR94svGA56C7dqY+O5l1/6RwsreHqyTs+Yv3o8sfM9rLuxxseXS0qQjCPM/s7c/xO6XX5X7qRKKD7AryMwadPA4voGqp0Fd5Ezn+hpEZpKNr45JdzXoF131GOF3BosFQrlUxtPminX4C93vfYqN2GNX0IKYMx8SzRckevyqRPybgT7f5mm5RwwoDgCQqXrYGXbiDzgnPmAjH+gSLGEQc/lUK78PyvEXLi8rVMlig6SmNEpnK8/84842biuhGgNRGONaFgHxJLJ6z5ePhhnCQS45x1VERn8Sd5MEdFRBgsNBo8QXM+dqv9s9k/+tC6E/gqvNpAL0HY0rLhULA=\"}",
-          "isAdmin": true,
-          "isSystem": false,
-          "enabled": true,
-          "todos": {
-            "edges": [
-              {
-                "node": {
-                  "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI0",
-                  "__typename": "ToDoItem"
-                },
-                "__typename": "UserHasManyTodosEdge"
-              },
-              {
-                "node": {
-                  "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI1",
-                  "__typename": "ToDoItem"
-                },
-                "__typename": "UserHasManyTodosEdge"
-              },
-              {
-                "node": {
-                  "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI2",
-                  "__typename": "ToDoItem"
-                },
-                "__typename": "UserHasManyTodosEdge"
-              }
-            ],
-            "__typename": "UserHasManyTodosConnection"
-          },
-          "__typename": "User"
+  "User": [
+    {
+      "id": "VXNlcjo1YWE2NGMyMTZmOWY1NDNkMDQwZmE5YjI=",
+      "userName": "user",
+      "password": "{\"salt\":\"gNSaTgba6+s3UCUp5hTDkA==\",\"hash\":\"33hBxOAIpfY45kGaBmmw3y/B5hVtJha1iEV9ywH3S4734ecc7+RC2SO0Se26ds1IVvfTjWuFkTk23Ab+T6cnGHpGeqSwtO9tI3k4xRZWlLWlcPN8dTqTTfsqKxjJ8rTFxPo6GNaOtqhFeCG2pRE8RBUdMuOrC6+njvk2u/4QcE4F2j9bTqwb0hX9ZQvAbp8oJMgyBoOEdzMDSNBCWiqj+cuck27hfdbQlU+pEt+jcDUv43HI877dBrqKiuz3KWqAjP2MC1zt5nvNVXmbDKvFd6ZKxY6+y7faApuTi/99rEDICJk+5vrrPSPc3+cCrSzfodyCaJr2AGv9bntZsiNNUodwn8RwJQoPNVvz82KFm4QrX0INpOMBq2ezG2BesyYsj8NOlC/PxzkM2JXdfNo9ZxWqR50eNUQM8KLzG8n4uceO9zfT5LnMqIR+hSsWiWbQbpFsZ6F8lew+xMxdL2Yhz5m43ImC2wQWs5nlSVHJFWNppt1+SVG8Qaz2YkITSH83tkVIBNkV/DFfHXEkhV2Fdu5B299DhOTPpT+xAZui58tFJffg62EM3ZHPMwx4IcShX4cuBMG93Gt/t6PV1lFH48SQBaD1BBNBdiJILGtZg3NrJJrnXH7VO2Z+JFKuFf8CcFh+VIQliPW0xqJqYXtNVDIfRRVqSL89DfS+334qg7E=\"}",
+      "isAdmin": false,
+      "isSystem": false,
+      "enabled": true,
+      "todos": [
+        {
+          "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI0"
         },
-        "__typename": "UsersEdge"
-      },
-      {
-        "node": {
-          "id": "false",
-          "userName": "user",
-          "password": "{\"salt\":\"2BkAGhnngabk4X+iyNlRmg==\",\"hash\":\"gkucuAV33vi+EOfULVbrq4fboMwOOZePDFhl/7o6X9Eitg7wfxRHOpM9FCAoLvohTOdgO7lSILI5XR/DRU75F4SnBVQ9Q8fai2i/xjV2ElQkXWEqW3wmtdBlPvrY/+NfLherZMrsLFZlCxJFN6SyJOMFdHTZ3ojLtypppXZ85cJky8jG/r4BhVnWur7Uqwg/evGNMa65AYIpJoCs85z8F/HOSgIBshXGNJcSxgXouX0LrmalnYxgKCfimCepJK7iQzp6ZS01pmDpBXKhGtE4qYFLPCccX17JPr5x0iwEmyGuCw2aEnN+vAPFxU8HHIHtif69g2emNcONXXHjwEGV8JAjYJ7ZR94svGA56C7dqY+O5l1/6RwsreHqyTs+Yv3o8sfM9rLuxxseXS0qQjCPM/s7c/xO6XX5X7qRKKD7AryMwadPA4voGqp0Fd5Ezn+hpEZpKNr45JdzXoF131GOF3BosFQrlUxtPminX4C93vfYqN2GNX0IKYMx8SzRckevyqRPybgT7f5mm5RwwoDgCQqXrYGXbiDzgnPmAjH+gSLGEQc/lUK78PyvEXLi8rVMlig6SmNEpnK8/84842biuhGgNRGONaFgHxJLJ6z5ePhhnCQS45x1VERn8Sd5MEdFRBgsNBo8QXM+dqv9s9k/+tC6E/gqvNpAL0HY0rLhULA=\"}",
-          "isAdmin": true,
-          "isSystem": false,
-          "enabled": true,
-          "todos": {
-            "edges": [
-              {
-                "node": {
-                  "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI0",
-                  "__typename": "ToDoItem"
-                },
-                "__typename": "UserHasManyTodosEdge"
-              },
-              {
-                "node": {
-                  "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI1",
-                  "__typename": "ToDoItem"
-                },
-                "__typename": "UserHasManyTodosEdge"
-              },
-              {
-                "node": {
-                  "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI2",
-                  "__typename": "ToDoItem"
-                },
-                "__typename": "UserHasManyTodosEdge"
-              }
-            ],
-            "__typename": "UserHasManyTodosConnection"
-          },
-          "__typename": "User"
+        {
+          "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI1"
         },
-        "__typename": "UsersEdge"
+        {
+          "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI2"
+        }
+      ]
+    },
+    {
+      "id": "VXNlcjpmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmY=",
+      "userName": "system",
+      "password": "{\"salt\":\"CEAlF4feGuSFRjHm5N8dTw==\",\"hash\":\"vVIxoDZEINBHbz+PZMpRv/EW4cR8IlvZls48vZX/PwIEt0+jcV0tzIKm6BM4PgvVkln+YnK8qtF1wBK69kTSr+MXW/FTqKdN0n9kncDfbrqTn6KfUGD1zqxfA0SzlppCKI6O8BMZee8C4m0oBM1sSkPcOr+8jxdjg3475gUoBXIRKjkBLRJBBhZGV2+7Japk80wZEdeYlLGxxQ05lktak3HlOZOd0i4D0XwuSqc9hHnOxlS0QGPP1Ssf4PUyXtTdfN2/BtUIVd/Pp/EmDpGTEvkilnS49ZbujehpxNzrTe6FDQhUrT7WwXsoh7NjFThEnSiVKZRNVpk4xl0Pu/H0mSLPih54ONOq9TbKw2y+rra59GGWZml5A8zN9nXuQcGZ8lvBlQZX1ZEYBbXI6cgTO83IP6vpTtx/CgEAk9E46OK6jfPFLil3JaxbFoRHCGZmurghzZrHlXE9CqIDxgeroqTUx5jDY/4sBfFtHg1mBVreJyXzmva+Fy35N8qOxU+LSa31Eex+7RTRaqQNnwoFw1dd27tizl8gP+tmti/pJqe8eRKew1ecHCiqn+oPQm57PpyjjvpHXPmrkNiBDvedZoI2p22bTsIVMqT4hPXoGPJzvWB5Gg0AI+ko4aAqU6WLiWtupjyrhWPIeCUMoZ0B6HJBSOSfEua54dOm4rrcSS8=\"}",
+      "isAdmin": true,
+      "isSystem": true,
+      "enabled": true,
+      "todos": []
+    }
+  ],
+  "ToDoItem": [
+    {
+      "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI0",
+      "name": "first item",
+      "description": "some thing!!!",
+      "done": true,
+      "dueToDate": "2018-03-12T21:00:00.000Z",
+      "user": {
+        "id": "VXNlcjo1YWE2NGMyMTZmOWY1NDNkMDQwZmE5YjI="
       }
-    ],
-    "__typename": "UsersConnection"
-  },
-  "ToDoItem": {
-    "edges": [
-      {
-        "node": {
-          "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI0",
-          "name": "first item",
-          "description": "some thing!!!",
-          "done": true,
-          "dueToDate": "2018-03-12T21:00:00.000Z",
-          "user": {
-            "id": "false",
-            "__typename": "User"
-          },
-          "__typename": "ToDoItem"
-        },
-        "__typename": "ToDoItemsEdge"
-      },
-      {
-        "node": {
-          "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI1",
-          "name": "second item",
-          "description": "awesome thing!!!",
-          "done": true,
-          "dueToDate": "2018-03-12T21:00:00.000Z",
-          "user": {
-            "id": "false",
-            "__typename": "User"
-          },
-          "__typename": "ToDoItem"
-        },
-        "__typename": "ToDoItemsEdge"
-      },
-      {
-        "node": {
-          "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI2",
-          "name": "another item",
-          "description": "the different cool thing!!!",
-          "done": true,
-          "dueToDate": "2018-03-12T21:00:00.000Z",
-          "user": {
-            "id": "false",
-            "__typename": "User"
-          },
-          "__typename": "ToDoItem"
-        },
-        "__typename": "ToDoItemsEdge"
+    },
+    {
+      "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI1",
+      "name": "second item",
+      "description": "awesome thing!!!",
+      "done": true,
+      "dueToDate": "2018-03-12T21:00:00.000Z",
+      "user": {
+        "id": "VXNlcjo1YWE2NGMyMTZmOWY1NDNkMDQwZmE5YjI="
       }
-    ],
-    "__typename": "ToDoItemsConnection"
-  }
+    },
+    {
+      "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI2",
+      "name": "another item",
+      "description": "the different cool thing!!!",
+      "done": true,
+      "dueToDate": "2018-03-12T21:00:00.000Z",
+      "user": {
+        "id": "VXNlcjo1YWE2NGMyMTZmOWY1NDNkMDQwZmE5YjI="
+      }
+    }
+  ]
 }
