@@ -1,9 +1,10 @@
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
-import { ApolloClient } from 'apollo-client';
-import { ApolloLink, concat, } from 'apollo-link';
+import { ApolloClient, NetworkStatus } from 'apollo-client';
+import { ExecutionResult, GraphQLError } from 'graphql'
+import { ApolloLink, concat } from 'apollo-link';
 import { BatchHttpLink } from 'apollo-link-batch-http';
 
-export default ({ uri, token }) => {
+const apollo = ({ uri, token }) => {
   const httpLink = new BatchHttpLink({ uri });
   if (token) {
     const authMiddleware = new ApolloLink((operation, forward) => {
@@ -25,3 +26,14 @@ export default ({ uri, token }) => {
     });
   }
 }
+
+export default (connection: { uri: string, token: string }) => ({
+  query: (arg) => {
+    const c = apollo(connection);
+    return c.query(arg);
+  },
+  mutate: (arg) => {
+    const c = apollo(connection);
+    return c.mutate(arg);
+  }
+});
