@@ -1,0 +1,35 @@
+{
+  "name": "ui-simple",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "admin-on-rest": "^1.4.0",
+    "aor-dependent-input": "^1.2.0",
+    "aor-embedded-array": "0.0.8",
+    "aor-language-russian": "^1.0.6",
+    "aor-rich-text-input": "^1.0.2",
+    "apollo-link-batch-http": "^1.2.1",
+    "compose": "^0.1.2",
+    "dotenv": "^5.0.1",
+    "graphql-tag": "^2.8.0",
+    "inflected": "^2.0.4",
+    "invariant": "^2.2.3",
+    "loadable-components": "^1.1.1",
+    "oda-aor-rest": "^0.1.30",
+    "oda-gen-graphql": "^0.4.86",
+    "pluralize": "^7.0.0",
+    "react": "^15.6.0",
+    "react-apollo": "^2.0.1",
+    "react-dom": "^15.6.0",
+    "react-loading-animation": "^1.4.0",
+    "react-scripts": "1.1.1"
+  },
+  "scripts": {
+    "clean": "./clean.sh",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "generate": "node src/generate"
+  }
+}
