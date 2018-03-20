@@ -28,6 +28,7 @@ import { Factory } from 'fte.js';
 // subscriptions
 import { SubscriptionManager } from 'graphql-subscriptions';
 import { pubsub } from './model/pubsub';
+import { dbSqlPool } from './model/dbPool';
 import { dbPool } from './model/dbPool';
 import { createServer } from 'http';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
@@ -37,8 +38,10 @@ const WS_PORT = config.get<number>('subscriptions.port');
 const WS_HOST = config.get<number>('subscriptions.host');
 
 async function createContext({ schema }) {
+  let sql = await dbSqlPool.get('system');
   let db = await dbPool.get('system');
   let connectors = new RegisterConnectors({
+    sequelize: sql,
     mongoose: db,
   });
   const result = {
@@ -46,9 +49,11 @@ async function createContext({ schema }) {
     systemConnectors: await SystemGraphQL.connectors(),
     systemGQL: SystemGraphQL.query,
     userGQL: undefined,
+    sql,
     db,
     // user: passport.systemUser(),
     // owner: passport.systemUser(),
+    dbSqlPool,
     dbPool,
     pubsub,
   };

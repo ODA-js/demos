@@ -1,0 +1,24 @@
+@startuml system
+
+  ToDoItem "todos" -- "1 user" User
+
+
+  class User {
+    userName: String
+    password: String
+    isAdmin: boolean
+    isSystem: boolean
+    enabled: boolean
+    id: ID
+  }
+
+  class ToDoItem {
+    name: String
+    description: String
+    done: boolean
+    dueToDate: Date
+    user: User#userName
+    id: ID
+  }
+
+@enduml

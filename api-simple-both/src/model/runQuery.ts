@@ -83,6 +83,7 @@ export class SystemGraphQL {
   private static async context() {
     return {
       connectors: await SystemGraphQL.connectors(),
+      sql: await dbSqlPool.get('system'),
       db: await dbPool.get('system'),
       user: passport.systemUser(),
       owner: passport.systemUser(),

@@ -12,6 +12,10 @@ generator({
   config: {
     graphql: true,
     ts: true,
+    ui: false,
     packages: ['system'],
   },
+  context: {
+    defaultAdapter: 'mongoose',
+  }
 });

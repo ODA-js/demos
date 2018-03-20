@@ -1,0 +1,2 @@
+addToUserHasManyTodos(input: addToUserHasManyTodosInput):addToUserHasManyTodosPayload
+removeFromUserHasManyTodos(input: removeFromUserHasManyTodosInput):removeFromUserHasManyTodosPayload

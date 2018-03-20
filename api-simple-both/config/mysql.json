@@ -15,7 +15,7 @@
       "url": "mongodb://localhost/api-model-editor-prod"
     },
     "api2": {
-      "url": "sqlite://dbapi-model-editor-prod.sqlite"
+      "url": "mysql://<dbuser>:<dbpassword>@127.0.0.1/api-model-editor-prod"
     }
   },
   "passport": {

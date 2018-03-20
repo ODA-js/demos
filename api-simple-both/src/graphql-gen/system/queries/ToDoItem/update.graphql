@@ -1,0 +1,10 @@
+
+# Update ToDoItem
+mutation updateToDoItem($toDoItem: updateToDoItemInput!){
+  updateToDoItem(input:$toDoItem){
+    toDoItem {
+      id
+    }
+  }
+}
+

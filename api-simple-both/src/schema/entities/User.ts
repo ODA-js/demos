@@ -1,5 +1,10 @@
 export default {
   name: 'User',
+  metadata: {
+    storage: {
+      adapter: 'sequelize',
+    }
+  },
   fields: {
     userName: {
       identity: true,

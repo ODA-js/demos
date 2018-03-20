@@ -12,7 +12,7 @@
   },
   "db": {
     "api": {
-      "url": "mysql://<dbuser>:<dbpassword>@127.0.0.1/api-model-editor-prod"
+      "url": "sqlite://dbapi-model-editor-prod.sqlite"
     }
   },
   "passport": {

@@ -1,5 +1,10 @@
 export default {
   name: 'ToDoItem',
+  metadata: {
+    storage: {
+      adapter: 'mongoose',
+    }
+  },
   fields: {
     name: {
       indexed: true,
