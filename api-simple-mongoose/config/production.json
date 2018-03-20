@@ -1,7 +1,7 @@
 {
-  "AppName": "api-model-editor",
+  "AppName": "api-simple-mongoose",
   "hosts": {
-    "api-model-editor": {
+    "api-simple-mongoose": {
       "host": "0.0.0.0",
       "port": 3003
     }

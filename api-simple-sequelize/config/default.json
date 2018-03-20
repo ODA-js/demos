@@ -1,7 +1,7 @@
 {
-  "AppName": "api-model-editor",
+  "AppName": "api-simple-sequelize",
   "hosts": {
-    "api-model-editor": {
+    "api-simple-sequelize": {
       "host": "localhost",
       "port": 3003
     }

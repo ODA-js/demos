@@ -1,7 +1,7 @@
 {
-  "AppName": "api-model-editor",
+  "AppName": "api-simple-both",
   "hosts": {
-    "api-model-editor": {
+    "api-simple-both": {
       "host": "localhost",
       "port": 3003
     }
