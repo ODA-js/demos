@@ -1,8 +1,9 @@
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
-import { ApolloClient, NetworkStatus } from 'apollo-client';
+import { ApolloClient, NetworkStatus, WatchQueryOptions } from 'apollo-client';
 import { ExecutionResult, GraphQLError } from 'graphql'
 import { ApolloLink, concat } from 'apollo-link';
 import { BatchHttpLink } from 'apollo-link-batch-http';
+import { reshape } from 'oda-lodash';
 
 const apollo = ({ uri, token }) => {
   const httpLink = new BatchHttpLink({ uri });
@@ -28,12 +29,10 @@ const apollo = ({ uri, token }) => {
 }
 
 export default (connection: { uri: string, token: string }) => ({
-  query: (arg) => {
-    const c = apollo(connection);
-    return c.query(arg);
-  },
-  mutate: (arg) => {
-    const c = apollo(connection);
-    return c.mutate(arg);
-  }
+  query: (arg: WatchQueryOptions) => apollo(connection).query(arg)
+    .then(res => res.data ? {
+      ...res,
+      data: reshape(arg.query, res.data),
+    } : res),
+  mutate: (arg) => apollo(connection).mutate(arg),
 });
