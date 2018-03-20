@@ -21,7 +21,7 @@ import { runQueryLodash } from 'oda-lodash';
 
 let fn = process.argv[2] ? joinPath(process.cwd(), process.argv[2]) : joinPath(__dirname, '../../data/dump1.json');
 
-import { dbPool, dbSqlPool } from '../model/dbPool';
+import { dbSqlPool } from '../model/dbPool';
 import { SystemGraphQL, UserGQL } from '../model/runQuery';
 import { pubsub } from '../model/pubsub';
 
