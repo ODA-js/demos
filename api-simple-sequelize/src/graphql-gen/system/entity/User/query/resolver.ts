@@ -42,7 +42,7 @@ export const query: { [key: string]: any } = {
     let selectionSet = traverse(info);
 
     let idMap = {
-      id: '_id',
+      id: 'id',
     };
 
     let list = get(selectionSet, 'edges.node') ? await context.connectors.User.getList({
