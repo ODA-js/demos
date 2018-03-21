@@ -8,7 +8,7 @@ import {
   FunctionField,
   BooleanField,
   EditButton,
-  ReferenceManyField,
+  // ReferenceManyField,
   ReferenceField,
   Show,
   SimpleShowLayout,
@@ -28,6 +28,7 @@ const {
   EmbeddedArrayField,
   EmbeddedRefArrayField,
   EmbeddedRefField,
+  ReferenceManyField,
 } = ui.components;
 
 const showIfExists = field => root => !!root[field];
@@ -57,7 +58,7 @@ const ShowView = (props, context) => {
           <BooleanField label="resources.User.fields.enabled" source="enabled" allowEmpty />
         </DependentField>
 
-        <ReferenceManyField label="resources.User.fields.todos" reference="ToDoItem" target="user" allowEmpty >
+        <ReferenceManyField label="resources.User.fields.todos" reference="ToDoItem" target="user" idKey="userName" allowEmpty >
           <ToDoItem.Grid />
         </ReferenceManyField>
 
