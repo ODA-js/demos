@@ -6,6 +6,7 @@ import { runQuery } from 'graphql-server-core';
 
 // tslint:disable-next-line:no-var-requires
 let currentModule = require('../package.json');
+import * as cors from 'cors';
 
 import RegisterConnectors from './model/connectors';
 
@@ -133,7 +134,17 @@ export class SampleApiServer extends Server {
       subscriptionsEndpoint: `ws://${WS_HOST}:${WS_PORT}/subscriptions`,
     }));
 
-    this.app.use('/graphql', bodyParser.json(), buildSchema);
+    var corsOptions = {
+      origin: ['http://localhost:3007', 'http://0.0.0.0:3007'],
+      methods: ['GET', 'POST'],
+      allowedHeaders: ['Accept', 'Content-Type', 'Authorization'],
+      credentials: true
+    };
+    var corsOptionsDelegate = function (req, callback) {
+      callback(null, corsOptions);
+    }
+
+    this.app.use('/graphql', cors(corsOptionsDelegate), bodyParser.json(), buildSchema);
 
     this.errorHandling();
 

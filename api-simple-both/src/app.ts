@@ -3,6 +3,7 @@ dotenv.config({ silent: true });
 // tslint:disable-next-line:no-unused-variable
 import * as config from 'config';
 import { runQuery } from 'graphql-server-core';
+import * as cors from 'cors';
 
 // tslint:disable-next-line:no-var-requires
 let currentModule = require('../package.json');
@@ -138,7 +139,7 @@ export class SampleApiServer extends Server {
       subscriptionsEndpoint: `ws://${WS_HOST}:${WS_PORT}/subscriptions`,
     }));
 
-    this.app.use('/graphql', bodyParser.json(), buildSchema);
+    this.app.use('/graphql', cors(), bodyParser.json(), buildSchema);
 
     this.errorHandling();
 
