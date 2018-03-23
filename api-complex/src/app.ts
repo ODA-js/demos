@@ -60,7 +60,7 @@ async function createContext({ user, owner, userGroup, schema }: { user, owner, 
           }
         },
         'ToDoItem': function (obj) {
-          if (obj && obj.user === this.user.userName) {
+          if (obj && (obj.user === this.user.userName || obj.published)) {
             return obj;
           }
         },
