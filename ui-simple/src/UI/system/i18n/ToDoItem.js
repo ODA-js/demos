@@ -8,6 +8,7 @@ export default {
         description: 'Description',
         done: 'Done',
         dueToDate: 'Due to date',
+        published: 'Published',
         user: 'User',
       },
     },

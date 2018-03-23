@@ -8,6 +8,7 @@ export const fragments = {
     description
     done
     dueToDate
+    published
 
     userId: user @_(get:"id") {
       id
@@ -19,6 +20,7 @@ export const fragments = {
     description
     done
     dueToDate
+    published
     user {
       id
     }

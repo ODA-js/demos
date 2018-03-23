@@ -12,6 +12,7 @@ export default {
     description: { type: 'string' },
     done: { type: 'boolean' },
     dueToDate: { type: 'date' },
+    published: { type: 'boolean' },
     user: {
       ref: {
         resource: 'User',

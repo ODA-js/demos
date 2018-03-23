@@ -54,6 +54,9 @@ const ShowView = (props, context) => {
         <DependentField resolve={showIfExists('dueToDate')}>
           <DateField label="resources.ToDoItem.fields.dueToDate" source="dueToDate" allowEmpty />
         </DependentField>
+        <DependentField resolve={showIfExists('published')}>
+          <BooleanField label="resources.ToDoItem.fields.published" source="published" allowEmpty />
+        </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('userId')} source="userId" >
           <ReferenceField label="resources.ToDoItem.fields.user" source="userId" reference="User" allowEmpty linkType="show" >

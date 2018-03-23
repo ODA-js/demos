@@ -53,6 +53,7 @@ class Form extends Component {
         <TextInput label="resources.ToDoItem.fields.description" source="description"  allowEmpty />
         <BooleanInput label="resources.ToDoItem.fields.done" source="done"  allowEmpty />
         <DateInput label="resources.ToDoItem.fields.dueToDate" source="dueToDate"  allowEmpty />
+        <BooleanInput label="resources.ToDoItem.fields.published" source="published"  allowEmpty />
 
         <Label text="resources.ToDoItem.fields.user" />
         <ReferenceInput label="" source="userId" reference="User" allowEmpty >
