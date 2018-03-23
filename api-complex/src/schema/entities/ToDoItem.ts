@@ -15,6 +15,10 @@ export default {
       type: 'Date',
       indexed: true,
     },
+    published: {
+      type: 'boolean',
+      indexed: true,
+    },
     user: {
       indexed: true,
       relation: {

@@ -23,6 +23,8 @@ generator({
     hooks.securityFields,
     hooks.securityAcl,
 
+    hooks.userPasswordStatus,
+    hooks.ToDoItem,
     hooks.ownerFields,
     hooks.ownerAcl,
   ],

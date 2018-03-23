@@ -20,6 +20,7 @@ import { Server, middleware, passport } from 'oda-api-common';
 
 import * as bodyParser from 'body-parser';
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
+import { graphqlLodashExpress } from 'oda-lodash';
 import { makeExecutableSchema, addSchemaLevelResolveFunction } from 'graphql-tools';
 import * as packages from './model/schema';
 import * as compression from 'compression';
@@ -40,6 +41,10 @@ import { createServer } from 'http';
 import { SubscriptionServer, ExecuteFunction, SubscribeFunction } from 'subscriptions-transport-ws';
 import { apolloUploadExpress } from 'apollo-upload-server';
 
+import {
+  toGlobalId,
+} from 'oda-api-graphql';
+
 const WS_PORT = config.get<number>('subscriptions.port');
 const WS_HOST = config.get<number>('subscriptions.host');
 
@@ -49,8 +54,24 @@ async function createContext({ user, owner, userGroup, schema }: { user, owner, 
     mongoose: db,
     acls: {
       owner: {
-        'User': (obj) => obj,
+        'User': function (obj) {
+          if (obj && toGlobalId('User', obj.id) === this.user.id) {
+            return obj;
+          }
+        },
+        'ToDoItem': function (obj) {
+          if (obj && obj.user === this.user.userName) {
+            return obj;
+          }
+        },
       },
+      "public": {
+        ToDoItem: function (obj) {
+          if (obj && obj.published) {
+            return obj;
+          }
+        }
+      }
     },
     user: user,
     owner: owner,
@@ -91,7 +112,7 @@ function prepareSchema(securedMutations: acl.secureMutations.SecureMutation) {
     if (packages.hasOwnProperty(pack)) {
       let current = new packages[pack]({});
       current.build();
-      fs.writeFileSync(`${pack}.graphql`, current.typeDefs.toString());
+      // fs.writeFileSync(`${pack}.graphql`, current.typeDefs.toString());
       schemas[pack] = makeExecutableSchema({
         typeDefs: current.typeDefs.toString(),
         resolvers: current.resolvers,
@@ -132,7 +153,7 @@ export class SampleApiServer extends Server {
     this.initLogger();
 
     // Проверить как работает...
-    this.app.set('views', path.join(__dirname, '..', '..', 'views'));
+    this.app.set('views', path.join(__dirname, '..', 'views'));
 
     passport.init(this.app, passportLib, resolveUser);
     let index = new Factory({
@@ -193,7 +214,7 @@ export class SampleApiServer extends Server {
     this.app.use(middleware.aclGroupDiscovery(resolveAcl));
     this.app.use(middleware.ownerDiscovery(resolveOwner));
 
-    const buildSchema = graphqlExpress(async (req, res) => {
+    const buildSchema = graphqlLodashExpress(async (req, res) => {
       let userGroup = req['aclGroup'] || 'public';
       let db = await dbPool.get(userGroup);
 

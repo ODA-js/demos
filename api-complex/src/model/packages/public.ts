@@ -5,6 +5,7 @@ import { PublicPackage as Extendee } from '../../graphql-gen/public';
 import { LoginUserMutation } from '../common/mutations/login.resolver';
 import { RegisterUserMutation } from '../common/mutations/registerUserMutation';
 import { ACL } from '../common/_acl';
+import { LodashModule } from 'oda-lodash';
 
 import { pubsub } from '../pubsub';
 import { withFilter } from 'graphql-subscriptions';
@@ -15,6 +16,7 @@ export class ExtendedPublicPackage extends common.types.GQLModule {
     new Extendee({}),
     new LoginUserMutation({}),
     new RegisterUserMutation({}),
+    new LodashModule({}),
   ];
 }
 

@@ -23,9 +23,23 @@ export let securityFields = {
   },
 };
 
+export let userPasswordStatus = {
+  name: 'userPasswordStatus',
+  'entities.User.metadata.acl.read': 'public',
+  'entities.User.fields.password.metadata.acl.read': 'owner',
+  'entities.User.fields.[enabled,isSystem,isAdmin].metadata.acl.read': 'system',
+  'entities.User.fields.[id, userName, todos].metadata.acl.read': 'public',
+}
+
+export let ToDoItem = {
+  name: 'ToDoItem',
+  'entities.ToDoItem.metadata.acl.read': 'public',
+  'entities.ToDoItem.fields.[id, name, description, done, dueToDate, user].metadata.acl.read': 'public',
+}
+
 export let securityAcl = {
   name: 'security',
-  'entities.^[User].fields.[createdBy,updateBy,createdAt, updatedAt].metadata.acl.read': 'public',
+  'entities.^[User].fields.[createdBy,updateBy,createdAt, updatedAt].metadata.acl.read': 'system',
 };
 
 export let ownerFields = {
@@ -40,15 +54,13 @@ export let ownerFields = {
 
 export let ownerAcl = {
   name: 'security',
-  [`entities.^[User].fields.owner.metadata.acl.read`]: 'owner',
+  [`entities.^[User].fields.owner.metadata.acl.read`]: 'system',
 };
-
-
 
 export let defaultVisibility = {
   name: 'default visibility',
-  [`entities.*.metadata.acl.read`]: 'public',
-  [`entities.*.fields.*.metadata.acl.read`]: 'public',
+  [`entities.*.metadata.acl.read`]: 'owner',
+  [`entities.*.fields.*.metadata.acl.read`]: 'owner',
 };
 
 export const accessFixEntities = {
