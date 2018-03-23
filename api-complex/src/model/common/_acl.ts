@@ -49,7 +49,7 @@ export class ACL extends common.types.GQLModule {
   ) {
     debugger;
     logger.trace('_acl');
-    const group = context.user.profileName;
+    const group = context.userGroup;
     if (args.mutation && args.mutation.length > 0) {
       return this.check(args.mutation, group);
     } else {

@@ -24,8 +24,6 @@ export const getAcl = (id: string) => {
         let user = result.data.user;
         if (user.isSystem) {
           return 'system';
-        } else if (user.isAdmin) {
-          return 'admin';
         } else {
           return 'owner';
         }

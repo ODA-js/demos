@@ -75,7 +75,6 @@ function prepareSchema(securedMutations: acl.secureMutations.SecureMutation) {
     public: GraphQLSchema,
     owner: GraphQLSchema,
     system: GraphQLSchema,
-    admin: GraphQLSchema,
   };
 
   for (let pack in packages) {
@@ -90,7 +89,7 @@ function prepareSchema(securedMutations: acl.secureMutations.SecureMutation) {
           requireResolversForNonScalar: false,
         },
       });
-      if (['owner', 'admin', 'public'].indexOf(pack) > -1) {
+      if (['owner', 'public'].indexOf(pack) > -1) {
         addSchemaLevelResolveFunction(schemas[pack], securedMutations.secureMutation.bind(securedMutations)());
       }
     }
@@ -106,12 +105,11 @@ export class SampleApiServer extends Server {
     const securedMutations = new acl.secureMutations.SecureMutation({
       acls,
       userGroup: (context) => {
+        debugger;
         let result = 'public';
         if (context.user) {
           if (context.user.isSystem) {
             result = 'system';
-          } else if (context.user.isAdmin) {
-            result = 'admin';
           } else if (!context.user.isAnonymous) {
             result = 'owner';
           }
