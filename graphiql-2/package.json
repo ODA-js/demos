@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "proxy": "http://0.0.0.0:3003",
   "dependencies": {
-    "apollo-fetch": "^0.6.0",
-    "apollo-link-core": "^0.5.0",
-    "apollo-link-ws": "^0.3.0",
-    "graphiql": "^0.10.2",
+    "apollo-fetch": "^0.7.0",
+    "apollo-link-core": "^0.5.4",
+    "apollo-link-ws": "^1.0.7",
+    "graphiql": "^0.11.11",
     "graphiql-subscriptions-fetcher": "0.0.2",
     "isomorphic-fetch": "^2.2.1",
     "jsrsasign": "^7.2.1",
@@ -26,6 +26,7 @@
     "react-scripts": "1.0.7"
   },
   "scripts": {
+    "clean": "./clean.sh",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
