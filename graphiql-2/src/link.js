@@ -88,7 +88,15 @@ class CatchLink extends ApolloLink {
 class HttpLink extends ApolloLink {
   constructor({ uri }) {
     super();
-    this.apolloFetch = createApolloFetch({ uri });
+    this.apolloFetch = createApolloFetch({ uri })
+      .use(({ request, options }, next) => {
+        const token = localStorage.authToken;
+        if (!options.headers) {
+          options.headers = {};  // Create the headers object if needed.
+        }
+        options.headers.authorization = token ? `Bearer ${token}` : null;
+        next();
+      });
   }
 
   request(operation) {
