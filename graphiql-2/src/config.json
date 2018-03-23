@@ -1,0 +1,4 @@
+{
+  "ws-subscription": "ws://0.0.0.0:3004",
+  "graphql": "/graphql"
+}

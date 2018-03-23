@@ -1,0 +1,36 @@
+{
+  "name": "secured-graphiql",
+  "version": "0.1.0",
+  "proxy": "http://0.0.0.0:3003",
+  "dependencies": {
+    "apollo-fetch": "^0.6.0",
+    "apollo-link-core": "^0.5.0",
+    "apollo-link-ws": "^0.3.0",
+    "graphiql": "^0.10.2",
+    "graphiql-subscriptions-fetcher": "0.0.2",
+    "isomorphic-fetch": "^2.2.1",
+    "jsrsasign": "^7.2.1",
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.0",
+    "react-countdown-clock": "^1.1.0",
+    "react-dom": "^15.6.1",
+    "react-dropzone": "^3.13.3",
+    "subscriptions-transport-ws": "^0.8.2"
+  },
+  "keywords": [
+    "oda-js",
+    "graphql",
+    "graphiql"
+  ],
+  "devDependencies": {
+    "react-scripts": "1.0.7"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": "ODA-js/secured-graphiql",
+  "license": "MIT"
+}

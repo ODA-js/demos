@@ -1,0 +1,50 @@
+.header {
+   background: #1c75bf;
+   height: 10vh;
+   margin: 0;
+   padding: 0;
+}
+.header-navbar {
+  width: 100%;
+  height: 60px;
+  margin: 0;
+  padding: 0;
+}
+.header-navbar ul {
+  width: 90%;
+}
+.header-navbar ul li {
+  width: 100%;
+  text-align: center;
+  line-height: 60px;
+}
+.header__logo {
+  width: 10%;
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  float:left;
+}
+.header__wrapper {
+  width: 90%;
+  height: 60px;
+  float: left;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.header__wrapper .form-control-feedback {
+  top: 14px!important;
+  padding: 10px 0 0 0;
+}
+
+.login-form-inline__input,
+.login-form-inline__login-button {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.fa-input-glyphicon__icon {
+  padding-top: 9px;
+}
