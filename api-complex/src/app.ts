@@ -9,7 +9,7 @@ let currentModule = require('../package.json');
 
 import RegisterConnectors from './model/connectors';
 
-import { SystemGraphQL } from './model/runQuery';
+import { SystemGraphQL, UserGQL } from './model/runQuery';
 
 import { GraphQLSchema, execute, subscribe } from 'graphql';
 
@@ -56,10 +56,11 @@ async function createContext({ user, owner, userGroup, schema }: { user, owner, 
     owner: owner,
     userGroup,
   });
-  return {
+  const result = {
     connectors,
     systemConnectors: await SystemGraphQL.connectors(),
     systemGQL: SystemGraphQL.query,
+    userGQL: undefined,
     db,
     dbPool,
     pubsub,
@@ -68,6 +69,15 @@ async function createContext({ user, owner, userGroup, schema }: { user, owner, 
     userGroup,
     schema,
   };
+
+  const userGQL = new UserGQL({
+    context: result,
+    schema,
+  });
+
+  result.userGQL = userGQL.query.bind(userGQL);
+
+  return result;
 }
 
 function prepareSchema(securedMutations: acl.secureMutations.SecureMutation) {
@@ -105,7 +115,6 @@ export class SampleApiServer extends Server {
     const securedMutations = new acl.secureMutations.SecureMutation({
       acls,
       userGroup: (context) => {
-        debugger;
         let result = 'public';
         if (context.user) {
           if (context.user.isSystem) {
@@ -194,6 +203,7 @@ export class SampleApiServer extends Server {
           user: req.user,
           owner: req['owner'],
           userGroup: userGroup,
+          schema: schemas[userGroup],
         }),
       };
     });
