@@ -3,14 +3,15 @@ import { common } from 'oda-gen-graphql';
 import { PublicPackage as Extendee } from '../../graphql-gen/public';
 
 import { LoginUserMutation } from '../common/mutations/login.resolver';
-import { RegisterUserMutation } from '../common/registerUserMutation';
+import { RegisterUserMutation } from '../common/mutations/registerUserMutation';
 import { ACL } from '../common/_acl';
 
 import { pubsub } from '../pubsub';
 import { withFilter } from 'graphql-subscriptions';
 
 export class ExtendedPublicPackage extends common.types.GQLModule {
-  protected _extend: common.types.GQLModule[] = [
+  protected _name = "ExtendedPublicPackage";
+  protected _composite: common.types.GQLModule[] = [
     new Extendee({}),
     new LoginUserMutation({}),
     new RegisterUserMutation({}),
@@ -20,10 +21,11 @@ export class ExtendedPublicPackage extends common.types.GQLModule {
 const { deepMerge } = common.lib;
 
 export class PublicSchema extends common.types.GQLModule {
+  protected _name = "PublicSchema";
   constructor(args) {
     super(args);
     // override existing entities to reduce functionality of the schema
-    this._extend = [
+    this._composite = [
       new ExtendedPublicPackage({}),
       new common.types.GQLModule({
         name: 'ViewerEntity',

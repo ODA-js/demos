@@ -9,14 +9,16 @@ import { pubsub } from '../pubsub';
 import { withFilter } from 'graphql-subscriptions';
 
 export class ExtendedSystemPackage extends common.types.GQLModule {
-  protected _extend: common.types.GQLModule[] = [
+  protected _name = "ExtendedSystemPackage";
+  protected _composite: common.types.GQLModule[] = [
     new Extendee({}),
     new CommonExtends({}),
   ];
 }
 
 export class SystemSchema extends common.types.GQLModule {
-  protected _extend = [
+  protected _name = "ExtendedSystemPackage";
+  protected _composite = [
     new ExtendedSystemPackage({}),
   ];
 

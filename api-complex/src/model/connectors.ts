@@ -1,6 +1,6 @@
 import RegisterConnectors from '../graphql-gen/data/registerConnectors';
 
-import User from '../graphql-gen/data/User/mongoose/connector';
+import User from '../graphql-gen/data/User/adapter/connector';
 
 export default class DataConnectors extends RegisterConnectors {
   public get Viewer(): User {

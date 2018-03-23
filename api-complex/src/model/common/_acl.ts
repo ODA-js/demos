@@ -8,16 +8,16 @@ const securedMutations = new acl.secureMutations.SecureMutation({ acls: runtimeM
 
 export class ACL extends common.types.GQLModule {
   private allow;
-
+  protected _name = 'ACL';
   constructor(_args) {
     super(_args);
     this._queryEntry = {
-      entry: [
+      queryEntry: [
         `_acl(mutation: [String!]): JSON`,
       ],
     };
     this._viewerEntry = {
-      entry: [
+      viewerEntry: [
         `_acl(mutation: [String!]): JSON`,
       ],
     };
@@ -26,7 +26,9 @@ export class ACL extends common.types.GQLModule {
       _acl: this.run.bind(this),
     };
     this._viewer = {
-      Viewer: this._query,
+      Viewer: {
+        _acl: this.run.bind(this),
+      },
     };
   }
   private check(mutations, group) {
@@ -45,8 +47,8 @@ export class ACL extends common.types.GQLModule {
     context,
     info,
   ) {
-    logger.trace('_acl');
     debugger;
+    logger.trace('_acl');
     const group = context.user.profileName;
     if (args.mutation && args.mutation.length > 0) {
       return this.check(args.mutation, group);

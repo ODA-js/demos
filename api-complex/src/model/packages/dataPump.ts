@@ -9,7 +9,8 @@ const { deepMerge } = common.lib;
 import { CommonExtends } from '../common';
 
 export class SystemDataPumpSchema extends common.types.GQLModule {
-  protected _extend = [
+  protected _name = "SystemDataPump";
+  protected _composite = [
     new SystemPackage({}),
   ];
 

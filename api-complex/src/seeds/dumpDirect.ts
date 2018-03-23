@@ -14,7 +14,7 @@ import loaderConfig from './loaderConfig';
 import RegisterConnectors from '../model/connectors';
 import { makeExecutableSchema } from 'graphql-tools';
 
-import { SystemSchema } from '../model/schema';
+import { system as SystemSchema } from '../model/schema';
 import * as mongoose from 'mongoose';
 import * as config from 'config';
 import { runQueryLodash } from 'oda-lodash';

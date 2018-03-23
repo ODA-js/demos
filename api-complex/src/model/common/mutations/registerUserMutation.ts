@@ -4,7 +4,7 @@ let logger = log4js.getLogger('graphql:register:');
 import { mutateAndGetPayload } from 'oda-api-graphql';
 
 export class RegisterUserMutation extends common.types.GQLModule {
-
+  protected _name = "RegisterUserMutation";
   constructor(_args) {
     super(_args);
     this._typeDef = {
