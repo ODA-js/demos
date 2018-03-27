@@ -27,7 +27,7 @@ export let userPasswordStatus = {
   name: 'userPasswordStatus',
   'entities.User.metadata.acl.read': 'public',
   'entities.User.fields.password.metadata.acl.read': ['owner'],
-  'entities.User.fields.[enabled,isSystem,isAdmin].metadata.acl.read': ['system'],
+  'entities.User.fields.[enabled,isSystem,isAdmin,published].metadata.acl.read': ['system'],
   'entities.User.fields.[id, userName, todos].metadata.acl.read': ['public'],
 }
 
@@ -59,8 +59,8 @@ export let ownerAcl = {
 
 export let defaultVisibility = {
   name: 'default visibility',
-  // [`entities.*.metadata.acl.read`]: 'owner',
-  // [`entities.*.fields.*.metadata.acl.read`]: 'owner',
+  [`entities.*.metadata.acl.read`]: 'owner',
+  [`entities.*.fields.*.metadata.acl.read`]: 'owner',
 };
 
 export const accessFixEntities = {
