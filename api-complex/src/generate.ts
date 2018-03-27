@@ -16,17 +16,17 @@ generator({
     hooks.accessFixMutations,
 
     hooks.defaultVisibility,
-    hooks.defaultIdVisibility,
+    // hooks.defaultIdVisibility,
 
     hooks.defaultMutationAccess,
 
     hooks.securityFields,
     hooks.securityAcl,
 
-    hooks.userPasswordStatus,
     hooks.ToDoItem,
     hooks.ownerFields,
     hooks.ownerAcl,
+    hooks.userPasswordStatus,
   ],
   pack: schema,
   rootDir: path.join(__dirname, '../src', 'graphql-gen'),

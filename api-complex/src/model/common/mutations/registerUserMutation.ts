@@ -19,6 +19,7 @@ export class RegisterUserMutation extends common.types.GQLModule {
             clientMutationId: String
             viewer: Viewer
             token: String
+            role: String
             message: String
           }
         `,
@@ -48,6 +49,7 @@ export class RegisterUserMutation extends common.types.GQLModule {
             // what must be in output
             token?: any; // string,
             message?: any;
+            role?: any;
           } = {};
 
           let user = await context.systemGQL({
@@ -131,6 +133,7 @@ export class RegisterUserMutation extends common.types.GQLModule {
                 });
               if (loginUserToken) {
                 result.token = loginUserToken
+                result.role = context.userGroup || 'public'
                 result.message = 'success';
               } else {
                 result.message = message;

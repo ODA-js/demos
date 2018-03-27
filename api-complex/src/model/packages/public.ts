@@ -3,6 +3,8 @@ import { common } from 'oda-gen-graphql';
 import { PublicPackage as Extendee } from '../../graphql-gen/public';
 
 import { LoginUserMutation } from '../common/mutations/login.resolver';
+import { GetProfileQuery } from '../common/queries/getProfileQuery';
+
 import { RegisterUserMutation } from '../common/mutations/registerUserMutation';
 import { ACL } from '../common/_acl';
 import { LodashModule } from 'oda-lodash';
@@ -15,6 +17,7 @@ export class ExtendedPublicPackage extends common.types.GQLModule {
   protected _composite: common.types.GQLModule[] = [
     new Extendee({}),
     new LoginUserMutation({}),
+    new GetProfileQuery({}),
     new RegisterUserMutation({}),
     new LodashModule({}),
   ];
