@@ -10,12 +10,12 @@
     "graphiql-subscriptions-fetcher": "0.0.2",
     "isomorphic-fetch": "^2.2.1",
     "jsrsasign": "^7.2.1",
-    "react": "^15.6.1",
-    "react-bootstrap": "^0.31.0",
-    "react-countdown-clock": "^1.1.0",
-    "react-dom": "^15.6.1",
-    "react-dropzone": "^3.13.3",
-    "subscriptions-transport-ws": "^0.8.2"
+    "react": "^16.2.0",
+    "react-bootstrap": "^0.32.1",
+    "react-countdown-clock": "^2.4.0",
+    "react-dom": "^16.2.0",
+    "react-dropzone": "^4.2.9",
+    "subscriptions-transport-ws": "^0.9.7"
   },
   "keywords": [
     "oda-js",

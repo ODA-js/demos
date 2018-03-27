@@ -11,9 +11,9 @@ import { PartialUser } from '../types/model';
 import { UserConnector } from './interface';
 
 export default class User extends MongooseApi<RegisterConnectors, PartialUser> implements UserConnector {
-  constructor({mongoose, connectors, user, owner, acls, userGroup}) {
+  constructor({mongoose, connectors, user, owner, acls, userGroup, initOwner, logUser}) {
     logger.trace('constructor');
-    super({mongoose, connectors, user, acls, userGroup, owner    });
+    super({mongoose, connectors, user, acls, userGroup, owner, initOwner, logUser});
     this.initSchema('User', UserSchema());
 
     this.loaderKeys = {

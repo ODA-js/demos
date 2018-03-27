@@ -11,9 +11,9 @@ import { IToDoItem } from '../types/model';
 import { ToDoItemConnector } from './interface';
 
 export default class ToDoItem extends SequelizeApi<RegisterConnectors, IToDoItem> implements ToDoItemConnector {
-  constructor({sequelize, connectors, user, owner, acls, userGroup}) {
+  constructor({sequelize, connectors, user, owner, acls, userGroup , initOwner, logUser}) {
     logger.trace('constructor');
-    super({sequelize, connectors, user, acls, userGroup, owner    });
+    super({sequelize, connectors, user, acls, userGroup, owner, initOwner, logUser });
     this.initSchema('ToDoItem', ToDoItemSchema);
 
     this.loaderKeys = {
@@ -119,6 +119,9 @@ export default class ToDoItem extends SequelizeApi<RegisterConnectors, IToDoItem
       }
       if (args.dueToDate !== undefined) {
         entity.dueToDate = args.dueToDate;
+      }
+      if (args.published !== undefined) {
+        entity.published = args.published;
       }
       if (args.user !== undefined) {
         entity.user = args.user;

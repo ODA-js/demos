@@ -24,6 +24,10 @@ export default (sequelize, DataTypes: Sequelize.DataTypes) => {
       type: DataTypes.DATE,
       allowNull: true,
     },
+    published: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
     user: {
       type: DataTypes.STRING(1000),
       allowNull: true,
@@ -49,6 +53,10 @@ export default (sequelize, DataTypes: Sequelize.DataTypes) => {
       }, {
         fields: [
           { attribute: 'dueToDate', order: 'ASC' },
+        ],
+      }, {
+        fields: [
+          { attribute: 'published', order: 'ASC' },
         ],
       }, {
         fields: [

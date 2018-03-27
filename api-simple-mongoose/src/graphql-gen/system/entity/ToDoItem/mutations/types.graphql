@@ -8,6 +8,7 @@ input createToDoItemInput {
   description: String
   done: Boolean
   dueToDate: Date
+  published: Boolean
   user: embedUserInput
 }
 
@@ -19,6 +20,7 @@ input embedToDoItemInput {
   description: String
   done: Boolean
   dueToDate: Date
+  published: Boolean
   user: embedUserInput
 }
 
@@ -38,6 +40,7 @@ input updateToDoItemInput {
   description: String
   done: Boolean
   dueToDate: Date
+  published: Boolean
   user: embedUserInput
   userUnlink: embedUserInput
   userCreate: createUserInput

@@ -211,6 +211,7 @@ export const mutation = {
       description?: string,
       done?: boolean,
       dueToDate?: Date,
+      published?: boolean,
       user?: object/*User*/,
     },
     context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
@@ -222,6 +223,7 @@ export const mutation = {
       description: args.description,
       done: args.done,
       dueToDate: args.dueToDate,
+      published: args.published,
     };
 
     if(args.id) {
@@ -278,6 +280,7 @@ export const mutation = {
       description?: string,
       done?: boolean,
       dueToDate?: Date,
+      published?: boolean,
       user?: object/*User*/,
       userUnlink?: object/*User*/,
       userCreate?: object/*User*/,
@@ -291,6 +294,7 @@ export const mutation = {
       description: args.description,
       done: args.done,
       dueToDate: args.dueToDate,
+      published: args.published,
     };
 
     let result;

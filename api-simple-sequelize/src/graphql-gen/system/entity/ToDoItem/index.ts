@@ -28,6 +28,8 @@ export class ToDoItem extends common.types.GQLModule {
   doneDesc
   dueToDateAsc
   dueToDateDesc
+  publishedAsc
+  publishedDesc
   idAsc
   idDesc
 }`],
@@ -56,6 +58,7 @@ input ToDoItemFilter {
   description: WhereString
   done: WhereBoolean
   dueToDate: WhereDate
+  published: WhereBoolean
   user: WhereString
   id: WhereID
 }
@@ -67,6 +70,7 @@ input ToDoItemComplexFilter {
   description: WhereString
   done: WhereBoolean
   dueToDate: WhereDate
+  published: WhereBoolean
   user: WhereString
   id: WhereID
 }
@@ -76,6 +80,7 @@ input ToDoItemFilterItem {
   description: WhereString
   done: WhereBoolean
   dueToDate: WhereDate
+  published: WhereBoolean
   user: WhereString
   id: WhereID
 }
@@ -85,6 +90,7 @@ input ToDoItemFilterSubscriptionsItem {
   description: WhereString
   done: WhereBoolean
   dueToDate: WhereDate
+  published: WhereBoolean
   user: WhereString
   id: WhereID
 }
@@ -107,6 +113,8 @@ type ToDoItem implements Node{
   done: Boolean
   # # Due To Date
   dueToDate: Date
+  # # Published
+  published: Boolean
   # # Id
   id: ID!
   # # User
@@ -126,6 +134,7 @@ input createToDoItemInput {
   description: String
   done: Boolean
   dueToDate: Date
+  published: Boolean
   user: embedUserInput
 }
 
@@ -137,6 +146,7 @@ input embedToDoItemInput {
   description: String
   done: Boolean
   dueToDate: Date
+  published: Boolean
   user: embedUserInput
 }
 
@@ -156,6 +166,7 @@ input updateToDoItemInput {
   description: String
   done: Boolean
   dueToDate: Date
+  published: Boolean
   user: embedUserInput
   userUnlink: embedUserInput
   userCreate: createUserInput
@@ -193,6 +204,7 @@ type UpdateToDoItemSubscriptionPayload {
   description: String
   done: Boolean
   dueToDate: Date
+  published: Boolean
 }
 
 type ToDoItemSubscription {

@@ -11,9 +11,9 @@ import { IUser } from '../types/model';
 import { UserConnector } from './interface';
 
 export default class User extends SequelizeApi<RegisterConnectors, IUser> implements UserConnector {
-  constructor({sequelize, connectors, user, owner, acls, userGroup}) {
+  constructor({sequelize, connectors, user, owner, acls, userGroup , initOwner, logUser}) {
     logger.trace('constructor');
-    super({sequelize, connectors, user, acls, userGroup, owner    });
+    super({sequelize, connectors, user, acls, userGroup, owner, initOwner, logUser });
     this.initSchema('User', UserSchema);
 
     this.loaderKeys = {

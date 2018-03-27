@@ -15,7 +15,7 @@ export default class RegisterConnectors {
 
   public InitUser(): UserConnector {
     if (!this._User) {
-      this._User = new User({ mongoose: this.mongoose, connectors: this, user: this.user, owner: this.owner, acls: this.acls, userGroup: this.userGroup });
+      this._User = new User({ mongoose: this.mongoose, connectors: this, user: this.user, owner: this.owner, acls: this.acls, userGroup: this.userGroup, initOwner: false, logUser: false });
     }
     return this._User;
   }
@@ -26,7 +26,7 @@ export default class RegisterConnectors {
 
   public InitToDoItem(): ToDoItemConnector {
     if (!this._ToDoItem) {
-      this._ToDoItem = new ToDoItem({ mongoose: this.mongoose, connectors: this, user: this.user, owner: this.owner, acls: this.acls, userGroup: this.userGroup });
+      this._ToDoItem = new ToDoItem({ mongoose: this.mongoose, connectors: this, user: this.user, owner: this.owner, acls: this.acls, userGroup: this.userGroup, initOwner: false, logUser: false });
     }
     return this._ToDoItem;
   }

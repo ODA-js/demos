@@ -4,6 +4,7 @@
   description?: string;
   done?: boolean;
   dueToDate?: Date;
+  published?: boolean;
   user?: string;
 }
 

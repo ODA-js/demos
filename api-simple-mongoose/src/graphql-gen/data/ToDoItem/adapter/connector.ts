@@ -11,9 +11,9 @@ import { PartialToDoItem } from '../types/model';
 import { ToDoItemConnector } from './interface';
 
 export default class ToDoItem extends MongooseApi<RegisterConnectors, PartialToDoItem> implements ToDoItemConnector {
-  constructor({mongoose, connectors, user, owner, acls, userGroup}) {
+  constructor({mongoose, connectors, user, owner, acls, userGroup, initOwner, logUser}) {
     logger.trace('constructor');
-    super({mongoose, connectors, user, acls, userGroup, owner    });
+    super({mongoose, connectors, user, acls, userGroup, owner, initOwner, logUser});
     this.initSchema('ToDoItem', ToDoItemSchema());
 
     this.loaderKeys = {
@@ -124,6 +124,9 @@ export default class ToDoItem extends MongooseApi<RegisterConnectors, PartialToD
       }
       if (args.dueToDate !== undefined) {
         entity.dueToDate = args.dueToDate;
+      }
+      if (args.published !== undefined) {
+        entity.published = args.published;
       }
       if (args.user !== undefined) {
         entity.user = args.user;

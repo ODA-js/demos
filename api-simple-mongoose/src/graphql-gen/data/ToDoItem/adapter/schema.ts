@@ -14,6 +14,9 @@ export default () => {
     dueToDate: {
       type: Date,
     },
+    published: {
+      type: Boolean,
+    },
     user: {
       type: String,
     },
@@ -43,6 +46,12 @@ export default () => {
 
   $ToDoItem.index({
     dueToDate: 1,
+  }, {
+    sparse: 1,
+  });
+
+  $ToDoItem.index({
+    published: 1,
   }, {
     sparse: 1,
   });

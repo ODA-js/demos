@@ -9,6 +9,7 @@ type UpdateToDoItemSubscriptionPayload {
   description: String
   done: Boolean
   dueToDate: Date
+  published: Boolean
 }
 
 type ToDoItemSubscription {

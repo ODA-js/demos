@@ -17,6 +17,7 @@
     description: String
     done: boolean
     dueToDate: Date
+    published: boolean
     user: User#userName
     id: ID
   }

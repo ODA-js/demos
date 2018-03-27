@@ -12,6 +12,7 @@ fragment ViewToDoItem on ToDoItem {
   description
   done
   dueToDate
+  published
 }
 
 fragment ViewToDoItemFull on ToDoItem {
@@ -20,6 +21,7 @@ fragment ViewToDoItemFull on ToDoItem {
   description
   done
   dueToDate
+  published
   user {
     ...EmbedUserWithId
   }
