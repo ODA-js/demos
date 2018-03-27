@@ -1,0 +1,25 @@
+
+input addToUserHasManyTodosInput {
+  clientMutationId: String
+  user:ID!
+  toDoItem:ID!
+  #additional Edge fields
+}
+
+type addToUserHasManyTodosPayload {
+  clientMutationId: String
+  viewer: Viewer
+  user: User
+ }
+
+input removeFromUserHasManyTodosInput {
+  clientMutationId: String
+  toDoItem:ID!
+  user:ID!
+ }
+
+type removeFromUserHasManyTodosPayload {
+  clientMutationId: String
+  viewer: Viewer
+  user: User
+ }

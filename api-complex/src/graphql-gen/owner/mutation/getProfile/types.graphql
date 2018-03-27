@@ -1,0 +1,9 @@
+input getProfileInput {
+  clientMutationId: String
+}
+
+type getProfilePayload {
+  clientMutationId: String
+  viewer: Viewer
+  role: String
+}

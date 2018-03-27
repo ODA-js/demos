@@ -1,0 +1,44 @@
+
+# fragments for single unique keys
+fragment EmbedToDoItemWithId on ToDoItem {
+  id
+}
+
+
+# fragments on entity
+fragment ViewToDoItem on ToDoItem {
+  id
+  name
+  description
+  done
+  dueToDate
+  published
+  createdAt
+  updatedAt
+  removed
+  owner
+}
+
+fragment ViewToDoItemFull on ToDoItem {
+  id
+  name
+  description
+  done
+  dueToDate
+  published
+  createdAt
+  updatedAt
+  removed
+  owner
+  user {
+    ...EmbedUserWithId
+  }
+  createdBy {
+    ...EmbedUserWithId
+  }
+  updateBy {
+    ...EmbedUserWithId
+  }
+}
+
+

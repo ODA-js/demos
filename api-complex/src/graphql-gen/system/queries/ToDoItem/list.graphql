@@ -1,0 +1,12 @@
+
+# List of ToDoItems
+query ToDoItems {
+  ToDoItem: toDoItems @_(get: "edges"){
+    edges @_(map: "node"){
+      node{
+        ...ViewToDoItemFull
+      }
+    }
+  }
+}
+

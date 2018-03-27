@@ -1,0 +1,12 @@
+
+# Create ToDoItem
+mutation createToDoItem($toDoItem: createToDoItemInput!){
+  createToDoItem(input:$toDoItem){
+    toDoItem {
+      node {
+        id
+      }
+    }
+  }
+}
+

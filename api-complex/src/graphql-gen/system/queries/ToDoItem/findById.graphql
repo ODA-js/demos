@@ -1,0 +1,6 @@
+
+query findToDoItemById( $id: ID) {
+  toDoItem(id:$id) {
+    ...ViewToDoItemFull
+  }
+}

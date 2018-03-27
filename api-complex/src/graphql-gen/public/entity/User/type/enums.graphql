@@ -1,0 +1,6 @@
+enum UserSortOrder {
+  userNameAsc
+  userNameDesc
+  idAsc
+  idDesc
+}

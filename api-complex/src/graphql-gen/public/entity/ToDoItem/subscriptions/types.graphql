@@ -1,0 +1,32 @@
+# Input types for basic CUD
+
+# input type for ToDoItem
+
+type UpdateToDoItemSubscriptionPayload {
+
+  id: ID
+  name: String
+  description: String
+  done: Boolean
+  dueToDate: Date
+}
+
+type ToDoItemSubscription {
+  mutation: MutationKind!
+  node: ToDoItem!
+  payload: ToDoItemSubscriptionPayload
+  updatedFields: [String]
+  previous: UpdateToDoItemSubscriptionPayload
+}
+
+type ToDoItemBelongsToUserArgsSubscriptionPayload {
+  toDoItem:ID!
+  user:ID!
+}
+
+type ToDoItemBelongsToUserSubscriptionPayload {
+  args:ToDoItemBelongsToUserArgsSubscriptionPayload
+  relation: String
+}
+
+union ToDoItemSubscriptionPayload = UpdateToDoItemSubscriptionPayload | ToDoItemBelongsToUserSubscriptionPayload

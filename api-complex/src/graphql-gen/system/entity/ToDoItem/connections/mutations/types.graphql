@@ -1,0 +1,75 @@
+
+input addToToDoItemBelongsToUserInput {
+  clientMutationId: String
+  toDoItem:ID!
+  user:ID!
+  #additional Edge fields
+}
+
+type addToToDoItemBelongsToUserPayload {
+  clientMutationId: String
+  viewer: Viewer
+  toDoItem: ToDoItem
+ }
+
+input removeFromToDoItemBelongsToUserInput {
+  clientMutationId: String
+  user:ID!
+  toDoItem:ID!
+ }
+
+type removeFromToDoItemBelongsToUserPayload {
+  clientMutationId: String
+  viewer: Viewer
+  toDoItem: ToDoItem
+ }
+
+input addToToDoItemBelongsToCreatedByInput {
+  clientMutationId: String
+  toDoItem:ID!
+  user:ID!
+  #additional Edge fields
+}
+
+type addToToDoItemBelongsToCreatedByPayload {
+  clientMutationId: String
+  viewer: Viewer
+  toDoItem: ToDoItem
+ }
+
+input removeFromToDoItemBelongsToCreatedByInput {
+  clientMutationId: String
+  user:ID!
+  toDoItem:ID!
+ }
+
+type removeFromToDoItemBelongsToCreatedByPayload {
+  clientMutationId: String
+  viewer: Viewer
+  toDoItem: ToDoItem
+ }
+
+input addToToDoItemBelongsToUpdateByInput {
+  clientMutationId: String
+  toDoItem:ID!
+  user:ID!
+  #additional Edge fields
+}
+
+type addToToDoItemBelongsToUpdateByPayload {
+  clientMutationId: String
+  viewer: Viewer
+  toDoItem: ToDoItem
+ }
+
+input removeFromToDoItemBelongsToUpdateByInput {
+  clientMutationId: String
+  user:ID!
+  toDoItem:ID!
+ }
+
+type removeFromToDoItemBelongsToUpdateByPayload {
+  clientMutationId: String
+  viewer: Viewer
+  toDoItem: ToDoItem
+ }

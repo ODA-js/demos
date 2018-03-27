@@ -1,0 +1,26 @@
+type UsersConnection {
+  pageInfo: PageInfo!
+  edges: [UsersEdge]
+  # put here your additional connection fields
+}
+
+type UsersEdge {
+  node: User
+  cursor: String!
+  # put here your additiona edge fields
+}
+
+
+
+type UserHasManyTodosConnection {
+  pageInfo: PageInfo!
+  edges: [UserHasManyTodosEdge]
+  # put here your additional connection fields
+}
+
+type UserHasManyTodosEdge {
+  node: ToDoItem
+  cursor: String!
+  # put here your additiona edge fields
+}
+

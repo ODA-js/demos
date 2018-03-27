@@ -1,0 +1,12 @@
+enum ToDoItemSortOrder {
+  nameAsc
+  nameDesc
+  descriptionAsc
+  descriptionDesc
+  doneAsc
+  doneDesc
+  dueToDateAsc
+  dueToDateDesc
+  idAsc
+  idDesc
+}
