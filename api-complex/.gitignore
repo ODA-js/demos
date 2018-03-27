@@ -1,7 +1,6 @@
 dist
 logs
 node_modules
-graphql-gen
 data/schema.json
 data/schema.graphql
 data/seed-queries.json
