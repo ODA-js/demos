@@ -36,6 +36,9 @@ const FilterPanel = (props, {translate}) => (
 
     <DateInput label={translate("uix.filter.lte",{ name: translate('resources.ToDoItem.fields.dueToDate')})} source="dueToDate-lte" allowEmpty />
     <DateInput label={translate("uix.filter.gte",{ name: translate('resources.ToDoItem.fields.dueToDate')})} source="dueToDate-gte" allowEmpty />
+    <NullableBooleanInput label={translate("uix.filter.exists",{ name: translate('resources.ToDoItem.fields.published')})} source="published-exists" />
+
+    <BooleanInput label={translate("uix.filter.eq",{ name: translate('resources.ToDoItem.fields.published')})} source="published-eq" allowEmpty />
 
   </Filter>
 );
