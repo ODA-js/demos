@@ -14,7 +14,7 @@ exports.ToDoItemUI = {
   'entities.ToDoItem': {
     'metadata.UI': {
       listName: 'name',
-      list: ['name', 'description', 'done', 'dueToDate'],
+      list: ['name', 'description', 'done', 'dueToDate', 'published'],
       show: ['^password'],
     },
   }
