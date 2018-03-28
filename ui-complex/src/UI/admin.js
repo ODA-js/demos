@@ -24,7 +24,7 @@ class OdaClientApp extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      role: 'public',
+      role: 'system',
     }
   }
 
@@ -45,6 +45,7 @@ class OdaClientApp extends Component {
   getChildContext() {
     return {
       uix: this.context.uix[this.state.role],
+      role: this.state.role || 'system',
     }
   }
 
@@ -65,7 +66,7 @@ class OdaClientApp extends Component {
           <Resource
             key={resource}
             show={uix[role][resource].Show}
-            name={resource}
+            name={uix[role][resource].name}
             edit={uix[role][resource].Edit}
             create={uix[role][resource].Create}
             list={uix[role][resource].List}
@@ -87,6 +88,7 @@ OdaClientApp.contextTypes = {
 
 OdaClientApp.childContextTypes = {
   uix: PropTypes.object.isRequired,
+  role: PropTypes.string.isRequired,
 }
 
 export default OdaClientApp;
