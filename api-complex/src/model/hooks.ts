@@ -26,9 +26,9 @@ export let securityFields = {
 export let userPasswordStatus = {
   name: 'userPasswordStatus',
   'entities.User.metadata.acl.read': 'public',
-  'entities.User.fields.password.metadata.acl.read': ['owner'],
-  'entities.User.fields.[enabled,isSystem,isAdmin,published].metadata.acl.read': ['system'],
-  'entities.User.fields.[id, userName, todos].metadata.acl.read': ['public'],
+  'entities.User.fields.password.metadata.acl.read': 'owner',
+  'entities.User.fields.[enabled,isSystem,isAdmin,published].metadata.acl.read': 'system',
+  'entities.User.fields.[id, userName, todos].metadata.acl.read': 'public',
 }
 
 export let ToDoItem = {
