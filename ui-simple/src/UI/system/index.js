@@ -23,6 +23,6 @@ export class Resources extends data.resource.ResourceContainer {
 }
 
 export const uix = {
-  User: UserUIX,
-  ToDoItem: ToDoItemUIX,
+  "system/User": UserUIX,
+  "system/ToDoItem": ToDoItemUIX,
 };

@@ -1,4 +1,4 @@
-import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK } from 'admin-on-rest';
+import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK, AUTH_GET_PERMISSIONS } from 'admin-on-rest';
 import decode from './../lib/decode';
 
 import gql from 'graphql-tag';
@@ -24,6 +24,9 @@ export default (apolloClient) => (type, params) => {
       .then((res) => {
         localStorage.setItem('authToken', res.data.loginUser.token);
       })
+  }
+  if (type === AUTH_GET_PERMISSIONS) {
+    return Promise.resolve('system');
   }
   // called when the user clicks on the logout button
   if (type === AUTH_LOGOUT) {
