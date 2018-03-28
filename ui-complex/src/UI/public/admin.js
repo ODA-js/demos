@@ -35,7 +35,7 @@ class OdaClientApp extends Component {
           <Resource
             key={resource}
             show={uix[resource].Show}
-            name={resource}
+            name={uix[resource].name}
             edit={uix[resource].Edit}
             create={uix[resource].Create}
             list={uix[resource].List}
