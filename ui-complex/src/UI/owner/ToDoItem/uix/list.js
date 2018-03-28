@@ -5,11 +5,10 @@ import {
 } from "admin-on-rest";
 
 const ListView = (props, context) => {
-  const Grid = context.uix.ToDoItem.Grid;
-  const Filter = context.uix.ToDoItem.Filter;
+  const { Grid, Filter} = context.uix['owner/ToDoItem'];
 
   return (
-    <List {...props} filters={<Filter />}>
+    <List {...props} filters={<Filter />} title={context.translate("resources.ToDoItem.name", { smart_count:2 })}>
       <Grid {...props} />
     </List>
   )
@@ -17,6 +16,7 @@ const ListView = (props, context) => {
 
 ListView.contextTypes = {
   uix: PropTypes.object.isRequired,
+  translate: PropTypes.func.isRequired,
 }
 
 export default ListView;

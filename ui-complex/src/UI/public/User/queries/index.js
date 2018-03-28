@@ -5,13 +5,14 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'User',
+  name: 'public/User',
+  role: 'public',
   fields: {
     id: { type: 'string' },
     userName: { type: 'string' },
     todos: {
       ref: {
-        resource: 'ToDoItem',
+        resource: 'public/ToDoItem',
         type: data.resource.interfaces.refType.HasMany,
       },
     },

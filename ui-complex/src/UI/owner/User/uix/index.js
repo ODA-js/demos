@@ -11,6 +11,7 @@ const Grid = loadable(() => import('./grid'));
 
 export default {
   name: 'User',
+  role: 'owner',
   Title,
   Filter,
   Form,

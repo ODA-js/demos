@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 import { ApolloProvider } from 'react-apollo';
 import Dashboard from './Dashboard/'
+import merge from 'lodash/merge';
 
-import Admin from './UI/admin';
+import Admin from './UI/system/admin';
 // import { Admin } from './UIoverride';
 import { ui } from 'oda-aor-rest';
 import AutoFormProvider from './lib/adminAutoFormProvider';
@@ -19,11 +20,7 @@ const resources = {
   public: new PublicResource(),
 }
 
-const uix = {
-  system: SystemUIX,
-  owner: OwnerUIX,
-  public: PublicUIX,
-}
+const uix = merge({}, SystemUIX, OwnerUIX, PublicUIX)
 
 const client = apolloClient({ uri: process.env.REACT_APP_API_URL });
 class App extends Component {

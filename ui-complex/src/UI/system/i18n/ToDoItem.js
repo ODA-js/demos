@@ -2,6 +2,7 @@ export default {
   resources: {
     ToDoItem: {
       name: 'ToDoItem |||| ToDoItems',
+      listName: 'ToDoItem |||| ToDoItems',
       fields: {
         id: 'Id',
         name: 'Name',

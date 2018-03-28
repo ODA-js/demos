@@ -19,10 +19,10 @@ const {
   securityFields,
   securityAcl,
 
-  userPasswordStatus,
   ToDoItem,
   ownerFields,
   ownerAcl,
+  userPasswordStatus,
 } = require('./../../api-complex/dist/model/hooks');
 
 const acl = require('./../../api-complex/dist/model/acl').default;

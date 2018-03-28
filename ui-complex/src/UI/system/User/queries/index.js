@@ -5,7 +5,8 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'User',
+  name: 'system/User',
+  role: 'system',
   fields: {
     id: { type: 'string' },
     userName: { type: 'string' },
@@ -15,7 +16,7 @@ export default {
     enabled: { type: 'boolean' },
     todos: {
       ref: {
-        resource: 'ToDoItem',
+        resource: 'system/ToDoItem',
         type: data.resource.interfaces.refType.HasMany,
       },
     },

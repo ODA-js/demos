@@ -31,15 +31,17 @@ class OdaClientApp extends Component {
         locale="en"
         authClient={authClient}
         restClient={restClient}>
-        {Object.keys(uix).map(resource =>
-          <Resource
+        {role => Object.keys(uix)
+          .filter(resource => uix[resource].role === role)
+          .map(resource => <Resource
             key={resource}
             show={uix[resource].Show}
-            name={uix[resource].name}
+            name={resource}
             edit={uix[resource].Edit}
             create={uix[resource].Create}
             list={uix[resource].List}
             remove={Delete}
+            options={{ label: `resources.${uix[resource].name}.name` }}
           />
         )}
       </Admin>

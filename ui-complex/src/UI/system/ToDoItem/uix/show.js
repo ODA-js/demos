@@ -36,9 +36,8 @@ const showIfExists = field => root => !!root[field];
 const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
 const ShowView = (props, context) => {
-  const { uix } = context;
-  const Title = uix.ToDoItem.Title;
-  const { translate } = context;
+  const { translate, uix } = context;
+  const { Title } = uix['system/ToDoItem'];
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
@@ -71,19 +70,19 @@ const ShowView = (props, context) => {
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('userId')} source="userId" >
-          <ReferenceField label="resources.ToDoItem.fields.user" source="userId" reference="User" allowEmpty linkType="show" >
+          <ReferenceField label="resources.ToDoItem.fields.user" source="userId" reference="system/User" allowEmpty linkType="show" >
             <TextField source="userName" allowEmpty />
           </ReferenceField>
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('createdById')} source="createdById" >
-          <ReferenceField label="resources.ToDoItem.fields.createdBy" source="createdById" reference="User" allowEmpty linkType="show" >
+          <ReferenceField label="resources.ToDoItem.fields.createdBy" source="createdById" reference="system/User" allowEmpty linkType="show" >
             <TextField source="userName" allowEmpty />
           </ReferenceField>
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('updateById')} source="updateById" >
-          <ReferenceField label="resources.ToDoItem.fields.updateBy" source="updateById" reference="User" allowEmpty linkType="show" >
+          <ReferenceField label="resources.ToDoItem.fields.updateBy" source="updateById" reference="system/User" allowEmpty linkType="show" >
             <TextField source="userName" allowEmpty />
           </ReferenceField>
         </DependentField>

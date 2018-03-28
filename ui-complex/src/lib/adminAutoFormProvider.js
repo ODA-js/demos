@@ -12,6 +12,7 @@ export default class AdminAutoFormsProvider extends Component {
     invariant(props.client, 'expected `client` prop initilization');
     invariant(props.uix, 'expected `uix` prop initilization');
     invariant(props.resources, 'expected `resources` prop initilization');
+
     const auth = authClient(props.client);
     this.state = {
       authClient: auth,

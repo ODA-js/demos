@@ -11,6 +11,7 @@ const Grid = loadable(() => import('./grid'));
 
 export default {
   name: 'ToDoItem',
+  role: 'public',
   Title,
   Filter,
   Form,

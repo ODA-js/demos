@@ -60,17 +60,17 @@ class Form extends Component {
         <TextInput label="resources.ToDoItem.fields.owner" source="owner"  allowEmpty />
 
         <Label text="resources.ToDoItem.fields.user" />
-        <ReferenceInput label="" source="userId" reference="User" allowEmpty >
+        <ReferenceInput label="" source="userId" reference="system/User" allowEmpty >
           <AutocompleteInput optionText="userName" />
         </ReferenceInput>
 
         <Label text="resources.ToDoItem.fields.createdBy" />
-        <ReferenceInput label="" source="createdById" reference="User" allowEmpty >
+        <ReferenceInput label="" source="createdById" reference="system/User" allowEmpty >
           <AutocompleteInput optionText="userName" />
         </ReferenceInput>
 
         <Label text="resources.ToDoItem.fields.updateBy" />
-        <ReferenceInput label="" source="updateById" reference="User" allowEmpty >
+        <ReferenceInput label="" source="updateById" reference="system/User" allowEmpty >
           <AutocompleteInput optionText="userName" />
         </ReferenceInput>
 

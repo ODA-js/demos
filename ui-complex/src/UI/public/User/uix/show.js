@@ -36,12 +36,10 @@ const showIfExists = field => root => !!root[field];
 const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
 const ShowView = (props, context) => {
-  const { uix } = context;
-  const Title = uix.User.Title;
-  const { translate } = context;
-  const {
-    ToDoItem,
-  } = uix;
+  const { translate, uix } = context;
+  const { Title } = uix['public/User'];
+  const ToDoItem = uix['public/ToDoItem'];
+
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
@@ -49,7 +47,7 @@ const ShowView = (props, context) => {
           <TextField label="resources.User.fields.userName" source="userName" />
         </DependentField>
 
-        <ReferenceManyField label="resources.User.fields.todos" reference="ToDoItem" target="user" idKey="userName" allowEmpty >
+        <ReferenceManyField label="resources.User.fields.todos" reference="public/ToDoItem" target="user" idKey="userName" allowEmpty >
           <ToDoItem.Grid />
         </ReferenceManyField>
 

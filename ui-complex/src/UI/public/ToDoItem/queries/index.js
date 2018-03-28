@@ -5,7 +5,8 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'ToDoItem',
+  name: 'public/ToDoItem',
+  role: 'public',
   fields: {
     id: { type: 'string' },
     name: { type: 'string' },
@@ -14,7 +15,7 @@ export default {
     dueToDate: { type: 'date' },
     user: {
       ref: {
-        resource: 'User',
+        resource: 'public/User',
         type: data.resource.interfaces.refType.BelongsTo,
       },
     },

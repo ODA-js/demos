@@ -53,7 +53,7 @@ class Form extends Component {
 
 
         <Label text="resources.User.fields.todos" />
-        <ReferenceArrayInput label="" source="todosIds" reference="ToDoItem" allowEmpty >
+        <ReferenceArrayInput label="" source="todosIds" reference="public/ToDoItem" allowEmpty >
           <SelectArrayInput options={{ fullWidth: true }} optionText="name" optionValue="id" />
         </ReferenceArrayInput>
 
