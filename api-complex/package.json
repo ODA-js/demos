@@ -30,13 +30,12 @@
     "graphql-tag": "^2.4.2",
     "lodash": "^4.17.4",
     "log4js": "^1.1.1",
-    "oda-api-common": "^0.2.21",
+    "oda-api-common": "^0.2.22",
     "oda-api-graphql": "^0.4.26",
-    "oda-gen-common": "^0.1.5",
-    "oda-gen-graphql": "^0.6.0",
-    "oda-isomorfic": "^0.0.24",
-    "oda-lodash": "^0.1.5",
-    "oda-model": "^0.0.44",
+    "oda-gen-common": "^0.1.6",
+    "oda-gen-graphql": "^0.6.1",
+    "oda-isomorfic": "^0.0.25",
+    "oda-lodash": "^0.1.6",
     "subscriptions-transport-ws": "^0.9.7"
   },
   "devDependencies": {
