@@ -13,18 +13,12 @@ fragment ViewUser on User {
   id
   userName
   password
-  isAdmin
-  isSystem
-  enabled
 }
 
 fragment ViewUserFull on User {
   id
   userName
   password
-  isAdmin
-  isSystem
-  enabled
   todos @_(get: "edges"){
     edges @_(map: "node"){
       node {

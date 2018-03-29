@@ -21,9 +21,6 @@ input UserFilter {
   and: [UserFilterItem]
   userName: WhereString
   password: WhereString
-  isAdmin: WhereBoolean
-  isSystem: WhereBoolean
-  enabled: WhereBoolean
   id: WhereID
 }
 
@@ -32,27 +29,18 @@ input UserComplexFilter {
   and: [UserComplexFilter]
   userName: WhereString
   password: WhereString
-  isAdmin: WhereBoolean
-  isSystem: WhereBoolean
-  enabled: WhereBoolean
   id: WhereID
 }
 
 input UserFilterItem {
   userName: WhereString
   password: WhereString
-  isAdmin: WhereBoolean
-  isSystem: WhereBoolean
-  enabled: WhereBoolean
   id: WhereID
 }
 
 input UserFilterSubscriptionsItem {
   userName: WhereString
   password: WhereString
-  isAdmin: WhereBoolean
-  isSystem: WhereBoolean
-  enabled: WhereBoolean
   id: WhereID
 }
 
@@ -70,12 +58,6 @@ type User implements Node{
   userName: String!
   # # Password
   password: String!
-  # # Is Admin
-  isAdmin: Boolean
-  # # Is System
-  isSystem: Boolean
-  # # Enabled
-  enabled: Boolean
   # # Id
   id: ID!
   # # Todos  

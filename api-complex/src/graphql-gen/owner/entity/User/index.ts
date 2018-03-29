@@ -24,12 +24,6 @@ export class User extends common.types.GQLModule {
   userNameDesc
   passwordAsc
   passwordDesc
-  isAdminAsc
-  isAdminDesc
-  isSystemAsc
-  isSystemDesc
-  enabledAsc
-  enabledDesc
   idAsc
   idDesc
 }`],
@@ -56,9 +50,6 @@ input UserFilter {
   and: [UserFilterItem]
   userName: WhereString
   password: WhereString
-  isAdmin: WhereBoolean
-  isSystem: WhereBoolean
-  enabled: WhereBoolean
   id: WhereID
 }
 
@@ -67,27 +58,18 @@ input UserComplexFilter {
   and: [UserComplexFilter]
   userName: WhereString
   password: WhereString
-  isAdmin: WhereBoolean
-  isSystem: WhereBoolean
-  enabled: WhereBoolean
   id: WhereID
 }
 
 input UserFilterItem {
   userName: WhereString
   password: WhereString
-  isAdmin: WhereBoolean
-  isSystem: WhereBoolean
-  enabled: WhereBoolean
   id: WhereID
 }
 
 input UserFilterSubscriptionsItem {
   userName: WhereString
   password: WhereString
-  isAdmin: WhereBoolean
-  isSystem: WhereBoolean
-  enabled: WhereBoolean
   id: WhereID
 }
 
@@ -105,12 +87,6 @@ type User implements Node{
   userName: String!
   # # Password
   password: String!
-  # # Is Admin
-  isAdmin: Boolean
-  # # Is System
-  isSystem: Boolean
-  # # Enabled
-  enabled: Boolean
   # # Id
   id: ID!
   # # Todos  
@@ -127,9 +103,6 @@ input createUserInput {
   id: ID
   userName: String!
   password: String!
-  isAdmin: Boolean
-  isSystem: Boolean
-  enabled: Boolean
   todos: [embedToDoItemInput]
 }
 
@@ -139,9 +112,6 @@ input embedUserInput {
   id: ID
   userName: String
   password: String
-  isAdmin: Boolean
-  isSystem: Boolean
-  enabled: Boolean
   todos: [embedToDoItemInput]
 }
 
@@ -159,9 +129,6 @@ input updateUserInput {
   id: ID
   userName: String
   password: String
-  isAdmin: Boolean
-  isSystem: Boolean
-  enabled: Boolean
   todos: [embedToDoItemInput]
   todosUnlink: [embedToDoItemInput]
   todosCreate: [createToDoItemInput]
@@ -198,9 +165,6 @@ type UpdateUserSubscriptionPayload {
   id: ID
   userName: String
   password: String
-  isAdmin: Boolean
-  isSystem: Boolean
-  enabled: Boolean
 }
 
 type UserSubscription {

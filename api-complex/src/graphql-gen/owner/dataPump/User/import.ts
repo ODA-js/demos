@@ -20,10 +20,7 @@ export default {
         filter:`
           id
           userName
-          password
-          isAdmin
-          isSystem
-          enabled`,
+          password`,
         uploader: {
           findQuery: {
             id: 'User/findById.graphql',

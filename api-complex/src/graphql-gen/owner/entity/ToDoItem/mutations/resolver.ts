@@ -61,9 +61,6 @@ async function ensureUser({
           user: {
             userName: args.userName,
             password: args.password,
-            isAdmin: args.isAdmin,
-            isSystem: args.isSystem,
-            enabled: args.enabled,
             id: args.id,
           },
         }
@@ -84,9 +81,6 @@ async function ensureUser({
         user: {
           userName: args.userName,
           password: args.password,
-          isAdmin: args.isAdmin,
-          isSystem: args.isSystem,
-          enabled: args.enabled,
           id: args.id,
         },
       }

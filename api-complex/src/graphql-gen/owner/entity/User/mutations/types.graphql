@@ -6,9 +6,6 @@ input createUserInput {
   id: ID
   userName: String!
   password: String!
-  isAdmin: Boolean
-  isSystem: Boolean
-  enabled: Boolean
   todos: [embedToDoItemInput]
 }
 
@@ -18,9 +15,6 @@ input embedUserInput {
   id: ID
   userName: String
   password: String
-  isAdmin: Boolean
-  isSystem: Boolean
-  enabled: Boolean
   todos: [embedToDoItemInput]
 }
 
@@ -38,9 +32,6 @@ input updateUserInput {
   id: ID
   userName: String
   password: String
-  isAdmin: Boolean
-  isSystem: Boolean
-  enabled: Boolean
   todos: [embedToDoItemInput]
   todosUnlink: [embedToDoItemInput]
   todosCreate: [createToDoItemInput]

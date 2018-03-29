@@ -3,12 +3,6 @@ enum UserSortOrder {
   userNameDesc
   passwordAsc
   passwordDesc
-  isAdminAsc
-  isAdminDesc
-  isSystemAsc
-  isSystemDesc
-  enabledAsc
-  enabledDesc
   idAsc
   idDesc
 }

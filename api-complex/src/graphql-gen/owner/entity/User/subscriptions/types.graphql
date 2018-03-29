@@ -7,9 +7,6 @@ type UpdateUserSubscriptionPayload {
   id: ID
   userName: String
   password: String
-  isAdmin: Boolean
-  isSystem: Boolean
-  enabled: Boolean
 }
 
 type UserSubscription {

@@ -207,9 +207,6 @@ export const mutation = {
       id?: string,
       userName?: string,
       password?: string,
-      isAdmin?: boolean,
-      isSystem?: boolean,
-      enabled?: boolean,
       todos?: object/*ToDoItem*/[],
     },
     context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
@@ -219,9 +216,6 @@ export const mutation = {
     let create: any = {
       userName: args.userName,
       password: args.password,
-      isAdmin: args.isAdmin,
-      isSystem: args.isSystem,
-      enabled: args.enabled,
     };
 
     if(args.id) {
@@ -280,9 +274,6 @@ export const mutation = {
       id?: string,
       userName?: string,
       password?: string,
-      isAdmin?: boolean,
-      isSystem?: boolean,
-      enabled?: boolean,
       todos?: object/*ToDoItem*/[],
       todosUnlink?: object/*ToDoItem*/[],
       todosCreate?: object/*ToDoItem*/[],
@@ -294,9 +285,6 @@ export const mutation = {
     let payload = {
       userName: args.userName,
       password: args.password,
-      isAdmin: args.isAdmin,
-      isSystem: args.isSystem,
-      enabled: args.enabled,
     };
 
     let result;
