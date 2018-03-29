@@ -16,7 +16,7 @@ generator({
     hooks.accessFixMutations,
 
     hooks.defaultVisibility,
-    // hooks.defaultIdVisibility,
+    hooks.defaultIdVisibility,
 
     hooks.defaultMutationAccess,
 

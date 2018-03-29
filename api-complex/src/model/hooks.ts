@@ -27,7 +27,7 @@ export let userPasswordStatus = {
   name: 'userPasswordStatus',
   'entities.User.metadata.acl.read': 'public',
   'entities.User.fields.password.metadata.acl.read': 'owner',
-  'entities.User.fields.[enabled,isSystem,isAdmin,published].metadata.acl.read': 'system',
+  'entities.User.fields.[enabled,isSystem,isAdmin].metadata.acl.read': { $assign: ['system'] },
   'entities.User.fields.[id, userName, todos].metadata.acl.read': 'public',
 }
 
@@ -35,6 +35,7 @@ export let ToDoItem = {
   name: 'ToDoItem',
   'entities.ToDoItem.metadata.acl.read': 'public',
   'entities.ToDoItem.fields.[id, name, description, done, dueToDate, user].metadata.acl.read': 'public',
+  'entities.ToDoItem.fields.[published].metadata.acl.read': { $assign: ['owner'] },
 }
 
 export let securityAcl = {
