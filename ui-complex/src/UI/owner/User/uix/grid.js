@@ -16,9 +16,6 @@ import {
 const Grid = (props, context) => (
   <Datagrid {...props} >
     <TextField sortable={true} label="resources.User.fields.userName" source="userName" />
-    <BooleanField sortable={true} label="resources.User.fields.isAdmin" source="isAdmin" allowEmpty />
-    <BooleanField sortable={true} label="resources.User.fields.isSystem" source="isSystem" allowEmpty />
-    <BooleanField sortable={true} label="resources.User.fields.enabled" source="enabled" allowEmpty />
 
     <ShowButton />
     <EditButton />

@@ -46,15 +46,6 @@ const ShowView = (props, context) => {
         <DependentField resolve={showIfExists('userName')}>
           <TextField label="resources.User.fields.userName" source="userName" />
         </DependentField>
-        <DependentField resolve={showIfExists('isAdmin')}>
-          <BooleanField label="resources.User.fields.isAdmin" source="isAdmin" allowEmpty />
-        </DependentField>
-        <DependentField resolve={showIfExists('isSystem')}>
-          <BooleanField label="resources.User.fields.isSystem" source="isSystem" allowEmpty />
-        </DependentField>
-        <DependentField resolve={showIfExists('enabled')}>
-          <BooleanField label="resources.User.fields.enabled" source="enabled" allowEmpty />
-        </DependentField>
 
         <ReferenceManyField label="resources.User.fields.todos" reference="owner/ToDoItem" target="user" idKey="userName" allowEmpty >
           <ToDoItem.Grid />

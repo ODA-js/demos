@@ -11,9 +11,6 @@ export default {
     id: { type: 'string' },
     userName: { type: 'string' },
     password: { type: 'string' },
-    isAdmin: { type: 'boolean' },
-    isSystem: { type: 'boolean' },
-    enabled: { type: 'boolean' },
     todos: {
       ref: {
         resource: 'owner/ToDoItem',

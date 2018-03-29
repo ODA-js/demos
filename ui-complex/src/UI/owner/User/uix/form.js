@@ -51,9 +51,6 @@ class Form extends Component {
       <SimpleForm {...props} >
         <TextInput label="resources.User.fields.userName" source="userName"  validate={required} />
         <TextInput label="resources.User.fields.password" source="password"  validate={required} />
-        <BooleanInput label="resources.User.fields.isAdmin" source="isAdmin"  allowEmpty />
-        <BooleanInput label="resources.User.fields.isSystem" source="isSystem"  allowEmpty />
-        <BooleanInput label="resources.User.fields.enabled" source="enabled"  allowEmpty />
 
 
         <Label text="resources.User.fields.todos" />

@@ -6,9 +6,6 @@ export const fragments = {
     id
     userName
     password
-    isAdmin
-    isSystem
-    enabled
 
     todosIds: todos @_(get:"edges") {
       edges @_( map:"node" ) {
@@ -22,9 +19,6 @@ export const fragments = {
     id
     userName
     password
-    isAdmin
-    isSystem
-    enabled
     todos {
       edges {
         node {
