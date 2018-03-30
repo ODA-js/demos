@@ -57,7 +57,7 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
   public async create(payload: PartialUser) {
     logger.trace('create');
     let entity = this.getPayload(payload);
-    let result = await this.create(entity);
+    let result = await this.createSecure(entity);
     this.storeToCache([result]);
     return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
   }
@@ -67,7 +67,7 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
     let entity = this.getPayload(payload, true);
     let result = await this.loaders.byId.load(id);
     if (result) {
-      result = await this.update(result, entity);
+      result = await this.updateSecure(result, entity);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -80,7 +80,7 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
     let entity = this.getPayload(payload, true);
     let result = await this.loaders.byUserName.load(userName);
     if (result) {
-      result = await this.update(result, entity);
+      result = await this.updateSecure(result, entity);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -94,7 +94,7 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
     logger.trace(`findOneByIdAndRemove`);
     let result = await this.loaders.byId.load(id);
     if (result) {
-      result = await this.remove(result);
+      result = await this.removeSecure(result);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -106,7 +106,7 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
     logger.trace(`findOneByUserNameAndRemove`);
     let result = await this.loaders.byUserName.load(userName);
     if (result) {
-      result = await this.remove(result);
+      result = await this.removeSecure(result);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {

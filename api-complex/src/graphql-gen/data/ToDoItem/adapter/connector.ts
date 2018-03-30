@@ -44,7 +44,7 @@ export default class ToDoItem extends MongooseApi<RegisterConnectors, PartialToD
   public async create(payload: PartialToDoItem) {
     logger.trace('create');
     let entity = this.getPayload(payload);
-    let result = await this.create(entity);
+    let result = await this.createSecure(entity);
     this.storeToCache([result]);
     return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
   }
@@ -54,7 +54,7 @@ export default class ToDoItem extends MongooseApi<RegisterConnectors, PartialToD
     let entity = this.getPayload(payload, true);
     let result = await this.loaders.byId.load(id);
     if (result) {
-      result = await this.update(result, entity);
+      result = await this.updateSecure(result, entity);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -68,7 +68,7 @@ export default class ToDoItem extends MongooseApi<RegisterConnectors, PartialToD
     logger.trace(`findOneByIdAndRemove`);
     let result = await this.loaders.byId.load(id);
     if (result) {
-      result = await this.remove(result);
+      result = await this.removeSecure(result);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {

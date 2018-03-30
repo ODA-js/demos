@@ -48,6 +48,44 @@ import {
 const WS_PORT = config.get<number>('subscriptions.port');
 const WS_HOST = config.get<number>('subscriptions.host');
 
+const OwnerUserRead = (context, { source }) => {
+  debugger;
+  if (source && toGlobalId('User', source.id) === context.user.id) {
+    return source;
+  }
+};
+
+const OwnerUserRemove = (context, { source }) => {
+  debugger;
+  if (source && toGlobalId('User', source.id) === context.user.id) {
+    return source;
+  }
+};
+
+const Owner_ToDoItem_read = (context, { source }) => {
+  debugger;
+  if (source && (source.user === context.user.userName || source.published)) {
+    return source;
+  }
+}
+
+const Owner_ToDoItem_update = (context, { source, payload }) => {
+  debugger;
+  if (source && (source.user === context.user.userName)) {
+    if (payload && payload.hasOwnProperty('user')) {
+      delete payload.user;
+    }
+    return source;
+  }
+}
+
+const PUBLIC_TODOITEM = (context, { source }) => {
+  debugger;
+  if (source && source.published) {
+    return source;
+  }
+}
+
 async function createContext({ user, owner, userGroup, schema }: { user, owner, userGroup: string, schema?}) {
   let db = await dbPool.get(userGroup);
   let connectors = new RegisterConnectors({
@@ -55,23 +93,22 @@ async function createContext({ user, owner, userGroup, schema }: { user, owner, 
     acls: {
       read: {
         owner: {
-          'User': function (obj) {
-            if (obj && toGlobalId('User', obj.id) === this.user.id) {
-              return obj;
-            }
-          },
-          'ToDoItem': function (obj) {
-            if (obj && (obj.user === this.user.userName || obj.published)) {
-              return obj;
-            }
-          },
+          'User': OwnerUserRead,
+          'ToDoItem': Owner_ToDoItem_read,
         },
         "public": {
-          ToDoItem: function (obj) {
-            if (obj && obj.published) {
-              return obj;
-            }
-          }
+          ToDoItem: PUBLIC_TODOITEM
+        }
+      },
+      update: {
+        owner: {
+          "ToDoItem": Owner_ToDoItem_update
+        }
+      },
+      remove: {
+        owner: {
+          User: OwnerUserRead,
+          "ToDoItem": Owner_ToDoItem_update
         }
       }
     },

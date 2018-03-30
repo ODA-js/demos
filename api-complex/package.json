@@ -28,16 +28,16 @@
     "compression": "^1.7.2",
     "cors": "^2.8.4",
     "dotenv": "^5.0.0",
-    "graphql-subscriptions": "^0.4.4",
+    "graphql-subscriptions": "^0.5.8",
     "graphql-tag": "^2.4.2",
     "lodash": "^4.17.4",
     "log4js": "^1.1.1",
-    "oda-api-common": "^0.2.23",
-    "oda-api-graphql": "^0.4.27",
-    "oda-gen-common": "^0.1.7",
-    "oda-gen-graphql": "^0.6.2",
-    "oda-isomorfic": "^0.0.26",
-    "oda-lodash": "^0.1.7",
+    "oda-api-common": "^0.2.26",
+    "oda-api-graphql": "^0.4.30",
+    "oda-gen-common": "^0.1.10",
+    "oda-gen-graphql": "^0.6.5",
+    "oda-isomorfic": "^0.0.29",
+    "oda-lodash": "^0.1.10",
     "subscriptions-transport-ws": "^0.9.7"
   },
   "devDependencies": {
@@ -48,6 +48,6 @@
     "@types/node": "^8.0.24",
     "@types/passport": "^0.4.3",
     "graphql-document-collector": "^0.2.1",
-    "typescript": "^2.7.2"
+    "typescript": "~2.6.2"
   }
 }
