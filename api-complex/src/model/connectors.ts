@@ -20,7 +20,7 @@ export class ToDoItemUpdate extends ToDoItem {
 export default class DataConnectors extends RegisterConnectors {
   public get Viewer(): UserConnector {
     if (!this._Viewer) {
-      this._Viewer = new User({ mongoose: this.mongoose, connectors: this, user: this.user, owner: this.owner, acls: this.acls, userGroup: this.userGroup, initOwner: false, logUser: false });
+      this._Viewer = new User({ mongoose: this.mongoose, connectors: this, user: this.user, owner: this.owner, acls: this.acls, userGroup: this.userGroup });
     }
     return this._Viewer;
   }
@@ -28,7 +28,7 @@ export default class DataConnectors extends RegisterConnectors {
 
   public get ToDoItem(): ToDoItemConnector {
     if (!this._ToDoItem) {
-      this._ToDoItem = new ToDoItemUpdate({ mongoose: this.mongoose, connectors: this, user: this.user, owner: this.owner, acls: this.acls, userGroup: this.userGroup, initOwner: false, logUser: false });
+      this._ToDoItem = new ToDoItemUpdate({ mongoose: this.mongoose, connectors: this, user: this.user, owner: this.owner, acls: this.acls, userGroup: this.userGroup });
     }
     return this._ToDoItem;
   }

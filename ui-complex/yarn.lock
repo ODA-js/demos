@@ -290,7 +290,7 @@ apollo-link-http@^1.5.3:
     apollo-link "^1.2.1"
     apollo-link-http-common "^0.2.3"
 
-apollo-link@^1.0.0, apollo-link@^1.1.0, apollo-link@^1.2.1:
+apollo-link@^1.0.0, apollo-link@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.1.tgz#c120b16059f9bd93401b9f72b94d2f80f3f305d2"
   dependencies:
@@ -3414,7 +3414,7 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
-graphql-anywhere@^4.1.1, graphql-anywhere@^4.1.5, graphql-anywhere@^4.1.6:
+graphql-anywhere@^4.1.5, graphql-anywhere@^4.1.6:
   version "4.1.6"
   resolved "https://registry.yarnpkg.com/graphql-anywhere/-/graphql-anywhere-4.1.6.tgz#1329ee62c76ff363aa44570d12067178b8611dca"
   dependencies:
@@ -3427,15 +3427,15 @@ graphql-extensions@^0.0.x:
     core-js "^2.5.3"
     source-map-support "^0.5.1"
 
-graphql-tag@^2.6.1, graphql-tag@^2.8.0:
+graphql-tag@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.8.0.tgz#52cdea07a842154ec11a2e840c11b977f9b835ce"
 
-graphql-tools@^2.18.0:
-  version "2.21.0"
-  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-2.21.0.tgz#c0d0fbda6f40a87c8d267a2989ade2ae8b9a288e"
+graphql-tools@^2.21.0:
+  version "2.23.1"
+  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-2.23.1.tgz#23f43000e2b9dc5a89920fe846fc5f71a320efdb"
   dependencies:
-    apollo-link "^1.1.0"
+    apollo-link "^1.2.1"
     apollo-utilities "^1.0.1"
     deprecated-decorator "^0.1.6"
     iterall "^1.1.3"
@@ -3779,6 +3779,10 @@ ieee754@^1.1.4:
 ignore@^3.3.3:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
+
+immutable@^4.0.0-rc.9:
+  version "4.0.0-rc.9"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0-rc.9.tgz#1e6e0094e649013ec3742d2b5aeeca5eeda4f0bf"
 
 import-lazy@^2.1.0:
   version "2.1.0"
@@ -5424,9 +5428,9 @@ obuf@^1.0.0, obuf@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
 
-oda-aor-rest@^0.1.30:
-  version "0.1.30"
-  resolved "https://registry.yarnpkg.com/oda-aor-rest/-/oda-aor-rest-0.1.30.tgz#af89157b29cb75bfdb418eeee25bcd3d8715b90a"
+oda-aor-rest@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/oda-aor-rest/-/oda-aor-rest-0.3.2.tgz#dab2c020b74b94c177af325840d52ba62c117055"
   dependencies:
     admin-on-rest "^1.4.0"
     aor-embedded-array "0.0.8"
@@ -5436,14 +5440,14 @@ oda-aor-rest@^0.1.30:
     apollo-link-http "^1.5.3"
     comparator.js "0.0.11"
     material-ui "^0.20.0"
-    oda-lodash "^0.0.59"
+    oda-lodash "^0.1.6"
     prop-types "^15.6.1"
     redux-form "^7.3.0"
     redux-saga "^0.16.0"
 
-oda-api-graphql@^0.4.23:
-  version "0.4.23"
-  resolved "https://registry.yarnpkg.com/oda-api-graphql/-/oda-api-graphql-0.4.23.tgz#1de6a11d13cd3be4350f11c985c2e02efcffa803"
+oda-api-graphql@^0.4.26:
+  version "0.4.26"
+  resolved "https://registry.yarnpkg.com/oda-api-graphql/-/oda-api-graphql-0.4.26.tgz#5edcdb35c92953f6814263d88bf4f93d01211b1d"
   dependencies:
     core-js "^2.5.3"
     graphql "^0.12.3"
@@ -5455,43 +5459,44 @@ oda-api-graphql@^0.4.23:
     mongoose "^4.13.9"
     sequelize "^4.35.2"
 
-oda-gen-common@^0.0.18:
-  version "0.0.18"
-  resolved "https://registry.yarnpkg.com/oda-gen-common/-/oda-gen-common-0.0.18.tgz#c43aa4e193d12ac02abea0610620c3f1259b7f83"
+oda-gen-common@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/oda-gen-common/-/oda-gen-common-0.1.6.tgz#7d3fe7cf384474cfe8c3f933f8a7fc0444797e8e"
   dependencies:
     graphql "^0.12.3"
+    immutable "^4.0.0-rc.9"
     invariant "^2.2.2"
-    lodash "^4.17.4"
+    lodash "^4.17.5"
     warning "^3.0.0"
 
-oda-gen-graphql@^0.4.86:
-  version "0.4.86"
-  resolved "https://registry.yarnpkg.com/oda-gen-graphql/-/oda-gen-graphql-0.4.86.tgz#ff88bb8994fd61cc631c2aa4cc026d3298741744"
+oda-gen-graphql@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/oda-gen-graphql/-/oda-gen-graphql-0.6.1.tgz#0a4841f067f8579c36fa704a797993bc4fc4a5f5"
   dependencies:
     fte.js "^0.6.0"
     graphql "^0.12.3"
     inflected "^2.0.4"
     lodash "^4.17.5"
-    oda-api-graphql "^0.4.23"
-    oda-gen-common "^0.0.18"
-    oda-model "^0.0.34"
+    oda-api-graphql "^0.4.26"
+    oda-gen-common "^0.1.6"
+    oda-model "^0.1.1"
     string-humanize "^1.0.0"
 
-oda-lodash@^0.0.59:
-  version "0.0.59"
-  resolved "https://registry.yarnpkg.com/oda-lodash/-/oda-lodash-0.0.59.tgz#15c8c0a7513ca41ce6ff528a6f6387278d8d0de7"
+oda-lodash@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/oda-lodash/-/oda-lodash-0.1.6.tgz#4f4bca062572b9f484c80ef7b6d38b95fd68020c"
   dependencies:
     apollo-server-core "^1.3.2"
     apollo-server-express "^1.3.2"
-    graphql-anywhere "^4.1.1"
-    graphql-tag "^2.6.1"
-    graphql-tools "^2.18.0"
-    lodash "^4.17.4"
-    oda-gen-common "^0.0.18"
+    graphql-anywhere "^4.1.5"
+    graphql-tag "^2.8.0"
+    graphql-tools "^2.21.0"
+    lodash "^4.17.5"
+    oda-gen-common "^0.1.6"
 
-oda-model@^0.0.34:
-  version "0.0.34"
-  resolved "https://registry.yarnpkg.com/oda-model/-/oda-model-0.0.34.tgz#c3a62b4295988e51f62a12576883eac91b69b28e"
+oda-model@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/oda-model/-/oda-model-0.1.1.tgz#c75b81e00e02d2571cb37ffdc518d0c5972c6555"
   dependencies:
     camelcase "^4.1.0"
     decamelize "^2.0.0"

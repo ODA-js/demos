@@ -11,9 +11,9 @@ import { IUser } from '../types/model';
 import { UserConnector } from './interface';
 
 export default class User extends SequelizeApi<RegisterConnectors, IUser> implements UserConnector {
-  constructor({sequelize, connectors, user, owner, acls, userGroup , initOwner, logUser}) {
+  constructor({ sequelize, connectors, user, owner, acls, userGroup, initOwner, logUser }) {
     logger.trace('constructor');
-    super({sequelize, connectors, user, acls, userGroup, owner, initOwner, logUser });
+    super({ sequelize, connectors, user, acls, userGroup, owner, initOwner, logUser });
     this.initSchema('User', UserSchema);
 
     this.loaderKeys = {
@@ -57,7 +57,7 @@ export default class User extends SequelizeApi<RegisterConnectors, IUser> implem
   public async create(payload: IUser) {
     logger.trace('create');
     let entity = this.getPayload(payload);
-    let result = await this.model.create(entity);
+    let result = this.create(entity);
     this.storeToCache([result]);
     return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
   }
@@ -66,8 +66,8 @@ export default class User extends SequelizeApi<RegisterConnectors, IUser> implem
     logger.trace(`findOneByIdAndUpdate`);
     let entity = this.getPayload(payload, true);
     let result = await this.loaders.byId.load(id);
-    if(result){
-      await result.update(entity);
+    if (result) {
+      await this.update(result, entity);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -79,7 +79,7 @@ export default class User extends SequelizeApi<RegisterConnectors, IUser> implem
     logger.trace(`findOneByUserNameAndUpdate`);
     let entity = this.getPayload(payload, true);
     let result = await this.loaders.byUserName.load(userName);
-    if(result){
+    if (result) {
       await result.update(entity);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
@@ -93,8 +93,8 @@ export default class User extends SequelizeApi<RegisterConnectors, IUser> implem
   public async findOneByIdAndRemove(id: string) {
     logger.trace(`findOneByIdAndRemove`);
     let result = await this.loaders.byId.load(id);
-    if( result ){
-      result = await result.destroy();
+    if (result) {
+      result = this.remove(result);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -105,7 +105,7 @@ export default class User extends SequelizeApi<RegisterConnectors, IUser> implem
   public async findOneByUserNameAndRemove(userName: string) {
     logger.trace(`findOneByUserNameAndRemove`);
     let result = await this.loaders.byUserName.load(userName);
-    if( result ){
+    if (result) {
       result = await result.destroy();
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
@@ -116,25 +116,25 @@ export default class User extends SequelizeApi<RegisterConnectors, IUser> implem
 
 
   public async addToTodos(args: {
-      user?: string,
-      toDoItem?: string,
+    user?: string,
+    toDoItem?: string,
   }) {
     logger.trace(`addToTodos`);
     let current = await this.findOneById(args.user);
     if (current) {
       await this.connectors.ToDoItem.findOneByIdAndUpdate(
         args.toDoItem,
-        { user: current.userName});
+        { user: current.userName });
     }
   }
 
   public async removeFromTodos(args: {
-      user?: string,
-      toDoItem?: string,
+    user?: string,
+    toDoItem?: string,
   }) {
     logger.trace(`removeFromTodos`);
     await this.connectors.ToDoItem.findOneByIdAndUpdate(args.toDoItem,
-    { user: null });
+      { user: null });
   }
 
   public async findOneById(id?: string) {
@@ -151,24 +151,24 @@ export default class User extends SequelizeApi<RegisterConnectors, IUser> implem
 
   public getPayload(args: IUser, update?: boolean) {
     let entity: any = {};
-      if (args.id !== undefined) {
-        entity.id = args.id;
-      }
-      if (args.userName !== undefined) {
-        entity.userName = args.userName;
-      }
-      if (args.password !== undefined) {
-        entity.password = args.password;
-      }
-      if (args.isAdmin !== undefined) {
-        entity.isAdmin = args.isAdmin;
-      }
-      if (args.isSystem !== undefined) {
-        entity.isSystem = args.isSystem;
-      }
-      if (args.enabled !== undefined) {
-        entity.enabled = args.enabled;
-      }
+    if (args.id !== undefined) {
+      entity.id = args.id;
+    }
+    if (args.userName !== undefined) {
+      entity.userName = args.userName;
+    }
+    if (args.password !== undefined) {
+      entity.password = args.password;
+    }
+    if (args.isAdmin !== undefined) {
+      entity.isAdmin = args.isAdmin;
+    }
+    if (args.isSystem !== undefined) {
+      entity.isSystem = args.isSystem;
+    }
+    if (args.enabled !== undefined) {
+      entity.enabled = args.enabled;
+    }
     if (update) {
       delete entity.id;
       delete entity._id;

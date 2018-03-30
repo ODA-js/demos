@@ -53,22 +53,24 @@ async function createContext({ user, owner, userGroup, schema }: { user, owner, 
   let connectors = new RegisterConnectors({
     mongoose: db,
     acls: {
-      owner: {
-        'User': function (obj) {
-          if (obj && toGlobalId('User', obj.id) === this.user.id) {
-            return obj;
-          }
+      read: {
+        owner: {
+          'User': function (obj) {
+            if (obj && toGlobalId('User', obj.id) === this.user.id) {
+              return obj;
+            }
+          },
+          'ToDoItem': function (obj) {
+            if (obj && (obj.user === this.user.userName || obj.published)) {
+              return obj;
+            }
+          },
         },
-        'ToDoItem': function (obj) {
-          if (obj && (obj.user === this.user.userName || obj.published)) {
-            return obj;
-          }
-        },
-      },
-      "public": {
-        ToDoItem: function (obj) {
-          if (obj && obj.published) {
-            return obj;
+        "public": {
+          ToDoItem: function (obj) {
+            if (obj && obj.published) {
+              return obj;
+            }
           }
         }
       }
