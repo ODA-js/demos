@@ -6,7 +6,7 @@ import ToDoItem from './ToDoItem/adapter/connector';
 import { ToDoItemConnector } from './ToDoItem/adapter/interface';
 
 
-import { acl } from 'oda-api-graphql';
+import { acl, ACLCheck } from 'oda-api-graphql';
 
 export default class RegisterConnectors {
   public get User(): UserConnector {
@@ -39,7 +39,7 @@ export default class RegisterConnectors {
   public sequelize;
   public user;
   public owner;
-  public acls: acl.secureAny.ACLCRUD<(object) => object>;
+  public acls: acl.secureAny.ACLCRUD<ACLCheck>;
   public userGroup;
   public userGQL;
   public systemGQL;
@@ -71,10 +71,10 @@ export default class RegisterConnectors {
       mongoose?: any,
       sequelize?: any,
       acls?: {
-        read?: acl.secureAny.Acls<(object) => object>;
-        update?: acl.secureAny.Acls<(object) => object>;
-        create?: acl.secureAny.Acls<(object) => object>;
-        remove?: acl.secureAny.Acls<(object) => object>;
+        read?: acl.secureAny.Acls<ACLCheck>;
+        update?: acl.secureAny.Acls<ACLCheck>;
+        create?: acl.secureAny.Acls<ACLCheck>;
+        remove?: acl.secureAny.Acls<ACLCheck>;
       }
       userGroup?: string;
       userGQL?,
@@ -85,10 +85,10 @@ export default class RegisterConnectors {
     this.mongoose = mongoose;
     this.sequelize = sequelize;
     this.acls = {
-      read: new acl.secureAny.Secure<(object) => object>({ acls: acls ? acls.read: undefined }),
-      update: new acl.secureAny.Secure<(object) => object>({ acls: acls ? acls.update: undefined }),
-      create: new acl.secureAny.Secure<(object) => object>({ acls: acls ? acls.create: undefined }),
-      remove: new acl.secureAny.Secure<(object) => object>({ acls: acls ? acls.remove: undefined }),
+      read: new acl.secureAny.Secure<ACLCheck>({ acls: acls ? acls.read: undefined }),
+      update: new acl.secureAny.Secure<ACLCheck>({ acls: acls ? acls.update: undefined }),
+      create: new acl.secureAny.Secure<ACLCheck>({ acls: acls ? acls.create: undefined }),
+      remove: new acl.secureAny.Secure<ACLCheck>({ acls: acls ? acls.remove: undefined }),
     };
     this.userGroup = userGroup;
     this.initGQL({ userGQL, systemGQL });
