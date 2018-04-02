@@ -48,6 +48,9 @@ import {
 const WS_PORT = config.get<number>('subscriptions.port');
 const WS_HOST = config.get<number>('subscriptions.host');
 
+// для count можно использовать наборы фильтров, благо механизм работает отлично!
+// и возвращать функцию или фильтр который можно использовать для дофильтровки данных.. чтобы получить число...
+
 const OwnerUserRead = (context, { source }) => {
   debugger;
   if (source && toGlobalId('User', source.id) === context.user.id) {
