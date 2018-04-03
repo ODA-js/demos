@@ -43,6 +43,7 @@ import { apolloUploadExpress } from 'apollo-upload-server';
 
 import {
   toGlobalId,
+  fromGlobalId,
 } from 'oda-api-graphql';
 
 const WS_PORT = config.get<number>('subscriptions.port');
@@ -78,8 +79,19 @@ const Owner_ToDoItem_update = (context, { source, payload }) => {
     if (payload && payload.hasOwnProperty('user')) {
       delete payload.user;
     }
+    if (Object.keys(payload).length > 0) {
+      payload.updatedAt = new Date();
+      payload.updatedBy = fromGlobalId(context.user.id).id;
+    }
     return source;
   }
+}
+
+const Owner_ToDoItem_create = (context, { payload }) => {
+  payload.user = context.user.userName;
+  payload.createdAt = new Date();
+  payload.createdBy = fromGlobalId(context.user.id).id;
+  return payload;
 }
 
 const PUBLIC_TODOITEM = (context, { source }) => {
@@ -108,6 +120,11 @@ async function createContext({ user, owner, userGroup, schema }: { user, owner, 
           "ToDoItem": Owner_ToDoItem_update
         }
       },
+      create: {
+        owner: {
+          "ToDoItem": Owner_ToDoItem_create
+        }
+      },
       remove: {
         owner: {
           User: OwnerUserRead,
@@ -119,6 +136,7 @@ async function createContext({ user, owner, userGroup, schema }: { user, owner, 
     owner: owner,
     userGroup,
   });
+
   const result = {
     connectors,
     systemConnectors: await SystemGraphQL.connectors(),

@@ -2,7 +2,7 @@
 import * as log4js from 'log4js';
 let logger = log4js.getLogger('api:connector:ToDoItem');
 
-import { MongooseApi } from 'oda-api-graphql';
+import { MongooseApi, SecurityContext } from 'oda-api-graphql';
 import ToDoItemSchema from './schema';
 import RegisterConnectors from '../../registerConnectors';
 import * as Dataloader from 'dataloader';
@@ -11,9 +11,12 @@ import { PartialToDoItem } from '../types/model';
 import { ToDoItemConnector } from './interface';
 
 export default class ToDoItem extends MongooseApi<RegisterConnectors, PartialToDoItem> implements ToDoItemConnector {
-  constructor({ mongoose, connectors, user, owner, acls, userGroup }) {
+  constructor(
+    { mongoose, connectors, securityContext }:
+      { mongoose: any, connectors: RegisterConnectors, securityContext: SecurityContext<RegisterConnectors> }
+  ) {
     logger.trace('constructor');
-    super({ mongoose, connectors, user, acls, userGroup, owner });
+    super({ name: 'ToDoItem', mongoose, connectors, securityContext});
     this.initSchema('ToDoItem', ToDoItemSchema());
 
     this.loaderKeys = {

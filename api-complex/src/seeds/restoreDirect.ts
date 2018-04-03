@@ -32,7 +32,9 @@ async function createContext({ schema }) {
   let db = await dbPool.get('system');
   let connectors = new RegisterConnectors({
     mongoose: db,
+    userGroup: 'system',
   });
+
   const result = {
     connectors,
     systemConnectors: await SystemGraphQL.connectors(),
