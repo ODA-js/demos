@@ -2,7 +2,6 @@
 for i in $(ls -d ./*/); do
   echo ${i%%/};
   pushd ${i%%/}
-  rm -rf package-lock.json
-  rm -rf yarn.lock
+    yarn
   popd
 done

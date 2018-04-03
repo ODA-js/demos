@@ -12,7 +12,7 @@ function filterIt(payload, queryCheck) {
 export const subscriptions = {
   ToDoItem: {
     subscribe: Filter.withContext(withFilter(() => pubsub.asyncIterator('ToDoItem'), ({ ToDoItem }, args, context, info) => {
-      let allow = context.connectors.ToDoItem.canView(ToDoItem.node);
+      let allow = context.connectors.ToDoItem.secure('read', { source: ToDoItem.node });
       if (allow) {
         return filterIt(ToDoItem, context.queryCheck);
       } else {

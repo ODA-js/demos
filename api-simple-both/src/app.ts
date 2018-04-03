@@ -27,7 +27,6 @@ import * as compression from 'compression';
 import { Factory } from 'fte.js';
 
 // subscriptions
-import { SubscriptionManager } from 'graphql-subscriptions';
 import { pubsub } from './model/pubsub';
 import { dbSqlPool } from './model/dbPool';
 import { dbPool } from './model/dbPool';

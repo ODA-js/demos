@@ -2,7 +2,7 @@
 import * as log4js from 'log4js';
 let logger = log4js.getLogger('api:connector:ToDoItem');
 
-import { MongooseApi } from 'oda-api-graphql';
+import { MongooseApi, SecurityContext } from 'oda-api-graphql';
 import ToDoItemSchema from './schema';
 import RegisterConnectors from '../../registerConnectors';
 import * as Dataloader from 'dataloader';
@@ -11,9 +11,12 @@ import { PartialToDoItem } from '../types/model';
 import { ToDoItemConnector } from './interface';
 
 export default class ToDoItem extends MongooseApi<RegisterConnectors, PartialToDoItem> implements ToDoItemConnector {
-  constructor({mongoose, connectors, user, owner, acls, userGroup, initOwner, logUser}) {
+  constructor(
+    { mongoose, connectors, securityContext }:
+      { mongoose: any, connectors: RegisterConnectors, securityContext: SecurityContext<RegisterConnectors> }
+  ) {
     logger.trace('constructor');
-    super({mongoose, connectors, user, acls, userGroup, owner, initOwner, logUser});
+    super({ name: 'ToDoItem', mongoose, connectors, securityContext});
     this.initSchema('ToDoItem', ToDoItemSchema());
 
     this.loaderKeys = {
@@ -44,7 +47,7 @@ export default class ToDoItem extends MongooseApi<RegisterConnectors, PartialToD
   public async create(payload: PartialToDoItem) {
     logger.trace('create');
     let entity = this.getPayload(payload);
-    let result = await  (new (this.model)(entity)).save();
+    let result = await this.createSecure(entity);
     this.storeToCache([result]);
     return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
   }
@@ -53,13 +56,8 @@ export default class ToDoItem extends MongooseApi<RegisterConnectors, PartialToD
     logger.trace(`findOneByIdAndUpdate`);
     let entity = this.getPayload(payload, true);
     let result = await this.loaders.byId.load(id);
-    if(result){
-      for (let f in entity) {
-        if (entity.hasOwnProperty(f)) {
-          result.set(f, entity[f]);
-        }
-      }
-      result = await result.save();
+    if (result) {
+      result = await this.updateSecure(result, entity);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -72,8 +70,8 @@ export default class ToDoItem extends MongooseApi<RegisterConnectors, PartialToD
   public async findOneByIdAndRemove(id: string) {
     logger.trace(`findOneByIdAndRemove`);
     let result = await this.loaders.byId.load(id);
-    if( result ){
-      result = await result.remove();
+    if (result) {
+      result = await this.removeSecure(result);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -87,7 +85,7 @@ export default class ToDoItem extends MongooseApi<RegisterConnectors, PartialToD
       user?: string,
   }) {
     logger.trace(`addToUser`);
-    let opposite = await this.connectors.User.findOneById(args.user );
+    let opposite = await this.connectors.User.findOneById(args.user);
     if (opposite) {
       await this.findOneByIdAndUpdate(args.toDoItem,
       { user: opposite.userName });
@@ -108,7 +106,7 @@ export default class ToDoItem extends MongooseApi<RegisterConnectors, PartialToD
     return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
   }
 
-  public getPayload(args: PartialToDoItem, update?: boolean) {
+  public getPayload(args: PartialToDoItem, update?: boolean): PartialToDoItem {
     let entity: any = {};
       if (args.id !== undefined) {
         entity.id = args.id;

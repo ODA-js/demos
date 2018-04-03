@@ -6,7 +6,7 @@ import ToDoItem from './ToDoItem/adapter/connector';
 import { ToDoItemConnector } from './ToDoItem/adapter/interface';
 
 
-import { acl } from 'oda-api-graphql';
+import { acl, ACLCheck, SecurityContext } from 'oda-api-graphql';
 
 export default class RegisterConnectors {
   public get User(): UserConnector {
@@ -15,7 +15,7 @@ export default class RegisterConnectors {
 
   public InitUser(): UserConnector {
     if (!this._User) {
-      this._User = new User({ mongoose: this.mongoose, connectors: this, user: this.user, owner: this.owner, acls: this.acls, userGroup: this.userGroup, initOwner: false, logUser: false });
+      this._User = new User({ mongoose: this.mongoose, connectors: this, securityContext: this.securityContext });
     }
     return this._User;
   }
@@ -26,7 +26,7 @@ export default class RegisterConnectors {
 
   public InitToDoItem(): ToDoItemConnector {
     if (!this._ToDoItem) {
-      this._ToDoItem = new ToDoItem({ mongoose: this.mongoose, connectors: this, user: this.user, owner: this.owner, acls: this.acls, userGroup: this.userGroup, initOwner: false, logUser: false });
+      this._ToDoItem = new ToDoItem({ mongoose: this.mongoose, connectors: this, securityContext: this.securityContext });
     }
     return this._ToDoItem;
   }
@@ -37,22 +37,37 @@ export default class RegisterConnectors {
 
   public mongoose;
   public sequelize;
-  public user;
-  public owner;
-  public acls: acl.secureAny.ACLCRUD<(object) => object>;
-  public userGroup;
   public userGQL;
   public systemGQL;
 
+  public securityContext: SecurityContext<RegisterConnectors>
+
   public initGQL({
-      userGQL,
-      systemGQL
-    }:{
+    userGQL,
+    systemGQL
+  }: {
       userGQL?,
-      systemGQL?,}){
+      systemGQL?,
+    }) {
     this.userGQL = userGQL ? userGQL : this.userGQL;
     this.systemGQL = systemGQL ? systemGQL : this.systemGQL;
   }
+
+  protected _defaultAccess(context, obj: {
+    source?: any,
+    payload?: any;
+  }): object {
+    let result = obj.source;
+    return result;
+  };
+
+  protected _defaultCreate(context, obj: {
+    source?: any,
+    payload?: any;
+  }): object {
+    let result = obj.payload;
+    return result;
+  };
 
   constructor({
     user,
@@ -69,28 +84,59 @@ export default class RegisterConnectors {
       owner?: any,
       mongoose?: any,
       sequelize?: any,
-      acls?: acl.secureAny.Acls<(object) => object>;
+      acls?: {
+        read?: acl.secureAny.Acls<ACLCheck>;
+        update?: acl.secureAny.Acls<ACLCheck>;
+        create?: acl.secureAny.Acls<ACLCheck>;
+        remove?: acl.secureAny.Acls<ACLCheck>;
+      }
       userGroup?: string;
       userGQL?,
       systemGQL?,
     }) {
-    this.user = user;
-    this.owner = owner;
+    this.securityContext = acls && {
+      user,
+      group: userGroup,
+      acls: {
+        read: new acl.secureAny.Secure<ACLCheck>({
+          acls: acls ? {
+            "*": this._defaultAccess,
+            ...acls.read
+          } : undefined
+        }),
+        update: new acl.secureAny.Secure<ACLCheck>({
+          acls: acls ? {
+            "*": this._defaultAccess,
+            ...acls.update
+          } : undefined
+        }),
+        create: new acl.secureAny.Secure<ACLCheck>({
+          acls: acls ? {
+            "*": this._defaultCreate,
+            ...acls.create
+          } : undefined
+        }),
+        remove: new acl.secureAny.Secure<ACLCheck>({
+          acls: acls ? {
+            "*": this._defaultAccess,
+            ...acls.remove
+          } : undefined
+        }),
+      }
+    }
     this.mongoose = mongoose;
     this.sequelize = sequelize;
-    this.acls = { read: new acl.secureAny.Secure<(object) => object>({ acls }) };
-    this.userGroup = userGroup;
-    this.initGQL({userGQL, systemGQL});
+    this.initGQL({ userGQL, systemGQL });
   }
 
   async syncDb(force: boolean = false) {
   }
 
-  async close(){
-    if (this.sequelize && typeof this.sequelize.close === 'function'){
+  async close() {
+    if (this.sequelize && typeof this.sequelize.close === 'function') {
       await this.sequelize.close();
     }
-    if(this.mongoose && typeof this.mongoose.close === 'function'){
+    if (this.mongoose && typeof this.mongoose.close === 'function') {
       await this.mongoose.close();
     }
   }

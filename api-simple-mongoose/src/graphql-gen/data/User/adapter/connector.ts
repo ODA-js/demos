@@ -2,7 +2,7 @@
 import * as log4js from 'log4js';
 let logger = log4js.getLogger('api:connector:User');
 
-import { MongooseApi } from 'oda-api-graphql';
+import { MongooseApi, SecurityContext } from 'oda-api-graphql';
 import UserSchema from './schema';
 import RegisterConnectors from '../../registerConnectors';
 import * as Dataloader from 'dataloader';
@@ -11,9 +11,12 @@ import { PartialUser } from '../types/model';
 import { UserConnector } from './interface';
 
 export default class User extends MongooseApi<RegisterConnectors, PartialUser> implements UserConnector {
-  constructor({mongoose, connectors, user, owner, acls, userGroup, initOwner, logUser}) {
+  constructor(
+    { mongoose, connectors, securityContext }:
+      { mongoose: any, connectors: RegisterConnectors, securityContext: SecurityContext<RegisterConnectors> }
+  ) {
     logger.trace('constructor');
-    super({mongoose, connectors, user, acls, userGroup, owner, initOwner, logUser});
+    super({ name: 'User', mongoose, connectors, securityContext});
     this.initSchema('User', UserSchema());
 
     this.loaderKeys = {
@@ -57,7 +60,7 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
   public async create(payload: PartialUser) {
     logger.trace('create');
     let entity = this.getPayload(payload);
-    let result = await  (new (this.model)(entity)).save();
+    let result = await this.createSecure(entity);
     this.storeToCache([result]);
     return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
   }
@@ -66,13 +69,8 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
     logger.trace(`findOneByIdAndUpdate`);
     let entity = this.getPayload(payload, true);
     let result = await this.loaders.byId.load(id);
-    if(result){
-      for (let f in entity) {
-        if (entity.hasOwnProperty(f)) {
-          result.set(f, entity[f]);
-        }
-      }
-      result = await result.save();
+    if (result) {
+      result = await this.updateSecure(result, entity);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -84,13 +82,8 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
     logger.trace(`findOneByUserNameAndUpdate`);
     let entity = this.getPayload(payload, true);
     let result = await this.loaders.byUserName.load(userName);
-    if(result){
-      for (let f in entity) {
-        if (entity.hasOwnProperty(f)) {
-          result.set(f, entity[f]);
-        }
-      }
-      result = await result.save();
+    if (result) {
+      result = await this.updateSecure(result, entity);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -103,8 +96,8 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
   public async findOneByIdAndRemove(id: string) {
     logger.trace(`findOneByIdAndRemove`);
     let result = await this.loaders.byId.load(id);
-    if( result ){
-      result = await result.remove();
+    if (result) {
+      result = await this.removeSecure(result);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -115,8 +108,8 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
   public async findOneByUserNameAndRemove(userName: string) {
     logger.trace(`findOneByUserNameAndRemove`);
     let result = await this.loaders.byUserName.load(userName);
-    if( result ){
-      result = await result.remove();
+    if (result) {
+      result = await this.removeSecure(result);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -134,7 +127,7 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
     if (current) {
       await this.connectors.ToDoItem.findOneByIdAndUpdate(
         args.toDoItem,
-        { user: current.userName});
+        { user: current.userName });
     }
   }
 
@@ -159,7 +152,7 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
     return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
   }
 
-  public getPayload(args: PartialUser, update?: boolean) {
+  public getPayload(args: PartialUser, update?: boolean): PartialUser {
     let entity: any = {};
       if (args.id !== undefined) {
         entity.id = args.id;

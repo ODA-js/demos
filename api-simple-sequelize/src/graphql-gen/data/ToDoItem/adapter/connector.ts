@@ -2,18 +2,21 @@
 import * as log4js from 'log4js';
 let logger = log4js.getLogger('api:connector:ToDoItem');
 
-import { SequelizeApi } from 'oda-api-graphql';
+import { SequelizeApi, SecurityContext } from 'oda-api-graphql';
 import ToDoItemSchema from './schema';
 import RegisterConnectors from '../../registerConnectors';
 import * as Dataloader from 'dataloader';
 
-import { IToDoItem } from '../types/model';
+import { PartialToDoItem } from '../types/model';
 import { ToDoItemConnector } from './interface';
 
-export default class ToDoItem extends SequelizeApi<RegisterConnectors, IToDoItem> implements ToDoItemConnector {
-  constructor({sequelize, connectors, user, owner, acls, userGroup , initOwner, logUser}) {
+export default class ToDoItem extends SequelizeApi<RegisterConnectors, PartialToDoItem> implements ToDoItemConnector {
+  constructor(
+    { sequelize, connectors, securityContext }:
+      { sequelize: any, connectors: RegisterConnectors, securityContext: SecurityContext<RegisterConnectors> }
+  ) {
     logger.trace('constructor');
-    super({sequelize, connectors, user, acls, userGroup, owner, initOwner, logUser });
+    super({ name: 'ToDoItem', sequelize, connectors, securityContext});
     this.initSchema('ToDoItem', ToDoItemSchema);
 
     this.loaderKeys = {
@@ -41,10 +44,10 @@ export default class ToDoItem extends SequelizeApi<RegisterConnectors, IToDoItem
     };
   }
 
-  public async create(payload: IToDoItem) {
+  public async create(payload: PartialToDoItem) {
     logger.trace('create');
     let entity = this.getPayload(payload);
-    let result = await this.model.create(entity);
+    let result = await this.createSecure(entity);
     this.storeToCache([result]);
     return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
   }
@@ -54,7 +57,7 @@ export default class ToDoItem extends SequelizeApi<RegisterConnectors, IToDoItem
     let entity = this.getPayload(payload, true);
     let result = await this.loaders.byId.load(id);
     if(result){
-      await result.update(entity);
+      await this.updateSecure(result, entity);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -68,7 +71,7 @@ export default class ToDoItem extends SequelizeApi<RegisterConnectors, IToDoItem
     logger.trace(`findOneByIdAndRemove`);
     let result = await this.loaders.byId.load(id);
     if( result ){
-      result = await result.destroy();
+      result = this.removeSecure(result);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -103,7 +106,7 @@ export default class ToDoItem extends SequelizeApi<RegisterConnectors, IToDoItem
     return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
   }
 
-  public getPayload(args: IToDoItem, update?: boolean) {
+  public getPayload(args: PartialToDoItem, update?: boolean) {
     let entity: any = {};
       if (args.id !== undefined) {
         entity.id = args.id;

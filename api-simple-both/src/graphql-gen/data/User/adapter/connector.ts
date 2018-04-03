@@ -2,18 +2,21 @@
 import * as log4js from 'log4js';
 let logger = log4js.getLogger('api:connector:User');
 
-import { SequelizeApi } from 'oda-api-graphql';
+import { SequelizeApi, SecurityContext } from 'oda-api-graphql';
 import UserSchema from './schema';
 import RegisterConnectors from '../../registerConnectors';
 import * as Dataloader from 'dataloader';
 
-import { IUser } from '../types/model';
+import { PartialUser } from '../types/model';
 import { UserConnector } from './interface';
 
-export default class User extends SequelizeApi<RegisterConnectors, IUser> implements UserConnector {
-  constructor({sequelize, connectors, user, owner, acls, userGroup , initOwner, logUser}) {
+export default class User extends SequelizeApi<RegisterConnectors, PartialUser> implements UserConnector {
+  constructor(
+    { sequelize, connectors, securityContext }:
+      { sequelize: any, connectors: RegisterConnectors, securityContext: SecurityContext<RegisterConnectors> }
+  ) {
     logger.trace('constructor');
-    super({sequelize, connectors, user, acls, userGroup, owner, initOwner, logUser });
+    super({ name: 'User', sequelize, connectors, securityContext});
     this.initSchema('User', UserSchema);
 
     this.loaderKeys = {
@@ -54,10 +57,10 @@ export default class User extends SequelizeApi<RegisterConnectors, IUser> implem
     };
   }
 
-  public async create(payload: IUser) {
+  public async create(payload: PartialUser) {
     logger.trace('create');
     let entity = this.getPayload(payload);
-    let result = await this.model.create(entity);
+    let result = await this.createSecure(entity);
     this.storeToCache([result]);
     return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
   }
@@ -67,7 +70,7 @@ export default class User extends SequelizeApi<RegisterConnectors, IUser> implem
     let entity = this.getPayload(payload, true);
     let result = await this.loaders.byId.load(id);
     if(result){
-      await result.update(entity);
+      await this.updateSecure(result, entity);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -80,7 +83,7 @@ export default class User extends SequelizeApi<RegisterConnectors, IUser> implem
     let entity = this.getPayload(payload, true);
     let result = await this.loaders.byUserName.load(userName);
     if(result){
-      await result.update(entity);
+      await this.updateSecure(result, entity);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -94,7 +97,7 @@ export default class User extends SequelizeApi<RegisterConnectors, IUser> implem
     logger.trace(`findOneByIdAndRemove`);
     let result = await this.loaders.byId.load(id);
     if( result ){
-      result = await result.destroy();
+      result = this.removeSecure(result);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -106,7 +109,7 @@ export default class User extends SequelizeApi<RegisterConnectors, IUser> implem
     logger.trace(`findOneByUserNameAndRemove`);
     let result = await this.loaders.byUserName.load(userName);
     if( result ){
-      result = await result.destroy();
+      result = this.removeSecure(result);
       this.storeToCache([result]);
       return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
     } else {
@@ -149,7 +152,7 @@ export default class User extends SequelizeApi<RegisterConnectors, IUser> implem
     return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
   }
 
-  public getPayload(args: IUser, update?: boolean) {
+  public getPayload(args: PartialUser, update?: boolean) {
     let entity: any = {};
       if (args.id !== undefined) {
         entity.id = args.id;

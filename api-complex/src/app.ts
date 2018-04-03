@@ -34,7 +34,6 @@ import { resolveOwner, resolveUser, resolveAcl } from './model';
 import * as fs from 'fs-extra';
 
 // subscriptions
-import { SubscriptionManager } from 'graphql-subscriptions';
 import { pubsub } from './model/pubsub';
 import { dbPool } from './model/dbPool';
 import { createServer } from 'http';
