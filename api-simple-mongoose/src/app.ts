@@ -133,7 +133,7 @@ export class SampleApiServer extends Server {
       subscriptionsEndpoint: `ws://${WS_HOST}:${WS_PORT}/subscriptions`,
     }));
 
-    this.app.use('/graphql', cors(), bodyParser.json(), buildSchema);
+    this.app.use('/graphql', cors(), bodyParser.json(), apolloUploadExpress(/* Options */), buildSchema);
 
     this.errorHandling();
 

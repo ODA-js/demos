@@ -1,0 +1,39 @@
+{
+  "uploads": [
+    {
+      "id": "rkvXVDfjz",
+      "filename": "махарадж.jpg",
+      "mimetype": "image/jpeg",
+      "encoding": "7bit",
+      "path": "http://localhost:3003/./uploads/rkvXVDfjz-махарадж.jpg"
+    },
+    {
+      "id": "HkCX4DGiM",
+      "filename": "dev-layout.png",
+      "mimetype": "image/png",
+      "encoding": "7bit",
+      "path": "http://localhost:3003/./uploads/HkCX4DGiM-dev-layout.png"
+    },
+    {
+      "id": "BkoVEwGjM",
+      "filename": "снимок экрана от 2017-10-11 11-36-57.png",
+      "mimetype": "image/png",
+      "encoding": "7bit",
+      "path": "http://localhost:3003/./uploads/BkoVEwGjM-снимок экрана от 2017-10-11 11-36-57.png"
+    },
+    {
+      "id": "ry8jOvGoM",
+      "filename": "img_0811.jpg",
+      "mimetype": "image/jpeg",
+      "encoding": "7bit",
+      "path": "http://localhost:3003/./uploads/ry8jOvGoM-img_0811.jpg"
+    },
+    {
+      "id": "r1UFKwfif",
+      "filename": "IMG_0811.JPG",
+      "mimetype": "image/jpeg",
+      "encoding": "7bit",
+      "path": "http://localhost:3003/./uploads/r1UFKwfif-IMG_0811.JPG"
+    }
+  ]
+}

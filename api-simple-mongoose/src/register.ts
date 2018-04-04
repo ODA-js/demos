@@ -12,7 +12,7 @@ import * as config from 'config';
 
 const curHost = config.get('hosts')[name];
 
-// const statics = path.join(__dirname, '..', config.util.getEnv('STATIC_ROOT') || './public');
+const statics = path.join(__dirname, '..', config.util.getEnv('STATIC_ROOT') || './public');
 
 export const logger = () => ({
   name,
@@ -31,9 +31,10 @@ export const register = () => ({
   urls: [
     { src: '/graphql', dst: '/graphql' },
     { src: '/graphiql', dst: '/graphiql' },
+    '/uploads',
   ],
-  // statics: [{
-  //   path: statics,
-  //   route: url.resolve(config.get<string>('statics'), name),
-  // }],
+  statics: [{
+    path: path.join(__dirname, '..', './uploads'),
+    route: '/uploads'
+  }],
 });
