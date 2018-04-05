@@ -8,9 +8,11 @@ import { Admin } from './UI/system';
 import { ui } from 'oda-aor-rest';
 import AutoFormProvider from './lib/adminAutoFormProvider';
 // import { Resources, uix } from './UIoverride';
-import { Resources, uix } from './UI/system';
+import { Resources } from './UI/system';
+import { uix } from './UIoverride';
 import apolloClient from './lib/apollo';
 
+debugger;
 const client = apolloClient({ uri: process.env.REACT_APP_API_URL });
 class App extends Component {
   render() {

@@ -16,13 +16,16 @@
     "invariant": "^2.2.3",
     "loadable-components": "^1.1.1",
     "oda-aor-rest": "^0.3.8",
-    "oda-gen-graphql": "^0.6.10",
     "pluralize": "^7.0.0",
     "react": "^15.6.0",
     "react-apollo": "^2.0.1",
     "react-dom": "^15.6.0",
     "react-loading-animation": "^1.4.0",
     "react-scripts": "1.1.1"
+  },
+  "devDependencies": {
+    "graphql": "~0.11.7",
+    "oda-gen-graphql": "^0.6.14"
   },
   "scripts": {
     "clean": "./clean.sh",
