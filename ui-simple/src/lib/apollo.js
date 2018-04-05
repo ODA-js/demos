@@ -2,9 +2,12 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
 import { ApolloLink, concat } from 'apollo-link';
 import { BatchHttpLink } from 'apollo-link-batch-http';
+import { createUploadLink } from 'apollo-upload-client'
 
 export default ({ uri }) => {
   const httpLink = new BatchHttpLink({ uri });
+  const uploadLink = createUploadLink({ uri })
+
   const authMiddleware = new ApolloLink((operation, forward) => {
     // add the authorization to the headers
     const token = localStorage.getItem('authToken');
@@ -17,7 +20,7 @@ export default ({ uri }) => {
   })
 
   return new ApolloClient({
-    link: concat(authMiddleware, httpLink),
+    link: concat(uploadLink, concat(authMiddleware, httpLink)),
     cache: new InMemoryCache()
   });
 }
