@@ -25,6 +25,8 @@
     "apollo-client": "^2.2.8",
     "apollo-link-batch-http": "^1.2.1",
     "apollo-upload-server": "^5.0.0",
+    "image-size": "^0.6.2",
+    "sharp": "^0.20.1",
     "body-parser": "^1.18.2",
     "compression": "^1.7.2",
     "cors": "^2.8.4",
