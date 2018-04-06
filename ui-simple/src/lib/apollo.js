@@ -6,6 +6,7 @@ import { createUploadLink } from 'apollo-upload-client'
 
 export default ({ uri }) => {
   const httpLink = new BatchHttpLink({ uri });
+  const token = localStorage.getItem('authToken');
   const uploadLink = createUploadLink({ uri })
 
   const authMiddleware = new ApolloLink((operation, forward) => {
@@ -20,7 +21,7 @@ export default ({ uri }) => {
   })
 
   return new ApolloClient({
-    link: concat(uploadLink, concat(authMiddleware, httpLink)),
+    link: concat(authMiddleware, uploadLink),
     cache: new InMemoryCache()
   });
 }
