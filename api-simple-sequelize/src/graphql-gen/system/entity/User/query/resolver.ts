@@ -2,7 +2,7 @@ import * as log4js from 'log4js';
 let logger = log4js.getLogger('graphql:query');
 import * as get from 'lodash/get';
 
-import { fromGlobalId } from 'oda-api-graphql';
+import { fromGlobalId } from 'oda-isomorfic';
 import RegisterConnectors from '../../../../data/registerConnectors';
 import { emptyConnection, idToCursor, pagination, detectCursorDirection, consts } from 'oda-api-graphql';
 import { lib } from 'oda-gen-common';
@@ -84,7 +84,7 @@ export const query: { [key: string]: any } = {
             ? edges[edges.length - 1].cursor : undefined,
           hasPreviousPage: get(selectionSet, 'pageInfo.hasPreviousPage') ? (direction === consts.DIRECTION.BACKWARD ? list.length === cursor.limit : false) : undefined,
           hasNextPage: get(selectionSet, 'pageInfo.hasNextPage') ? (direction === consts.DIRECTION.FORWARD ? list.length === cursor.limit : false) : undefined,
-          count: get(selectionSet, 'pageInfo.count') ?  await fixCount(list.length, cursor, () => context.connectors.ToDoItem.getCount({
+          count: get(selectionSet, 'pageInfo.count') ?  await fixCount(list.length, cursor, () => context.connectors.User.getCount({
               ...args,
               idMap,
             })) : 0,

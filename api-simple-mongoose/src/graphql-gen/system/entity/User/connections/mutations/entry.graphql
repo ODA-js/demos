@@ -1,2 +1,4 @@
 addToUserHasManyTodos(input: addToUserHasManyTodosInput):addToUserHasManyTodosPayload
 removeFromUserHasManyTodos(input: removeFromUserHasManyTodosInput):removeFromUserHasManyTodosPayload
+addToUserHasManyFiles(input: addToUserHasManyFilesInput):addToUserHasManyFilesPayload
+removeFromUserHasManyFiles(input: removeFromUserHasManyFilesInput):removeFromUserHasManyFilesPayload

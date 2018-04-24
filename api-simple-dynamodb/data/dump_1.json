@@ -1,0 +1,64 @@
+{
+  "User": [
+    {
+      "id": "VXNlcjo1YWE2NGMyMTZmOWY1NDNkMDQwZmE5YjI=",
+      "userName": "user",
+      "password": "{\"salt\":\"t3MqMOtjaFGymYR4QN+rqg==\",\"hash\":\"8n3i+3wzmyWT72vXXJfEogiswVtzpdusoPTbJxSNzuXJf7wLD31EDRc20d1dfQgWum+xHJbp5B1M29YlDTSwl+ecDfFJ8CQ4uwCFDuOHzPyvHvjO5JgFW8MSYviJeE45tT7B3RqpGd2wJy38/o38iHvXVJXdADK0mCiALleYH6p9KZOsV1TGyuzwtg8YpNYJN9ZMUCOuTUqRzC1CfiL9K7eKs3yklP9S8E4pVSxfykEHR8olLkCFoKYwVdfMBhaekKidU84S3HIaKn0YrKoNVvwRAvSozeu2Rq7KJWkJ2PXTfOSrW8n6FUOC2jiWzOttl8zqRMRVHNXoW0ao/M3gIyxxipZ0FCKH/eHeHBnX8KgTD0KC/tAfP7lTnl/CVpYgAWW3Ch0FeHTjcFQTNgoPMltwsD6LCVXM/2K2TIVvvZtoiD7zf0TgjMCrkG0mdEy+2cpYFGXEDr/8YLkFkDDzB95jvkuzMpwB7m2yA237OdTJd6T0j0Ivel91p+gT8q0VJl2TXto+kLX5w0b1c7gOYIJDlbcs996Qv9TQnCx4mDeQkXzLBHP6P7+kpYlo77IlPEwerFOX9FPU5MdqNCpxFJQn2LkGYosAp0n2737OELf05kHWpl746Yunidd2+ketnI+WpqIAGexKVU3lVhlCm9xoiMow+A6NMvZ3niLMJ9A=\"}",
+      "isAdmin": false,
+      "isSystem": false,
+      "enabled": true,
+      "todos": [
+        {
+          "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI0"
+        },
+        {
+          "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI1"
+        },
+        {
+          "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI2"
+        }
+      ]
+    },
+    {
+      "id": "VXNlcjpmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmY=",
+      "userName": "system",
+      "password": "{\"salt\":\"E/tUkgBozLwlib6pGZnwGg==\",\"hash\":\"kVWKlQdLI+N94n+0OWx7aV5DZcfWsiByo5UMc57OKy7S1b43C/JBCUKJ4GT4x2Yvt1rM9dc50IJbgH555kaAPUZsg9YXOC9fhK9bVn3151v2GnTlfRzJAvUnfE1egyaTbyWsrRUDNVa5Cz83UqWJWHOwMPA5Z7yyyesEFZWpAoaEWvlbZ4ZJerCMUt8134/4dQMlqkaf2+dRxjQg8YBHCG7CtJi2+cBwXsqmRqHywdPHBIDnFQNWvp6LBAlgHMSJ+JYwOUKBl4r04TGnIOd47tK3fQgmbsERHDDm8SWx2s66Qf8RoArUoJ/K+XUohDhOQJWxzLf+BcsoWLOHKv7cgtLbcKLkrn0kwAWo6TqqHIBG+XFUh+qiJlcF6F1QHVUR/0wMlA1SnTiMvIThi++svkEVLgQWfsNifAdOC1uCuGl4DybIONlIkVeL+Fk6icPSb5qooTI8trTNaomuzF7XlRDHbEFkav0lo2nIlBeCluEUF4hKA00wfMlz4kp33qkqJotpUBXk4R3emQB4JKV9xF63rqkh8i2ETm+jX00RhRzRzfNFvTsHPOR+FoLvxnR5ng7ua52xRUeZ2lnCXllWLnGOgXyL70DYdjK6VepYrear/MW7h4rFXQCPVmuYy0tH98OEc1Nyhjkx7ofydW2Uuv0zT2mxqY1c/VZ5E496hzg=\"}",
+      "isAdmin": true,
+      "isSystem": true,
+      "enabled": true,
+      "todos": []
+    }
+  ],
+  "ToDoItem": [
+    {
+      "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI0",
+      "name": "first item",
+      "description": "some thing!!!",
+      "done": true,
+      "dueToDate": "2018-03-12T21:00:00.000Z",
+      "user": {
+        "id": "VXNlcjo1YWE2NGMyMTZmOWY1NDNkMDQwZmE5YjI="
+      }
+    },
+    {
+      "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI1",
+      "name": "second item",
+      "description": "awesome thing!!!",
+      "done": true,
+      "dueToDate": "2018-03-12T21:00:00.000Z",
+      "user": {
+        "id": "VXNlcjo1YWE2NGMyMTZmOWY1NDNkMDQwZmE5YjI="
+      }
+    },
+    {
+      "id": "VG9Eb0l0ZW06NWFhNjcyZGNiODllMmY2YzMzNzlkMWI2",
+      "name": "another item",
+      "description": "the different cool thing!!!",
+      "done": true,
+      "dueToDate": "2018-03-12T21:00:00.000Z",
+      "user": {
+        "id": "VXNlcjo1YWE2NGMyMTZmOWY1NDNkMDQwZmE5YjI="
+      }
+    }
+  ]
+}

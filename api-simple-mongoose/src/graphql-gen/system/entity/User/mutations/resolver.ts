@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import {
   fromGlobalId,
   toGlobalId,
-} from 'oda-api-graphql';
+} from 'oda-isomorfic';
 
 import RegisterConnectors from '../../../../data/registerConnectors';
 import { mutateAndGetPayload, idToCursor } from 'oda-api-graphql';
@@ -88,6 +88,88 @@ async function ensureToDoItem({
   }
   return toDoItem;
 }
+async function ensureFile({
+  args, context, create
+}) {
+  // find
+  let filter;
+  let fArgs;
+  let variables;
+  if (args.id) {
+    fArgs = '$id: ID';
+    filter = 'id: $id';
+    variables = {
+      id: args.id,
+    };
+
+  } else if (args.path) {
+    fArgs = '$path: String';
+    filter = 'path: $path';
+    variables = {
+      path: args.path,
+    };
+  }
+  let file;
+  if (filter) {
+    file = await context.userGQL({
+      query: gql`query findFile(${fArgs}){
+            file(${filter}){
+              id
+            }
+          }
+          `,
+      variables,
+    }).then(r => r.data.file);
+  }
+
+  if (!file) {
+    if (create) {
+      file = await context.userGQL({
+        query: gql`mutation createFile($file: createFileInput!) {
+            createFile(input: $file) {
+              file {
+                node {
+                  id
+                }
+              }
+            }
+          }
+          `,
+        variables: {
+          file: {
+            path: args.path,
+            filename: args.filename,
+            mimetype: args.mimetype,
+            encoding: args.encoding,
+            id: args.id,
+          },
+        }
+      }).then(r => r.data.createFile.file.node);
+    }
+  } else {
+    // update
+    file = await context.userGQL({
+      query: gql`mutation updateFile($file: updateFileInput!) {
+            updateFile(input: $file) {
+              file {
+                id
+              }
+            }
+          }
+          `,
+      variables: {
+        file: {
+          path: args.path,
+          filename: args.filename,
+          mimetype: args.mimetype,
+          encoding: args.encoding,
+          id: args.id,
+        },
+      }
+    }).then(r => r.data.updateFile.file);
+  }
+  return file;
+}
 
 
 async function linkToTodos({
@@ -137,6 +219,53 @@ async function unlinkFromTodos({
 }
 
 
+async function linkToFiles({
+  context,
+  files,
+  user,
+}) {
+  if (files) {
+    await context.userGQL({
+      query: gql`mutation addToUserHasManyFiles($input:addToUserHasManyFilesInput!) {
+          addToUserHasManyFiles(input:$input){
+            user {
+              id
+            }
+          }
+        }`,
+      variables: {
+        input: {
+          user: toGlobalId('User', user.id),
+          file: files.id,
+        }
+      }
+    });
+  }
+}
+
+async function unlinkFromFiles({
+  context, files,  user,
+}) {
+  if (files) {
+    await context.userGQL({
+      query: gql`mutation removeFromUserHasManyFiles($input: removeFromUserHasManyFilesInput!) {
+          removeFromUserHasManyFiles(input:$input){
+            user {
+              id
+            }
+          }
+        }`,
+      variables: {
+        input: {
+          user: toGlobalId('User', user.id),
+          file: files.id,
+        }
+      }
+    });
+  }
+}
+
+
 async function unlinkUserFromAll(args:{
   key,
   type,
@@ -164,6 +293,13 @@ async function unlinkUserFromAll(args:{
       fragment UnlinkUser on User {
         id
         todosUnlink: todos@_(get: "edges"){
+          edges @_(map: "node"){
+            node {
+              id
+            }
+          }
+        }
+        filesUnlink: files@_(get: "edges"){
           edges @_(map: "node"){
             node {
               id
@@ -211,6 +347,7 @@ export const mutation = {
       isSystem?: boolean,
       enabled?: boolean,
       todos?: object/*ToDoItem*/[],
+      files?: object/*File*/[],
     },
     context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
     info,
@@ -271,6 +408,30 @@ export const mutation = {
     
     }
 
+
+    if (args.files && Array.isArray(args.files) && args.files.length > 0 ) {
+    
+      for (let i = 0, len = args.files.length; i < len; i++) {
+    
+      let $item = args.files[i] as { id, };
+      if ($item) {
+        let files = await ensureFile({
+          args: $item,
+          context,
+          create: true,
+        });
+
+        await linkToFiles({
+          context,
+          files,
+          user: result,
+        });
+      }
+    
+      }
+    
+    }
+
     return {
       user: userEdge,
     };
@@ -286,6 +447,9 @@ export const mutation = {
       todos?: object/*ToDoItem*/[],
       todosUnlink?: object/*ToDoItem*/[],
       todosCreate?: object/*ToDoItem*/[],
+      files?: object/*File*/[],
+      filesUnlink?: object/*File*/[],
+      filesCreate?: object/*File*/[],
     },
     context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
     info,
@@ -391,6 +555,75 @@ export const mutation = {
         await linkToTodos({
           context,
           todos,
+          user: result,
+        });
+      }
+    
+      }
+    
+    }
+
+    if (args.filesUnlink && Array.isArray(args.filesUnlink) && args.filesUnlink.length > 0 ) {
+    
+      for (let i = 0, len = args.filesUnlink.length; i < len; i++) {
+    
+      let $item = args.filesUnlink[i];
+      if ($item) {
+        let files = await ensureFile({
+          args: $item,
+          context,
+          create: false,
+        });
+
+        await unlinkFromFiles({
+          context,
+          files,
+          user: result,
+        });
+      }
+    
+      }
+    
+    }
+
+    if (args.filesCreate && Array.isArray(args.filesCreate) && args.filesCreate.length > 0 ) {
+    
+      for (let i = 0, len = args.filesCreate.length; i < len; i++) {
+    
+      let $item = args.filesCreate[i] as { id, };
+      if ($item) {
+        let files = await ensureFile({
+          args: $item,
+          context,
+          create: true,
+        });
+
+        await linkToFiles({
+          context,
+          files,
+          user: result,
+        });
+      }
+    
+      }
+    
+    }
+
+    if (args.files && Array.isArray(args.files) && args.files.length > 0 ) {
+    
+      for (let i = 0, len = args.files.length; i < len; i++) {
+    
+      let $item = args.files[i] as { id, };
+      if ($item) {
+        let files = await ensureFile({
+          args: $item,
+          context,
+          create: false,
+        });
+
+        await linkToFiles({
+          context,
+          files,
           user: result,
         });
       }

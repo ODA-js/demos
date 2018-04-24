@@ -16,6 +16,7 @@ export class LoginUserMutation extends common.types.GQLModule {
       ) => {
         let result: {
           token?: string,
+          role: string;
         };
 
         let user = await context.systemGQL({
@@ -51,6 +52,7 @@ export class LoginUserMutation extends common.types.GQLModule {
 
         result = {
           token: await passport.loginBearer(user.id, args.password, salt, hash),
+          role: 'system',
         };
 
         return result;

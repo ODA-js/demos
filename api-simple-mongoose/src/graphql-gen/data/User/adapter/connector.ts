@@ -2,7 +2,8 @@
 import * as log4js from 'log4js';
 let logger = log4js.getLogger('api:connector:User');
 
-import { MongooseApi, SecurityContext } from 'oda-api-graphql';
+import { MongooseApi } from 'oda-api-graphql-mongoose';
+import { SecurityContext } from 'oda-api-graphql';
 import UserSchema from './schema';
 import RegisterConnectors from '../../registerConnectors';
 import * as Dataloader from 'dataloader';
@@ -137,6 +138,28 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
   }) {
     logger.trace(`removeFromTodos`);
     await this.connectors.ToDoItem.findOneByIdAndUpdate(args.toDoItem,
+    { user: null });
+  }
+
+  public async addToFiles(args: {
+      user?: string,
+      file?: string,
+  }) {
+    logger.trace(`addToFiles`);
+    let current = await this.findOneById(args.user);
+    if (current) {
+      await this.connectors.File.findOneByIdAndUpdate(
+        args.file,
+        { user: current.id });
+    }
+  }
+
+  public async removeFromFiles(args: {
+      user?: string,
+      file?: string,
+  }) {
+    logger.trace(`removeFromFiles`);
+    await this.connectors.File.findOneByIdAndUpdate(args.file,
     { user: null });
   }
 

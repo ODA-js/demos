@@ -40,7 +40,7 @@ const storeDB = file =>
     .write()
 
 const processUpload = async upload => {
-  const { stream, filename, mimetype, encoding } = await upload
+  const { stream, filename, mimetype, encoding } = await (upload.rawFile ? upload.rawFile : upload)
   const { id, path } = await storeFS({ stream, filename: filename })
   return storeDB({ id, filename: filename, mimetype, encoding, path: `http://localhost:3003/${path}` })
 }
@@ -51,16 +51,20 @@ export class FileType extends common.types.GQLModule {
   protected _typeDef = {
     entry: [`
       scalar Upload
-
-      type File {
-        id: ID!
-        path: String!
-        filename: String!
-        mimetype: String!
-        encoding: String!
-      }
   `],
   }
+  protected _resolver: { [key: string]: any } = {
+    Upload: {
+      __parseLiteral: () => {
+        throw new Error('Upload scalar literal unsupported')
+      },
+      __serialize: () => {
+        throw new Error('Upload scalar literal unsupported')
+      },
+      __parseValue: value => value,
+    }
+  }
+
   protected _queryEntry = {
     entry: [`
       uploads: [File]

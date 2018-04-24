@@ -39,6 +39,7 @@ const ShowView = (props, context) => {
   const { translate, uix } = context;
   const { Title } = uix['system/User'];
   const ToDoItem = uix['system/ToDoItem'];
+  const File = uix['system/File'];
 
   return (
     <Show title={<Title />} {...props} >
@@ -58,6 +59,10 @@ const ShowView = (props, context) => {
 
         <ReferenceManyField label="resources.User.fields.todos" reference="system/ToDoItem" target="user" idKey="userName" allowEmpty >
           <ToDoItem.Grid />
+        </ReferenceManyField>
+
+        <ReferenceManyField label="resources.User.fields.files" reference="system/File" target="user" idKey="id" allowEmpty >
+          <File.Grid />
         </ReferenceManyField>
 
       </SimpleShowLayout>

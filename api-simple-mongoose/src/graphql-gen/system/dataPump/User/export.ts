@@ -10,6 +10,9 @@ export default {
             todos : e.node.todos ? e.node.todos.edges.map(s => ({
               ...s.node,
             })) : [],
+            files : e.node.files ? e.node.files.edges.map(s => ({
+              ...s.node,
+            })) : [],
           })) : [],
         }),*/
       }

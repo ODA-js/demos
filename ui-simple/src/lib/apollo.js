@@ -21,7 +21,7 @@ export default ({ uri }) => {
   })
 
   return new ApolloClient({
-    link: concat(authMiddleware, uploadLink),
+    link: uploadLink,
     cache: new InMemoryCache()
   });
 }

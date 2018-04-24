@@ -1,4 +1,4 @@
 import * as config from 'config';
 
-import { DbMongooseConnectionPool, DbSequelizeConnectionPool } from 'oda-api-common';
+import { DbMongooseConnectionPool } from 'oda-api-graphql-mongoose';
 export const dbPool = new DbMongooseConnectionPool({ defaultUrl: config.get<string>('db.api.url') });

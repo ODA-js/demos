@@ -115,6 +115,8 @@ type User implements Node{
   id: ID!
   # # Todos  
   todos(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [ToDoItemSortOrder], filter:ToDoItemComplexFilter ): UserHasManyTodosConnection  
+  # # Files  
+  files(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FileSortOrder], filter:FileComplexFilter ): UserHasManyFilesConnection  
 }
 
 
@@ -131,6 +133,7 @@ input createUserInput {
   isSystem: Boolean
   enabled: Boolean
   todos: [embedToDoItemInput]
+  files: [embedFileInput]
 }
 
 
@@ -143,6 +146,7 @@ input embedUserInput {
   isSystem: Boolean
   enabled: Boolean
   todos: [embedToDoItemInput]
+  files: [embedFileInput]
 }
 
 
@@ -165,6 +169,9 @@ input updateUserInput {
   todos: [embedToDoItemInput]
   todosUnlink: [embedToDoItemInput]
   todosCreate: [createToDoItemInput]
+  files: [embedFileInput]
+  filesUnlink: [embedFileInput]
+  filesCreate: [createFileInput]
 }
 
 # Payload type for User
@@ -221,7 +228,17 @@ type UserHasManyTodosSubscriptionPayload {
   relation: String
 }
 
-union UserSubscriptionPayload = UpdateUserSubscriptionPayload | UserHasManyTodosSubscriptionPayload`],
+type UserHasManyFilesArgsSubscriptionPayload {
+  user:ID!
+  file:ID!
+}
+
+type UserHasManyFilesSubscriptionPayload {
+  args:UserHasManyFilesArgsSubscriptionPayload
+  relation: String
+}
+
+union UserSubscriptionPayload = UpdateUserSubscriptionPayload | UserHasManyTodosSubscriptionPayload | UserHasManyFilesSubscriptionPayload`],
       'connectionsTypes': [`type UsersConnection {
   pageInfo: PageInfo!
   edges: [UsersEdge]
@@ -244,6 +261,19 @@ type UserHasManyTodosConnection {
 
 type UserHasManyTodosEdge {
   node: ToDoItem
+  cursor: String!
+  # put here your additiona edge fields
+}
+
+
+type UserHasManyFilesConnection {
+  pageInfo: PageInfo!
+  edges: [UserHasManyFilesEdge]
+  # put here your additional connection fields
+}
+
+type UserHasManyFilesEdge {
+  node: File
   cursor: String!
   # put here your additiona edge fields
 }
@@ -274,6 +304,31 @@ type removeFromUserHasManyTodosPayload {
   viewer: Viewer
   user: User
  }
+
+input addToUserHasManyFilesInput {
+  clientMutationId: String
+  user:ID!
+  file:ID!
+  #additional Edge fields
+}
+
+type addToUserHasManyFilesPayload {
+  clientMutationId: String
+  viewer: Viewer
+  user: User
+ }
+
+input removeFromUserHasManyFilesInput {
+  clientMutationId: String
+  file:ID!
+  user:ID!
+ }
+
+type removeFromUserHasManyFilesPayload {
+  clientMutationId: String
+  viewer: Viewer
+  user: User
+ }
 `],
     });
 
@@ -283,6 +338,8 @@ updateUser(input: updateUserInput!): updateUserPayload
 deleteUser(input: deleteUserInput!): deleteUserPayload`],
       'connectionsMutationEntry': [`addToUserHasManyTodos(input: addToUserHasManyTodosInput):addToUserHasManyTodosPayload
 removeFromUserHasManyTodos(input: removeFromUserHasManyTodosInput):removeFromUserHasManyTodosPayload
+addToUserHasManyFiles(input: addToUserHasManyFilesInput):addToUserHasManyFilesPayload
+removeFromUserHasManyFiles(input: removeFromUserHasManyFilesInput):removeFromUserHasManyFilesPayload
 `],
     });
 

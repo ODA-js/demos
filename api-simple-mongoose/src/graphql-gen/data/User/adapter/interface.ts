@@ -20,5 +20,14 @@ export interface UserConnector extends Connector<PartialUser>{
       toDoItem?: string,
   }): Promise<void>;
 
+  addToFiles(args: {
+      user?: string,
+      file?: string,
+  }): Promise<void>;
+  removeFromFiles(args: {
+      user?: string,
+      file?: string,
+  }): Promise<void>;
+
 }
 

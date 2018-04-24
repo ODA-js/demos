@@ -1,6 +1,6 @@
 
 
-import { fromGlobalId } from 'oda-api-graphql';
+import { fromGlobalId } from 'oda-isomorfic';
 import { utils } from 'oda-api-graphql';
 
 const { validId } = utils;
@@ -43,7 +43,8 @@ export default {
       User: {
         filter:`
           id
-          todos`,
+          todos
+          files`,
         uploader: {
           findQuery: {
             id: 'User/findById.graphql',

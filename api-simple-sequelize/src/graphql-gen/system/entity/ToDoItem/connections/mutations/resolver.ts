@@ -4,7 +4,7 @@ let logger = log4js.getLogger('graphql:mutations:ToDoItem');
 import {
   fromGlobalId,
   toGlobalId,
-} from 'oda-api-graphql';
+} from 'oda-isomorfic';
 
 import RegisterConnectors from '../../../../../data/registerConnectors';
 import { mutateAndGetPayload, idToCursor } from 'oda-api-graphql';

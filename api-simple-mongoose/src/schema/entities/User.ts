@@ -20,6 +20,11 @@ export default {
       relation: {
         hasMany: 'userName@ToDoItem#user',
       }
+    },
+    files: {
+      relation: {
+        hasMany: 'File#user',
+      }
     }
   },
 };

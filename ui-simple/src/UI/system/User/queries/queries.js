@@ -17,6 +17,13 @@ export const fragments = {
         }
       }
     }
+    filesIds: files @_(get:"edges") {
+      edges @_( map:"node" ) {
+        node @_(get:"id")  {
+          id
+        }
+      }
+    }
   }`,
   fullFragment: gql`fragment UserFull on User {
     id
@@ -26,6 +33,13 @@ export const fragments = {
     isSystem
     enabled
     todos {
+      edges {
+        node {
+          id
+        }
+      }
+    }
+    files {
       edges {
         node {
           id
@@ -181,6 +195,21 @@ export const queries = {
     }
     ${fullFragment}
   `,
+  
+    files: gql`query Files_User($skip: Int, $limit: Int, $orderBy: [UserSortOrder], $filter: UserComplexFilter) {
+      items: users(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
+        pageInfo {
+          count
+        }
+        edges {
+          node {
+            ...UserFull
+          }
+        }
+      }
+    }
+    ${fullFragment}
+  `,
     }),
   getManyReferenceResultOpposite: ({ resultFragment }) => gql`{
     items: opposite @_(get:"items") {
@@ -214,5 +243,6 @@ export const queries = {
   `,
   getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite, getManyReferenceResultRegular }) => ({
     todos: getManyReferenceResultRegular({ resultFragment }),
+    files: getManyReferenceResultRegular({ resultFragment }),
   }),
 }

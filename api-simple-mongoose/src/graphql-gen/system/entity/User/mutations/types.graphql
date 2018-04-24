@@ -10,6 +10,7 @@ input createUserInput {
   isSystem: Boolean
   enabled: Boolean
   todos: [embedToDoItemInput]
+  files: [embedFileInput]
 }
 
 
@@ -22,6 +23,7 @@ input embedUserInput {
   isSystem: Boolean
   enabled: Boolean
   todos: [embedToDoItemInput]
+  files: [embedFileInput]
 }
 
 
@@ -44,6 +46,9 @@ input updateUserInput {
   todos: [embedToDoItemInput]
   todosUnlink: [embedToDoItemInput]
   todosCreate: [createToDoItemInput]
+  files: [embedFileInput]
+  filesUnlink: [embedFileInput]
+  filesCreate: [createFileInput]
 }
 
 # Payload type for User

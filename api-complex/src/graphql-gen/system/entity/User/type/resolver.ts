@@ -39,7 +39,7 @@ export const resolver: { [key: string]: any } = {
       let user = await context.connectors.User.findOneById(id);
       //HasMany
         let idMap = {
-          id: '_id',
+          id: 'id',
           createdBy: 'createdBy',
           updateBy: 'updateBy',
         };

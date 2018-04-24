@@ -34,6 +34,9 @@ export const resolver = {
       if (obj.args && obj.args.user && obj.args.toDoItem) {
         return "UserHasManyTodosSubscriptionPayload";
       }
+      if (obj.args && obj.args.user && obj.args.file) {
+        return "UserHasManyFilesSubscriptionPayload";
+      }
       return null;
     }
   },

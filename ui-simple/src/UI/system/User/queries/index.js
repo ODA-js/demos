@@ -20,6 +20,12 @@ export default {
         type: data.resource.interfaces.refType.HasMany,
       },
     },
+    files: {
+      ref: {
+        resource: 'system/File',
+        type: data.resource.interfaces.refType.HasMany,
+      },
+    },
   },
   operations: {
     GET_LIST: {

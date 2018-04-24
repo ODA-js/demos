@@ -4,6 +4,7 @@ export default {
   'entities': [
     'User',
     'ToDoItem',
+    'File'
   ],
   'mutations': [],
 };

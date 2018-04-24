@@ -23,3 +23,28 @@ type removeFromUserHasManyTodosPayload {
   viewer: Viewer
   user: User
  }
+
+input addToUserHasManyFilesInput {
+  clientMutationId: String
+  user:ID!
+  file:ID!
+  #additional Edge fields
+}
+
+type addToUserHasManyFilesPayload {
+  clientMutationId: String
+  viewer: Viewer
+  user: User
+ }
+
+input removeFromUserHasManyFilesInput {
+  clientMutationId: String
+  file:ID!
+  user:ID!
+ }
+
+type removeFromUserHasManyFilesPayload {
+  clientMutationId: String
+  viewer: Viewer
+  user: User
+ }

@@ -5,6 +5,9 @@ import { UserConnector } from './User/adapter/interface';
 import ToDoItem from './ToDoItem/adapter/connector';
 import { ToDoItemConnector } from './ToDoItem/adapter/interface';
 
+import File from './File/adapter/connector';
+import { FileConnector } from './File/adapter/interface';
+
 
 import { acl, ACLCheck, SecurityContext } from 'oda-api-graphql';
 
@@ -31,9 +34,21 @@ export default class RegisterConnectors {
     return this._ToDoItem;
   }
 
+  public get File(): FileConnector {
+    return this.InitFile();
+  }
+
+  public InitFile(): FileConnector {
+    if (!this._File) {
+      this._File = new File({ mongoose: this.mongoose, connectors: this, securityContext: this.securityContext });
+    }
+    return this._File;
+  }
+
 
   protected _User: UserConnector;
   protected _ToDoItem: ToDoItemConnector;
+  protected _File: FileConnector;
 
   public mongoose;
   public sequelize;

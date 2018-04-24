@@ -24,3 +24,16 @@ type UserHasManyTodosEdge {
   # put here your additiona edge fields
 }
 
+
+type UserHasManyFilesConnection {
+  pageInfo: PageInfo!
+  edges: [UserHasManyFilesEdge]
+  # put here your additional connection fields
+}
+
+type UserHasManyFilesEdge {
+  node: File
+  cursor: String!
+  # put here your additiona edge fields
+}
+

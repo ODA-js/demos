@@ -32,6 +32,13 @@ fragment ViewUserFull on User {
       }
     }
   }
+  files @_(get: "edges"){
+    edges @_(map: "node"){
+      node {
+        ...EmbedFileWithId
+      }
+    }
+  }
 }
 
 

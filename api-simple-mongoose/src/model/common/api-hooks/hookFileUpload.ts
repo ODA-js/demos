@@ -2,7 +2,33 @@ import { common } from 'oda-gen-graphql';
 import { passport } from 'oda-api-common';
 
 const FileUpload = (target) => async (root: any, args: object, context: any, info: any) => {
-  console.log('HOOKED, ', args);
+  //сохранить файл и передать ссылку на него в description...
+  if (Array.isArray(args.files) && args.files.length > 0) {
+    console.log('HOOKED, ', args);
+    const upload = await context.userGQL({
+      query: `
+      mutation uploadFiles($files: [Upload!]!) {
+        files:multipleUpload(files: $files){
+          id
+          path
+          filename
+          mimetype
+          encoding
+        }
+      }
+      `,
+      variables: { files: args.files }
+    });
+    debugger;
+    args = (upload.data && upload.data.files) ? {
+      ...args,
+      input: {
+        ...args.input,
+        description: JSON.stringify(upload.data.files),
+      }
+    } : args;
+  }
+
   return target(root, args, context, info);
 };
 

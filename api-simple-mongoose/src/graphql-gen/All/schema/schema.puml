@@ -2,6 +2,8 @@
 
   ToDoItem "todos" -- "1 user" User
 
+  File "files" -- "1 user" User
+
 
   class User {
     userName: String
@@ -19,6 +21,15 @@
     dueToDate: Date
     published: boolean
     user: User#userName
+    id: ID
+  }
+
+  class File {
+    path: String
+    filename: String
+    mimetype: String
+    encoding: String
+    user: User#id
     id: ID
   }
 

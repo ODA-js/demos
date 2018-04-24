@@ -61,6 +61,12 @@ class Form extends Component {
           <SelectArrayInput options={{ fullWidth: true }} optionText="name" optionValue="id" />
         </ReferenceArrayInput>
 
+
+        <Label text="resources.User.fields.files" />
+        <ReferenceArrayInput label="" source="filesIds" reference="system/File" allowEmpty >
+          <SelectArrayInput options={{ fullWidth: true }} optionText="path" optionValue="id" />
+        </ReferenceArrayInput>
+
       </SimpleForm>);
   }
 }

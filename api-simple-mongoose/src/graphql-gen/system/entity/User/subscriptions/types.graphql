@@ -30,4 +30,14 @@ type UserHasManyTodosSubscriptionPayload {
   relation: String
 }
 
-union UserSubscriptionPayload = UpdateUserSubscriptionPayload | UserHasManyTodosSubscriptionPayload
+type UserHasManyFilesArgsSubscriptionPayload {
+  user:ID!
+  file:ID!
+}
+
+type UserHasManyFilesSubscriptionPayload {
+  args:UserHasManyFilesArgsSubscriptionPayload
+  relation: String
+}
+
+union UserSubscriptionPayload = UpdateUserSubscriptionPayload | UserHasManyTodosSubscriptionPayload | UserHasManyFilesSubscriptionPayload

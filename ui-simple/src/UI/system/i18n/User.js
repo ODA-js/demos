@@ -11,6 +11,7 @@ export default {
         isSystem: 'Is system',
         enabled: 'Enabled',
         todos: 'Todos',
+        files: 'Files',
       },
     },
   },

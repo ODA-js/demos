@@ -29,18 +29,24 @@
     "body-parser": "^1.18.2",
     "compression": "^1.7.2",
     "cors": "^2.8.4",
+    "dataloader": "^1.4.0",
     "dotenv": "^5.0.0",
+    "graphql": "^0.13.2",
     "graphql-subscriptions": "^0.5.8",
     "graphql-tag": "^2.4.2",
     "lodash": "^4.17.4",
     "log4js": "^1.1.1",
-    "oda-api-common": "^0.2.31",
-    "oda-api-graphql": "^0.4.35",
-    "oda-gen-common": "^0.1.12",
-    "oda-gen-graphql": "^0.6.10",
-    "oda-isomorfic": "^0.0.31",
-    "oda-lodash": "^0.1.12",
+    "mongoose": "^5.0.16",
+    "oda-api-common": "^0.2.38",
+    "oda-api-graphql": "^0.4.42",
+    "oda-api-graphql-sequelize": "0.0.5",
+    "oda-api-graphql-mongoose": "0.0.5",
+    "oda-gen-common": "^0.1.19",
+    "oda-gen-graphql": "^0.6.20",
+    "oda-isomorfic": "^0.0.36",
+    "oda-lodash": "^0.1.19",
     "sqlite3": "^3.1.13",
+    "sequelize": "^4.37.6",
     "subscriptions-transport-ws": "^0.9.6"
   },
   "devDependencies": {
@@ -51,6 +57,6 @@
     "@types/node": "^8.0.24",
     "@types/passport": "^0.4.3",
     "graphql-document-collector": "^0.2.1",
-    "typescript": "^2.7.2"
+    "typescript": "~2.6.2"
   }
 }

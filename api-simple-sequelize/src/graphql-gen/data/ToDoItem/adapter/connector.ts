@@ -2,7 +2,8 @@
 import * as log4js from 'log4js';
 let logger = log4js.getLogger('api:connector:ToDoItem');
 
-import { SequelizeApi, SecurityContext } from 'oda-api-graphql';
+import { SequelizeApi } from 'oda-api-graphql-sequelize';
+import { SecurityContext } from 'oda-api-graphql';
 import ToDoItemSchema from './schema';
 import RegisterConnectors from '../../registerConnectors';
 import * as Dataloader from 'dataloader';

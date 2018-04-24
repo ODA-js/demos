@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 dotenv.config({ silent: true });
 import * as config from 'config';
 import RegisterConnectors from './connectors';
-import { passport, DbMongooseConnectionPool } from 'oda-api-common';
+import { passport } from 'oda-api-common';
 import { makeExecutableSchema } from 'graphql-tools';
 import { SystemSchema } from '../model/schema';
 import { ExecutionResult } from 'graphql';
