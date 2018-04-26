@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Dashboard from './Dashboard/'
-
 // import { Admin } from './UI/system';
 import { Admin } from './UIfix/system';
 // import { Admin } from './UIoverride';
