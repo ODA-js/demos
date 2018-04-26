@@ -21,14 +21,14 @@ import RichTextInput from 'ra-input-rich-text';
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
 import compose from 'recompose/compose';
-import { consts, actions, show  } from 'oda-ra-ui';
+import { consts, actions, show } from '../../../../lib/ui';
 
 // const {
-  // DependentInput,
-  // EmbeddedInput,
-  // GrouppedInput,
-  // Label,
-  // AutocompleteInput
+// DependentInput,
+// EmbeddedInput,
+// GrouppedInput,
+// Label,
+// AutocompleteInput
 // } = ui.components;
 
 const actionType = consts.actionType;
@@ -51,11 +51,11 @@ class Form extends Component {
     const { translate } = this.context;
     return (
       <SimpleForm {...props} >
-        <TextInput label="resources.User.fields.userName" source="userName"  validate={required} />
-        <TextInput label="resources.User.fields.password" source="password"  validate={required} />
-        <BooleanInput label="resources.User.fields.isAdmin" source="isAdmin"  allowEmpty />
-        <BooleanInput label="resources.User.fields.isSystem" source="isSystem"  allowEmpty />
-        <BooleanInput label="resources.User.fields.enabled" source="enabled"  allowEmpty />
+        <TextInput label="resources.User.fields.userName" source="userName" validate={required} />
+        <TextInput label="resources.User.fields.password" source="password" validate={required} />
+        <BooleanInput label="resources.User.fields.isAdmin" source="isAdmin" allowEmpty />
+        <BooleanInput label="resources.User.fields.isSystem" source="isSystem" allowEmpty />
+        <BooleanInput label="resources.User.fields.enabled" source="enabled" allowEmpty />
 
 
         <ReferenceArrayInput label="resources.User.fields.todos" source="#w{f.field}Ids" reference="system/ToDoItem" allowEmpty >

@@ -21,14 +21,14 @@ import RichTextInput from 'ra-input-rich-text';
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
 import compose from 'recompose/compose';
-import { consts, actions, show  } from 'oda-ra-ui';
+import { consts, actions, show } from '../../../../lib/ui';
 
 // const {
-  // DependentInput,
-  // EmbeddedInput,
-  // GrouppedInput,
-  // Label,
-  // AutocompleteInput
+// DependentInput,
+// EmbeddedInput,
+// GrouppedInput,
+// Label,
+// AutocompleteInput
 // } = ui.components;
 
 const actionType = consts.actionType;
@@ -51,10 +51,10 @@ class Form extends Component {
     const { translate } = this.context;
     return (
       <SimpleForm {...props} >
-        <TextInput label="resources.File.fields.path" source="path"  validate={required} />
-        <TextInput label="resources.File.fields.filename" source="filename"  allowEmpty />
-        <TextInput label="resources.File.fields.mimetype" source="mimetype"  allowEmpty />
-        <TextInput label="resources.File.fields.encoding" source="encoding"  allowEmpty />
+        <TextInput label="resources.File.fields.path" source="path" validate={required} />
+        <TextInput label="resources.File.fields.filename" source="filename" allowEmpty />
+        <TextInput label="resources.File.fields.mimetype" source="mimetype" allowEmpty />
+        <TextInput label="resources.File.fields.encoding" source="encoding" allowEmpty />
 
         <ReferenceInput label="resources.File.fields.user" source="userId" reference="system/User" allowEmpty >
           <AutocompleteInput optionText="userName" />

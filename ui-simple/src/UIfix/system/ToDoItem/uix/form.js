@@ -21,14 +21,14 @@ import RichTextInput from 'ra-input-rich-text';
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
 import compose from 'recompose/compose';
-import { consts, actions, show  } from 'oda-ra-ui';
+import { consts, actions, show } from '../../../../lib/ui';
 
 // const {
-  // DependentInput,
-  // EmbeddedInput,
-  // GrouppedInput,
-  // Label,
-  // AutocompleteInput
+// DependentInput,
+// EmbeddedInput,
+// GrouppedInput,
+// Label,
+// AutocompleteInput
 // } = ui.components;
 
 const actionType = consts.actionType;
@@ -51,11 +51,11 @@ class Form extends Component {
     const { translate } = this.context;
     return (
       <SimpleForm {...props} >
-        <TextInput label="resources.ToDoItem.fields.name" source="name"  allowEmpty />
-        <TextInput label="resources.ToDoItem.fields.description" source="description"  allowEmpty />
-        <BooleanInput label="resources.ToDoItem.fields.done" source="done"  allowEmpty />
-        <DateInput label="resources.ToDoItem.fields.dueToDate" source="dueToDate"  allowEmpty />
-        <BooleanInput label="resources.ToDoItem.fields.published" source="published"  allowEmpty />
+        <TextInput label="resources.ToDoItem.fields.name" source="name" allowEmpty />
+        <TextInput label="resources.ToDoItem.fields.description" source="description" allowEmpty />
+        <BooleanInput label="resources.ToDoItem.fields.done" source="done" allowEmpty />
+        <DateInput label="resources.ToDoItem.fields.dueToDate" source="dueToDate" allowEmpty />
+        <BooleanInput label="resources.ToDoItem.fields.published" source="published" allowEmpty />
 
         <ReferenceInput label="resources.ToDoItem.fields.user" source="userId" reference="system/User" allowEmpty >
           <AutocompleteInput optionText="userName" />
