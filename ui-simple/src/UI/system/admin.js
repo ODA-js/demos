@@ -10,14 +10,12 @@ import merge from 'lodash/merge';
 const messages = {
   'en': {
     ...merge(
-      {},
-      englishMessages,
-      translation
-    ),
+        {},
+        englishMessages,
+        translation
+      ),
   },
 };
-
-const i18nProvider = locale => messages[locale];
 
 class OdaClientApp extends Component {
   render() {
@@ -29,8 +27,8 @@ class OdaClientApp extends Component {
     return (
       <Admin
         {...this.props}
+        messages={messages}
         locale="en"
-        i18nProvider={i18nProvider}
         authProvider={authClient}
         dataProvider={restClient}>
         {role => Object.keys(uix)
@@ -45,7 +43,7 @@ class OdaClientApp extends Component {
             remove={Delete}
             options={{ label: `resources.${uix[resource].name}.name` }}
           />
-          )}
+        )}
       </Admin>
     );
   }
