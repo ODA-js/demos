@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as invariant from 'invariant';
 import { ApolloProvider } from 'react-apollo';
 import authClient from './authClient';
-import { client } from 'oda-aor-rest';
+import { client } from 'oda-ra-data-provider';
 
 export default class AdminAutoFormsProvider extends Component {
   constructor(props, context) {

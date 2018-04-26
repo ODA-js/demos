@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from 'material-ui/Button';
 import { changeLocale as changeLocaleAction } from 'admin-on-rest';
 
 class LocaleSwitcher extends Component {
@@ -13,8 +13,8 @@ class LocaleSwitcher extends Component {
     return (
       <div>
         <div style={styles.label}>{translate('uix.locale.language')}</div>
-        <RaisedButton style={styles.button} label={translate('uix.locale.en')} onClick={this.switchToEnglish} />
-        <RaisedButton style={styles.button} label={translate('uix.locale.ru')} onClick={this.switchToRussian} />
+        <Button style={styles.button} label={translate('uix.locale.en')} onClick={this.switchToEnglish} />
+        <Button style={styles.button} label={translate('uix.locale.ru')} onClick={this.switchToRussian} />
       </div>
     );
   }

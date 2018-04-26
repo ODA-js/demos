@@ -21,7 +21,7 @@ import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
 import compose from 'recompose/compose';
 import { ui } from 'oda-aor-rest';
-import { EmbeddedArrayInput } from 'aor-embedded-array';
+// import { EmbeddedArrayInput } from 'aor-embedded-array';
 
 const {
   DependentInput,
@@ -51,7 +51,7 @@ class Form extends Component {
     const { translate } = this.context;
     return (
       <SimpleForm {...props} >
-        <TextInput label="ИМЯ" source="name" allowEmpty />
+        <TextInput label="resources.ToDoItem.fields.name" source="name" allowEmpty />
         <TextInput label="resources.ToDoItem.fields.description" source="description" allowEmpty />
         <FileInput source="files" label="resources.ToDoItem.fields.description" accept="application/pdf">
           <FileField source="src" title="title" />

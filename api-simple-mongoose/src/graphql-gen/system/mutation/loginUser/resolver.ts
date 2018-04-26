@@ -16,6 +16,7 @@ export const resolver = {
       let result: {
         // what must be in output
         token?: any; // string,
+        role?: any; // string,
       };
       result = {};
       // put your code here

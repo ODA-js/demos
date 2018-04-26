@@ -8,6 +8,7 @@ rm -rf data/schema.graphql
 rm -rf data/schema.json
 rm -rf data/seed-queries.json
 rm -rf yarn.lock
+rm -rf package-lock.json
 rm -rf failed.js
 rm -rf .yarnclean
 rm -rf npm-debug.log
