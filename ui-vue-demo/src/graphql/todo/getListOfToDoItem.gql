@@ -1,0 +1,14 @@
+#import "./ToDoItemFull.gql"
+
+query getListOfToDoItem($skip: Int, $limit: Int, $orderBy: [ToDoItemSortOrder], $filter: ToDoItemComplexFilter) {
+  items: toDoItems(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
+    pageInfo {
+      count
+    }
+    edges {
+      node {
+        ...ToDoItemFull
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+#import "./ToDoItemResult.gql"
+
+query getListOfToDoItemResult {
+  items {
+    total: pageInfo @_(get:"count") {
+      count
+    }
+    data: edges @_(each: {assign:"node"}) {
+      node {
+        ...ToDoItemResult
+      }
+    }
+  }
+}

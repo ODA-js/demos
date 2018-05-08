@@ -1,0 +1,17 @@
+query todoList {
+  todos: toDoItems {
+    edges {
+      node {
+          id
+        name
+        description
+        done
+        dueToDate
+        published
+        user {
+          userName
+        }
+      }
+    }
+  }
+}

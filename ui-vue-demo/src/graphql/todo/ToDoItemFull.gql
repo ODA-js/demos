@@ -1,0 +1,11 @@
+fragment ToDoItemFull on ToDoItem {
+  id
+  name
+  description
+  done
+  dueToDate
+  published
+  user {
+    id
+  }
+}

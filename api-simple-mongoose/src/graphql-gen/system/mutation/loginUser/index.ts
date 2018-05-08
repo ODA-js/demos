@@ -18,6 +18,7 @@ type loginUserPayload {
   clientMutationId: String
   viewer: Viewer
   token: String
+  role: String
 }
 `,
       ],

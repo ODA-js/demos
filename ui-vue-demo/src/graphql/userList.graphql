@@ -1,0 +1,11 @@
+query userList{
+  users @_(get: edges) {
+    edges @_(each: {get: node}) {
+      node {
+        userName
+        isAdmin
+        enabled
+      }
+    }
+  }
+}
