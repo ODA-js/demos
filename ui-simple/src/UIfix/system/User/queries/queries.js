@@ -10,16 +10,21 @@ export const fragments = {
     isSystem
     enabled
 
-    todosIds: todos @_(get:"edges") {
-      edges @_( map:"node" ) {
-        node @_(get:"id")  {
+    todosValues: todos @_(get:"edges") {
+      edges @_( each: {assign:"node"} ) {
+        node  {
           id
+          name
+          description
+          done
+          dueToDate
+          published
         }
       }
     }
-    filesIds: files @_(get:"edges") {
-      edges @_( map:"node" ) {
-        node @_(get:"id")  {
+    filesValues: files @_(get:"edges") {
+      edges @_( each: {assign:"node"} ) {
+        node  {
           id
         }
       }
@@ -36,6 +41,11 @@ export const fragments = {
       edges {
         node {
           id
+          name
+          description
+          done
+          dueToDate
+          published
         }
       }
     }
@@ -180,7 +190,7 @@ export const queries = {
   `,
   //getManyReference
   getManyReference: ({ fullFragment }) => ({
-  
+
     todos: gql`query Todos_User($skip: Int, $limit: Int, $orderBy: [UserSortOrder], $filter: UserComplexFilter) {
       items: users(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
         pageInfo {
@@ -195,7 +205,7 @@ export const queries = {
     }
     ${fullFragment}
   `,
-  
+
     files: gql`query Files_User($skip: Int, $limit: Int, $orderBy: [UserSortOrder], $filter: UserComplexFilter) {
       items: users(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
         pageInfo {
@@ -210,7 +220,7 @@ export const queries = {
     }
     ${fullFragment}
   `,
-    }),
+  }),
   getManyReferenceResultOpposite: ({ resultFragment }) => gql`{
     items: opposite @_(get:"items") {
       items {

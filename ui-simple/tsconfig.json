@@ -12,6 +12,7 @@
     "pretty": true,
     "removeComments": true,
     "skipLibCheck": true,
+    "jsx": "react",
     "lib": [
       "es2017",
       "esnext.asynciterable"

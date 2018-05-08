@@ -1,8 +1,9 @@
 import loadable from 'loadable-components'
+import Form from './form'
 
 const Title = loadable(() => import('./title'));
 const Filter = loadable(() => import('./filter'));
-const Form = loadable(() => import('./form'));
+// const Form = loadable(() => import('./form'));
 const Create = loadable(() => import('./create'));
 const Show = loadable(() => import('./show'));
 const Edit = loadable(() => import('./edit'));

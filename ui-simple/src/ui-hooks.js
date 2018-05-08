@@ -5,6 +5,7 @@ exports.UserUI = {
       listName: 'userName',
       list: ['enabled', 'isAdmin', 'isSystem'],
       show: ['^password'],
+      embedded: ['todos']
     },
   }
 }

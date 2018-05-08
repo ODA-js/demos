@@ -51,7 +51,7 @@ class Form extends Component {
     const { translate } = this.context;
     return (
       <SimpleForm {...props} >
-        <TextInput label="resources.File.fields.path" source="path"  validate={required} />
+        <TextInput label="resources.File.fields.path" source="path"  validate={required()} />
         <TextInput label="resources.File.fields.filename" source="filename"  allowEmpty />
         <TextInput label="resources.File.fields.mimetype" source="mimetype"  allowEmpty />
         <TextInput label="resources.File.fields.encoding" source="encoding"  allowEmpty />

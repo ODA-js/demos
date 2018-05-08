@@ -10,16 +10,16 @@ export const fragments = {
     isSystem
     enabled
 
-    todosIds: todos @_(get:"edges") {
-      edges @_( map:"node" ) {
-        node @_(get:"id")  {
+    todosValues: todos @_(get:"edges") {
+      edges @_( each: {assign:"node"} ) {
+        node  {
           id
         }
       }
     }
-    filesIds: files @_(get:"edges") {
-      edges @_( map:"node" ) {
-        node @_(get:"id")  {
+    filesValues: files @_(get:"edges") {
+      edges @_( each: {assign:"node"} ) {
+        node  {
           id
         }
       }

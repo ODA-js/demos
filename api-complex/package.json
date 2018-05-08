@@ -37,7 +37,7 @@
     "mongoose": "^5.0.16",
     "oda-api-common": "^0.2.31",
     "oda-api-graphql": "^0.4.35",
-    "oda-api-graphql-mongoose": "0.0.4",
+    "oda-api-graphql-mongoose": "^0.0.4",
     "oda-gen-common": "^0.1.12",
     "oda-gen-graphql": "^0.6.10",
     "oda-isomorfic": "^0.0.31",
@@ -52,6 +52,6 @@
     "@types/node": "^8.0.24",
     "@types/passport": "^0.4.3",
     "graphql-document-collector": "^0.2.1",
-    "typescript": "~2.6.2"
+    "typescript": "~2.8.3"
   }
 }

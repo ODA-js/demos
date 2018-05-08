@@ -1,4 +1,4 @@
-import { data } from '../../../../lib/data-provider';
+import { data } from 'oda-ra-data-provider';
 import { fragments, queries } from './queries';
 import set from 'lodash/set';
 
@@ -34,8 +34,7 @@ export default {
           return { ...acc, id: { in: params.filter[key] } };
         }
         if (key === 'q') {
-          return {
-            ...acc,
+          return { ...acc,
             or: [
               { userName: { imatch: params.filter[key] } },
             ]

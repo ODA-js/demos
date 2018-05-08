@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   ArrayInput,
   SimpleFormIterator,
-  ReferenceInput,
+  // ReferenceInput,
   SelectInput,
   ReferenceArrayInput,
   SelectArrayInput,
@@ -15,13 +15,15 @@ import {
   BooleanInput,
   required,
   AutocompleteInput,
+  FormDataConsumer,
 } from "react-admin";
 import RichTextInput from 'ra-input-rich-text';
-
+import get from 'lodash/get';
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
 import compose from 'recompose/compose';
-import { consts, actions, show } from '../../../../lib/ui';
+import { consts, actions, show } from 'oda-ra-ui';
+import ReferenceInput from '../../../../lib/ReferenceInput';
 
 // const {
 // DependentInput,
@@ -36,6 +38,15 @@ const initForm = actions.initForm;
 const finalizeForm = actions.finalizeForm;
 const { selectorFor, detailsFor } = show;
 
+const showDependsOn = (selector, comp) => ({ formData, ...rest }) => {
+  const { source } = rest;
+  let root = source ? source.split('.') : []; root.pop();
+  root = root.join('.');
+  if (selector(get(formData, root))) {
+    return comp(rest);
+  }
+}
+
 class Form extends Component {
   componentWillMount() {
     this.props.initForm();
@@ -46,24 +57,70 @@ class Form extends Component {
 
   render() {
     const { props } = this;
-    const singleRelActions = props.singleRelActions;
-    const manyRelAction = props.manyRelActions;
+    const {singleRelActions, manyRelActions: manyRelAction, initForm, ...formProps } = props.singleRelActions;
     const { translate } = this.context;
+    
+    const showDetail = showDependsOn(detailsFor('todos'), rest =>
+      <TextInput {...rest} label="resources.ToDoItem.fields.name" source="name" allowEmpty />
+    );
     return (
-      <SimpleForm {...props} >
-        <TextInput label="resources.User.fields.userName" source="userName" validate={required} />
-        <TextInput label="resources.User.fields.password" source="password" validate={required} />
+      <SimpleForm {...formProps} >
+        <TextInput label="resources.User.fields.userName" source="userName" validate={required()} />
+        <TextInput label="resources.User.fields.password" source="password" validate={required()} />
         <BooleanInput label="resources.User.fields.isAdmin" source="isAdmin" allowEmpty />
         <BooleanInput label="resources.User.fields.isSystem" source="isSystem" allowEmpty />
         <BooleanInput label="resources.User.fields.enabled" source="enabled" allowEmpty />
 
 
-        <ReferenceArrayInput label="resources.User.fields.todos" source="#w{f.field}Ids" reference="system/ToDoItem" allowEmpty >
-          <SelectArrayInput options={{ fullWidth: true }} optionText="name" optionValue="id" />
-        </ReferenceArrayInput>
+        <ArrayInput label="resources.User.fields.todos" source="todosValues" allowEmpty >
+          <SimpleFormIterator>
+            <SelectInput
+              source="todosType"
+              label="uix.actionType.ExpectedTo"
+              choices={manyRelAction}
+              defaultValue={actionType.USE}
+            />
+
+            {/* <DependentInput resolve={selectorFor('todos')} scoped >*/}
+            <ReferenceInput label={translate("resources.ToDoItem.name", { smart_count: 1 })} source="id" reference="system/ToDoItem" allowEmpty >
+              <SelectInput optionText="name" />
+            </ReferenceInput>
+            {/*  </DependentInput> */}
+
+            <FormDataConsumer>{showDependsOn(selectorFor('todos'), rest =>
+              <TextInput label="resources.ToDoItem.fields.id" source="id" allowEmpty />
+            )}
+            </FormDataConsumer>
+
+            <FormDataConsumer>{showDependsOn(detailsFor('todos'), rest =>
+              <TextInput label="resources.ToDoItem.fields.description" source="description" allowEmpty />
+            )}
+            </FormDataConsumer>
+
+            <FormDataConsumer>{showDependsOn(detailsFor('todos'), rest =>
+              <BooleanInput label="resources.ToDoItem.fields.done" source="done" allowEmpty />
+            )}
+            </FormDataConsumer>
+
+            <FormDataConsumer>{showDependsOn(detailsFor('todos'), rest =>
+              <DateInput label="resources.ToDoItem.fields.dueToDate" source="dueToDate" allowEmpty />
+            )}
+            </FormDataConsumer>
+
+            <FormDataConsumer>{showDependsOn(detailsFor('todos'), rest =>
+              <BooleanInput label="resources.ToDoItem.fields.published" source="published" allowEmpty />
+            )}
+            </FormDataConsumer>
+
+            <FormDataConsumer>{showDependsOn(detailsFor('todos'), rest =>
+              <TextInput {...rest} label="resources.ToDoItem.fields.name" source="name" allowEmpty />
+            )}
+            </FormDataConsumer>
+          </SimpleFormIterator>
+        </ArrayInput>
 
 
-        <ReferenceArrayInput label="resources.User.fields.files" source="#w{f.field}Ids" reference="system/File" allowEmpty >
+        <ReferenceArrayInput label="resources.User.fields.files" source="filesIds" reference="system/File" allowEmpty >
           <SelectArrayInput options={{ fullWidth: true }} optionText="path" optionValue="id" />
         </ReferenceArrayInput>
 
@@ -83,6 +140,10 @@ export default compose(
     state => ({
     }), {
       initForm: initForm('record-form', {
+        todos: {
+          resource: 'ToDoItem',
+          single: false,
+        },
       }),
       finalizeForm,
     }),
