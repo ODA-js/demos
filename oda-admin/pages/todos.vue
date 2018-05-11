@@ -5,32 +5,23 @@
       :query="require('../graphql/todo/getListOfToDoItem.gql')"
       :reshape="require('../graphql/todo/getListOfToDoItemResult.gql')"
     >
-      <v-data-table
-        :headers="headers"
-        hide-actions
-        class="elevation-1"
-      >
-        <template slot="items" slot-scope="props">
-          <td>{{ props.item.name }}</td>
-          <td class="text-xs-right">{{ props.item.id }}</td>
-          <td class="text-xs-right">{{ props.item.name }}</td>
-          <td class="text-xs-right">{{ props.item.description }}</td>
-          <td class="text-xs-right">{{ props.item.done }}</td>
-          <td class="text-xs-right">{{ props.item.dueToDate }}</td>
-          <td class="text-xs-right">{{ props.item.published }}</td>
-        </template>
-      </v-data-table>
-      
       <div slot-scope="{ result: { data } }">
         <template v-if="data">
-
-          <div
-            v-for="todo of data.items.data"
-            :key="todo.id"
-            class="message"
+          <v-data-table
+            :headers="headers"
+            :items="data.items.data"
+            hide-actions
+            class="elevation-1"
           >
-            {{ todo.name }}
-          </div>
+            <template slot="items" slot-scope="data">
+              <td class="text-xs-right">{{ data.item.id }}</td>
+              <td class="text-xs-right">{{ data.item.name }}</td>
+              <td class="text-xs-right">{{ data.item.description }}</td>
+              <td class="text-xs-right">{{ data.item.done }}</td>
+              <td class="text-xs-right">{{ data.item.dueToDate }}</td>
+              <td class="text-xs-right">{{ data.item.published }}</td>
+            </template>
+          </v-data-table>
         </template>
       </div>
     </ODAQuery>
