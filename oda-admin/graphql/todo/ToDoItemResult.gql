@@ -1,0 +1,12 @@
+fragment ToDoItemResult on ToDoItem {
+  id
+  name
+  description
+  done
+  dueToDate
+  published
+
+  userId: user @_(get:"id") {
+    id
+  }
+}
