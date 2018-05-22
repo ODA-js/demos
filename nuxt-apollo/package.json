@@ -1,0 +1,41 @@
+{
+  "name": "nuxt-apollo",
+  "version": "1.0.0",
+  "description": "Nuxt.js project",
+  "author": "vedanta-krit <vedmalex@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "nuxt": "^1.0.0",
+    "apollo-cache-inmemory": "^1.0.0",
+    "apollo-client": "^2.0.1",
+    "apollo-link": "^1.0.0",
+    "apollo-link-context": "^1.0.5",
+    "apollo-link-http": "^1.0.0",
+    "apollo-link-persisted-queries": "^0.1.0",
+    "apollo-link-ws": "^1.0.0",
+    "apollo-upload-client": "^7.0.0-alpha.4",
+    "apollo-utilities": "^1.0.1",
+    "graphql": "^0.13.0",
+    "oda-lodash": "^0.1.19",
+    "subscriptions-transport-ws": "^0.9.5",
+    "vue-apollo": "^3.0.0-alpha.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.15.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-vue": "^4.0.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "vuetify": "^1.0.17"
+  }
+}
