@@ -20,7 +20,6 @@ const Grid = (props, context) => (
     <BooleanField sortable={true} label="resources.ToDoItem.fields.done" source="done" allowEmpty />
     <DateField sortable={true} label="resources.ToDoItem.fields.dueToDate" source="dueToDate" allowEmpty />
     <BooleanField sortable={true} label="resources.ToDoItem.fields.published" source="published" allowEmpty />
-
     <ShowButton />
     <EditButton />
     <DeleteButton />

@@ -56,8 +56,7 @@ class Form extends Component {
   }
 
   render() {
-    const { props } = this;
-    const {singleRelActions, manyRelActions: manyRelAction, initForm, ...formProps } = props.singleRelActions;
+    const {singleRelActions, manyRelActions: manyRelAction, initForm, ...formProps } = this.props;
     const { translate } = this.context;
     
     const showDetail = showDependsOn(detailsFor('todos'), rest =>
@@ -120,9 +119,9 @@ class Form extends Component {
         </ArrayInput>
 
 
-        <ReferenceArrayInput label="resources.User.fields.files" source="filesIds" reference="system/File" allowEmpty >
+        {/* <ReferenceArrayInput label="resources.User.fields.files" source="filesIds" reference="system/File" allowEmpty >
           <SelectArrayInput options={{ fullWidth: true }} optionText="path" optionValue="id" />
-        </ReferenceArrayInput>
+        </ReferenceArrayInput> */}
 
       </SimpleForm>);
   }

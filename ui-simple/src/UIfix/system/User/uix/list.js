@@ -6,10 +6,9 @@ import {
 
 const ListView = (props, context) => {
   const { Grid, Filter} = context.uix['system/User'];
-
   return (
     <List {...props} filters={<Filter />} title={context.translate("resources.User.name", { smart_count:2 })}>
-      <Grid {...props} />
+      {<Grid {...props} />}
     </List>
   )
 };
