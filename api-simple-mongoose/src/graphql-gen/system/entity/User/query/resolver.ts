@@ -29,12 +29,9 @@ export async function fixCount(length: number, cursor: { skip?: number, limit?: 
     }
     if (length < cursor.limit) {
       return cursor.skip + length;
-    } else {
-      return count;
     }
-  } else {
-    return count;
   }
+  return count;
 }
 
 export const query: { [key: string]: any } = {
