@@ -1,0 +1,10 @@
+
+# Update File
+mutation updateFile($file: updateFileInput!){
+  updateFile(input:$file){
+    file {
+      id
+    }
+  }
+}
+

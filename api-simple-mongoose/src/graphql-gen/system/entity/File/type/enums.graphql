@@ -1,0 +1,12 @@
+enum FileSortOrder {
+  pathAsc
+  pathDesc
+  filenameAsc
+  filenameDesc
+  mimetypeAsc
+  mimetypeDesc
+  encodingAsc
+  encodingDesc
+  idAsc
+  idDesc
+}

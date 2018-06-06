@@ -1,0 +1,12 @@
+
+# List of Files
+query Files {
+  File: files @_(get: "edges"){
+    edges @_(map: "node"){
+      node{
+        ...ViewFileFull
+      }
+    }
+  }
+}
+

@@ -1,0 +1,13 @@
+type FilesConnection {
+  pageInfo: PageInfo!
+  edges: [FilesEdge]
+  # put here your additional connection fields
+}
+
+type FilesEdge {
+  node: File
+  cursor: String!
+  # put here your additiona edge fields
+}
+
+
