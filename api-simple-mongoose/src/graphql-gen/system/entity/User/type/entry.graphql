@@ -25,6 +25,8 @@ input UserFilter {
   isSystem: WhereBoolean
   enabled: WhereBoolean
   id: WhereID
+  updatedBy: WhereID
+  updatedAt: WhereDate
 }
 
 input UserComplexFilter {
@@ -36,6 +38,8 @@ input UserComplexFilter {
   isSystem: WhereBoolean
   enabled: WhereBoolean
   id: WhereID
+  updatedBy: WhereID
+  updatedAt: WhereDate
 }
 
 input UserFilterItem {
@@ -45,6 +49,8 @@ input UserFilterItem {
   isSystem: WhereBoolean
   enabled: WhereBoolean
   id: WhereID
+  updatedBy: WhereID
+  updatedAt: WhereDate
 }
 
 input UserFilterSubscriptionsItem {
@@ -54,6 +60,8 @@ input UserFilterSubscriptionsItem {
   isSystem: WhereBoolean
   enabled: WhereBoolean
   id: WhereID
+  updatedBy: WhereID
+  updatedAt: WhereDate
 }
 
 input UserFilterSubscriptions {
@@ -78,6 +86,10 @@ type User implements Node{
   enabled: Boolean
   # # Id
   id: ID!
+  # # Updated By
+  updatedBy: ID
+  # # Updated At
+  updatedAt: Date
   # # Todos  
   todos(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [ToDoItemSortOrder], filter:ToDoItemComplexFilter ): UserHasManyTodosConnection  
   # # Files  

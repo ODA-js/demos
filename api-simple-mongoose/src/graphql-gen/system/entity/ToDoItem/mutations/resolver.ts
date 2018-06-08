@@ -65,6 +65,8 @@ async function ensureUser({
             isSystem: args.isSystem,
             enabled: args.enabled,
             id: args.id,
+            updatedBy: args.updatedBy,
+            updatedAt: args.updatedAt,
           },
         }
       }).then(r => r.data.createUser.user.node);
@@ -88,6 +90,8 @@ async function ensureUser({
           isSystem: args.isSystem,
           enabled: args.enabled,
           id: args.id,
+          updatedBy: args.updatedBy,
+          updatedAt: args.updatedAt,
         },
       }
     }).then(r => r.data.updateUser.user);
@@ -212,6 +216,8 @@ export const mutation = {
       done?: boolean,
       dueToDate?: Date,
       published?: boolean,
+      updatedBy?: string,
+      updatedAt?: Date,
       user?: object/*User*/,
     },
     context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
@@ -224,6 +230,8 @@ export const mutation = {
       done: args.done,
       dueToDate: args.dueToDate,
       published: args.published,
+      updatedBy: args.updatedBy,
+      updatedAt: args.updatedAt,
     };
 
     if(args.id) {
@@ -281,6 +289,8 @@ export const mutation = {
       done?: boolean,
       dueToDate?: Date,
       published?: boolean,
+      updatedBy?: string,
+      updatedAt?: Date,
       user?: object/*User*/,
       userUnlink?: object/*User*/,
       userCreate?: object/*User*/,
@@ -295,6 +305,8 @@ export const mutation = {
       done: args.done,
       dueToDate: args.dueToDate,
       published: args.published,
+      updatedBy: args.updatedBy,
+      updatedAt: args.updatedAt,
     };
 
     let result;

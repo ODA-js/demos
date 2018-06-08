@@ -2,7 +2,7 @@ import packages from './packages';
 import mutations from './mutations';
 import entities from './entities';
 import enums from './enums';
-import interfaces from './interfaces';
+import mixins from './mixins';
 import unions from './unions';
 import queries from './queries';
 
@@ -13,6 +13,6 @@ export default {
   entities,
   queries,
   enums,
-  interfaces,
+  mixins,
   unions,
 };

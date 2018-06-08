@@ -23,7 +23,9 @@ export default {
           description
           done
           dueToDate
-          published`,
+          published
+          updatedBy
+          updatedAt`,
         uploader: {
           findQuery: {
             id: 'ToDoItem/findById.graphql',

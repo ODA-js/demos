@@ -65,6 +65,8 @@ async function ensureUser({
             isSystem: args.isSystem,
             enabled: args.enabled,
             id: args.id,
+            updatedBy: args.updatedBy,
+            updatedAt: args.updatedAt,
           },
         }
       }).then(r => r.data.createUser.user.node);
@@ -88,6 +90,8 @@ async function ensureUser({
           isSystem: args.isSystem,
           enabled: args.enabled,
           id: args.id,
+          updatedBy: args.updatedBy,
+          updatedAt: args.updatedAt,
         },
       }
     }).then(r => r.data.updateUser.user);

@@ -1,6 +1,6 @@
 export default {
   name: 'User',
-  implements:['IUser'],
+  implements:['IUser', 'IUpdated'],
   fields: {
     userName: {
       identity: true,

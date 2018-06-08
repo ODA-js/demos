@@ -32,6 +32,10 @@ export class ToDoItem extends common.types.GQLModule {
   publishedDesc
   idAsc
   idDesc
+  updatedByAsc
+  updatedByDesc
+  updatedAtAsc
+  updatedAtDesc
 }`],
       'type': [`
 # # To Do Item
@@ -61,6 +65,8 @@ input ToDoItemFilter {
   published: WhereBoolean
   user: WhereString
   id: WhereID
+  updatedBy: WhereID
+  updatedAt: WhereDate
 }
 
 input ToDoItemComplexFilter {
@@ -73,6 +79,8 @@ input ToDoItemComplexFilter {
   published: WhereBoolean
   user: WhereString
   id: WhereID
+  updatedBy: WhereID
+  updatedAt: WhereDate
 }
 
 input ToDoItemFilterItem {
@@ -83,6 +91,8 @@ input ToDoItemFilterItem {
   published: WhereBoolean
   user: WhereString
   id: WhereID
+  updatedBy: WhereID
+  updatedAt: WhereDate
 }
 
 input ToDoItemFilterSubscriptionsItem {
@@ -93,6 +103,8 @@ input ToDoItemFilterSubscriptionsItem {
   published: WhereBoolean
   user: WhereString
   id: WhereID
+  updatedBy: WhereID
+  updatedAt: WhereDate
 }
 
 input ToDoItemFilterSubscriptions {
@@ -117,6 +129,10 @@ type ToDoItem implements Node{
   published: Boolean
   # # Id
   id: ID!
+  # # Updated By
+  updatedBy: ID
+  # # Updated At
+  updatedAt: Date
   # # User
   user: User
 
@@ -135,6 +151,8 @@ input createToDoItemInput {
   done: Boolean
   dueToDate: Date
   published: Boolean
+  updatedBy: ID
+  updatedAt: Date
   user: embedUserInput
 }
 
@@ -147,6 +165,8 @@ input embedToDoItemInput {
   done: Boolean
   dueToDate: Date
   published: Boolean
+  updatedBy: ID
+  updatedAt: Date
   user: embedUserInput
 }
 
@@ -167,6 +187,8 @@ input updateToDoItemInput {
   done: Boolean
   dueToDate: Date
   published: Boolean
+  updatedBy: ID
+  updatedAt: Date
   user: embedUserInput
   userUnlink: embedUserInput
   userCreate: createUserInput
@@ -205,6 +227,8 @@ type UpdateToDoItemSubscriptionPayload {
   done: Boolean
   dueToDate: Date
   published: Boolean
+  updatedBy: ID
+  updatedAt: Date
 }
 
 type ToDoItemSubscription {

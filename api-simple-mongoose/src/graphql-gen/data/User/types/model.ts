@@ -5,6 +5,8 @@
   isAdmin?: boolean;
   isSystem?: boolean;
   enabled?: boolean;
+  updatedBy?: string;
+  updatedAt?: Date;
 }
 
 export type PartialUser = {

@@ -2,7 +2,7 @@
 import * as dotenv from 'dotenv';
 dotenv.config({ silent: true }); import * as fs from 'fs';
 import * as path from 'path';
-import { graphql, GraphQLSchema } from 'graphql';
+import { graphql } from 'graphql';
 import { introspectionQuery } from 'graphql/utilities';
 import { makeExecutableSchema } from 'graphql-tools';
 import { SystemSchema } from './model';

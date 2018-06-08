@@ -28,7 +28,7 @@ export const resolver = {
   
   UserSubscriptionPayload : {
     __resolveType(obj, context, info) {
-      if (obj.id || obj.userName || obj.password || obj.isAdmin || obj.isSystem || obj.enabled) {
+      if (obj.id || obj.userName || obj.password || obj.isAdmin || obj.isSystem || obj.enabled || obj.updatedBy || obj.updatedAt) {
         return "UpdateUserSubscriptionPayload";
       }
       if (obj.args && obj.args.user && obj.args.toDoItem) {

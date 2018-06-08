@@ -3,7 +3,7 @@ let currentModule = require('../package.json');
 import * as log4js from 'log4js';
 
 import * as path from 'path';
-import * as url from 'url';
+// import * as url from 'url';
 
 export const name = currentModule.name;
 export const version = currentModule.version;
@@ -12,7 +12,7 @@ import * as config from 'config';
 
 const curHost = config.get('hosts')[name];
 
-const statics = path.join(__dirname, '..', config.util.getEnv('STATIC_ROOT') || './public');
+// const statics = path.join(__dirname, '..', config.util.getEnv('STATIC_ROOT') || './public');
 
 export const logger = () => ({
   name,
