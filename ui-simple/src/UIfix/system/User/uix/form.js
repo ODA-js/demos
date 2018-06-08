@@ -56,8 +56,7 @@ class Form extends Component {
   }
 
   render() {
-    const { props } = this;
-    const {singleRelActions, manyRelActions: manyRelAction, initForm, ...formProps } = props.singleRelActions;
+    const {singleRelActions, manyRelActions: manyRelAction, initForm, ...formProps } = this.props;
     const { translate } = this.context;
     
     const showDetail = showDependsOn(detailsFor('todos'), rest =>
@@ -87,30 +86,30 @@ class Form extends Component {
             </ReferenceInput>
             {/*  </DependentInput> */}
 
-            <FormDataConsumer>{showDependsOn(selectorFor('todos'), rest =>
+            {/* <FormDataConsumer>{showDependsOn(selectorFor('todos'), rest => */}
               <TextInput label="resources.ToDoItem.fields.id" source="id" allowEmpty />
-            )}
-            </FormDataConsumer>
+            {/* )} */}
+            {/* </FormDataConsumer> */}
 
-            <FormDataConsumer>{showDependsOn(detailsFor('todos'), rest =>
+            {/* <FormDataConsumer>{showDependsOn(detailsFor('todos'), rest => */}
               <TextInput label="resources.ToDoItem.fields.description" source="description" allowEmpty />
-            )}
-            </FormDataConsumer>
+            {/* )} */}
+            {/* </FormDataConsumer> */}
 
-            <FormDataConsumer>{showDependsOn(detailsFor('todos'), rest =>
+            {/* <FormDataConsumer>{showDependsOn(detailsFor('todos'), rest => */}
               <BooleanInput label="resources.ToDoItem.fields.done" source="done" allowEmpty />
-            )}
-            </FormDataConsumer>
+            {/* )} */}
+            {/* </FormDataConsumer> */}
 
-            <FormDataConsumer>{showDependsOn(detailsFor('todos'), rest =>
+            {/* <FormDataConsumer>{showDependsOn(detailsFor('todos'), rest => */}
               <DateInput label="resources.ToDoItem.fields.dueToDate" source="dueToDate" allowEmpty />
-            )}
-            </FormDataConsumer>
+            {/* )} */}
+            {/* </FormDataConsumer> */}
 
-            <FormDataConsumer>{showDependsOn(detailsFor('todos'), rest =>
+            {/* <FormDataConsumer>{showDependsOn(detailsFor('todos'), rest => */}
               <BooleanInput label="resources.ToDoItem.fields.published" source="published" allowEmpty />
-            )}
-            </FormDataConsumer>
+            {/* )} */}
+            {/* </FormDataConsumer> */}
 
             <FormDataConsumer>{showDependsOn(detailsFor('todos'), rest =>
               <TextInput {...rest} label="resources.ToDoItem.fields.name" source="name" allowEmpty />
@@ -122,7 +121,7 @@ class Form extends Component {
 
         <ReferenceArrayInput label="resources.User.fields.files" source="filesIds" reference="system/File" allowEmpty >
           <SelectArrayInput options={{ fullWidth: true }} optionText="path" optionValue="id" />
-        </ReferenceArrayInput>
+        </ReferenceArrayInput> 
 
       </SimpleForm>);
   }
@@ -141,7 +140,7 @@ export default compose(
     }), {
       initForm: initForm('record-form', {
         todos: {
-          resource: 'ToDoItem',
+          resource: 'system/ToDoItem',
           single: false,
         },
       }),
