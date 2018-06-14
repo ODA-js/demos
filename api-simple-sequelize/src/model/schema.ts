@@ -9,10 +9,7 @@ const { deepMerge } = common.lib;
 
 export class SystemSchema extends common.types.GQLModule {
   _name = 'SystemSchema';
-  protected _composite = [
-    new SystemPackage({}),
-    new CommonExtends({}),
-  ];
+  protected _composite = [new SystemPackage({}), new CommonExtends({})];
 
   public get typeDefs() {
     return `
@@ -46,19 +43,15 @@ export class SystemSchema extends common.types.GQLModule {
 
   public build() {
     super.build();
-    this._resolver = deepMerge(
-      this.resolver,
-      this.viewer,
-      {
-        RootQuery: this.query,
-        RootMutation: this.mutation,
-        RootSubscription: deepMerge(this.subscription, {
-          login: {
-            subscribe: () => pubsub.asyncIterator('login'),
-          },
-        }),
-      },
-    );
+    this._resolver = deepMerge(this.resolver, this.viewer, {
+      RootQuery: this.query,
+      RootMutation: this.mutation,
+      RootSubscription: deepMerge(this.subscription, {
+        login: {
+          subscribe: () => pubsub.asyncIterator('login'),
+        },
+      }),
+    });
   }
 
   public get resolvers() {

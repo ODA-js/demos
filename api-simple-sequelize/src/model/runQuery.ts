@@ -23,7 +23,10 @@ export class UserGQL {
   public async query({
     query,
     variables,
-  }: { query: string, variables: any }): Promise<ExecutionResult> {
+  }: {
+    query: string;
+    variables: any;
+  }): Promise<ExecutionResult> {
     return await runQueryLodash({
       query,
       variables,
@@ -36,7 +39,7 @@ export class UserGQL {
 export class SystemGraphQL {
   private static _schemas;
   private static _schema;
-  private static schema = (() => {
+  private static schema = () => {
     if (!SystemGraphQL._schemas) {
       SystemGraphQL._schemas = schemas();
     }
@@ -51,7 +54,7 @@ export class SystemGraphQL {
       });
     }
     return SystemGraphQL._schema;
-  });
+  };
 
   public static async connectors() {
     return new RegisterConnectors({
@@ -61,21 +64,24 @@ export class SystemGraphQL {
     });
   }
 
-  public static async close() {
-
-  }
+  public static async close() {}
 
   public static async query({
     query,
     variables,
     context,
     schema,
-  }: { query: string, variables: any, context?: any, schema?: any }): Promise<ExecutionResult> {
+  }: {
+    query: string;
+    variables: any;
+    context?: any;
+    schema?: any;
+  }): Promise<ExecutionResult> {
     return await runQueryLodash({
       query,
       variables,
       schema: schema || SystemGraphQL.schema(),
-      context: context || await SystemGraphQL.context(),
+      context: context || (await SystemGraphQL.context()),
     });
   }
 
@@ -89,5 +95,5 @@ export class SystemGraphQL {
       systemGQL: SystemGraphQL.query,
       userGQL: SystemGraphQL.query,
     };
-  };
+  }
 }
