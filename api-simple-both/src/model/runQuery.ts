@@ -71,7 +71,7 @@ export class SystemGraphQL {
     variables,
     context,
     schema,
-  }: { query: string, variables: any, context: any, schema: any }): Promise<ExecutionResult> {
+  }: { query: string, variables: any, context?: any, schema?: any }): Promise<ExecutionResult> {
     return await runQueryLodash({
       query,
       variables,
