@@ -5,6 +5,7 @@
   isAdmin?: boolean;
   isSystem?: boolean;
   enabled?: boolean;
+  todos?: string;
 }
 
 export type PartialUser = {

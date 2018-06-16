@@ -13,8 +13,6 @@ fragment ViewToDoItem on ToDoItem {
   done
   dueToDate
   published
-  updatedBy
-  updatedAt
 }
 
 fragment ViewToDoItemFull on ToDoItem {
@@ -24,8 +22,6 @@ fragment ViewToDoItemFull on ToDoItem {
   done
   dueToDate
   published
-  updatedBy
-  updatedAt
   user {
     ...EmbedUserWithId
   }

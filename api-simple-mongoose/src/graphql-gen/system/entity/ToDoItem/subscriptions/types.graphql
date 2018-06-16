@@ -10,8 +10,6 @@ type UpdateToDoItemSubscriptionPayload {
   done: Boolean
   dueToDate: Date
   published: Boolean
-  updatedBy: ID
-  updatedAt: Date
 }
 
 type ToDoItemSubscription {

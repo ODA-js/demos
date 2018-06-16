@@ -17,12 +17,6 @@ export default () => {
     published: {
       type: Boolean,
     },
-    updatedBy: {
-      type: mongoose.Schema.Types.ObjectId,
-    },
-    updatedAt: {
-      type: Date,
-    },
     user: {
       type: String,
     },
@@ -64,25 +58,6 @@ export default () => {
 
   $ToDoItem.index({
     user: 1,
-  }, {
-    sparse: 1,
-  });
-
-  $ToDoItem.index({
-    id: 1,
-  }, {
-    sparse: 1,
-    unique: 1,
-  });
-
-  $ToDoItem.index({
-    updatedBy: 1,
-  }, {
-    sparse: 1,
-  });
-
-  $ToDoItem.index({
-    updatedAt: 1,
   }, {
     sparse: 1,
   });

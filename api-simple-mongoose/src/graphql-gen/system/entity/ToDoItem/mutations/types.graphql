@@ -9,8 +9,6 @@ input createToDoItemInput {
   done: Boolean
   dueToDate: Date
   published: Boolean
-  updatedBy: ID
-  updatedAt: Date
   user: embedUserInput
 }
 
@@ -23,8 +21,6 @@ input embedToDoItemInput {
   done: Boolean
   dueToDate: Date
   published: Boolean
-  updatedBy: ID
-  updatedAt: Date
   user: embedUserInput
 }
 
@@ -45,8 +41,6 @@ input updateToDoItemInput {
   done: Boolean
   dueToDate: Date
   published: Boolean
-  updatedBy: ID
-  updatedAt: Date
   user: embedUserInput
   userUnlink: embedUserInput
   userCreate: createUserInput

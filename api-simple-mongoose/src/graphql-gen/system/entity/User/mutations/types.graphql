@@ -9,8 +9,6 @@ input createUserInput {
   isAdmin: Boolean
   isSystem: Boolean
   enabled: Boolean
-  updatedBy: ID
-  updatedAt: Date
   todos: [embedToDoItemInput]
   files: [embedFileInput]
 }
@@ -24,8 +22,6 @@ input embedUserInput {
   isAdmin: Boolean
   isSystem: Boolean
   enabled: Boolean
-  updatedBy: ID
-  updatedAt: Date
   todos: [embedToDoItemInput]
   files: [embedFileInput]
 }
@@ -47,8 +43,6 @@ input updateUserInput {
   isAdmin: Boolean
   isSystem: Boolean
   enabled: Boolean
-  updatedBy: ID
-  updatedAt: Date
   todos: [embedToDoItemInput]
   todosUnlink: [embedToDoItemInput]
   todosCreate: [createToDoItemInput]

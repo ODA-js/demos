@@ -58,9 +58,8 @@ async function ensureToDoItem({
             done: args.done,
             dueToDate: args.dueToDate,
             published: args.published,
+            user: args.user,
             id: args.id,
-            updatedBy: args.updatedBy,
-            updatedAt: args.updatedAt,
           },
         }
       }).then(r => r.data.createToDoItem.toDoItem.node);
@@ -83,9 +82,8 @@ async function ensureToDoItem({
           done: args.done,
           dueToDate: args.dueToDate,
           published: args.published,
+          user: args.user,
           id: args.id,
-          updatedBy: args.updatedBy,
-          updatedAt: args.updatedAt,
         },
       }
     }).then(r => r.data.updateToDoItem.toDoItem);
@@ -145,6 +143,7 @@ async function ensureFile({
             filename: args.filename,
             mimetype: args.mimetype,
             encoding: args.encoding,
+            user: args.user,
             id: args.id,
           },
         }
@@ -167,6 +166,7 @@ async function ensureFile({
           filename: args.filename,
           mimetype: args.mimetype,
           encoding: args.encoding,
+          user: args.user,
           id: args.id,
         },
       }
@@ -350,8 +350,6 @@ export const mutation = {
       isAdmin?: boolean,
       isSystem?: boolean,
       enabled?: boolean,
-      updatedBy?: string,
-      updatedAt?: Date,
       todos?: object/*ToDoItem*/[],
       files?: object/*File*/[],
     },
@@ -365,8 +363,6 @@ export const mutation = {
       isAdmin: args.isAdmin,
       isSystem: args.isSystem,
       enabled: args.enabled,
-      updatedBy: args.updatedBy,
-      updatedAt: args.updatedAt,
     };
 
     if(args.id) {
@@ -452,8 +448,6 @@ export const mutation = {
       isAdmin?: boolean,
       isSystem?: boolean,
       enabled?: boolean,
-      updatedBy?: string,
-      updatedAt?: Date,
       todos?: object/*ToDoItem*/[],
       todosUnlink?: object/*ToDoItem*/[],
       todosCreate?: object/*ToDoItem*/[],
@@ -471,8 +465,6 @@ export const mutation = {
       isAdmin: args.isAdmin,
       isSystem: args.isSystem,
       enabled: args.enabled,
-      updatedBy: args.updatedBy,
-      updatedAt: args.updatedAt,
     };
 
     let result;

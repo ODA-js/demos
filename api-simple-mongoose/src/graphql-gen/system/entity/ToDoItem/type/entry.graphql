@@ -26,8 +26,6 @@ input ToDoItemFilter {
   published: WhereBoolean
   user: WhereString
   id: WhereID
-  updatedBy: WhereID
-  updatedAt: WhereDate
 }
 
 input ToDoItemComplexFilter {
@@ -40,8 +38,6 @@ input ToDoItemComplexFilter {
   published: WhereBoolean
   user: WhereString
   id: WhereID
-  updatedBy: WhereID
-  updatedAt: WhereDate
 }
 
 input ToDoItemFilterItem {
@@ -52,8 +48,6 @@ input ToDoItemFilterItem {
   published: WhereBoolean
   user: WhereString
   id: WhereID
-  updatedBy: WhereID
-  updatedAt: WhereDate
 }
 
 input ToDoItemFilterSubscriptionsItem {
@@ -64,8 +58,6 @@ input ToDoItemFilterSubscriptionsItem {
   published: WhereBoolean
   user: WhereString
   id: WhereID
-  updatedBy: WhereID
-  updatedAt: WhereDate
 }
 
 input ToDoItemFilterSubscriptions {
@@ -90,10 +82,6 @@ type ToDoItem implements Node{
   published: Boolean
   # # Id
   id: ID!
-  # # Updated By
-  updatedBy: ID
-  # # Updated At
-  updatedAt: Date
   # # User
   user: User
 

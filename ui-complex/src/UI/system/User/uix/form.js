@@ -56,8 +56,7 @@ class Form extends Component {
         <BooleanInput label="resources.User.fields.enabled" source="enabled"  allowEmpty />
 
 
-        <Label text="resources.User.fields.todos" />
-        <ReferenceArrayInput label="" source="todosIds" reference="system/ToDoItem" allowEmpty >
+        <ReferenceArrayInput label="resources.User.fields.todos" source="todosIds" reference="system/ToDoItem" allowEmpty >
           <SelectArrayInput options={{ fullWidth: true }} optionText="name" optionValue="id" />
         </ReferenceArrayInput>
 

@@ -64,6 +64,7 @@ async function ensureUser({
             isAdmin: args.isAdmin,
             isSystem: args.isSystem,
             enabled: args.enabled,
+            todos: args.todos,
             id: args.id,
           },
         }
@@ -87,6 +88,7 @@ async function ensureUser({
           isAdmin: args.isAdmin,
           isSystem: args.isSystem,
           enabled: args.enabled,
+          todos: args.todos,
           id: args.id,
         },
       }

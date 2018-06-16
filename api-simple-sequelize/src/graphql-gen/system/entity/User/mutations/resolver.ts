@@ -58,6 +58,7 @@ async function ensureToDoItem({
             done: args.done,
             dueToDate: args.dueToDate,
             published: args.published,
+            user: args.user,
             id: args.id,
           },
         }
@@ -81,6 +82,7 @@ async function ensureToDoItem({
           done: args.done,
           dueToDate: args.dueToDate,
           published: args.published,
+          user: args.user,
           id: args.id,
         },
       }

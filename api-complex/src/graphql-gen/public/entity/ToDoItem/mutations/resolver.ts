@@ -60,6 +60,7 @@ async function ensureUser({
         variables: {
           user: {
             userName: args.userName,
+            todos: args.todos,
             id: args.id,
           },
         }
@@ -79,6 +80,7 @@ async function ensureUser({
       variables: {
         user: {
           userName: args.userName,
+          todos: args.todos,
           id: args.id,
         },
       }

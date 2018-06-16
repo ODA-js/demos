@@ -59,18 +59,15 @@ class Form extends Component {
         <BooleanInput label="resources.ToDoItem.fields.removed" source="removed"  allowEmpty />
         <TextInput label="resources.ToDoItem.fields.owner" source="owner"  allowEmpty />
 
-        <Label text="resources.ToDoItem.fields.user" />
-        <ReferenceInput label="" source="userId" reference="system/User" allowEmpty >
+        <ReferenceInput label="resources.ToDoItem.fields.user" source="userId" reference="system/User" allowEmpty >
           <AutocompleteInput optionText="userName" />
         </ReferenceInput>
 
-        <Label text="resources.ToDoItem.fields.createdBy" />
-        <ReferenceInput label="" source="createdById" reference="system/User" allowEmpty >
+        <ReferenceInput label="resources.ToDoItem.fields.createdBy" source="createdById" reference="system/User" allowEmpty >
           <AutocompleteInput optionText="userName" />
         </ReferenceInput>
 
-        <Label text="resources.ToDoItem.fields.updateBy" />
-        <ReferenceInput label="" source="updateById" reference="system/User" allowEmpty >
+        <ReferenceInput label="resources.ToDoItem.fields.updateBy" source="updateById" reference="system/User" allowEmpty >
           <AutocompleteInput optionText="userName" />
         </ReferenceInput>
 

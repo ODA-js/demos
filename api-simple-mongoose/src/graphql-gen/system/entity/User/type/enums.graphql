@@ -11,8 +11,4 @@ enum UserSortOrder {
   enabledDesc
   idAsc
   idDesc
-  updatedByAsc
-  updatedByDesc
-  updatedAtAsc
-  updatedAtDesc
 }

@@ -54,8 +54,7 @@ class Form extends Component {
         <BooleanInput label="resources.ToDoItem.fields.done" source="done"  allowEmpty />
         <DateInput label="resources.ToDoItem.fields.dueToDate" source="dueToDate"  allowEmpty />
 
-        <Label text="resources.ToDoItem.fields.user" />
-        <ReferenceInput label="" source="userId" reference="public/User" allowEmpty >
+        <ReferenceInput label="resources.ToDoItem.fields.user" source="userId" reference="public/User" allowEmpty >
           <AutocompleteInput optionText="userName" />
         </ReferenceInput>
 

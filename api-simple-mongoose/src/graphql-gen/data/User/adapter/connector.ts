@@ -195,12 +195,6 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
       if (args.enabled !== undefined) {
         entity.enabled = args.enabled;
       }
-      if (args.updatedBy !== undefined) {
-        entity.updatedBy = args.updatedBy;
-      }
-      if (args.updatedAt !== undefined) {
-        entity.updatedAt = args.updatedAt;
-      }
     if (update) {
       delete entity.id;
       delete entity._id;

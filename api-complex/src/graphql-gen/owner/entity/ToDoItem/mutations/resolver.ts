@@ -61,6 +61,7 @@ async function ensureUser({
           user: {
             userName: args.userName,
             password: args.password,
+            todos: args.todos,
             id: args.id,
           },
         }
@@ -81,6 +82,7 @@ async function ensureUser({
         user: {
           userName: args.userName,
           password: args.password,
+          todos: args.todos,
           id: args.id,
         },
       }

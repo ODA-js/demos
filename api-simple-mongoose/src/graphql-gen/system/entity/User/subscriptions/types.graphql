@@ -10,8 +10,6 @@ type UpdateUserSubscriptionPayload {
   isAdmin: Boolean
   isSystem: Boolean
   enabled: Boolean
-  updatedBy: ID
-  updatedAt: Date
 }
 
 type UserSubscription {

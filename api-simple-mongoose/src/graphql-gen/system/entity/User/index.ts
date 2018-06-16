@@ -32,10 +32,6 @@ export class User extends common.types.GQLModule {
   enabledDesc
   idAsc
   idDesc
-  updatedByAsc
-  updatedByDesc
-  updatedAtAsc
-  updatedAtDesc
 }`],
       'type': [`
 # # User
@@ -64,8 +60,6 @@ input UserFilter {
   isSystem: WhereBoolean
   enabled: WhereBoolean
   id: WhereID
-  updatedBy: WhereID
-  updatedAt: WhereDate
 }
 
 input UserComplexFilter {
@@ -77,8 +71,6 @@ input UserComplexFilter {
   isSystem: WhereBoolean
   enabled: WhereBoolean
   id: WhereID
-  updatedBy: WhereID
-  updatedAt: WhereDate
 }
 
 input UserFilterItem {
@@ -88,8 +80,6 @@ input UserFilterItem {
   isSystem: WhereBoolean
   enabled: WhereBoolean
   id: WhereID
-  updatedBy: WhereID
-  updatedAt: WhereDate
 }
 
 input UserFilterSubscriptionsItem {
@@ -99,8 +89,6 @@ input UserFilterSubscriptionsItem {
   isSystem: WhereBoolean
   enabled: WhereBoolean
   id: WhereID
-  updatedBy: WhereID
-  updatedAt: WhereDate
 }
 
 input UserFilterSubscriptions {
@@ -125,10 +113,6 @@ type User implements Node{
   enabled: Boolean
   # # Id
   id: ID!
-  # # Updated By
-  updatedBy: ID
-  # # Updated At
-  updatedAt: Date
   # # Todos  
   todos(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [ToDoItemSortOrder], filter:ToDoItemComplexFilter ): UserHasManyTodosConnection  
   # # Files  
@@ -148,8 +132,6 @@ input createUserInput {
   isAdmin: Boolean
   isSystem: Boolean
   enabled: Boolean
-  updatedBy: ID
-  updatedAt: Date
   todos: [embedToDoItemInput]
   files: [embedFileInput]
 }
@@ -163,8 +145,6 @@ input embedUserInput {
   isAdmin: Boolean
   isSystem: Boolean
   enabled: Boolean
-  updatedBy: ID
-  updatedAt: Date
   todos: [embedToDoItemInput]
   files: [embedFileInput]
 }
@@ -186,8 +166,6 @@ input updateUserInput {
   isAdmin: Boolean
   isSystem: Boolean
   enabled: Boolean
-  updatedBy: ID
-  updatedAt: Date
   todos: [embedToDoItemInput]
   todosUnlink: [embedToDoItemInput]
   todosCreate: [createToDoItemInput]
@@ -230,8 +208,6 @@ type UpdateUserSubscriptionPayload {
   isAdmin: Boolean
   isSystem: Boolean
   enabled: Boolean
-  updatedBy: ID
-  updatedAt: Date
 }
 
 type UserSubscription {

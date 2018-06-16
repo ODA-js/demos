@@ -20,29 +20,29 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-cache-inmemory": "^1.1.12",
-    "apollo-client": "^2.2.8",
-    "apollo-link-batch-http": "^1.2.1",
+    "apollo-cache-inmemory": "^1.2.4",
+    "apollo-client": "^2.3.4",
+    "apollo-link-batch-http": "^1.2.2",
     "apollo-upload-server": "^2.0.4",
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.18.3",
     "compression": "^1.7.2",
     "cors": "^2.8.4",
     "dataloader": "^1.4.0",
-    "dotenv": "^5.0.0",
+    "dotenv": "^6.0.0",
     "graphql": "^0.11.7",
     "graphql-subscriptions": "^0.5.8",
     "graphql-tag": "^2.4.2",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.10",
     "log4js": "^1.1.1",
-    "mongoose": "^5.0.16",
-    "oda-api-common": "^0.2.31",
-    "oda-api-graphql": "^0.4.35",
-    "oda-api-graphql-mongoose": "^0.0.4",
-    "oda-gen-common": "^0.1.12",
-    "oda-gen-graphql": "^0.6.10",
-    "oda-isomorfic": "^0.0.31",
-    "oda-lodash": "^0.1.12",
-    "subscriptions-transport-ws": "^0.9.7"
+    "mongoose": "^5.1.5",
+    "oda-api-common": "^0.2.44",
+    "oda-api-graphql": "^0.4.48",
+    "oda-api-graphql-mongoose": "^0.0.12",
+    "oda-gen-common": "^0.1.21",
+    "oda-gen-graphql": "^0.6.33",
+    "oda-isomorfic": "^0.0.37",
+    "oda-lodash": "^0.1.21",
+    "subscriptions-transport-ws": "^0.9.11"
   },
   "devDependencies": {
     "@types/fs-extra": "^4.0.0",
@@ -52,6 +52,6 @@
     "@types/node": "^8.0.24",
     "@types/passport": "^0.4.3",
     "graphql-document-collector": "^0.2.1",
-    "typescript": "~2.8.3"
+    "typescript": "^2.9.2"
   }
 }

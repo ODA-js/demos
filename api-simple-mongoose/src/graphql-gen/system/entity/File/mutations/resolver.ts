@@ -64,9 +64,9 @@ async function ensureUser({
             isAdmin: args.isAdmin,
             isSystem: args.isSystem,
             enabled: args.enabled,
+            todos: args.todos,
+            files: args.files,
             id: args.id,
-            updatedBy: args.updatedBy,
-            updatedAt: args.updatedAt,
           },
         }
       }).then(r => r.data.createUser.user.node);
@@ -89,9 +89,9 @@ async function ensureUser({
           isAdmin: args.isAdmin,
           isSystem: args.isSystem,
           enabled: args.enabled,
+          todos: args.todos,
+          files: args.files,
           id: args.id,
-          updatedBy: args.updatedBy,
-          updatedAt: args.updatedAt,
         },
       }
     }).then(r => r.data.updateUser.user);
