@@ -1,6 +1,6 @@
 export default {
   name: 'loginUser',
-  desciption: 'make user login',
+  description: 'make user login',
   args: [
     {
       name: 'userName',

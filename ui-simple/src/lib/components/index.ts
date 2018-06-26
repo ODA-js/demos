@@ -9,19 +9,5 @@ import GrouppedInput from './grouppedInput';
 import GrouppedField from './grouppedField';
 import AutocompleteInput from './autocompleteInput';
 import EmbeddedArrayField from './embeddedArrayField';
-import ReferenceManyField from './referenceManyField';
 
-export {
-  DependentInput,
-  DependentField,
-  EmbeddedInput,
-  EmbeddedField,
-  EmbeddedRefField,
-  EmbeddedArrayField,
-  Label,
-  FormInput,
-  GrouppedInput,
-  GrouppedField,
-  AutocompleteInput,
-  ReferenceManyField,
-}
+export { EmbeddedRefField, DependentInput, DependentField };

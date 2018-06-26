@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Title = ({ record },{translate}) => (
   <span>
-    {translate('resources.File.fields.path', {smart_count : 1})} {record ? `"${record.path}"` : ""}
+    {translate('resources.File.listName', {smart_count : 1})} {record ? `"${record.path}"` : ""}
   </span>
 );
 

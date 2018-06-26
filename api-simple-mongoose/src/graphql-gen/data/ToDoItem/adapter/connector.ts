@@ -130,6 +130,12 @@ export default class ToDoItem extends MongooseApi<RegisterConnectors, PartialToD
       if (args.user !== undefined) {
         entity.user = args.user;
       }
+      if (args.updatedBy !== undefined) {
+        entity.updatedBy = args.updatedBy;
+      }
+      if (args.updatedAt !== undefined) {
+        entity.updatedAt = args.updatedAt;
+      }
     if (update) {
       delete entity.id;
       delete entity._id;

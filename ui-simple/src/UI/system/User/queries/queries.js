@@ -3,17 +3,26 @@ import gql from 'graphql-tag';
 
 export const fragments = {
   resultFragment: gql`fragment UserResult on User {
-    id
     userName
+    updatedBy
     password
+    updatedAt
     isAdmin
     isSystem
     enabled
+    id
 
     todosValues: todos @_(get:"edges") {
       edges @_( each: {assign:"node"} ) {
         node  {
           id
+          name
+          description
+          done
+          dueToDate
+          published
+          updatedBy
+          updatedAt
         }
       }
     }
@@ -26,16 +35,25 @@ export const fragments = {
     }
   }`,
   fullFragment: gql`fragment UserFull on User {
-    id
     userName
+    updatedBy
     password
+    updatedAt
     isAdmin
     isSystem
     enabled
+    id
     todos {
       edges {
         node {
           id
+          name
+          description
+          done
+          dueToDate
+          published
+          updatedBy
+          updatedAt
         }
       }
     }

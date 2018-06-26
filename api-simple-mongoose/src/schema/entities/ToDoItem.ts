@@ -1,5 +1,6 @@
 export default {
   name: 'ToDoItem',
+  title: 'todo Item',
   implements:['IUpdated'],
   fields: {
     name: {

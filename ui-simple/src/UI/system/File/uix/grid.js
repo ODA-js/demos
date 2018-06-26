@@ -2,28 +2,21 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 import {
-  Datagrid,
-  TextField,
-  DateField,
-  NumberField,
-  BooleanField,
-  EditButton,
-  DeleteButton,
-  ShowButton,
-  ReferenceField,
+  Responsive,
 } from "react-admin";
 
-const Grid = (props, context) => (
-  <Datagrid {...props} >
-    <TextField sortable={true} label="resources.File.fields.path" source="path" />
-
-    <ShowButton />
-    <EditButton />
-    <DeleteButton />
-  </Datagrid>
+const Grid = (props, context) => {
+  const { CardView, GridView } = context.uix['system/File'];
+  return (
+  <Responsive
+    small={<CardView {...props} />}
+    medium={<GridView {...props} />}
+  />
 );
+}
 
 Grid.contextTypes = {
+  uix: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
 }
 

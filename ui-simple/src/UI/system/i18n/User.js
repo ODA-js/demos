@@ -1,17 +1,21 @@
 export default {
   resources: {
     User: {
-      name: 'User |||| Users',
+      summary: 'Summary',
+      name: 'The User |||| The Users',
       listName: 'User |||| Users',
       fields: {
-        id: 'Id',
-        userName: 'User name',
+
+        userName: 'User email',
+        updatedBy: 'Updated by',
         password: 'Password',
-        isAdmin: 'Is admin',
-        isSystem: 'Is system',
-        enabled: 'Enabled',
-        todos: 'Todos',
-        files: 'Files',
+        updatedAt: 'Updated at',
+        isAdmin: 'Is administrator',
+        isSystem: 'Is system user',
+        enabled: 'Allow to login',
+        todos: 'Todo list',
+        files: 'User files',
+        id: 'Id',
       },
     },
   },

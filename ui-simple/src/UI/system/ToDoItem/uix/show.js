@@ -1,75 +1,91 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {
-  Datagrid,
-  TextField,
-  DateField,
-  NumberField,
-  FunctionField,
-  BooleanField,
-  EditButton,
-  ReferenceManyField,
-  ReferenceField,
+  
+  TabbedShowLayout,
+  Tab,
+  
   Show,
-  SimpleShowLayout,
-  required,
-  RichTextField,
-  ShowController,
-  ShowView,
-  ArrayField,
+  TextField,
+  BooleanField,
+  DateField,
+  ShowButton,
+  EditButton,
+  DeleteButton,
 } from "react-admin";
 
-// import { EmbeddedArrayField } from 'aor-embedded-array';
-// import { ui } from 'oda-aor-rest';
+import { components } from 'oda-ra-ui';
+const {
+  EmbeddedField,
+} = components;
 
-const LongTextField = TextField;
-
-// const {
-  // DependentField,
-  // EmbeddedArrayField,
-  // EmbeddedRefArrayField,
-  // EmbeddedRefField,
-  // ReferenceManyField,
-// } = ui.components;
-
-const showIfExists = field => root => !!root[field];
-
-const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
 const ShowRecordView = (props, context) => {
-  const { translate, uix } = context;
+  const { uix } = context;
   const { Title } = uix['system/ToDoItem'];
   return (
-    <ShowController title={<Title />} {...props}>
-      {controllerProps =>
-        <ShowView {...props} {...controllerProps}>
-          <SimpleShowLayout {...props}>
-            { controllerProps.record && controllerProps.record.name &&
-              <TextField label="resources.ToDoItem.fields.name" source="name" allowEmpty />
-            }
-            { controllerProps.record && controllerProps.record.description &&
-              <TextField label="resources.ToDoItem.fields.description" source="description" allowEmpty />
-            }
-            { controllerProps.record && controllerProps.record.done &&
-              <BooleanField label="resources.ToDoItem.fields.done" source="done" allowEmpty />
-            }
-            { controllerProps.record && controllerProps.record.dueToDate &&
-              <DateField label="resources.ToDoItem.fields.dueToDate" source="dueToDate" allowEmpty />
-            }
-            { controllerProps.record && controllerProps.record.published &&
-              <BooleanField label="resources.ToDoItem.fields.published" source="published" allowEmpty />
-            }
-
-            { controllerProps.record && controllerProps.record.userId &&
-              <ReferenceField label="resources.ToDoItem.fields.user" source="userId" reference="system/User" allowEmpty linkType="show" >
-                <TextField source="userName" allowEmpty />
-              </ReferenceField>
-            }
-
-          </SimpleShowLayout>
-        </ShowView>
-      }
-    </ShowController>
+    <Show title={<Title />} {...props}>
+      
+      
+      <TabbedShowLayout>
+        <Tab label="resources.ToDoItem.summary">
+          
+          <TextField 
+            label="resources.ToDoItem.fields.name" 
+            source="name"
+            allowEmpty
+          />
+          
+          <TextField 
+            label="resources.ToDoItem.fields.description" 
+            source="description"
+            allowEmpty
+          />
+          
+          <BooleanField 
+            label="resources.ToDoItem.fields.done" 
+            source="done"
+            allowEmpty
+          />
+          
+          <DateField 
+            label="resources.ToDoItem.fields.dueToDate" 
+            source="dueToDate"
+            allowEmpty
+          />
+          
+          <BooleanField 
+            label="resources.ToDoItem.fields.published" 
+            source="published"
+            allowEmpty
+          />
+        </Tab>
+        <Tab label="resources.ToDoItem.fields.user">
+          
+          <EmbeddedField
+            addLabel={false}
+            source="userValue"
+          >
+            <TextField 
+              label="resources.User.fields.userName"
+              source="userName" />
+            <BooleanField 
+              label="resources.User.fields.isAdmin"
+              source="isAdmin" allowEmpty />
+            <BooleanField 
+              label="resources.User.fields.isSystem"
+              source="isSystem" allowEmpty />
+            <BooleanField 
+              label="resources.User.fields.enabled"
+              source="enabled" allowEmpty />
+            <ShowButton resource="system/User"/>
+            <EditButton resource="system/User"/>
+            <DeleteButton resource="system/User"/>
+          </EmbeddedField>
+      
+        </Tab>
+      </TabbedShowLayout>
+    </Show>
   );
 };
 

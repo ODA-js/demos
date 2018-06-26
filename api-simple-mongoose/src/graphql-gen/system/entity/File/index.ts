@@ -32,7 +32,7 @@ export class File extends common.types.GQLModule {
   idDesc
 }`],
       'type': [`
-# # File
+# # User Files
 
 
 input EmbedFileFilter {
@@ -109,7 +109,7 @@ type File implements Node{
   encoding: String
   # # Id
   id: ID!
-  # # User
+  # # Owner
   user: User
 
 }

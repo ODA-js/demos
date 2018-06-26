@@ -1,15 +1,17 @@
 export default {
   resources: {
     File: {
-      name: 'File |||| Files',
+      summary: 'Summary',
+      name: 'User files |||| Files',
       listName: 'File |||| Files',
       fields: {
+
+        user: 'Owner',
         id: 'Id',
         path: 'Path',
         filename: 'Filename',
         mimetype: 'Mimetype',
         encoding: 'Encoding',
-        user: 'User',
       },
     },
   },

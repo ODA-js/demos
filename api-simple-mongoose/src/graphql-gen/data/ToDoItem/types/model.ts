@@ -6,6 +6,8 @@
   dueToDate?: Date;
   published?: boolean;
   user?: string;
+  updatedBy?: string;
+  updatedAt?: Date;
 }
 
 export type PartialToDoItem = {

@@ -14,7 +14,7 @@ import {
   FileInput,
   FileField,
   required,
-} from "admin-on-rest";
+} from 'admin-on-rest';
 import RichTextInput from 'aor-rich-text-input';
 
 import { connect } from 'react-redux';
@@ -28,7 +28,7 @@ const {
   EmbeddedInput,
   GrouppedInput,
   Label,
-  AutocompleteInput
+  AutocompleteInput,
 } = ui.components;
 
 const actionType = ui.consts.actionType;
@@ -50,22 +50,51 @@ class Form extends Component {
     const manyRelAction = props.manyRelActions;
     const { translate } = this.context;
     return (
-      <SimpleForm {...props} >
-        <TextInput label="resources.ToDoItem.fields.name" source="name" allowEmpty />
-        <TextInput label="resources.ToDoItem.fields.description" source="description" allowEmpty />
-        <FileInput source="files" label="resources.ToDoItem.fields.description" accept="application/pdf">
+      <SimpleForm {...props}>
+        <TextInput
+          label="resources.ToDoItem.fields.name"
+          source="name"
+          allowEmpty
+        />
+        <TextInput
+          label="resources.ToDoItem.fields.description"
+          source="description"
+          allowEmpty
+        />
+        <FileInput
+          source="files"
+          label="resources.ToDoItem.fields.description"
+          accept="application/pdf"
+        >
           <FileField source="src" title="title" />
         </FileInput>
-        <BooleanInput label="resources.ToDoItem.fields.done" source="done" allowEmpty />
-        <DateInput label="resources.ToDoItem.fields.dueToDate" source="dueToDate" allowEmpty />
-        <BooleanInput label="resources.ToDoItem.fields.published" source="published" allowEmpty />
+        <BooleanInput
+          label="resources.ToDoItem.fields.done"
+          source="done"
+          allowEmpty
+        />
+        <DateInput
+          label="resources.ToDoItem.fields.dueToDate"
+          source="dueToDate"
+          allowEmpty
+        />
+        <BooleanInput
+          label="resources.ToDoItem.fields.published"
+          source="published"
+          allowEmpty
+        />
 
         <Label text="resources.ToDoItem.fields.user" />
-        <ReferenceInput label="" source="userId" reference="system/User" allowEmpty >
+        <ReferenceInput
+          label=""
+          source="userId"
+          reference="system/User"
+          allowEmpty
+        >
           <AutocompleteInput optionText="userName" />
         </ReferenceInput>
-
-      </SimpleForm>);
+      </SimpleForm>
+    );
   }
 }
 
@@ -74,14 +103,14 @@ const selector = formValueSelector(formName);
 
 Form.contextTypes = {
   translate: PropTypes.func.isRequired,
-}
+};
 
 export default compose(
   connect(
-    state => ({
-    }), {
-      initForm: initForm('record-form', {
-      }),
+    state => ({}),
+    {
+      initForm: initForm('record-form', {}),
       finalizeForm,
-    }),
+    },
+  ),
 )(Form);

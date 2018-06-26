@@ -3,26 +3,45 @@ import gql from 'graphql-tag';
 
 export const fragments = {
   resultFragment: gql`fragment ToDoItemResult on ToDoItem {
-    id
     name
+    updatedBy
     description
+    updatedAt
     done
     dueToDate
     published
+    id
 
-    userId: user @_(get:"id") {
+    userValue: user 
+     {
       id
+      userName
+      password
+      isAdmin
+      isSystem
+      enabled
+      updatedBy
+      updatedAt
     }
   }`,
   fullFragment: gql`fragment ToDoItemFull on ToDoItem {
-    id
     name
+    updatedBy
     description
+    updatedAt
     done
     dueToDate
     published
+    id
     user {
       id
+      userName
+      password
+      isAdmin
+      isSystem
+      enabled
+      updatedBy
+      updatedAt
     }
   }`,
 }

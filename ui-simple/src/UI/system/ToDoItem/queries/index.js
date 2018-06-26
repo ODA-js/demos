@@ -8,12 +8,14 @@ export default {
   name: 'system/ToDoItem',
   role: 'system',
   fields: {
-    id: { type: 'string' },
     name: { type: 'string' },
+    updatedBy: { type: 'string' },
     description: { type: 'string' },
+    updatedAt: { type: 'date' },
     done: { type: 'boolean' },
     dueToDate: { type: 'date' },
     published: { type: 'boolean' },
+    id: { type: 'string' },
     user: {
       ref: {
         resource: 'system/User',

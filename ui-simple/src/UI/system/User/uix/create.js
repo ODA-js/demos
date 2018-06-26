@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {
-  Create,
+  Create
 } from "react-admin";
 import { consts } from 'oda-ra-ui';
 const actionType = consts.actionType;
 
-const CreateForm = (props, context) =>{
+const CreateForm = (props, context) => {
   const { Form, Title } = context.uix['system/User'];
   const { translate } = context;
 
   return (
-  <Create title={<Title />} {...props} >
+  <Create title={<Title />} {...props}>
     <Form
       {...props}
       singleRelActions={[

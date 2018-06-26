@@ -34,6 +34,7 @@ export let userPasswordStatus = {
 export let ToDoItem = {
   name: 'ToDoItem',
   'entities.ToDoItem.metadata.acl.read': 'public',
+  'entities.ToDoItem.fields.id.metadata.order':1,
   'entities.ToDoItem.fields.[id, name, description, done, dueToDate, user].metadata.acl.read': 'public',
   'entities.ToDoItem.fields.[published].metadata.acl.read': { $assign: ['owner'] },
 }

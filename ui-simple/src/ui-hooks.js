@@ -4,11 +4,11 @@ exports.UserUI = {
     'metadata.UI': {
       listName: 'userName',
       list: ['enabled', 'isAdmin', 'isSystem'],
-      show: ['^password'],
-      embedded: ['todos']
+      show: ['^password', '^updatedBy', '^updatedAt'],
+      embedded: ['todos'],
     },
-  }
-}
+  },
+};
 
 exports.ToDoItemUI = {
   name: 'ToDoItem',
@@ -16,7 +16,8 @@ exports.ToDoItemUI = {
     'metadata.UI': {
       listName: 'name',
       list: ['name', 'description', 'done', 'dueToDate', 'published'],
-      show: ['^password'],
+      show: ['^updatedBy', '^updatedAt'],
+      embedded: ['user'],
     },
-  }
-}
+  },
+};

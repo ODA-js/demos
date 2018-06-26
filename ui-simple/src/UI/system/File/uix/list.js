@@ -5,7 +5,7 @@ import {
 } from "react-admin";
 
 const ListView = (props, context) => {
-  const { Grid, Filter} = context.uix['system/File'];
+  const { Grid, Filter } = context.uix['system/File'];
 
   return (
     <List {...props} filters={<Filter />} title={context.translate("resources.File.name", { smart_count:2 })}>

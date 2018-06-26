@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { client } from 'oda-ra-data-provider';
 import Loading from 'react-loading-animation'
 import { Admin, Resource, Delete } from 'react-admin';
 import { englishMessages } from 'react-admin';

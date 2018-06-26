@@ -1,23 +1,18 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {
-  ReferenceInput,
-  SelectInput,
-  ReferenceArrayInput,
-  SelectArrayInput,
-  SimpleForm,
+    Filter,
+  
   TextInput,
-  DateInput,
-  NumberInput,
-  BooleanInput,
   NullableBooleanInput,
-  Filter,
+  SelectArrayInput,
 } from "react-admin";
-import RichTextInput from 'ra-input-rich-text';
+
 
 const FilterPanel = (props, {translate}) => (
   <Filter {...props} >
     <TextInput label="uix.filter.search" source="q" allowEmpty alwaysOn />
+
 
     <NullableBooleanInput label={translate("uix.filter.exists",{ name: translate('resources.File.fields.path')})} source="path-exists" />
 

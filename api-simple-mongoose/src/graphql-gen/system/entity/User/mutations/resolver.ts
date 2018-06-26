@@ -60,6 +60,8 @@ async function ensureToDoItem({
             published: args.published,
             user: args.user,
             id: args.id,
+            updatedBy: args.updatedBy,
+            updatedAt: args.updatedAt,
           },
         }
       }).then(r => r.data.createToDoItem.toDoItem.node);
@@ -84,6 +86,8 @@ async function ensureToDoItem({
           published: args.published,
           user: args.user,
           id: args.id,
+          updatedBy: args.updatedBy,
+          updatedAt: args.updatedAt,
         },
       }
     }).then(r => r.data.updateToDoItem.toDoItem);
@@ -350,6 +354,8 @@ export const mutation = {
       isAdmin?: boolean,
       isSystem?: boolean,
       enabled?: boolean,
+      updatedBy?: string,
+      updatedAt?: Date,
       todos?: object/*ToDoItem*/[],
       files?: object/*File*/[],
     },
@@ -363,6 +369,8 @@ export const mutation = {
       isAdmin: args.isAdmin,
       isSystem: args.isSystem,
       enabled: args.enabled,
+      updatedBy: args.updatedBy,
+      updatedAt: args.updatedAt,
     };
 
     if(args.id) {
@@ -448,6 +456,8 @@ export const mutation = {
       isAdmin?: boolean,
       isSystem?: boolean,
       enabled?: boolean,
+      updatedBy?: string,
+      updatedAt?: Date,
       todos?: object/*ToDoItem*/[],
       todosUnlink?: object/*ToDoItem*/[],
       todosCreate?: object/*ToDoItem*/[],
@@ -465,6 +475,8 @@ export const mutation = {
       isAdmin: args.isAdmin,
       isSystem: args.isSystem,
       enabled: args.enabled,
+      updatedBy: args.updatedBy,
+      updatedAt: args.updatedAt,
     };
 
     let result;

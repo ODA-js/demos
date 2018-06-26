@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {
-  Edit,
+  Edit
 } from "react-admin";
 import { consts } from 'oda-ra-ui';
 const actionType = consts.actionType;

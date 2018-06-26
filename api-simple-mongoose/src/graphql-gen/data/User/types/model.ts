@@ -7,6 +7,8 @@
   enabled?: boolean;
   todos?: string;
   files?: string;
+  updatedBy?: string;
+  updatedAt?: Date;
 }
 
 export type PartialUser = {

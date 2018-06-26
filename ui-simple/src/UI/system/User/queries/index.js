@@ -8,12 +8,14 @@ export default {
   name: 'system/User',
   role: 'system',
   fields: {
-    id: { type: 'string' },
     userName: { type: 'string' },
+    updatedBy: { type: 'string' },
     password: { type: 'string' },
+    updatedAt: { type: 'date' },
     isAdmin: { type: 'boolean' },
     isSystem: { type: 'boolean' },
     enabled: { type: 'boolean' },
+    id: { type: 'string' },
     todos: {
       ref: {
         resource: 'system/ToDoItem',

@@ -2,10 +2,8 @@
   "compilerOptions": {
     "target": "es2018",
     "module": "commonjs",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
+    "baseUrl": ".",
     "moduleResolution": "node",
     "sourceMap": true,
     "declaration": true,
@@ -15,16 +13,12 @@
     "allowSyntheticDefaultImports": false,
     "pretty": true,
     "removeComments": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "types": [
-      "@types/graphql",
-      "@types/node"
-    ]
+    "typeRoots": ["node_modules/@types"],
+    "types": ["@types/graphql", "@types/node"],
+    "paths": {
+      "@validator/*": ["src/model/validator/*"],
+      "@model/*": ["src/model/*"]
+    }
   },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "exclude": ["node_modules", "dist"]
 }

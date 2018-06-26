@@ -9,7 +9,8 @@ export const fragments = {
     mimetype
     encoding
 
-    userId: user @_(get:"id") {
+    userId: user @_(get:"id")
+     {
       id
     }
   }`,

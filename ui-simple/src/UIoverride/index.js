@@ -5,11 +5,11 @@ import { uix as _uix, Resources as ResourcesBase } from './../UI/system/';
 
 export const uix = {
   ..._uix,
-  "system/ToDoItem": {
-    ..._uix["system/ToDoItem"],
+  'system/ToDoItem': {
+    ..._uix['system/ToDoItem'],
     ...ToDoItemUIX,
   },
-}
+};
 
 export class Resources extends ResourcesBase {
   constructor(...args) {

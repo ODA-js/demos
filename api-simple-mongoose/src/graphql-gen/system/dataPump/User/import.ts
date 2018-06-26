@@ -23,7 +23,9 @@ export default {
           password
           isAdmin
           isSystem
-          enabled`,
+          enabled
+          updatedBy
+          updatedAt`,
         uploader: {
           findQuery: {
             id: 'User/findById.graphql',

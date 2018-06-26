@@ -1,5 +1,6 @@
 export default {
   name: 'File',
+  title: 'User files',
   fields: {
     path: {
       identity: true,
@@ -9,16 +10,17 @@ export default {
       indexed: true,
     },
     mimetype: {
-      indexed: true
+      indexed: true,
     },
     encoding: {
       indexed: true,
     },
     user: {
+      title: 'Owner',
       indexed: true,
       relation: {
         belongsTo: 'User#',
-      }
-    }
+      },
+    },
   },
 };
