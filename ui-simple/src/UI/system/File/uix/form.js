@@ -36,43 +36,43 @@ class Form extends Component {
       return (
         <TabbedForm {...props} >
           <FormTab label="resources.File.summary">
-          
-          <TextInput  label="resources.File.fields.path"
-            source="path"
-            validate={required()} 
-          />
-          
-          <TextInput  label="resources.File.fields.filename"
-            source="filename"
-            allowEmpty 
-          />
-          
-          <TextInput  label="resources.File.fields.mimetype"
-            source="mimetype"
-            allowEmpty 
-          />
-          
-          <TextInput  label="resources.File.fields.encoding"
-            source="encoding"
-            allowEmpty 
-          />
-        </FormTab>
-    
-        <FormTab label="resources.File.fields.user">
-          
-          <ReferenceInput 
-            label="resources.File.fields.user"
-            source="userId"
-            reference="system/User"
-            allowEmpty
-          >
-            <AutocompleteInput 
-              optionText="userName" 
+            <TextInput
+              label="resources.File.fields.path"
+              source="path"
+              validate={required()} 
             />
-          </ReferenceInput>
-        </FormTab>
-      </TabbedForm>
-    );
+            <TextInput
+              label="resources.File.fields.filename"
+              source="filename"
+              allowEmpty 
+            />
+            <TextInput
+              label="resources.File.fields.mimetype"
+              source="mimetype"
+              allowEmpty 
+            />
+            <TextInput
+              label="resources.File.fields.encoding"
+              source="encoding"
+              allowEmpty 
+            />
+          </FormTab>
+          <FormTab label="resources.File.fields.user">
+            
+            <ReferenceInput 
+              label="resources.File.fields.user"
+              source="userId"
+              reference="system/User"
+              allowEmpty
+            >
+              <AutocompleteInput 
+                optionText="userName" 
+              />
+            </ReferenceInput>
+          </FormTab>
+        </TabbedForm>
+      );
+    
   }
 }
 

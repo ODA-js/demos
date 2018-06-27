@@ -42,132 +42,122 @@ class Form extends Component {
       return (
         <TabbedForm {...props} >
           <FormTab label="resources.User.summary">
-          
-          <TextInput  label="resources.User.fields.userName"
-            source="userName"
-            validate={required()} 
-          />
-          
-          <TextInput  label="resources.User.fields.updatedBy"
-            source="updatedBy"
-            allowEmpty 
-          />
-          
-          <TextInput  label="resources.User.fields.password"
-            source="password"
-            validate={required()} 
-          />
-          
-          <DateInput  label="resources.User.fields.updatedAt"
-            source="updatedAt"
-            allowEmpty 
-          />
-          
-          <BooleanInput defaultValue={false}
+            <TextInput
+              label="resources.User.fields.userName"
+              source="userName"
+              validate={required()} 
+            />
+            <TextInput
+              label="resources.User.fields.updatedBy"
+              source="updatedBy"
+              allowEmpty 
+            />
+            <TextInput
+              label="resources.User.fields.password"
+              source="password"
+              validate={required()} 
+            />
+            <DateInput
+              label="resources.User.fields.updatedAt"
+              source="updatedAt"
+              allowEmpty 
+            />
+            <BooleanInput
+              defaultValue={false}
               label="resources.User.fields.isAdmin"
-            source="isAdmin"
-            allowEmpty 
-          />
-          
-          <BooleanInput defaultValue={false}
+              source="isAdmin"
+              allowEmpty 
+            />
+            <BooleanInput
+              defaultValue={false}
               label="resources.User.fields.isSystem"
-            source="isSystem"
-            allowEmpty 
-          />
-          
-          <BooleanInput defaultValue={true}
+              source="isSystem"
+              allowEmpty 
+            />
+            <BooleanInput
+              defaultValue={true}
               label="resources.User.fields.enabled"
-            source="enabled"
-            allowEmpty 
-          />
-        </FormTab>
-    
-        <FormTab label="resources.User.fields.todos">
-    
-          
-          <ArrayInput 
-            label="resources.User.fields.todos"
-            source="todosValues"
-            allowEmpty 
-          >
-            <SimpleFormIterator>
-              <SelectInput
-                source="todosType"
-                label="uix.actionType.ExpectedTo"
-                choices={manyRelAction}
-                defaultValue={actionType.USE}
-              />
+              source="enabled"
+              allowEmpty 
+            />
+          </FormTab>
+          <FormTab label="resources.User.fields.todos">
+            <ArrayInput 
+              label="resources.User.fields.todos"
+              source="todosValues"
+              allowEmpty 
+            >
+              <SimpleFormIterator>
+                <SelectInput
+                  source="todosType"
+                  label="uix.actionType.ExpectedTo"
+                  choices={manyRelAction}
+                  defaultValue={actionType.USE}
+                />
                 <ReferenceInput 
                   label={translate("resources.ToDoItem.name", { smart_count: 1})}
                   source="id"
                   reference="system/ToDoItem"
-                  
                   allowEmpty 
                 >
-                  <SelectInput 
-                    optionText="name" />
+                  <SelectInput optionText="name" />
                 </ReferenceInput>
                 <TextInput
                   label="resources.ToDoItem.fields.name"
                   source="name"
                   allowEmpty
                 />
-          
                 <TextInput
                   label="resources.ToDoItem.fields.description"
                   source="description"
                   allowEmpty
                 />
-          
                 <BooleanInput
                   label="resources.ToDoItem.fields.done"
                   source="done"
                   allowEmpty
                 />
-          
                 <DateInput
                   label="resources.ToDoItem.fields.dueToDate"
                   source="dueToDate"
                   allowEmpty
                 />
-          
                 <BooleanInput
                   label="resources.ToDoItem.fields.published"
                   source="published"
                   allowEmpty
                 />
-          
                 <TextInput
                   label="resources.ToDoItem.fields.updatedBy"
                   source="updatedBy"
                   allowEmpty
                 />
-          
                 <DateInput
                   label="resources.ToDoItem.fields.updatedAt"
                   source="updatedAt"
                   allowEmpty
                 />
-            </SimpleFormIterator>
-          </ArrayInput>
-        </FormTab>
-        <FormTab label="resources.User.fields.files">
-          
-          <ReferenceArrayInput 
-            label="resources.User.fields.files"
-            source="filesIds"
-            reference="system/File"
-            allowEmpty 
-          >
-            <SelectArrayInput 
-              options={{ fullWidth: true }}
-              optionText="path"
-              optionValue="id" 
-            />
-          </ReferenceArrayInput>
-        </FormTab>
-      </TabbedForm>
-    );
+              </SimpleFormIterator>
+            </ArrayInput>
+          </FormTab>
+          <FormTab label="resources.User.fields.files">
+            
+            <ReferenceArrayInput 
+              label="resources.User.fields.files"
+              source="filesIds"
+              reference="system/File"
+              allowEmpty 
+            >
+              <SelectArrayInput 
+                options={{ fullWidth: true }}
+                optionText="path"
+                optionValue="id" 
+              />
+            </ReferenceArrayInput>
+          </FormTab>
+        </TabbedForm>
+      );
+    
   }
 }
 

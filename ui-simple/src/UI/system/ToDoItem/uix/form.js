@@ -41,108 +41,92 @@ class Form extends Component {
       return (
         <TabbedForm {...props} >
           <FormTab label="resources.ToDoItem.summary">
-          
-          <TextInput  label="resources.ToDoItem.fields.name"
-            source="name"
-            allowEmpty 
-          />
-          
-          <TextInput  label="resources.ToDoItem.fields.updatedBy"
-            source="updatedBy"
-            allowEmpty 
-          />
-          
-          <TextInput  label="resources.ToDoItem.fields.description"
-            source="description"
-            allowEmpty 
-          />
-          
-          <DateInput  label="resources.ToDoItem.fields.updatedAt"
-            source="updatedAt"
-            allowEmpty 
-          />
-          
-          <BooleanInput  label="resources.ToDoItem.fields.done"
-            source="done"
-            allowEmpty 
-          />
-          
-          <DateInput  label="resources.ToDoItem.fields.dueToDate"
-            source="dueToDate"
-            allowEmpty 
-          />
-          
-          <BooleanInput  label="resources.ToDoItem.fields.published"
-            source="published"
-            allowEmpty 
-          />
-        </FormTab>
+            <TextInput
+              label="resources.ToDoItem.fields.name"
+              source="name"
+              allowEmpty 
+            />
+            <TextInput
+              label="resources.ToDoItem.fields.updatedBy"
+              source="updatedBy"
+              allowEmpty 
+            />
+            <TextInput
+              label="resources.ToDoItem.fields.description"
+              source="description"
+              allowEmpty 
+            />
+            <DateInput
+              label="resources.ToDoItem.fields.updatedAt"
+              source="updatedAt"
+              allowEmpty 
+            />
+            <BooleanInput
+              label="resources.ToDoItem.fields.done"
+              source="done"
+              allowEmpty 
+            />
+            <DateInput
+              label="resources.ToDoItem.fields.dueToDate"
+              source="dueToDate"
+              allowEmpty 
+            />
+            <BooleanInput
+              label="resources.ToDoItem.fields.published"
+              source="published"
+              allowEmpty 
+            />
+          </FormTab>
+          <FormTab label="resources.ToDoItem.fields.user">
+            
+            <ReferenceInput label="resources.ToDoItem.fields.user" source="userId" reference="system/User" allowEmpty >
+              <AutocompleteInput optionText="userName" />
+            </ReferenceInput>
+            <SelectInput
+              source="userType"
+              label="uix.actionType.ExpectedTo"
+              choices={singleRelActions}
+              defaultValue={actionType.USE}
+            />
+            <TextInput
+              label="resources.User.fields.userName"
+              source="userName"
+              validate={required()} 
+            />
+            <TextInput
+              label="resources.User.fields.password"
+              source="password"
+              validate={required()} 
+            />
+            <BooleanInput
+              label="resources.User.fields.isAdmin"
+              source="isAdmin"
+              allowEmpty 
+            />
+            <BooleanInput
+              label="resources.User.fields.isSystem"
+              source="isSystem"
+              allowEmpty 
+            />
+            <BooleanInput
+              label="resources.User.fields.enabled"
+              source="enabled"
+              allowEmpty 
+            />
+            <TextInput
+              label="resources.User.fields.updatedBy"
+              source="updatedBy"
+              allowEmpty 
+            />
+            <DateInput
+              label="resources.User.fields.updatedAt"
+              source="updatedAt"
+              allowEmpty 
+            />
+          </FormTab>
+        </TabbedForm>
+      );
     
-        <FormTab label="resources.ToDoItem.fields.user">
-          
-          <ReferenceInput label="resources.ToDoItem.fields.user" source="userId" reference="system/User" allowEmpty >
-            <AutocompleteInput optionText="userName" />
-          </ReferenceInput>
-          <SelectInput
-            source="userType"
-            label="uix.actionType.ExpectedTo"
-            choices={singleRelActions}
-            defaultValue={actionType.USE}
-          />
-          
-          
-          <TextInput
-            
-            label="resources.User.fields.userName"
-            source="userName"
-            validate={required()} 
-          />
-          
-          <TextInput
-            
-            label="resources.User.fields.password"
-            source="password"
-            validate={required()} 
-          />
-          
-          <BooleanInput
-            
-            label="resources.User.fields.isAdmin"
-            source="isAdmin"
-            allowEmpty 
-          />
-          
-          <BooleanInput
-            
-            label="resources.User.fields.isSystem"
-            source="isSystem"
-            allowEmpty 
-          />
-          
-          <BooleanInput
-            
-            label="resources.User.fields.enabled"
-            source="enabled"
-            allowEmpty 
-          />
-          
-          <TextInput
-            
-            label="resources.User.fields.updatedBy"
-            source="updatedBy"
-            allowEmpty 
-          />
-          
-          <DateInput
-            
-            label="resources.User.fields.updatedAt"
-            source="updatedAt"
-            allowEmpty 
-          />
-          
-        </FormTab>
-      </TabbedForm>
-    );
   }
 }
 

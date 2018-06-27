@@ -10,8 +10,6 @@ import {
   ReferenceField,
 } from "react-admin";
 
-
-
 const ShowRecordView = (props, context) => {
   const { uix } = context;
   const { Title } = uix['system/File'];
@@ -21,24 +19,20 @@ const ShowRecordView = (props, context) => {
       
       <TabbedShowLayout>
         <Tab label="resources.File.summary">
-          
           <TextField 
             label="resources.File.fields.path" 
             source="path"
           />
-          
           <TextField 
             label="resources.File.fields.filename" 
             source="filename"
             allowEmpty
           />
-          
           <TextField 
             label="resources.File.fields.mimetype" 
             source="mimetype"
             allowEmpty
           />
-          
           <TextField 
             label="resources.File.fields.encoding" 
             source="encoding"
@@ -46,7 +40,6 @@ const ShowRecordView = (props, context) => {
           />
         </Tab>
         <Tab label="resources.File.fields.user">
-          
           <ReferenceField 
             addLabel={false} 
             source="userId" 

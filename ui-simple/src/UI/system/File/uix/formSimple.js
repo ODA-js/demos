@@ -27,47 +27,45 @@ class Form extends Component {
   }
 
   render() {
-      const { props } = this;
+    const { props } = this;
 
 
 
 
-      return (
-        <SimpleForm {...props} >
-          
-          <ReferenceInput 
-            label="resources.File.fields.user"
-            source="userId"
-            reference="system/User"
-            allowEmpty
-          >
-            <AutocompleteInput 
-              optionText="userName" 
-            />
-          </ReferenceInput>
-    
-          
-          <TextInput  label="resources.File.fields.path"
-            source="path"
-            validate={required()} 
+    return (
+      <SimpleForm {...props} >    
+        <ReferenceInput 
+          label="resources.File.fields.user"
+          source="userId"
+          reference="system/User"
+          allowEmpty
+        >
+          <AutocompleteInput 
+            optionText="userName" 
           />
-          
-          <TextInput  label="resources.File.fields.filename"
-            source="filename"
-            allowEmpty 
-          />
-          
-          <TextInput  label="resources.File.fields.mimetype"
-            source="mimetype"
-            allowEmpty 
-          />
-          
-          <TextInput  label="resources.File.fields.encoding"
-            source="encoding"
-            allowEmpty 
-          />
-        </SimpleForm>
-      );
+        </ReferenceInput>
+        <TextInput
+          label="resources.File.fields.path"
+          source="path"
+          validate={required()} 
+        />
+        <TextInput
+          label="resources.File.fields.filename"
+          source="filename"
+          allowEmpty 
+        />
+        <TextInput
+          label="resources.File.fields.mimetype"
+          source="mimetype"
+          allowEmpty 
+        />
+        <TextInput
+          label="resources.File.fields.encoding"
+          source="encoding"
+          allowEmpty 
+        />
+      </SimpleForm>
+    );
   }
 }
 

@@ -13,12 +13,10 @@ import {
   EditButton,
   DeleteButton,
 } from "react-admin";
-
 import { components } from 'oda-ra-ui';
 const {
   EmbeddedField,
 } = components;
-
 
 const ShowRecordView = (props, context) => {
   const { uix } = context;
@@ -29,31 +27,26 @@ const ShowRecordView = (props, context) => {
       
       <TabbedShowLayout>
         <Tab label="resources.ToDoItem.summary">
-          
           <TextField 
             label="resources.ToDoItem.fields.name" 
             source="name"
             allowEmpty
           />
-          
           <TextField 
             label="resources.ToDoItem.fields.description" 
             source="description"
             allowEmpty
           />
-          
           <BooleanField 
             label="resources.ToDoItem.fields.done" 
             source="done"
             allowEmpty
           />
-          
           <DateField 
             label="resources.ToDoItem.fields.dueToDate" 
             source="dueToDate"
             allowEmpty
           />
-          
           <BooleanField 
             label="resources.ToDoItem.fields.published" 
             source="published"
@@ -61,7 +54,6 @@ const ShowRecordView = (props, context) => {
           />
         </Tab>
         <Tab label="resources.ToDoItem.fields.user">
-          
           <EmbeddedField
             addLabel={false}
             source="userValue"
