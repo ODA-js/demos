@@ -34,9 +34,9 @@ class Form extends Component {
 
   render() {
       const { props } = this;
-      const actionType = consts.actionType;
+    const actionType = consts.actionType;
 
-      const manyRelAction = props.manyRelActions;
+    const manyRelAction = props.manyRelActions;
       const { translate } = this.context;
       return (
         <SimpleForm {...props} >

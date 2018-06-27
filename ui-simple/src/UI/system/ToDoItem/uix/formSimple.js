@@ -33,8 +33,8 @@ class Form extends Component {
 
   render() {
       const { props } = this;
-      const actionType = consts.actionType;
-      const singleRelActions = props.singleRelActions;
+    const actionType = consts.actionType;
+    const singleRelActions = props.singleRelActions;
 
 
       return (
