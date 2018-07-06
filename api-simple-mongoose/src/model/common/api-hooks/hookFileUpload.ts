@@ -24,7 +24,6 @@ const FileUpload = target => async (
       `,
       variables: { files: args.files },
     });
-    debugger;
     args =
       upload.data && upload.data.files
         ? {

@@ -25,9 +25,9 @@ const Grid = (props) => (
 
     <BooleanField sortable={true} label="resources.ToDoItem.fields.published" source="published" allowEmpty />
 
-    <ShowButton label={false} />
-    <EditButton label={false} />
-    <DeleteButton label={false} />
+    <ShowButton label="" basePath="/system/ToDoItem"/>
+    <EditButton label="" basePath="/system/ToDoItem"/>
+    <DeleteButton label="" basePath="/system/ToDoItem"/>
   </Datagrid>
 );
 

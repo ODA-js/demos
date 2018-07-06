@@ -46,17 +46,17 @@ const CommentGrid = ({ ids, data, basePath }, { translate }) => (
           <CardActions style={{ textAlign: 'right' }}>
             <EditButton
               resource="system/File"
-              basePath={basePath}
+              basePath="/system/File"
               record={data[id]}
             />
             <ShowButton
               resource="system/File"
-              basePath={basePath}
+              basePath="/system/File"
               record={data[id]}
             />
             <DeleteButton
-              resource="system/File"
-              basePath={basePath}
+              resource="system/File"            
+              basePath="/system/File"
               record={data[id]}
             />
           </CardActions>

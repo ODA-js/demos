@@ -129,7 +129,6 @@ input createFileInput {
   user: embedUserInput
 }
 
-
 input embedFileInput {
   clientMutationId: String
   id: ID
@@ -281,7 +280,7 @@ removeFromFileBelongsToUser(input: removeFromFileBelongsToUserInput):removeFromF
     this._subscription = fillDefaults(this._subscription, entitySubscription);
 
     this._viewerEntry = fillDefaults(this._viewerEntry, {
-      'viewerEntry': [`  files( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FileSortOrder], filter: FileFilter): FilesConnection
+      'viewerEntry': [`files( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FileSortOrder], filter: FileFilter): FilesConnection
   file(id: ID, path: String): File`],
     });
   }

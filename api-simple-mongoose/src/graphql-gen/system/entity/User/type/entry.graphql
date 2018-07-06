@@ -94,6 +94,10 @@ type User implements Node{
   todos(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [ToDoItemSortOrder], filter:ToDoItemComplexFilter ): UserHasManyTodosConnection  
   # # User Files  
   files(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FileSortOrder], filter:FileComplexFilter ): UserHasManyFilesConnection  
+  # # Followings  
+  followings(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [UserSortOrder], filter:UserComplexFilter ): UserBelongsToManyFollowingsConnection  
+  # # Followers  
+  followers(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [UserSortOrder], filter:UserComplexFilter ): UserBelongsToManyFollowersConnection  
 }
 
 

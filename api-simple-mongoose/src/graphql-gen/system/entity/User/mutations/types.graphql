@@ -13,8 +13,9 @@ input createUserInput {
   updatedAt: Date
   todos: [embedToDoItemInput]
   files: [embedFileInput]
+  followings: [embedUserInput]
+  followers: [embedUserInput]
 }
-
 
 input embedUserInput {
   clientMutationId: String
@@ -28,6 +29,8 @@ input embedUserInput {
   updatedAt: Date
   todos: [embedToDoItemInput]
   files: [embedFileInput]
+  followings: [embedUserInput]
+  followers: [embedUserInput]
 }
 
 
@@ -55,6 +58,12 @@ input updateUserInput {
   files: [embedFileInput]
   filesUnlink: [embedFileInput]
   filesCreate: [createFileInput]
+  followings: [embedUserInput]
+  followingsUnlink: [embedUserInput]
+  followingsCreate: [createUserInput]
+  followers: [embedUserInput]
+  followersUnlink: [embedUserInput]
+  followersCreate: [createUserInput]
 }
 
 # Payload type for User

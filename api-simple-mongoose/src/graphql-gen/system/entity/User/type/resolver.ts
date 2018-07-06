@@ -167,5 +167,233 @@ export const resolver: { [key: string]: any } = {
 
       return result;
     },
+    followings: async (
+      {_id: id}, // owner id
+      args:{
+        limit?: number;
+        skip?: number;
+        first?: number;
+        after?: string;
+        last?: number;
+        before?: string;
+        filter?: {
+          [k: string]: any
+        };
+        orderBy?: string | string[];
+      },
+      context: { connectors: RegisterConnectors },
+      info) => {
+      let result;
+      let selectionSet = traverse(info);
+
+
+      let user = await context.connectors.User.findOneById(id);
+      //BelongsToMany
+
+      if (user && user.id) {
+        const cursor = pagination(args);
+        let direction = detectCursorDirection(args)._id;
+        const _args = {
+          ..._.pick(args, ['limit', 'skip', 'first', 'after', 'last', 'before']),
+        } as {
+            limit?: number;
+            skip?: number;
+            first?: number;
+            after?: string;
+            last?: number;
+            before?: string;
+            filter?: {
+              [k: string]: any
+            };
+        };
+
+        _args.filter = {
+          following: {
+            eq: user.id,
+          }
+        }
+        let idMap = {
+          id: 'id',
+        };
+
+        const itemCheck = Filter.Process.create(args.filter || {}, idMap);
+
+        let links = await context.connectors.Follower.getList(
+           _args,
+          async (link) => {
+            let result = await context.connectors.User.findOneById(link.follower);
+            if (result) {
+              return itemCheck({
+                ...result,
+                });
+            } else {
+              return false;
+            }
+          }
+        );
+        if (links.length > 0) {
+
+          let res = await context.connectors.User.getList({
+            filter: {
+              id: { in: links.map(i => i.follower) }
+            }
+          });
+
+          if (res.length > 0) {
+            let hItems = res.reduce((hash, item) => {
+              hash[item.id] = item;
+              return hash;
+            }, {});
+
+            let edges = links.map(l => {
+              return {
+                cursor: idToCursor(l.id),
+                node: hItems[l.follower],
+              };
+            }).filter(l=>l.node);
+
+            let pageInfo = get(selectionSet, 'pageInfo') ?
+              {
+                startCursor: get(selectionSet, 'pageInfo.startCursor')
+                  ? edges[0].cursor : undefined,
+                endCursor: get(selectionSet, 'pageInfo.endCursor')
+                  ? edges[edges.length - 1].cursor : undefined,
+                hasPreviousPage: get(selectionSet, 'pageInfo.hasPreviousPage') ? (direction === consts.DIRECTION.BACKWARD ? edges.length === cursor.limit : false) : undefined,
+                hasNextPage: get(selectionSet, 'pageInfo.hasNextPage') ? (direction === consts.DIRECTION.FORWARD ? edges.length === cursor.limit : false) : undefined,
+                count: get(selectionSet, 'pageInfo.count') ? await context.connectors.User.getCount({
+                  filter: {
+                    id: { in: links.map(i => i.follower) }
+                  }
+                }) : 0,
+              } : null;
+
+            result = {
+              edges,
+              pageInfo,
+            };
+          } else {
+            result = emptyConnection();
+          }
+        } else {
+          result = emptyConnection();
+        }
+      }
+
+      return result;
+    },
+    followers: async (
+      {_id: id}, // owner id
+      args:{
+        limit?: number;
+        skip?: number;
+        first?: number;
+        after?: string;
+        last?: number;
+        before?: string;
+        filter?: {
+          [k: string]: any
+        };
+        orderBy?: string | string[];
+      },
+      context: { connectors: RegisterConnectors },
+      info) => {
+      let result;
+      let selectionSet = traverse(info);
+
+
+      let user = await context.connectors.User.findOneById(id);
+      //BelongsToMany
+
+      if (user && user.id) {
+        const cursor = pagination(args);
+        let direction = detectCursorDirection(args)._id;
+        const _args = {
+          ..._.pick(args, ['limit', 'skip', 'first', 'after', 'last', 'before']),
+        } as {
+            limit?: number;
+            skip?: number;
+            first?: number;
+            after?: string;
+            last?: number;
+            before?: string;
+            filter?: {
+              [k: string]: any
+            };
+        };
+
+        _args.filter = {
+          follower: {
+            eq: user.id,
+          }
+        }
+        let idMap = {
+          id: 'id',
+        };
+
+        const itemCheck = Filter.Process.create(args.filter || {}, idMap);
+
+        let links = await context.connectors.Follower.getList(
+           _args,
+          async (link) => {
+            let result = await context.connectors.User.findOneById(link.following);
+            if (result) {
+              return itemCheck({
+                ...result,
+                });
+            } else {
+              return false;
+            }
+          }
+        );
+        if (links.length > 0) {
+
+          let res = await context.connectors.User.getList({
+            filter: {
+              id: { in: links.map(i => i.following) }
+            }
+          });
+
+          if (res.length > 0) {
+            let hItems = res.reduce((hash, item) => {
+              hash[item.id] = item;
+              return hash;
+            }, {});
+
+            let edges = links.map(l => {
+              return {
+                cursor: idToCursor(l.id),
+                node: hItems[l.following],
+              };
+            }).filter(l=>l.node);
+
+            let pageInfo = get(selectionSet, 'pageInfo') ?
+              {
+                startCursor: get(selectionSet, 'pageInfo.startCursor')
+                  ? edges[0].cursor : undefined,
+                endCursor: get(selectionSet, 'pageInfo.endCursor')
+                  ? edges[edges.length - 1].cursor : undefined,
+                hasPreviousPage: get(selectionSet, 'pageInfo.hasPreviousPage') ? (direction === consts.DIRECTION.BACKWARD ? edges.length === cursor.limit : false) : undefined,
+                hasNextPage: get(selectionSet, 'pageInfo.hasNextPage') ? (direction === consts.DIRECTION.FORWARD ? edges.length === cursor.limit : false) : undefined,
+                count: get(selectionSet, 'pageInfo.count') ? await context.connectors.User.getCount({
+                  filter: {
+                    id: { in: links.map(i => i.following) }
+                  }
+                }) : 0,
+              } : null;
+
+            result = {
+              edges,
+              pageInfo,
+            };
+          } else {
+            result = emptyConnection();
+          }
+        } else {
+          result = emptyConnection();
+        }
+      }
+
+      return result;
+    },
   },
 };

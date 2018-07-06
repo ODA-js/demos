@@ -4,10 +4,10 @@ import {
   
   SimpleForm,
   
-  TextInput,
   ReferenceInput,
-  required,
   AutocompleteInput,
+  TextInput,
+  required,
 } from "react-admin";
 
 import { connect } from 'react-redux';
@@ -47,22 +47,22 @@ class Form extends Component {
         <TextInput
           label="resources.File.fields.path"
           source="path"
-          validate={required()} 
+            validate={required()} 
         />
         <TextInput
           label="resources.File.fields.filename"
           source="filename"
-          allowEmpty 
+            allowEmpty 
         />
         <TextInput
           label="resources.File.fields.mimetype"
           source="mimetype"
-          allowEmpty 
+            allowEmpty 
         />
         <TextInput
           label="resources.File.fields.encoding"
           source="encoding"
-          allowEmpty 
+            allowEmpty 
         />
       </SimpleForm>
     );
@@ -72,6 +72,8 @@ class Form extends Component {
 
 Form.contextTypes = {
   translate: PropTypes.func.isRequired,
+  initForm: PropTypes.func.isRequired,
+  finalizeForm: PropTypes.func.isRequired,
 }
 
 export default compose(

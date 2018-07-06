@@ -1,0 +1,2 @@
+followers( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FollowerSortOrder], filter: FollowerFilter): FollowersConnection
+  follower(id: ID): Follower

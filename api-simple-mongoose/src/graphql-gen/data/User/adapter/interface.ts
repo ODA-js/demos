@@ -29,5 +29,23 @@ export interface UserConnector extends Connector<PartialUser>{
       file?: string,
   }): Promise<void>;
 
+  addToFollowings(args: {
+      user?: string,
+      userFollowings?: string,
+  }): Promise<void>;
+  removeFromFollowings(args: {
+      user?: string,
+      userFollowings?: string,
+  }): Promise<void>;
+
+  addToFollowers(args: {
+      user?: string,
+      userFollowers?: string,
+  }): Promise<void>;
+  removeFromFollowers(args: {
+      user?: string,
+      userFollowers?: string,
+  }): Promise<void>;
+
 }
 

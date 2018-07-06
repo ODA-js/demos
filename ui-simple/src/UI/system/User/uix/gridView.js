@@ -22,9 +22,9 @@ const Grid = (props) => (
 
     <BooleanField sortable={true} label="resources.User.fields.enabled" source="enabled" allowEmpty />
 
-    <ShowButton label={false} />
-    <EditButton label={false} />
-    <DeleteButton label={false} />
+    <ShowButton label="" basePath="/system/User"/>
+    <EditButton label="" basePath="/system/User"/>
+    <DeleteButton label="" basePath="/system/User"/>
   </Datagrid>
 );
 

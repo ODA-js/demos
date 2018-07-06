@@ -189,4 +189,182 @@ export const mutation = {
     };
   }),
 
+  addToUserBelongsToManyFollowings: mutateAndGetPayload(
+    async (
+      args: {
+        user?: string,
+        userFollowings?: string,
+      },
+      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
+      info
+    ) => {
+      logger.trace('addToUserBelongsToManyFollowings');
+      let { id: user } = fromGlobalId(args.user);
+      let { id: userFollowings } = fromGlobalId(args.userFollowings);
+      let payload = {
+        user,
+        userFollowings,
+      };
+
+      await context.connectors.User.addToFollowings(payload);
+
+      let source = await context.connectors.User.findOneById(user);
+
+      if (context.pubsub) {
+        context.pubsub.publish('User', {
+          User: {
+            mutation: 'LINK',
+            node: source,
+            previous: null,
+            updatedFields: [],
+            payload: {
+              args: {
+                user: args.user,
+                userFollowings: args.userFollowings,
+              },
+              relation: 'followings'
+            }
+          }
+        });
+      
+      }
+      return {
+        user: source,
+      };
+    }),
+
+  removeFromUserBelongsToManyFollowings: mutateAndGetPayload(
+    async (
+      args: {
+        user?: string,
+        userFollowings?: string,
+      },
+      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
+      info
+    ) => {
+      logger.trace('removeFromUserBelongsToManyFollowings');
+      let { id: user } = fromGlobalId(args.user);
+      let { id: userFollowings } = fromGlobalId(args.userFollowings);
+      let payload = {
+        user,
+        userFollowings,
+      };
+      await context.connectors.User.removeFromFollowings(payload);
+
+      let source = await context.connectors.User.findOneById(user);
+
+      if (context.pubsub) {
+        context.pubsub.publish('User', {
+          User: {
+            mutation: 'UNLINK',
+            node: source,
+            previous: null,
+            updatedFields: [],
+            payload: {
+              args: {
+                user: args.user,
+                userFollowings: args.userFollowings,
+              },
+              relation: 'followings'
+            }
+          }
+        });
+
+      
+    }
+
+    return {
+      user: source,
+    };
+  }),
+
+  addToUserBelongsToManyFollowers: mutateAndGetPayload(
+    async (
+      args: {
+        user?: string,
+        userFollowers?: string,
+      },
+      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
+      info
+    ) => {
+      logger.trace('addToUserBelongsToManyFollowers');
+      let { id: user } = fromGlobalId(args.user);
+      let { id: userFollowers } = fromGlobalId(args.userFollowers);
+      let payload = {
+        user,
+        userFollowers,
+      };
+
+      await context.connectors.User.addToFollowers(payload);
+
+      let source = await context.connectors.User.findOneById(user);
+
+      if (context.pubsub) {
+        context.pubsub.publish('User', {
+          User: {
+            mutation: 'LINK',
+            node: source,
+            previous: null,
+            updatedFields: [],
+            payload: {
+              args: {
+                user: args.user,
+                userFollowers: args.userFollowers,
+              },
+              relation: 'followers'
+            }
+          }
+        });
+      
+      }
+      return {
+        user: source,
+      };
+    }),
+
+  removeFromUserBelongsToManyFollowers: mutateAndGetPayload(
+    async (
+      args: {
+        user?: string,
+        userFollowers?: string,
+      },
+      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
+      info
+    ) => {
+      logger.trace('removeFromUserBelongsToManyFollowers');
+      let { id: user } = fromGlobalId(args.user);
+      let { id: userFollowers } = fromGlobalId(args.userFollowers);
+      let payload = {
+        user,
+        userFollowers,
+      };
+      await context.connectors.User.removeFromFollowers(payload);
+
+      let source = await context.connectors.User.findOneById(user);
+
+      if (context.pubsub) {
+        context.pubsub.publish('User', {
+          User: {
+            mutation: 'UNLINK',
+            node: source,
+            previous: null,
+            updatedFields: [],
+            payload: {
+              args: {
+                user: args.user,
+                userFollowers: args.userFollowers,
+              },
+              relation: 'followers'
+            }
+          }
+        });
+
+      
+    }
+
+    return {
+      user: source,
+    };
+  }),
+
 };

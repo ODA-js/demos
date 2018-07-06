@@ -1,0 +1,52 @@
+# Input types for basic CUD
+
+# input type for Follower
+input createFollowerInput {
+  clientMutationId: String
+  id: ID
+  follower: String
+  following: String
+}
+
+input embedFollowerInput {
+  clientMutationId: String
+  id: ID
+  follower: String
+  following: String
+}
+
+# Payload type for Follower
+type createFollowerPayload {
+  clientMutationId: String
+  viewer: Viewer
+  follower: FollowersEdge
+}
+
+# input type for Follower
+input updateFollowerInput {
+  clientMutationId: String
+  id: ID
+  follower: String
+  following: String
+}
+
+# Payload type for Follower
+type updateFollowerPayload {
+  clientMutationId: String
+  viewer: Viewer
+  follower: Follower
+}
+
+# input type for Follower
+input deleteFollowerInput {
+  clientMutationId: String
+  id: ID
+}
+
+# Payload type for Follower
+type deleteFollowerPayload {
+  clientMutationId: String
+  viewer: Viewer
+  deletedItemId: ID
+  follower: Follower
+}

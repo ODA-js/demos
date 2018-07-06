@@ -12,21 +12,28 @@ export const fragments = {
     enabled
     id
 
-    todosValues: todos @_(get:"edges") {
-      edges @_( each: {assign:"node"} ) {
-        node  {
+    todosIds: todos @_(get:"edges") {
+      edges @_( map:"node" ) {
+        node @_(get:"id")  {
           id
-          name
-          description
-          done
-          dueToDate
-          published
-          updatedBy
-          updatedAt
         }
       }
     }
     filesIds: files @_(get:"edges") {
+      edges @_( map:"node" ) {
+        node @_(get:"id")  {
+          id
+        }
+      }
+    }
+    followingsIds: followings @_(get:"edges") {
+      edges @_( map:"node" ) {
+        node @_(get:"id")  {
+          id
+        }
+      }
+    }
+    followersIds: followers @_(get:"edges") {
       edges @_( map:"node" ) {
         node @_(get:"id")  {
           id
@@ -47,17 +54,24 @@ export const fragments = {
       edges {
         node {
           id
-          name
-          description
-          done
-          dueToDate
-          published
-          updatedBy
-          updatedAt
         }
       }
     }
     files {
+      edges {
+        node {
+          id
+        }
+      }
+    }
+    followings {
+      edges {
+        node {
+          id
+        }
+      }
+    }
+    followers {
       edges {
         node {
           id
@@ -228,6 +242,40 @@ export const queries = {
     }
     ${fullFragment}
   `,
+      followings: gql`query Followings_Id($id: ID, $skip: Int, $limit: Int, $orderBy: [UserSortOrder], $filter: UserComplexFilter) {
+      opposite: user(id:$id) {
+        id
+        items: followers(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
+          pageInfo {
+            count
+          }
+          edges {
+            node {
+              ...UserFull
+            }
+          }
+        }
+      }
+    }
+    ${fullFragment}
+  `,
+      followers: gql`query Followers_Id($id: ID, $skip: Int, $limit: Int, $orderBy: [UserSortOrder], $filter: UserComplexFilter) {
+      opposite: user(id:$id) {
+        id
+        items: followings(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
+          pageInfo {
+            count
+          }
+          edges {
+            node {
+              ...UserFull
+            }
+          }
+        }
+      }
+    }
+    ${fullFragment}
+  `,
     }),
   getManyReferenceResultOpposite: ({ resultFragment }) => gql`{
     items: opposite @_(get:"items") {
@@ -262,5 +310,7 @@ export const queries = {
   getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite, getManyReferenceResultRegular }) => ({
     todos: getManyReferenceResultRegular({ resultFragment }),
     files: getManyReferenceResultRegular({ resultFragment }),
+    followings: getManyReferenceResultOpposite({ resultFragment }),
+    followers: getManyReferenceResultOpposite({ resultFragment }),
   }),
 }

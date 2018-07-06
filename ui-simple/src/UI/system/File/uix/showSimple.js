@@ -5,8 +5,8 @@ import {
   SimpleShowLayout,
   
   Show,
-  TextField,
   ReferenceField,
+  TextField,
 } from "react-admin";
 
 const ShowRecordView = (props, context) => {
@@ -19,12 +19,10 @@ const ShowRecordView = (props, context) => {
           addLabel={false} 
           source="userId" 
           reference="system/User"
-          allowEmpty
           linkType="show"
         >
           <TextField 
             source="userName"
-            allowEmpty 
           />
         </ReferenceField>
         <TextField 
@@ -34,17 +32,14 @@ const ShowRecordView = (props, context) => {
         <TextField 
           label="resources.File.fields.filename" 
           source="filename"
-          allowEmpty
         />
         <TextField 
           label="resources.File.fields.mimetype" 
           source="mimetype"
-          allowEmpty
         />
         <TextField 
           label="resources.File.fields.encoding" 
           source="encoding"
-          allowEmpty
         />
       </SimpleShowLayout>
     </Show>

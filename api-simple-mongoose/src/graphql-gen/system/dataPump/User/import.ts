@@ -46,7 +46,9 @@ export default {
         filter:`
           id
           todos
-          files`,
+          files
+          followings
+          followers`,
         uploader: {
           findQuery: {
             id: 'User/findById.graphql',

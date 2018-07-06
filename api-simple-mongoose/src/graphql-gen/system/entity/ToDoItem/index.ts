@@ -156,7 +156,6 @@ input createToDoItemInput {
   user: embedUserInput
 }
 
-
 input embedToDoItemInput {
   clientMutationId: String
   id: ID
@@ -316,7 +315,7 @@ removeFromToDoItemBelongsToUser(input: removeFromToDoItemBelongsToUserInput):rem
     this._subscription = fillDefaults(this._subscription, entitySubscription);
 
     this._viewerEntry = fillDefaults(this._viewerEntry, {
-      'viewerEntry': [`  toDoItems( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [ToDoItemSortOrder], filter: ToDoItemFilter): ToDoItemsConnection
+      'viewerEntry': [`toDoItems( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [ToDoItemSortOrder], filter: ToDoItemFilter): ToDoItemsConnection
   toDoItem(id: ID): ToDoItem`],
     });
   }

@@ -11,7 +11,6 @@ input createFileInput {
   user: embedUserInput
 }
 
-
 input embedFileInput {
   clientMutationId: String
   id: ID

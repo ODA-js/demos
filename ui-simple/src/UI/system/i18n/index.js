@@ -3,6 +3,7 @@ import merge from 'lodash/merge';
 import UserTranslate from './User';
 import ToDoItemTranslate from './ToDoItem';
 import FileTranslate from './File';
+import FollowerTranslate from './Follower';
 
 const messages = {
   uix: {
@@ -36,4 +37,5 @@ export default
     UserTranslate,
     ToDoItemTranslate,
     FileTranslate,
+    FollowerTranslate,
   )

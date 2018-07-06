@@ -1,0 +1,21 @@
+
+# fragments for single unique keys
+fragment EmbedFollowerWithId on Follower {
+  id
+}
+
+
+# fragments on entity
+fragment ViewFollower on Follower {
+  id
+  follower
+  following
+}
+
+fragment ViewFollowerFull on Follower {
+  id
+  follower
+  following
+}
+
+

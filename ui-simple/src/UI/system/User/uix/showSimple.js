@@ -7,7 +7,6 @@ import {
   Show,
   TextField,
   BooleanField,
-  ArrayField,
   ReferenceManyField,
 } from "react-admin";
 
@@ -16,6 +15,7 @@ const ShowRecordView = (props, context) => {
   const { Title } = uix['system/User'];
   const ToDoItem = uix['system/ToDoItem'];
   const File = uix['system/File'];
+  const User = uix['system/User'];
 
   return (
     <Show title={<Title />} {...props}>
@@ -27,29 +27,49 @@ const ShowRecordView = (props, context) => {
         <BooleanField 
           label="resources.User.fields.isAdmin" 
           source="isAdmin"
-          allowEmpty
         />
         <BooleanField 
           label="resources.User.fields.isSystem" 
           source="isSystem"
-          allowEmpty
         />
         <BooleanField 
           label="resources.User.fields.enabled" 
           source="enabled"
-          allowEmpty
         />
-        <ArrayField addLabel={false} source="todosValues" >
+        <ReferenceManyField 
+          addLabel={false}
+          reference="system/ToDoItem"
+          target="user"
+          source="userName"
+        >
           <ToDoItem.Grid />
-        </ArrayField>
+        </ReferenceManyField>
+      
         <ReferenceManyField 
           addLabel={false}
           reference="system/File"
           target="user"
           source="id"
-          allowEmpty
         >
           <File.Grid />
+        </ReferenceManyField>
+      
+        <ReferenceManyField 
+          addLabel={false}
+          reference="system/User"
+          target="followers"
+          source="id"
+        >
+          <User.Grid />
+        </ReferenceManyField>
+      
+        <ReferenceManyField 
+          addLabel={false}
+          reference="system/User"
+          target="followings"
+          source="id"
+        >
+          <User.Grid />
         </ReferenceManyField>
       
       </SimpleShowLayout>

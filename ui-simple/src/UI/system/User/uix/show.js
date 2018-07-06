@@ -8,7 +8,6 @@ import {
   Show,
   TextField,
   BooleanField,
-  ArrayField,
   ReferenceManyField,
 } from "react-admin";
 
@@ -17,6 +16,7 @@ const ShowRecordView = (props, context) => {
   const { Title } = uix['system/User'];
   const ToDoItem = uix['system/ToDoItem'];
   const File = uix['system/File'];
+  const User = uix['system/User'];
 
   return (
     <Show title={<Title />} {...props}>
@@ -24,30 +24,32 @@ const ShowRecordView = (props, context) => {
       
       <TabbedShowLayout>
         <Tab label="resources.User.summary">
-          <TextField 
-            label="resources.User.fields.userName" 
-            source="userName"
-          />
-          <BooleanField 
-            label="resources.User.fields.isAdmin" 
-            source="isAdmin"
-            allowEmpty
-          />
-          <BooleanField 
-            label="resources.User.fields.isSystem" 
-            source="isSystem"
-            allowEmpty
-          />
-          <BooleanField 
-            label="resources.User.fields.enabled" 
-            source="enabled"
-            allowEmpty
-          />
+        <TextField 
+          label="resources.User.fields.userName" 
+          source="userName"
+        />
+        <BooleanField 
+          label="resources.User.fields.isAdmin" 
+          source="isAdmin"
+        />
+        <BooleanField 
+          label="resources.User.fields.isSystem" 
+          source="isSystem"
+        />
+        <BooleanField 
+          label="resources.User.fields.enabled" 
+          source="enabled"
+        />
         </Tab>
         <Tab label="resources.User.fields.todos">
-          <ArrayField addLabel={false} source="todosValues" >
+          <ReferenceManyField 
+            addLabel={false}
+            reference="system/ToDoItem"
+            target="user"
+            source="userName"
+          >
             <ToDoItem.Grid />
-          </ArrayField>
+          </ReferenceManyField>
         </Tab>
         <Tab label="resources.User.fields.files">
           <ReferenceManyField 
@@ -55,9 +57,28 @@ const ShowRecordView = (props, context) => {
             reference="system/File"
             target="user"
             source="id"
-            allowEmpty
           >
             <File.Grid />
+          </ReferenceManyField>
+        </Tab>
+        <Tab label="resources.User.fields.followings">
+          <ReferenceManyField 
+            addLabel={false}
+            reference="system/User"
+            target="followers"
+            source="id"
+          >
+            <User.Grid />
+          </ReferenceManyField>
+        </Tab>
+        <Tab label="resources.User.fields.followers">
+          <ReferenceManyField 
+            addLabel={false}
+            reference="system/User"
+            target="followings"
+            source="id"
+          >
+            <User.Grid />
           </ReferenceManyField>
         </Tab>
       </TabbedShowLayout>

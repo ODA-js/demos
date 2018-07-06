@@ -8,6 +8,9 @@ import { ToDoItemConnector } from './ToDoItem/adapter/interface';
 import File from './File/adapter/connector';
 import { FileConnector } from './File/adapter/interface';
 
+import Follower from './Follower/adapter/connector';
+import { FollowerConnector } from './Follower/adapter/interface';
+
 
 import { acl, ACLCheck, SecurityContext } from 'oda-api-graphql';
 
@@ -45,10 +48,22 @@ export default class RegisterConnectors {
     return this._File;
   }
 
+  public get Follower(): FollowerConnector {
+    return this.InitFollower();
+  }
+
+  public InitFollower(): FollowerConnector {
+    if (!this._Follower) {
+      this._Follower = new Follower({ mongoose: this.mongoose, connectors: this, securityContext: this.securityContext });
+    }
+    return this._Follower;
+  }
+
 
   protected _User: UserConnector;
   protected _ToDoItem: ToDoItemConnector;
   protected _File: FileConnector;
+  protected _Follower: FollowerConnector;
 
   public mongoose;
   public sequelize;

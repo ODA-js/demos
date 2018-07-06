@@ -6,8 +6,8 @@ import {
   Tab,
   
   Show,
-  TextField,
   ReferenceField,
+  TextField,
 } from "react-admin";
 
 const ShowRecordView = (props, context) => {
@@ -19,39 +19,32 @@ const ShowRecordView = (props, context) => {
       
       <TabbedShowLayout>
         <Tab label="resources.File.summary">
+        <ReferenceField 
+          addLabel={false} 
+          source="userId" 
+          reference="system/User"
+          linkType="show"
+        >
           <TextField 
-            label="resources.File.fields.path" 
-            source="path"
+            source="userName"
           />
-          <TextField 
-            label="resources.File.fields.filename" 
-            source="filename"
-            allowEmpty
-          />
-          <TextField 
-            label="resources.File.fields.mimetype" 
-            source="mimetype"
-            allowEmpty
-          />
-          <TextField 
-            label="resources.File.fields.encoding" 
-            source="encoding"
-            allowEmpty
-          />
-        </Tab>
-        <Tab label="resources.File.fields.user">
-          <ReferenceField 
-            addLabel={false} 
-            source="userId" 
-            reference="system/User"
-            allowEmpty
-            linkType="show"
-          >
-            <TextField 
-              source="userName"
-              allowEmpty 
-            />
-          </ReferenceField>
+        </ReferenceField>
+        <TextField 
+          label="resources.File.fields.path" 
+          source="path"
+        />
+        <TextField 
+          label="resources.File.fields.filename" 
+          source="filename"
+        />
+        <TextField 
+          label="resources.File.fields.mimetype" 
+          source="mimetype"
+        />
+        <TextField 
+          label="resources.File.fields.encoding" 
+          source="encoding"
+        />
         </Tab>
       </TabbedShowLayout>
     </Show>

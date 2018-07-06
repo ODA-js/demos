@@ -7,6 +7,8 @@
   enabled?: boolean;
   todos?: string;
   files?: string;
+  followings?: string;
+  followers?: string;
   updatedBy?: string;
   updatedAt?: Date;
 }

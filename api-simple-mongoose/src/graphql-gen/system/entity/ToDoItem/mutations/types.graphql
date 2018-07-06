@@ -14,7 +14,6 @@ input createToDoItemInput {
   user: embedUserInput
 }
 
-
 input embedToDoItemInput {
   clientMutationId: String
   id: ID

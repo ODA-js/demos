@@ -1,0 +1,6 @@
+
+query findFollowerById( $id: ID) {
+  follower(id:$id) {
+    ...ViewFollowerFull
+  }
+}

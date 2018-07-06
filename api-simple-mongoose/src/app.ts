@@ -67,7 +67,7 @@ function prepareSchema() {
   let current = new SystemSchema({});
   current.build();
   return makeExecutableSchema({
-    typeDefs: current.typeDefs.toString(),
+    typeDefs: current.typeDefs,
     resolvers: current.resolvers,
     resolverValidationOptions: {
       requireResolversForNonScalar: false,
@@ -81,7 +81,7 @@ export class SampleApiServer extends Server {
 
     let schema = prepareSchema();
 
-    this.initLogger();
+    //  this.initLogger();
 
     // Проверить как работает...
     this.app.set('views', path.join(__dirname, '..', 'views'));
@@ -104,18 +104,21 @@ export class SampleApiServer extends Server {
     });
 
     // Bind it to port and start listening
-    websocketServer.listen(WS_PORT, () => console.log(
-      `Websocket Server is now running on http://${WS_HOST}:${WS_PORT}`,
-    ));
+    websocketServer.listen(WS_PORT, () =>
+      console.log(
+        `Websocket Server is now running on http://${WS_HOST}:${WS_PORT}`,
+      ),
+    );
 
-    const subscriptionsServer = new SubscriptionServer({
-      execute,
-      subscribe,
-      schema,
-      onConnect: async (connectionParams, webSocket) => {
-        return await createContext({ schema });
+    const subscriptionsServer = new SubscriptionServer(
+      {
+        execute,
+        subscribe,
+        schema,
+        onConnect: async (connectionParams, webSocket) => {
+          return await createContext({ schema });
+        },
       },
-    },
       {
         server: websocketServer,
       },
@@ -128,16 +131,24 @@ export class SampleApiServer extends Server {
       };
     });
 
-    this.app.use('/graphiql', graphiqlExpress({
-      endpointURL: '/graphql',
-      subscriptionsEndpoint: `ws://${WS_HOST}:${WS_PORT}/subscriptions`,
-    }));
+    this.app.use(
+      '/graphiql',
+      graphiqlExpress({
+        endpointURL: '/graphql',
+        subscriptionsEndpoint: `ws://${WS_HOST}:${WS_PORT}/subscriptions`,
+      }),
+    );
 
-    this.app.use('/graphql', cors(), bodyParser.json(), apolloUploadExpress(/* Options */), buildSchema);
+    this.app.use(
+      '/graphql',
+      cors(),
+      bodyParser.json(),
+      apolloUploadExpress(/* Options */),
+      buildSchema,
+    );
 
     this.errorHandling();
 
     this.initStatics();
   }
 }
-

@@ -133,6 +133,10 @@ type User implements Node{
   todos(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [ToDoItemSortOrder], filter:ToDoItemComplexFilter ): UserHasManyTodosConnection  
   # # User Files  
   files(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FileSortOrder], filter:FileComplexFilter ): UserHasManyFilesConnection  
+  # # Followings  
+  followings(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [UserSortOrder], filter:UserComplexFilter ): UserBelongsToManyFollowingsConnection  
+  # # Followers  
+  followers(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [UserSortOrder], filter:UserComplexFilter ): UserBelongsToManyFollowersConnection  
 }
 
 
@@ -152,8 +156,9 @@ input createUserInput {
   updatedAt: Date
   todos: [embedToDoItemInput]
   files: [embedFileInput]
+  followings: [embedUserInput]
+  followers: [embedUserInput]
 }
-
 
 input embedUserInput {
   clientMutationId: String
@@ -167,6 +172,8 @@ input embedUserInput {
   updatedAt: Date
   todos: [embedToDoItemInput]
   files: [embedFileInput]
+  followings: [embedUserInput]
+  followers: [embedUserInput]
 }
 
 
@@ -194,6 +201,12 @@ input updateUserInput {
   files: [embedFileInput]
   filesUnlink: [embedFileInput]
   filesCreate: [createFileInput]
+  followings: [embedUserInput]
+  followingsUnlink: [embedUserInput]
+  followingsCreate: [createUserInput]
+  followers: [embedUserInput]
+  followersUnlink: [embedUserInput]
+  followersCreate: [createUserInput]
 }
 
 # Payload type for User
@@ -262,7 +275,27 @@ type UserHasManyFilesSubscriptionPayload {
   relation: String
 }
 
-union UserSubscriptionPayload = UpdateUserSubscriptionPayload | UserHasManyTodosSubscriptionPayload | UserHasManyFilesSubscriptionPayload`],
+type UserBelongsToManyFollowingsArgsSubscriptionPayload {
+  user:ID!
+  userFollowings:ID!
+}
+
+type UserBelongsToManyFollowingsSubscriptionPayload {
+  args:UserBelongsToManyFollowingsArgsSubscriptionPayload
+  relation: String
+}
+
+type UserBelongsToManyFollowersArgsSubscriptionPayload {
+  user:ID!
+  userFollowers:ID!
+}
+
+type UserBelongsToManyFollowersSubscriptionPayload {
+  args:UserBelongsToManyFollowersArgsSubscriptionPayload
+  relation: String
+}
+
+union UserSubscriptionPayload = UpdateUserSubscriptionPayload | UserHasManyTodosSubscriptionPayload | UserHasManyFilesSubscriptionPayload | UserBelongsToManyFollowingsSubscriptionPayload | UserBelongsToManyFollowersSubscriptionPayload`],
       'connectionsTypes': [`type UsersConnection {
   pageInfo: PageInfo!
   edges: [UsersEdge]
@@ -298,6 +331,32 @@ type UserHasManyFilesConnection {
 
 type UserHasManyFilesEdge {
   node: File
+  cursor: String!
+  # put here your additiona edge fields
+}
+
+
+type UserBelongsToManyFollowingsConnection {
+  pageInfo: PageInfo!
+  edges: [UserBelongsToManyFollowingsEdge]
+  # put here your additional connection fields
+}
+
+type UserBelongsToManyFollowingsEdge {
+  node: User
+  cursor: String!
+  # put here your additiona edge fields
+}
+
+
+type UserBelongsToManyFollowersConnection {
+  pageInfo: PageInfo!
+  edges: [UserBelongsToManyFollowersEdge]
+  # put here your additional connection fields
+}
+
+type UserBelongsToManyFollowersEdge {
+  node: User
   cursor: String!
   # put here your additiona edge fields
 }
@@ -353,6 +412,56 @@ type removeFromUserHasManyFilesPayload {
   viewer: Viewer
   user: User
  }
+
+input addToUserBelongsToManyFollowingsInput {
+  clientMutationId: String
+  user:ID!
+  userFollowings:ID!
+  #additional Edge fields
+}
+
+type addToUserBelongsToManyFollowingsPayload {
+  clientMutationId: String
+  viewer: Viewer
+  user: User
+ }
+
+input removeFromUserBelongsToManyFollowingsInput {
+  clientMutationId: String
+  userFollowings:ID!
+  user:ID!
+ }
+
+type removeFromUserBelongsToManyFollowingsPayload {
+  clientMutationId: String
+  viewer: Viewer
+  user: User
+ }
+
+input addToUserBelongsToManyFollowersInput {
+  clientMutationId: String
+  user:ID!
+  userFollowers:ID!
+  #additional Edge fields
+}
+
+type addToUserBelongsToManyFollowersPayload {
+  clientMutationId: String
+  viewer: Viewer
+  user: User
+ }
+
+input removeFromUserBelongsToManyFollowersInput {
+  clientMutationId: String
+  userFollowers:ID!
+  user:ID!
+ }
+
+type removeFromUserBelongsToManyFollowersPayload {
+  clientMutationId: String
+  viewer: Viewer
+  user: User
+ }
 `],
     });
 
@@ -364,6 +473,10 @@ deleteUser(input: deleteUserInput!): deleteUserPayload`],
 removeFromUserHasManyTodos(input: removeFromUserHasManyTodosInput):removeFromUserHasManyTodosPayload
 addToUserHasManyFiles(input: addToUserHasManyFilesInput):addToUserHasManyFilesPayload
 removeFromUserHasManyFiles(input: removeFromUserHasManyFilesInput):removeFromUserHasManyFilesPayload
+addToUserBelongsToManyFollowings(input: addToUserBelongsToManyFollowingsInput):addToUserBelongsToManyFollowingsPayload
+removeFromUserBelongsToManyFollowings(input: removeFromUserBelongsToManyFollowingsInput):removeFromUserBelongsToManyFollowingsPayload
+addToUserBelongsToManyFollowers(input: addToUserBelongsToManyFollowersInput):addToUserBelongsToManyFollowersPayload
+removeFromUserBelongsToManyFollowers(input: removeFromUserBelongsToManyFollowersInput):removeFromUserBelongsToManyFollowersPayload
 `],
     });
 
@@ -382,7 +495,7 @@ removeFromUserHasManyFiles(input: removeFromUserHasManyFilesInput):removeFromUse
     this._subscription = fillDefaults(this._subscription, entitySubscription);
 
     this._viewerEntry = fillDefaults(this._viewerEntry, {
-      'viewerEntry': [`  users( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [UserSortOrder], filter: UserFilter): UsersConnection
+      'viewerEntry': [`users( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [UserSortOrder], filter: UserFilter): UsersConnection
   user(id: ID, userName: String): User`],
     });
   }

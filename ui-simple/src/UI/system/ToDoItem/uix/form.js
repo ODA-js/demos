@@ -10,8 +10,8 @@ import {
   BooleanInput,
   ReferenceInput,
   SelectInput,
-  required,
   AutocompleteInput,
+  required,
 } from "react-admin";
 
 import { connect } from 'react-redux';
@@ -44,37 +44,37 @@ class Form extends Component {
             <TextInput
               label="resources.ToDoItem.fields.name"
               source="name"
-              allowEmpty 
+                allowEmpty 
             />
             <TextInput
               label="resources.ToDoItem.fields.updatedBy"
               source="updatedBy"
-              allowEmpty 
+                allowEmpty 
             />
             <TextInput
               label="resources.ToDoItem.fields.description"
               source="description"
-              allowEmpty 
+                allowEmpty 
             />
             <DateInput
               label="resources.ToDoItem.fields.updatedAt"
               source="updatedAt"
-              allowEmpty 
+                allowEmpty 
             />
             <BooleanInput
               label="resources.ToDoItem.fields.done"
               source="done"
-              allowEmpty 
+                allowEmpty 
             />
             <DateInput
               label="resources.ToDoItem.fields.dueToDate"
               source="dueToDate"
-              allowEmpty 
+                allowEmpty 
             />
             <BooleanInput
               label="resources.ToDoItem.fields.published"
               source="published"
-              allowEmpty 
+                allowEmpty 
             />
           </FormTab>
           <FormTab label="resources.ToDoItem.fields.user">
@@ -136,6 +136,8 @@ const selector = formValueSelector(formName);
 
 Form.contextTypes = {
   translate: PropTypes.func.isRequired,
+  initForm: PropTypes.func.isRequired,
+  finalizeForm: PropTypes.func.isRequired,
 }
 
 export default compose(

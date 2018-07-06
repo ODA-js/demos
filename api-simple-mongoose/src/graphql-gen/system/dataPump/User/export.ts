@@ -13,6 +13,12 @@ export default {
             files : e.node.files ? e.node.files.edges.map(s => ({
               ...s.node,
             })) : [],
+            followings : e.node.followings ? e.node.followings.edges.map(s => ({
+              ...s.node,
+            })) : [],
+            followers : e.node.followers ? e.node.followers.edges.map(s => ({
+              ...s.node,
+            })) : [],
           })) : [],
         }),*/
       }

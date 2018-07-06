@@ -7,7 +7,7 @@ function prepareSchema() {
   let current = new SystemSchema({});
   current.build();
   return makeExecutableSchema({
-    typeDefs: current.typeDefs.toString(),
+    typeDefs: current.typeDefs,
     resolvers: current.resolvers,
     resolverValidationOptions: {
       requireResolversForNonScalar: false,
@@ -16,16 +16,13 @@ function prepareSchema() {
 }
 
 const schema = prepareSchema();
-debugger;
 for (let ast in storedQ) {
   if (/fragments.graphql$/.test(ast)) {
     continue;
   }
   let errors = validate(schema, storedQ[ast]);
   if (errors.length > 0) {
-    debugger;
     console.log(`->${ast}`);
-    errors.map(e => e.message)
-      .forEach(console.log);
+    errors.map(e => e.message).forEach(console.log);
   }
 }

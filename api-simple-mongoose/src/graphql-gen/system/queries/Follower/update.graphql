@@ -1,0 +1,10 @@
+
+# Update Follower
+mutation updateFollower($follower: updateFollowerInput!){
+  updateFollower(input:$follower){
+    follower {
+      id
+    }
+  }
+}
+

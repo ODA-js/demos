@@ -178,6 +178,102 @@ async function ensureFile({
   }
   return file;
 }
+async function ensureUser({
+  args, context, create
+}) {
+  // find
+  let filter;
+  let fArgs;
+  let variables;
+  if (args.id) {
+    fArgs = '$id: ID';
+    filter = 'id: $id';
+    variables = {
+      id: args.id,
+    };
+
+  } else if (args.userName) {
+    fArgs = '$userName: String';
+    filter = 'userName: $userName';
+    variables = {
+      userName: args.userName,
+    };
+  }
+  let user;
+  if (filter) {
+    user = await context.userGQL({
+      query: gql`query findUser(${fArgs}){
+            user(${filter}){
+              id
+            }
+          }
+          `,
+      variables,
+    }).then(r => r.data.user);
+  }
+
+  if (!user) {
+    if (create) {
+      user = await context.userGQL({
+        query: gql`mutation createUser($user: createUserInput!) {
+            createUser(input: $user) {
+              user {
+                node {
+                  id
+                }
+              }
+            }
+          }
+          `,
+        variables: {
+          user: {
+            userName: args.userName,
+            password: args.password,
+            isAdmin: args.isAdmin,
+            isSystem: args.isSystem,
+            enabled: args.enabled,
+            todos: args.todos,
+            files: args.files,
+            followings: args.followings,
+            followers: args.followers,
+            id: args.id,
+            updatedBy: args.updatedBy,
+            updatedAt: args.updatedAt,
+          },
+        }
+      }).then(r => r.data.createUser.user.node);
+    }
+  } else {
+    // update
+    user = await context.userGQL({
+      query: gql`mutation updateUser($user: updateUserInput!) {
+            updateUser(input: $user) {
+              user {
+                id
+              }
+            }
+          }
+          `,
+      variables: {
+        user: {
+          userName: args.userName,
+          password: args.password,
+          isAdmin: args.isAdmin,
+          isSystem: args.isSystem,
+          enabled: args.enabled,
+          todos: args.todos,
+          files: args.files,
+          followings: args.followings,
+          followers: args.followers,
+          id: args.id,
+          updatedBy: args.updatedBy,
+          updatedAt: args.updatedAt,
+        },
+      }
+    }).then(r => r.data.updateUser.user);
+  }
+  return user;
+}
 
 
 async function linkToTodos({
@@ -274,6 +370,100 @@ async function unlinkFromFiles({
 }
 
 
+async function linkToFollowings({
+  context,
+  followings,
+  user,
+}) {
+  if (followings) {
+    await context.userGQL({
+      query: gql`mutation addToUserBelongsToManyFollowings($input:addToUserBelongsToManyFollowingsInput!) {
+          addToUserBelongsToManyFollowings(input:$input){
+            user {
+              id
+            }
+          }
+        }`,
+      variables: {
+        input: {
+          user: toGlobalId('User', user.id),
+          userFollowings: followings.id,
+        }
+      }
+    });
+  }
+}
+
+async function unlinkFromFollowings({
+  context, followings,  user,
+}) {
+  if (followings) {
+    await context.userGQL({
+      query: gql`mutation removeFromUserBelongsToManyFollowings($input: removeFromUserBelongsToManyFollowingsInput!) {
+          removeFromUserBelongsToManyFollowings(input:$input){
+            user {
+              id
+            }
+          }
+        }`,
+      variables: {
+        input: {
+          user: toGlobalId('User', user.id),
+          userFollowings: followings.id,
+        }
+      }
+    });
+  }
+}
+
+
+async function linkToFollowers({
+  context,
+  followers,
+  user,
+}) {
+  if (followers) {
+    await context.userGQL({
+      query: gql`mutation addToUserBelongsToManyFollowers($input:addToUserBelongsToManyFollowersInput!) {
+          addToUserBelongsToManyFollowers(input:$input){
+            user {
+              id
+            }
+          }
+        }`,
+      variables: {
+        input: {
+          user: toGlobalId('User', user.id),
+          userFollowers: followers.id,
+        }
+      }
+    });
+  }
+}
+
+async function unlinkFromFollowers({
+  context, followers,  user,
+}) {
+  if (followers) {
+    await context.userGQL({
+      query: gql`mutation removeFromUserBelongsToManyFollowers($input: removeFromUserBelongsToManyFollowersInput!) {
+          removeFromUserBelongsToManyFollowers(input:$input){
+            user {
+              id
+            }
+          }
+        }`,
+      variables: {
+        input: {
+          user: toGlobalId('User', user.id),
+          userFollowers: followers.id,
+        }
+      }
+    });
+  }
+}
+
+
 async function unlinkUserFromAll(args:{
   key,
   type,
@@ -308,6 +498,20 @@ async function unlinkUserFromAll(args:{
           }
         }
         filesUnlink: files@_(get: "edges"){
+          edges @_(map: "node"){
+            node {
+              id
+            }
+          }
+        }
+        followingsUnlink: followings@_(get: "edges"){
+          edges @_(map: "node"){
+            node {
+              id
+            }
+          }
+        }
+        followersUnlink: followers@_(get: "edges"){
           edges @_(map: "node"){
             node {
               id
@@ -358,6 +562,8 @@ export const mutation = {
       updatedAt?: Date,
       todos?: object/*ToDoItem*/[],
       files?: object/*File*/[],
+      followings?: object/*User*/[],
+      followers?: object/*User*/[],
     },
     context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
     info,
@@ -444,6 +650,54 @@ export const mutation = {
     
     }
 
+
+    if (args.followings && Array.isArray(args.followings) && args.followings.length > 0 ) {
+    
+      for (let i = 0, len = args.followings.length; i < len; i++) {
+    
+      let $item = args.followings[i] as { id, };
+      if ($item) {
+        let followings = await ensureUser({
+          args: $item,
+          context,
+          create: true,
+        });
+
+        await linkToFollowings({
+          context,
+          followings,
+          user: result,
+        });
+      }
+    
+      }
+    
+    }
+
+
+    if (args.followers && Array.isArray(args.followers) && args.followers.length > 0 ) {
+    
+      for (let i = 0, len = args.followers.length; i < len; i++) {
+    
+      let $item = args.followers[i] as { id, };
+      if ($item) {
+        let followers = await ensureUser({
+          args: $item,
+          context,
+          create: true,
+        });
+
+        await linkToFollowers({
+          context,
+          followers,
+          user: result,
+        });
+      }
+    
+      }
+    
+    }
+
     return {
       user: userEdge,
     };
@@ -464,6 +718,12 @@ export const mutation = {
       files?: object/*File*/[],
       filesUnlink?: object/*File*/[],
       filesCreate?: object/*File*/[],
+      followings?: object/*User*/[],
+      followingsUnlink?: object/*User*/[],
+      followingsCreate?: object/*User*/[],
+      followers?: object/*User*/[],
+      followersUnlink?: object/*User*/[],
+      followersCreate?: object/*User*/[],
     },
     context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
     info,
@@ -640,6 +900,144 @@ export const mutation = {
         await linkToFiles({
           context,
           files,
+          user: result,
+        });
+      }
+    
+      }
+    
+    }
+
+    if (args.followingsUnlink && Array.isArray(args.followingsUnlink) && args.followingsUnlink.length > 0 ) {
+    
+      for (let i = 0, len = args.followingsUnlink.length; i < len; i++) {
+    
+      let $item = args.followingsUnlink[i];
+      if ($item) {
+        let followings = await ensureUser({
+          args: $item,
+          context,
+          create: false,
+        });
+
+        await unlinkFromFollowings({
+          context,
+          followings,
+          user: result,
+        });
+      }
+    
+      }
+    
+    }
+
+    if (args.followingsCreate && Array.isArray(args.followingsCreate) && args.followingsCreate.length > 0 ) {
+    
+      for (let i = 0, len = args.followingsCreate.length; i < len; i++) {
+    
+      let $item = args.followingsCreate[i] as { id, };
+      if ($item) {
+        let followings = await ensureUser({
+          args: $item,
+          context,
+          create: true,
+        });
+
+        await linkToFollowings({
+          context,
+          followings,
+          user: result,
+        });
+      }
+    
+      }
+    
+    }
+
+    if (args.followings && Array.isArray(args.followings) && args.followings.length > 0 ) {
+    
+      for (let i = 0, len = args.followings.length; i < len; i++) {
+    
+      let $item = args.followings[i] as { id, };
+      if ($item) {
+        let followings = await ensureUser({
+          args: $item,
+          context,
+          create: false,
+        });
+
+        await linkToFollowings({
+          context,
+          followings,
+          user: result,
+        });
+      }
+    
+      }
+    
+    }
+
+    if (args.followersUnlink && Array.isArray(args.followersUnlink) && args.followersUnlink.length > 0 ) {
+    
+      for (let i = 0, len = args.followersUnlink.length; i < len; i++) {
+    
+      let $item = args.followersUnlink[i];
+      if ($item) {
+        let followers = await ensureUser({
+          args: $item,
+          context,
+          create: false,
+        });
+
+        await unlinkFromFollowers({
+          context,
+          followers,
+          user: result,
+        });
+      }
+    
+      }
+    
+    }
+
+    if (args.followersCreate && Array.isArray(args.followersCreate) && args.followersCreate.length > 0 ) {
+    
+      for (let i = 0, len = args.followersCreate.length; i < len; i++) {
+    
+      let $item = args.followersCreate[i] as { id, };
+      if ($item) {
+        let followers = await ensureUser({
+          args: $item,
+          context,
+          create: true,
+        });
+
+        await linkToFollowers({
+          context,
+          followers,
+          user: result,
+        });
+      }
+    
+      }
+    
+    }
+
+    if (args.followers && Array.isArray(args.followers) && args.followers.length > 0 ) {
+    
+      for (let i = 0, len = args.followers.length; i < len; i++) {
+    
+      let $item = args.followers[i] as { id, };
+      if ($item) {
+        let followers = await ensureUser({
+          args: $item,
+          context,
+          create: false,
+        });
+
+        await linkToFollowers({
+          context,
+          followers,
           user: result,
         });
       }

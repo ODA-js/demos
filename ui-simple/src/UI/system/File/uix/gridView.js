@@ -15,9 +15,9 @@ const Grid = (props) => (
 
     <TextField sortable={true} label="resources.File.fields.path" source="path" />
 
-    <ShowButton label={false} />
-    <EditButton label={false} />
-    <DeleteButton label={false} />
+    <ShowButton label="" basePath="/system/File"/>
+    <EditButton label="" basePath="/system/File"/>
+    <DeleteButton label="" basePath="/system/File"/>
   </Datagrid>
 );
 

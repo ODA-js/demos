@@ -37,6 +37,12 @@ export const resolver = {
       if (obj.args && obj.args.user && obj.args.file) {
         return "UserHasManyFilesSubscriptionPayload";
       }
+      if (obj.args && obj.args.user && obj.args.userFollowings) {
+        return "UserBelongsToManyFollowingsSubscriptionPayload";
+      }
+      if (obj.args && obj.args.user && obj.args.userFollowers) {
+        return "UserBelongsToManyFollowersSubscriptionPayload";
+      }
       return null;
     }
   },

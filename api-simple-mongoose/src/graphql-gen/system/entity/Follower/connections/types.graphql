@@ -1,0 +1,11 @@
+type FollowersConnection {
+  pageInfo: PageInfo!
+  edges: [FollowersEdge]
+  # put here your additional connection fields
+}
+
+type FollowersEdge {
+  node: Follower
+  cursor: String!
+  # put here your additiona edge fields
+}

@@ -1,6 +1,7 @@
 // tslint:disable:no-unused-variable
 import * as dotenv from 'dotenv';
-dotenv.config({ silent: true }); import * as fs from 'fs';
+dotenv.config({ silent: true });
+import * as fs from 'fs';
 import * as path from 'path';
 import { graphql } from 'graphql';
 import { introspectionQuery } from 'graphql/utilities';
@@ -12,15 +13,16 @@ import { SystemSchema } from './model';
   let current = new SystemSchema({});
   current.build();
   const schema = makeExecutableSchema({
-    typeDefs: current.typeDefs.toString(),
+    typeDefs: current.typeDefs,
     resolvers: current.resolvers,
     resolverValidationOptions: {
       requireResolversForNonScalar: false,
     },
   });
-  const result = await (graphql(schema, introspectionQuery));
+  const result = await graphql(schema, introspectionQuery);
   if (result.errors) {
-    console.error( // eslint-disable-line no-console
+    console.error(
+      // eslint-disable-line no-console
       'ERROR introspecting schema: ',
       JSON.stringify(result, null, 2),
     );

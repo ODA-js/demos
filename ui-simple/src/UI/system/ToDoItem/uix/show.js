@@ -27,31 +27,26 @@ const ShowRecordView = (props, context) => {
       
       <TabbedShowLayout>
         <Tab label="resources.ToDoItem.summary">
-          <TextField 
-            label="resources.ToDoItem.fields.name" 
-            source="name"
-            allowEmpty
-          />
-          <TextField 
-            label="resources.ToDoItem.fields.description" 
-            source="description"
-            allowEmpty
-          />
-          <BooleanField 
-            label="resources.ToDoItem.fields.done" 
-            source="done"
-            allowEmpty
-          />
-          <DateField 
-            label="resources.ToDoItem.fields.dueToDate" 
-            source="dueToDate"
-            allowEmpty
-          />
-          <BooleanField 
-            label="resources.ToDoItem.fields.published" 
-            source="published"
-            allowEmpty
-          />
+        <TextField 
+          label="resources.ToDoItem.fields.name" 
+          source="name"
+        />
+        <TextField 
+          label="resources.ToDoItem.fields.description" 
+          source="description"
+        />
+        <BooleanField 
+          label="resources.ToDoItem.fields.done" 
+          source="done"
+        />
+        <DateField 
+          label="resources.ToDoItem.fields.dueToDate" 
+          source="dueToDate"
+        />
+        <BooleanField 
+          label="resources.ToDoItem.fields.published" 
+          source="published"
+        />
         </Tab>
         <Tab label="resources.ToDoItem.fields.user">
           <EmbeddedField
@@ -60,19 +55,21 @@ const ShowRecordView = (props, context) => {
           >
             <TextField 
               label="resources.User.fields.userName"
-              source="userName" />
+              source="userName"
+            />
             <BooleanField 
               label="resources.User.fields.isAdmin"
-              source="isAdmin" allowEmpty />
+              source="isAdmin"
+            />
             <BooleanField 
               label="resources.User.fields.isSystem"
-              source="isSystem" allowEmpty />
+              source="isSystem"
+            />
             <BooleanField 
               label="resources.User.fields.enabled"
-              source="enabled" allowEmpty />
-            <ShowButton resource="system/User"/>
-            <EditButton resource="system/User"/>
-            <DeleteButton resource="system/User"/>
+              source="enabled"
+            />
+            <DeleteButton basePath="/system/User"/>
           </EmbeddedField>
       
         </Tab>

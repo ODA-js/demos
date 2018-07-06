@@ -5,20 +5,16 @@ import {
   SimpleForm,
   
   TextInput,
+  required,
   DateInput,
   BooleanInput,
-  ArrayInput,
-  SimpleFormIterator,
-  SelectInput,
-  ReferenceInput,
   ReferenceArrayInput,
   SelectArrayInput,
-  required,
 } from "react-admin";
 
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
-import { actions, consts } from 'oda-ra-ui';
+import { actions } from 'oda-ra-ui';
 
 const initForm = actions.initForm;
 
@@ -34,106 +30,62 @@ class Form extends Component {
 
   render() {
     const { props } = this;
-    const actionType = consts.actionType;
 
-    const manyRelAction = props.manyRelActions;
-    const { translate } = this.context;
+
+
+
     return (
       <SimpleForm {...props} >
         <TextInput
           label="resources.User.fields.userName"
           source="userName"
-          validate={required()} 
+            validate={required()} 
         />
         <TextInput
           label="resources.User.fields.updatedBy"
           source="updatedBy"
-          allowEmpty 
+            allowEmpty 
         />
         <TextInput
           label="resources.User.fields.password"
           source="password"
-          validate={required()} 
+            validate={required()} 
         />
         <DateInput
           label="resources.User.fields.updatedAt"
           source="updatedAt"
-          allowEmpty 
+            allowEmpty 
         />
         <BooleanInput
           defaultValue={false}
           label="resources.User.fields.isAdmin"
           source="isAdmin"
-          allowEmpty 
+            allowEmpty 
         />
         <BooleanInput
           defaultValue={false}
           label="resources.User.fields.isSystem"
           source="isSystem"
-          allowEmpty 
+            allowEmpty 
         />
         <BooleanInput
           defaultValue={true}
           label="resources.User.fields.enabled"
           source="enabled"
-          allowEmpty 
-        />    <ArrayInput 
+            allowEmpty 
+        />    
+        <ReferenceArrayInput 
           label="resources.User.fields.todos"
-          source="todosValues"
+          source="todosIds"
+          reference="system/ToDoItem"
           allowEmpty 
         >
-          <SimpleFormIterator>
-            <SelectInput
-              source="todosType"
-              label="uix.actionType.ExpectedTo"
-              choices={manyRelAction}
-              defaultValue={actionType.USE}
-            />
-            <ReferenceInput 
-              label={translate("resources.ToDoItem.name", { smart_count: 1})}
-              source="id"
-              reference="system/ToDoItem"
-              allowEmpty 
-            >
-              <SelectInput optionText="name" />
-            </ReferenceInput>
-            <TextInput
-              label="resources.ToDoItem.fields.name"
-              source="name"
-              allowEmpty
-            />
-            <TextInput
-              label="resources.ToDoItem.fields.description"
-              source="description"
-              allowEmpty
-            />
-            <BooleanInput
-              label="resources.ToDoItem.fields.done"
-              source="done"
-              allowEmpty
-            />
-            <DateInput
-              label="resources.ToDoItem.fields.dueToDate"
-              source="dueToDate"
-              allowEmpty
-            />
-            <BooleanInput
-              label="resources.ToDoItem.fields.published"
-              source="published"
-              allowEmpty
-            />
-            <TextInput
-              label="resources.ToDoItem.fields.updatedBy"
-              source="updatedBy"
-              allowEmpty
-            />
-            <DateInput
-              label="resources.ToDoItem.fields.updatedAt"
-              source="updatedAt"
-              allowEmpty
-            />
-          </SimpleFormIterator>
-        </ArrayInput>    
+          <SelectArrayInput 
+            options={{ fullWidth: true }}
+            optionText="name"
+            optionValue="id" 
+          />
+        </ReferenceArrayInput>    
         <ReferenceArrayInput 
           label="resources.User.fields.files"
           source="filesIds"
@@ -145,6 +97,30 @@ class Form extends Component {
             optionText="path"
             optionValue="id" 
           />
+        </ReferenceArrayInput>    
+        <ReferenceArrayInput 
+          label="resources.User.fields.followings"
+          source="followingsIds"
+          reference="system/User"
+          allowEmpty 
+        >
+          <SelectArrayInput 
+            options={{ fullWidth: true }}
+            optionText="userName"
+            optionValue="id" 
+          />
+        </ReferenceArrayInput>    
+        <ReferenceArrayInput 
+          label="resources.User.fields.followers"
+          source="followersIds"
+          reference="system/User"
+          allowEmpty 
+        >
+          <SelectArrayInput 
+            options={{ fullWidth: true }}
+            optionText="userName"
+            optionValue="id" 
+          />
         </ReferenceArrayInput>
       </SimpleForm>
     );
@@ -154,6 +130,8 @@ class Form extends Component {
 
 Form.contextTypes = {
   translate: PropTypes.func.isRequired,
+  initForm: PropTypes.func.isRequired,
+  finalizeForm: PropTypes.func.isRequired,
 }
 
 export default compose(
@@ -161,10 +139,6 @@ export default compose(
     state => ({
     }), {
       initForm: initForm('record-form', {
-        todos: {
-          resource: 'ToDoItem',
-          single: false,
-        },
       }),
       finalizeForm,
     }),

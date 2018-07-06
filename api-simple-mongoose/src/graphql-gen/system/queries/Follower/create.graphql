@@ -1,0 +1,12 @@
+
+# Create Follower
+mutation createFollower($follower: createFollowerInput!){
+  createFollower(input:$follower){
+    follower {
+      node {
+        id
+      }
+    }
+  }
+}
+

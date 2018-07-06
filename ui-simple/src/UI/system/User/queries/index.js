@@ -28,6 +28,18 @@ export default {
         type: data.resource.interfaces.refType.HasMany,
       },
     },
+    followings: {
+      ref: {
+        resource: 'system/User',
+        type: data.resource.interfaces.refType.BelongsToMany,
+      },
+    },
+    followers: {
+      ref: {
+        resource: 'system/User',
+        type: data.resource.interfaces.refType.BelongsToMany,
+      },
+    },
   },
   operations: {
     GET_LIST: {
@@ -55,4 +67,14 @@ export default {
 };
 
 export const extension = [
+    {
+      name:'system/User',
+      fields:{
+      }
+    },
+    {
+      name:'system/User',
+      fields:{
+      }
+    },
 ];

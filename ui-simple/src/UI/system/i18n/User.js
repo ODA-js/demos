@@ -15,6 +15,8 @@ export default {
         enabled: 'Allow to login',
         todos: 'Todo list',
         files: 'User files',
+        followings: 'Followings',
+        followers: 'Followers',
         id: 'Id',
       },
     },

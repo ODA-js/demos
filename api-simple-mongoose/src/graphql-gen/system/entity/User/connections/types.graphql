@@ -37,3 +37,29 @@ type UserHasManyFilesEdge {
   # put here your additiona edge fields
 }
 
+
+type UserBelongsToManyFollowingsConnection {
+  pageInfo: PageInfo!
+  edges: [UserBelongsToManyFollowingsEdge]
+  # put here your additional connection fields
+}
+
+type UserBelongsToManyFollowingsEdge {
+  node: User
+  cursor: String!
+  # put here your additiona edge fields
+}
+
+
+type UserBelongsToManyFollowersConnection {
+  pageInfo: PageInfo!
+  edges: [UserBelongsToManyFollowersEdge]
+  # put here your additional connection fields
+}
+
+type UserBelongsToManyFollowersEdge {
+  node: User
+  cursor: String!
+  # put here your additiona edge fields
+}
+

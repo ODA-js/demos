@@ -43,6 +43,20 @@ fragment ViewUserFull on User {
       }
     }
   }
+  followings @_(get: "edges"){
+    edges @_(map: "node"){
+      node {
+        ...EmbedUserWithId
+      }
+    }
+  }
+  followers @_(get: "edges"){
+    edges @_(map: "node"){
+      node {
+        ...EmbedUserWithId
+      }
+    }
+  }
 }
 
 

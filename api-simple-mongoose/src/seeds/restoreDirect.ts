@@ -20,9 +20,9 @@ import * as mongoose from 'mongoose';
 import * as config from 'config';
 import { runQueryLodash } from 'oda-lodash';
 
-
-let fn = process.argv[2] ? joinPath(process.cwd(), process.argv[2]) : joinPath(__dirname, '../../data/dump.json');
-
+let fn = process.argv[2]
+  ? joinPath(process.cwd(), process.argv[2])
+  : joinPath(__dirname, '../../data/dump.json');
 
 import { dbPool } from '../model/dbPool';
 import { SystemGraphQL, UserGQL } from '../model/runQuery';
@@ -59,7 +59,7 @@ function prepareSchema() {
   let current = new SystemSchema({});
   current.build();
   return makeExecutableSchema({
-    typeDefs: current.typeDefs.toString(),
+    typeDefs: current.typeDefs,
     resolvers: current.resolvers,
     resolverValidationOptions: {
       requireResolversForNonScalar: false,
@@ -72,8 +72,25 @@ const schema = prepareSchema();
 // tslint:disable-next-line:no-var-requires
 let data = require(fn);
 createContext({ schema }).then(context => {
-  dataPump.restoreDataDirect(loaderConfig.import.queries, storedQ, data, schema, context, runQueryLodash).
-    then(() => dataPump.restoreDataDirect(loaderConfig.import.relate, storedQ, data, schema, context, runQueryLodash))
+  dataPump
+    .restoreDataDirect(
+      loaderConfig.import.queries,
+      storedQ,
+      data,
+      schema,
+      context,
+      runQueryLodash,
+    )
+    .then(() =>
+      dataPump.restoreDataDirect(
+        loaderConfig.import.relate,
+        storedQ,
+        data,
+        schema,
+        context,
+        runQueryLodash,
+      ),
+    )
     .then(() => {
       context.db.close();
     })

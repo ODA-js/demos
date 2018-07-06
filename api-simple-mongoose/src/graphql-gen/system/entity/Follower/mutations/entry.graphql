@@ -1,0 +1,3 @@
+createFollower(input: createFollowerInput!): createFollowerPayload
+updateFollower(input: updateFollowerInput!): updateFollowerPayload
+deleteFollower(input: deleteFollowerInput!): deleteFollowerPayload

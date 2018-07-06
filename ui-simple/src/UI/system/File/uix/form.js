@@ -5,10 +5,10 @@ import {
   TabbedForm,
   FormTab,
   
-  TextInput,
   ReferenceInput,
-  required,
   AutocompleteInput,
+  TextInput,
+  required,
 } from "react-admin";
 
 import { connect } from 'react-redux';
@@ -36,28 +36,6 @@ class Form extends Component {
       return (
         <TabbedForm {...props} >
           <FormTab label="resources.File.summary">
-            <TextInput
-              label="resources.File.fields.path"
-              source="path"
-              validate={required()} 
-            />
-            <TextInput
-              label="resources.File.fields.filename"
-              source="filename"
-              allowEmpty 
-            />
-            <TextInput
-              label="resources.File.fields.mimetype"
-              source="mimetype"
-              allowEmpty 
-            />
-            <TextInput
-              label="resources.File.fields.encoding"
-              source="encoding"
-              allowEmpty 
-            />
-          </FormTab>
-          <FormTab label="resources.File.fields.user">
             
             <ReferenceInput 
               label="resources.File.fields.user"
@@ -69,6 +47,26 @@ class Form extends Component {
                 optionText="userName" 
               />
             </ReferenceInput>
+            <TextInput
+              label="resources.File.fields.path"
+              source="path"
+                validate={required()} 
+            />
+            <TextInput
+              label="resources.File.fields.filename"
+              source="filename"
+                allowEmpty 
+            />
+            <TextInput
+              label="resources.File.fields.mimetype"
+              source="mimetype"
+                allowEmpty 
+            />
+            <TextInput
+              label="resources.File.fields.encoding"
+              source="encoding"
+                allowEmpty 
+            />
           </FormTab>
         </TabbedForm>
       );
@@ -79,6 +77,8 @@ class Form extends Component {
 
 Form.contextTypes = {
   translate: PropTypes.func.isRequired,
+  initForm: PropTypes.func.isRequired,
+  finalizeForm: PropTypes.func.isRequired,
 }
 
 export default compose(

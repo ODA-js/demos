@@ -38,5 +38,17 @@ export default {
         hasMany: 'File#user',
       },
     },
+    followings: {
+      relation: {
+        belongsToMany: 'User#',
+        using: 'Follower#following',
+      },
+    },
+    followers: {
+      relation: {
+        belongsToMany: 'User#',
+        using: 'Follower#follower',
+      },
+    },
   },
 };

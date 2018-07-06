@@ -163,6 +163,120 @@ export default class User extends MongooseApi<RegisterConnectors, PartialUser> i
     { user: null });
   }
 
+  public async addToFollowings(args: {
+      user?: string,
+      userFollowings?: string,
+  }) {
+    logger.trace(`addToFollowings`);
+    let current = await this.findOneById(args.user);
+    let opposite = await this.connectors.User.findOneById(args.userFollowings);
+    if (current && opposite) {
+      let update: any = {
+        following: current.id,
+        follower: opposite.id,
+      };
+
+      let connection = await this.connectors.Follower.getList({
+        filter: {
+          following: {
+            eq: current.id
+          },
+          follower: {
+            eq: opposite.id
+          },
+        }
+      });
+
+      if (connection.length > 0) {
+        await this.connectors.Follower.findOneByIdAndUpdate(connection[0].id, update);
+      } else {
+        await this.connectors.Follower.create(update);
+      }
+    }
+  }
+
+  public async removeFromFollowings(args: {
+      user?: string,
+      userFollowings?: string,
+  }) {
+    logger.trace(`removeFromFollowings`);
+    let current = await this.findOneById(args.user);
+    let opposite = await this.connectors.User.findOneById(args.userFollowings);
+    if (current && opposite) {
+      let connection = await this.connectors.Follower.getList({
+        filter: {
+          following: {
+            eq: current.id
+          },
+          follower: {
+            eq: opposite.id
+          },
+        }
+      });
+
+      if (connection.length > 0) {
+        await this.connectors.Follower.findOneByIdAndRemove(connection[0].id);
+      }
+    }
+  }
+
+  public async addToFollowers(args: {
+      user?: string,
+      userFollowers?: string,
+  }) {
+    logger.trace(`addToFollowers`);
+    let current = await this.findOneById(args.user);
+    let opposite = await this.connectors.User.findOneById(args.userFollowers);
+    if (current && opposite) {
+      let update: any = {
+        follower: current.id,
+        following: opposite.id,
+      };
+
+      let connection = await this.connectors.Follower.getList({
+        filter: {
+          follower: {
+            eq: current.id
+          },
+          following: {
+            eq: opposite.id
+          },
+        }
+      });
+
+      if (connection.length > 0) {
+        await this.connectors.Follower.findOneByIdAndUpdate(connection[0].id, update);
+      } else {
+        await this.connectors.Follower.create(update);
+      }
+    }
+  }
+
+  public async removeFromFollowers(args: {
+      user?: string,
+      userFollowers?: string,
+  }) {
+    logger.trace(`removeFromFollowers`);
+    let current = await this.findOneById(args.user);
+    let opposite = await this.connectors.User.findOneById(args.userFollowers);
+    if (current && opposite) {
+      let connection = await this.connectors.Follower.getList({
+        filter: {
+          follower: {
+            eq: current.id
+          },
+          following: {
+            eq: opposite.id
+          },
+        }
+      });
+
+      if (connection.length > 0) {
+        await this.connectors.Follower.findOneByIdAndRemove(connection[0].id);
+      }
+    }
+  }
+
   public async findOneById(id?: string) {
     logger.trace(`findOneById with ${id} `);
     let result = await this.loaders.byId.load(id);

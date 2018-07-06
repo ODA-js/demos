@@ -6,6 +6,7 @@ import { ViewerEntity } from './viewer';
 import { User } from './User';
 import { ToDoItem } from './ToDoItem';
 import { File } from './File';
+import { Follower } from './Follower';
 
 export class SystemEntities extends common.types.GQLModule {
   protected _name = 'SystemEntities';
@@ -15,6 +16,7 @@ export class SystemEntities extends common.types.GQLModule {
     new User({}),
     new ToDoItem({}),
     new File({}),
+    new Follower({}),
   ];
 }
 
