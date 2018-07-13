@@ -1,4 +1,3 @@
-
 export default {
   export: {
     queries: {
@@ -9,7 +8,7 @@ export default {
             ...e.node,
           })) : [],
         }),*/
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};

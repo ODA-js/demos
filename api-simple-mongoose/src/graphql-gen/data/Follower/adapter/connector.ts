@@ -1,4 +1,3 @@
-
 import * as log4js from 'log4js';
 let logger = log4js.getLogger('api:connector:Follower');
 
@@ -11,13 +10,20 @@ import * as Dataloader from 'dataloader';
 import { PartialFollower } from '../types/model';
 import { FollowerConnector } from './interface';
 
-export default class Follower extends MongooseApi<RegisterConnectors, PartialFollower> implements FollowerConnector {
-  constructor(
-    { mongoose, connectors, securityContext }:
-      { mongoose: any, connectors: RegisterConnectors, securityContext: SecurityContext<RegisterConnectors> }
-  ) {
+export default class Follower
+  extends MongooseApi<RegisterConnectors, PartialFollower>
+  implements FollowerConnector {
+  constructor({
+    mongoose,
+    connectors,
+    securityContext,
+  }: {
+    mongoose: any;
+    connectors: RegisterConnectors;
+    securityContext: SecurityContext<RegisterConnectors>;
+  }) {
     logger.trace('constructor');
-    super({ name: 'Follower', mongoose, connectors, securityContext});
+    super({ name: 'Follower', mongoose, connectors, securityContext });
     this.initSchema('Follower', FollowerSchema());
 
     this.loaderKeys = {
@@ -28,7 +34,7 @@ export default class Follower extends MongooseApi<RegisterConnectors, PartialFol
       byId: this.updateLoaders('byId'),
     };
 
-    const byId = async (keys) => {
+    const byId = async keys => {
       let result = await this._getList({ filter: { id: { in: keys } } });
       let map = result.reduce((_map, item) => {
         _map[item.id] = item;
@@ -38,10 +44,9 @@ export default class Follower extends MongooseApi<RegisterConnectors, PartialFol
     };
 
     this.loaders = {
-      byId: new Dataloader(keys => byId(keys)
-        .then(this.updaters.byId), {
-          cacheKeyFn: key => typeof key !== 'object' ? key : key.toString(),
-        }),
+      byId: new Dataloader(keys => byId(keys).then(this.updaters.byId), {
+        cacheKeyFn: key => (typeof key !== 'object' ? key : key.toString()),
+      }),
     };
   }
 
@@ -50,7 +55,7 @@ export default class Follower extends MongooseApi<RegisterConnectors, PartialFol
     let entity = this.getPayload(payload);
     let result = await this.createSecure(entity);
     this.storeToCache([result]);
-    return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
+    return this.ensureId(result && result.toJSON ? result.toJSON() : result);
   }
 
   public async findOneByIdAndUpdate(id: string, payload: any) {
@@ -60,13 +65,11 @@ export default class Follower extends MongooseApi<RegisterConnectors, PartialFol
     if (result) {
       result = await this.updateSecure(result, entity);
       this.storeToCache([result]);
-      return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
+      return this.ensureId(result && result.toJSON ? result.toJSON() : result);
     } else {
       return result;
     }
   }
-
-
 
   public async findOneByIdAndRemove(id: string) {
     logger.trace(`findOneByIdAndRemove`);
@@ -74,30 +77,29 @@ export default class Follower extends MongooseApi<RegisterConnectors, PartialFol
     if (result) {
       result = await this.removeSecure(result);
       this.storeToCache([result]);
-      return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
+      return this.ensureId(result && result.toJSON ? result.toJSON() : result);
     } else {
       return result;
     }
   }
 
-
   public async findOneById(id?: string) {
     logger.trace(`findOneById with ${id} `);
     let result = await this.loaders.byId.load(id);
-    return this.ensureId((result && result.toJSON) ? result.toJSON() : result);
+    return this.ensureId(result && result.toJSON ? result.toJSON() : result);
   }
 
   public getPayload(args: PartialFollower, update?: boolean): PartialFollower {
     let entity: any = {};
-      if (args.id !== undefined) {
-        entity.id = args.id;
-      }
-      if (args.follower !== undefined) {
-        entity.follower = args.follower;
-      }
-      if (args.following !== undefined) {
-        entity.following = args.following;
-      }
+    if (args.id !== undefined) {
+      entity.id = args.id;
+    }
+    if (args.follower !== undefined) {
+      entity.follower = args.follower;
+    }
+    if (args.following !== undefined) {
+      entity.following = args.following;
+    }
     if (update) {
       delete entity.id;
       delete entity._id;
@@ -109,4 +111,4 @@ export default class Follower extends MongooseApi<RegisterConnectors, PartialFol
     }
     return entity;
   }
-};
+}

@@ -1,23 +1,21 @@
-
-
 import { fromGlobalId } from 'oda-isomorfic';
 import { utils } from 'oda-api-graphql';
 
 const { validId } = utils;
 
 export function getValue(value) {
-    if (typeof value === 'string') {
-      return validId(value) ? value : fromGlobalId(value).id;
-    } else {
-      return value;
-    }
+  if (typeof value === 'string') {
+    return validId(value) ? value : fromGlobalId(value).id;
+  } else {
+    return value;
+  }
 }
 
 export default {
   import: {
-    queries : {
+    queries: {
       Follower: {
-        filter:`
+        filter: `
           id
           follower
           following`,
@@ -29,14 +27,14 @@ export default {
           // updateQuery: 'Follower/update.graphql',
           // dataPropName: 'follower',
           findVars: {
-            id : (f) => f.hasOwnProperty('id') ? { id: getValue(f.id) } : null,
-          }
-        }
-      }
+            id: f => (f.hasOwnProperty('id') ? { id: getValue(f.id) } : null),
+          },
+        },
+      },
     },
-    relate : {
+    relate: {
       Follower: {
-        filter:`
+        filter: `
           id`,
         uploader: {
           findQuery: {
@@ -46,10 +44,10 @@ export default {
           // updateQuery: 'Follower/update.graphql',
           // dataPropName: 'follower',
           findVars: {
-            id : (f) => f.hasOwnProperty('id') ? { id: getValue(f.id) } : null,
-          }
-        }
-      }
+            id: f => (f.hasOwnProperty('id') ? { id: getValue(f.id) } : null),
+          },
+        },
+      },
     },
   },
-}
+};

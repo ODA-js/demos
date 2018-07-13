@@ -1,4 +1,4 @@
- export interface IFile {
+export interface IFile {
   id: string;
   path: string;
   filename?: string;
@@ -7,9 +7,7 @@
   user?: string;
 }
 
-export type PartialFile = {
-  [P in keyof IFile]?: IFile[P]
-}
+export type PartialFile = { [P in keyof IFile]?: IFile[P] };
 
 export interface IFileEdge {
   cursor: String;
@@ -26,7 +24,3 @@ export interface IFileConnection {
   };
   edges: IFileEdge[];
 }
-
-
-
-

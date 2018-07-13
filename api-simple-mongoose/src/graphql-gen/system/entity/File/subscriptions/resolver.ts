@@ -11,32 +11,38 @@ function filterIt(payload, queryCheck) {
 
 export const subscriptions = {
   File: {
-    subscribe: Filter.withContext(withFilter(() => pubsub.asyncIterator('File'), ({ File }, args, context, info) => {
-      let allow = context.connectors.File.secure('read', { source: File.node });
-      if (allow) {
-        return filterIt(File, context.queryCheck);
-      } else {
-        return false;
-      }
-    }),{
-      id: '_id',
-      user: 'user',
-    }),
+    subscribe: Filter.withContext(
+      withFilter(
+        () => pubsub.asyncIterator('File'),
+        ({ File }, args, context, info) => {
+          let allow = context.connectors.File.secure('read', {
+            source: File.node,
+          });
+          if (allow) {
+            return filterIt(File, context.queryCheck);
+          } else {
+            return false;
+          }
+        },
+      ),
+      {
+        id: '_id',
+        user: 'user',
+      },
+    ),
   },
 };
 
 export const resolver = {
-  
-  FileSubscriptionPayload : {
+  FileSubscriptionPayload: {
     __resolveType(obj, context, info) {
       if (obj.id || obj.path || obj.filename || obj.mimetype || obj.encoding) {
-        return "UpdateFileSubscriptionPayload";
+        return 'UpdateFileSubscriptionPayload';
       }
       if (obj.args && obj.args.file && obj.args.user) {
-        return "FileBelongsToUserSubscriptionPayload";
+        return 'FileBelongsToUserSubscriptionPayload';
       }
       return null;
-    }
+    },
   },
-  
 };

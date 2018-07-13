@@ -1,4 +1,3 @@
-
 export default {
   export: {
     queries: {
@@ -21,7 +20,7 @@ export default {
             })) : [],
           })) : [],
         }),*/
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};

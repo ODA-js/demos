@@ -6,9 +6,7 @@ import { SystemPackage } from './index';
 
 export class SystemSchema extends common.types.GQLModule {
   protected _name = 'SystemSchema';
-  protected _composite = [
-    new SystemPackage({}),
-  ];
+  protected _composite = [new SystemPackage({})];
 
   public get typeDefs() {
     return `
@@ -36,21 +34,13 @@ export class SystemSchema extends common.types.GQLModule {
 
   public build() {
     super.build();
-    this._resolver = deepMerge(
-      this.resolver,
-      this.viewer,
-      {
-        RootQuery: this.query,
-        RootMutation: this.mutation,
-      },
-    );
+    this._resolver = deepMerge(this.resolver, this.viewer, {
+      RootQuery: this.query,
+      RootMutation: this.mutation,
+    });
   }
 
   public get resolvers() {
     return this.applyHooks(this.resolver);
   }
-
 }
-
-
-

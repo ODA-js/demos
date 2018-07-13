@@ -1,4 +1,4 @@
- export interface IToDoItem {
+export interface IToDoItem {
   id: string;
   name?: string;
   description?: string;
@@ -11,9 +11,7 @@
   updatedAt?: Date;
 }
 
-export type PartialToDoItem = {
-  [P in keyof IToDoItem]?: IToDoItem[P]
-}
+export type PartialToDoItem = { [P in keyof IToDoItem]?: IToDoItem[P] };
 
 export interface IToDoItemEdge {
   cursor: String;
@@ -30,7 +28,3 @@ export interface IToDoItemConnection {
   };
   edges: IToDoItemEdge[];
 }
-
-
-
-

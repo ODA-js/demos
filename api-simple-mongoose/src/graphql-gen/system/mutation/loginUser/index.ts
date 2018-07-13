@@ -25,9 +25,7 @@ type loginUserPayload {
     });
 
     this._mutationEntry = fillDefaults(this._mutationEntry, {
-      entry: [
-        `loginUser(input: loginUserInput!): loginUserPayload`,
-      ],
+      entry: [`loginUser(input: loginUserInput!): loginUserPayload`],
     });
 
     this._mutation = fillDefaults(this._mutation, resolver);

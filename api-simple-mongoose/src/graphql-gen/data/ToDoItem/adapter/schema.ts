@@ -1,100 +1,132 @@
 import * as mongoose from 'mongoose';
 
 export default () => {
-  let $ToDoItem = new mongoose.Schema({
-    name: {
-      type: String,
+  let $ToDoItem = new mongoose.Schema(
+    {
+      name: {
+        type: String,
+      },
+      description: {
+        type: String,
+      },
+      done: {
+        type: Boolean,
+      },
+      location: {
+        type: mongoose.Schema.Types.Mixed,
+      },
+      dueToDate: {
+        type: Date,
+      },
+      published: {
+        type: Boolean,
+      },
+      updatedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+      },
+      updatedAt: {
+        type: Date,
+      },
+      user: {
+        type: String,
+      },
     },
-    description: {
-      type: String,
+    {
+      collection: 'todoitems',
+      autoIndex: process.env.NODE_ENV !== 'production',
     },
-    done: {
-      type: Boolean,
+  );
+
+  $ToDoItem.index(
+    {
+      name: 1,
     },
-    location: {
-      type: mongoose.Schema.Types.Mixed,
+    {
+      sparse: 1,
     },
-    dueToDate: {
-      type: Date,
+  );
+
+  $ToDoItem.index(
+    {
+      description: 1,
     },
-    published: {
-      type: Boolean,
+    {
+      sparse: 1,
     },
-    updatedBy: {
-      type: mongoose.Schema.Types.ObjectId,
+  );
+
+  $ToDoItem.index(
+    {
+      done: 1,
     },
-    updatedAt: {
-      type: Date,
+    {
+      sparse: 1,
     },
-    user: {
-      type: String,
+  );
+
+  $ToDoItem.index(
+    {
+      location: '2dsphere',
     },
-  }, {
-    collection: 'todoitems',
-    autoIndex: process.env.NODE_ENV !== 'production',
-  });
+    {
+      sparse: 1,
+    },
+  );
 
+  $ToDoItem.index(
+    {
+      dueToDate: 1,
+    },
+    {
+      sparse: 1,
+    },
+  );
 
-  $ToDoItem.index({
-    name: 1,
-  }, {
-    sparse: 1,
-  });
+  $ToDoItem.index(
+    {
+      published: 1,
+    },
+    {
+      sparse: 1,
+    },
+  );
 
-  $ToDoItem.index({
-    description: 1,
-  }, {
-    sparse: 1,
-  });
+  $ToDoItem.index(
+    {
+      user: 1,
+    },
+    {
+      sparse: 1,
+    },
+  );
 
-  $ToDoItem.index({
-    done: 1,
-  }, {
-    sparse: 1,
-  });
+  $ToDoItem.index(
+    {
+      id: 1,
+    },
+    {
+      sparse: 1,
+      unique: 1,
+    },
+  );
 
-  $ToDoItem.index({
-    location: '2dsphere',
-  }, {
-    sparse: 1,
-  });
+  $ToDoItem.index(
+    {
+      updatedBy: 1,
+    },
+    {
+      sparse: 1,
+    },
+  );
 
-  $ToDoItem.index({
-    dueToDate: 1,
-  }, {
-    sparse: 1,
-  });
-
-  $ToDoItem.index({
-    published: 1,
-  }, {
-    sparse: 1,
-  });
-
-  $ToDoItem.index({
-    user: 1,
-  }, {
-    sparse: 1,
-  });
-
-  $ToDoItem.index({
-    id: 1,
-  }, {
-    sparse: 1,
-    unique: 1,
-  });
-
-  $ToDoItem.index({
-    updatedBy: 1,
-  }, {
-    sparse: 1,
-  });
-
-  $ToDoItem.index({
-    updatedAt: 1,
-  }, {
-    sparse: 1,
-  });
+  $ToDoItem.index(
+    {
+      updatedAt: 1,
+    },
+    {
+      sparse: 1,
+    },
+  );
 
   return $ToDoItem;
 };

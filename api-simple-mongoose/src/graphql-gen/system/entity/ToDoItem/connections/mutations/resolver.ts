@@ -1,10 +1,7 @@
 import * as log4js from 'log4js';
 let logger = log4js.getLogger('graphql:mutations:ToDoItem');
 
-import {
-  fromGlobalId,
-  toGlobalId,
-} from 'oda-isomorfic';
+import { fromGlobalId, toGlobalId } from 'oda-isomorfic';
 
 import RegisterConnectors from '../../../../../data/registerConnectors';
 import { mutateAndGetPayload, idToCursor } from 'oda-api-graphql';
@@ -14,11 +11,11 @@ export const mutation = {
   addToToDoItemBelongsToUser: mutateAndGetPayload(
     async (
       args: {
-        toDoItem?: string,
-        user?: string,
+        toDoItem?: string;
+        user?: string;
       },
-      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
-      info
+      context: { connectors: RegisterConnectors; pubsub: PubSubEngine },
+      info,
     ) => {
       logger.trace('addToToDoItemBelongsToUser');
       let { id: toDoItem } = fromGlobalId(args.toDoItem);
@@ -44,11 +41,11 @@ export const mutation = {
                 toDoItem: args.toDoItem,
                 user: args.user,
               },
-              relation: 'user'
-            }
-          }
+              relation: 'user',
+            },
+          },
         });
-      
+
         let dest = await context.connectors.User.findOneById(user);
 
         context.pubsub.publish('User', {
@@ -62,25 +59,25 @@ export const mutation = {
                 toDoItem: args.toDoItem,
                 user: args.user,
               },
-              relation: 'todos'
-            }
-          }
+              relation: 'todos',
+            },
+          },
         });
-      
       }
       return {
         toDoItem: source,
       };
-    }),
+    },
+  ),
 
   removeFromToDoItemBelongsToUser: mutateAndGetPayload(
     async (
       args: {
-        toDoItem?: string,
-        user?: string,
+        toDoItem?: string;
+        user?: string;
       },
-      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
-      info
+      context: { connectors: RegisterConnectors; pubsub: PubSubEngine },
+      info,
     ) => {
       logger.trace('removeFromToDoItemBelongsToUser');
       let { id: toDoItem } = fromGlobalId(args.toDoItem);
@@ -105,12 +102,11 @@ export const mutation = {
                 toDoItem: args.toDoItem,
                 user: args.user,
               },
-              relation: 'user'
-            }
-          }
+              relation: 'user',
+            },
+          },
         });
 
-      
         let dest = await context.connectors.User.findOneById(user);
 
         context.pubsub.publish('User', {
@@ -124,16 +120,15 @@ export const mutation = {
                 toDoItem: args.toDoItem,
                 user: args.user,
               },
-              relation: 'todos'
-            }
-          }
+              relation: 'todos',
+            },
+          },
         });
-      
-    }
+      }
 
-    return {
-      toDoItem: source,
-    };
-  }),
-
+      return {
+        toDoItem: source,
+      };
+    },
+  ),
 };

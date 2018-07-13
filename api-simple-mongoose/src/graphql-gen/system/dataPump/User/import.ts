@@ -1,23 +1,21 @@
-
-
 import { fromGlobalId } from 'oda-isomorfic';
 import { utils } from 'oda-api-graphql';
 
 const { validId } = utils;
 
 export function getValue(value) {
-    if (typeof value === 'string') {
-      return validId(value) ? value : fromGlobalId(value).id;
-    } else {
-      return value;
-    }
+  if (typeof value === 'string') {
+    return validId(value) ? value : fromGlobalId(value).id;
+  } else {
+    return value;
+  }
 }
 
 export default {
   import: {
-    queries : {
+    queries: {
       User: {
-        filter:`
+        filter: `
           id
           userName
           password
@@ -35,15 +33,16 @@ export default {
           // updateQuery: 'User/update.graphql',
           // dataPropName: 'user',
           findVars: {
-            id : (f) => f.hasOwnProperty('id') ? { id: getValue(f.id) } : null,
-            userName : (f) => f.hasOwnProperty('userName') ? { userName: f.userName } : null,
-          }
-        }
-      }
+            id: f => (f.hasOwnProperty('id') ? { id: getValue(f.id) } : null),
+            userName: f =>
+              f.hasOwnProperty('userName') ? { userName: f.userName } : null,
+          },
+        },
+      },
     },
-    relate : {
+    relate: {
       User: {
-        filter:`
+        filter: `
           id
           todos
           files
@@ -58,11 +57,12 @@ export default {
           // updateQuery: 'User/update.graphql',
           // dataPropName: 'user',
           findVars: {
-            id : (f) => f.hasOwnProperty('id') ? { id: getValue(f.id) } : null,
-            userName : (f) => f.hasOwnProperty('userName') ? { userName: f.userName } : null,
-          }
-        }
-      }
+            id: f => (f.hasOwnProperty('id') ? { id: getValue(f.id) } : null),
+            userName: f =>
+              f.hasOwnProperty('userName') ? { userName: f.userName } : null,
+          },
+        },
+      },
     },
   },
-}
+};

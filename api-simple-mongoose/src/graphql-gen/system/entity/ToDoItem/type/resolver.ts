@@ -3,9 +3,7 @@ import * as _ from 'lodash';
 import * as get from 'lodash/get';
 
 let logger = log4js.getLogger('graphql:query:ToDoItem');
-import {
-  globalIdField,
-} from 'oda-api-graphql';
+import { globalIdField } from 'oda-api-graphql';
 
 import RegisterConnectors from '../../../../data/registerConnectors';
 import { lib } from 'oda-gen-common';
@@ -15,8 +13,8 @@ export const resolver: { [key: string]: any } = {
   ToDoItem: {
     id: globalIdField('ToDoItem', ({ _id }) => _id),
     user: async (
-      {_id: id}, // owner id
-      args:{
+      { _id: id }, // owner id
+      args: {
         limit?: number;
         skip?: number;
         first?: number;
@@ -24,21 +22,20 @@ export const resolver: { [key: string]: any } = {
         last?: number;
         before?: string;
         filter?: {
-          [k: string]: any
+          [k: string]: any;
         };
         orderBy?: string | string[];
       },
       context: { connectors: RegisterConnectors },
-      info) => {
+      info,
+    ) => {
       let result;
       let selectionSet = traverse(info);
-
 
       let toDoItem = await context.connectors.ToDoItem.findOneById(id);
       //BelongsTo
       if (toDoItem && toDoItem.user) {
         result = await context.connectors.User.findOneByUserName(toDoItem.user);
-
       }
 
       return result;

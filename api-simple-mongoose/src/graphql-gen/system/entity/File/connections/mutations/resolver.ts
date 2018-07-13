@@ -1,10 +1,7 @@
 import * as log4js from 'log4js';
 let logger = log4js.getLogger('graphql:mutations:File');
 
-import {
-  fromGlobalId,
-  toGlobalId,
-} from 'oda-isomorfic';
+import { fromGlobalId, toGlobalId } from 'oda-isomorfic';
 
 import RegisterConnectors from '../../../../../data/registerConnectors';
 import { mutateAndGetPayload, idToCursor } from 'oda-api-graphql';
@@ -14,11 +11,11 @@ export const mutation = {
   addToFileBelongsToUser: mutateAndGetPayload(
     async (
       args: {
-        file?: string,
-        user?: string,
+        file?: string;
+        user?: string;
       },
-      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
-      info
+      context: { connectors: RegisterConnectors; pubsub: PubSubEngine },
+      info,
     ) => {
       logger.trace('addToFileBelongsToUser');
       let { id: file } = fromGlobalId(args.file);
@@ -44,11 +41,11 @@ export const mutation = {
                 file: args.file,
                 user: args.user,
               },
-              relation: 'user'
-            }
-          }
+              relation: 'user',
+            },
+          },
         });
-      
+
         let dest = await context.connectors.User.findOneById(user);
 
         context.pubsub.publish('User', {
@@ -62,25 +59,25 @@ export const mutation = {
                 file: args.file,
                 user: args.user,
               },
-              relation: 'files'
-            }
-          }
+              relation: 'files',
+            },
+          },
         });
-      
       }
       return {
         file: source,
       };
-    }),
+    },
+  ),
 
   removeFromFileBelongsToUser: mutateAndGetPayload(
     async (
       args: {
-        file?: string,
-        user?: string,
+        file?: string;
+        user?: string;
       },
-      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
-      info
+      context: { connectors: RegisterConnectors; pubsub: PubSubEngine },
+      info,
     ) => {
       logger.trace('removeFromFileBelongsToUser');
       let { id: file } = fromGlobalId(args.file);
@@ -105,12 +102,11 @@ export const mutation = {
                 file: args.file,
                 user: args.user,
               },
-              relation: 'user'
-            }
-          }
+              relation: 'user',
+            },
+          },
         });
 
-      
         let dest = await context.connectors.User.findOneById(user);
 
         context.pubsub.publish('User', {
@@ -124,16 +120,15 @@ export const mutation = {
                 file: args.file,
                 user: args.user,
               },
-              relation: 'files'
-            }
-          }
+              relation: 'files',
+            },
+          },
         });
-      
-    }
+      }
 
-    return {
-      file: source,
-    };
-  }),
-
+      return {
+        file: source,
+      };
+    },
+  ),
 };

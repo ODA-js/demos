@@ -6,11 +6,11 @@ export const resolver = {
   loginUser: mutateAndGetPayload(
     async (
       args: {
-        userName?: string,
-        password?: string,
+        userName?: string;
+        password?: string;
       },
       context,
-      info
+      info,
     ) => {
       logger.trace('loginUser');
       let result: {
@@ -21,6 +21,6 @@ export const resolver = {
       result = {};
       // put your code here
       return result;
-    }
+    },
   ),
 };

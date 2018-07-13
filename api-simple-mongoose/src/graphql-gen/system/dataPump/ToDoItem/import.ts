@@ -1,23 +1,21 @@
-
-
 import { fromGlobalId } from 'oda-isomorfic';
 import { utils } from 'oda-api-graphql';
 
 const { validId } = utils;
 
 export function getValue(value) {
-    if (typeof value === 'string') {
-      return validId(value) ? value : fromGlobalId(value).id;
-    } else {
-      return value;
-    }
+  if (typeof value === 'string') {
+    return validId(value) ? value : fromGlobalId(value).id;
+  } else {
+    return value;
+  }
 }
 
 export default {
   import: {
-    queries : {
+    queries: {
       ToDoItem: {
-        filter:`
+        filter: `
           id
           name
           description
@@ -35,14 +33,14 @@ export default {
           // updateQuery: 'ToDoItem/update.graphql',
           // dataPropName: 'toDoItem',
           findVars: {
-            id : (f) => f.hasOwnProperty('id') ? { id: getValue(f.id) } : null,
-          }
-        }
-      }
+            id: f => (f.hasOwnProperty('id') ? { id: getValue(f.id) } : null),
+          },
+        },
+      },
     },
-    relate : {
+    relate: {
       ToDoItem: {
-        filter:`
+        filter: `
           id
           user`,
         uploader: {
@@ -53,10 +51,10 @@ export default {
           // updateQuery: 'ToDoItem/update.graphql',
           // dataPropName: 'toDoItem',
           findVars: {
-            id : (f) => f.hasOwnProperty('id') ? { id: getValue(f.id) } : null,
-          }
-        }
-      }
+            id: f => (f.hasOwnProperty('id') ? { id: getValue(f.id) } : null),
+          },
+        },
+      },
     },
   },
-}
+};

@@ -1,4 +1,3 @@
-
 import { common } from 'oda-gen-graphql';
 
 let { fillDefaults, deepMerge } = common.lib;
@@ -8,7 +7,10 @@ import { viewer } from './viewer/resolver';
 import { resolver } from './type/resolver';
 import { mutation as connectionMutation } from './connections/mutations/resolver';
 import { mutation as entityMutation } from './mutations/resolver';
-import { subscriptions as entitySubscription, resolver as subscriptionsUnions } from './subscriptions/resolver';
+import {
+  subscriptions as entitySubscription,
+  resolver as subscriptionsUnions,
+} from './subscriptions/resolver';
 
 export class Follower extends common.types.GQLModule {
   constructor(_args) {
@@ -16,18 +18,25 @@ export class Follower extends common.types.GQLModule {
     this._name = 'Follower';
     this._query = fillDefaults(this._query, query);
     this._viewer = fillDefaults(this._viewer, viewer);
-    this._resolver = fillDefaults(this._resolver, resolver, subscriptionsUnions);
+    this._resolver = fillDefaults(
+      this._resolver,
+      resolver,
+      subscriptionsUnions,
+    );
 
     this._typeDef = fillDefaults(this._typeDef, {
-      'enums': [`enum FollowerSortOrder {
+      enums: [
+        `enum FollowerSortOrder {
   followerAsc
   followerDesc
   followingAsc
   followingDesc
   idAsc
   idDesc
-}`],
-      'type': [`
+}`,
+      ],
+      type: [
+        `
 # # Follower
 
 
@@ -92,8 +101,10 @@ type Follower implements Node{
 }
 
 
-`],
-      'mutationTypes': [`# Input types for basic CUD
+`,
+      ],
+      mutationTypes: [
+        `# Input types for basic CUD
 
 # input type for Follower
 input createFollowerInput {
@@ -146,8 +157,10 @@ type deleteFollowerPayload {
   deletedItemId: ID
   follower: Follower
 }
-`],
-      'subscriptionsTypes': [`# Input types for basic CUD
+`,
+      ],
+      subscriptionsTypes: [
+        `# Input types for basic CUD
 
 # input type for Follower
 
@@ -165,8 +178,10 @@ type FollowerSubscription {
   updatedFields: [String]
   previous: FollowerSubscriptionPayload
 }
-`],
-      'connectionsTypes': [`type FollowersConnection {
+`,
+      ],
+      connectionsTypes: [
+        `type FollowersConnection {
   pageInfo: PageInfo!
   edges: [FollowersEdge]
   # put here your additional connection fields
@@ -179,34 +194,46 @@ type FollowersEdge {
 }
 
 
-`],
-      'connectionsMutation': [``],
+`,
+      ],
+      connectionsMutation: [``],
     });
 
     this._mutationEntry = fillDefaults(this._mutationEntry, {
-      'mutationEntry': [`createFollower(input: createFollowerInput!): createFollowerPayload
+      mutationEntry: [
+        `createFollower(input: createFollowerInput!): createFollowerPayload
 updateFollower(input: updateFollowerInput!): updateFollowerPayload
-deleteFollower(input: deleteFollowerInput!): deleteFollowerPayload`],
-      'connectionsMutationEntry': [``],
+deleteFollower(input: deleteFollowerInput!): deleteFollowerPayload`,
+      ],
+      connectionsMutationEntry: [``],
     });
 
     this._subscriptionEntry = fillDefaults(this._subscriptionEntry, {
-      'subscriptionEntry': [`Follower(filter: FollowerFilterSubscriptions): FollowerSubscription
-`],
+      subscriptionEntry: [
+        `Follower(filter: FollowerFilterSubscriptions): FollowerSubscription
+`,
+      ],
     });
 
     this._queryEntry = fillDefaults(this._queryEntry, {
-      'queryEntry': [`  followers( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FollowerSortOrder], filter: FollowerComplexFilter): FollowersConnection
+      queryEntry: [
+        `  followers( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FollowerSortOrder], filter: FollowerComplexFilter): FollowersConnection
 
-  follower(id: ID): Follower`],
+  follower(id: ID): Follower`,
+      ],
     });
 
-    this._mutation = fillDefaults(this._mutation, deepMerge(entityMutation, connectionMutation));
+    this._mutation = fillDefaults(
+      this._mutation,
+      deepMerge(entityMutation, connectionMutation),
+    );
     this._subscription = fillDefaults(this._subscription, entitySubscription);
 
     this._viewerEntry = fillDefaults(this._viewerEntry, {
-      'viewerEntry': [`followers( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FollowerSortOrder], filter: FollowerFilter): FollowersConnection
-  follower(id: ID): Follower`],
+      viewerEntry: [
+        `followers( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FollowerSortOrder], filter: FollowerFilter): FollowersConnection
+  follower(id: ID): Follower`,
+      ],
     });
   }
 }

@@ -1,4 +1,3 @@
-
 import { common } from 'oda-gen-graphql';
 
 let { fillDefaults, deepMerge } = common.lib;
@@ -8,7 +7,10 @@ import { viewer } from './viewer/resolver';
 import { resolver } from './type/resolver';
 import { mutation as connectionMutation } from './connections/mutations/resolver';
 import { mutation as entityMutation } from './mutations/resolver';
-import { subscriptions as entitySubscription, resolver as subscriptionsUnions } from './subscriptions/resolver';
+import {
+  subscriptions as entitySubscription,
+  resolver as subscriptionsUnions,
+} from './subscriptions/resolver';
 
 export class User extends common.types.GQLModule {
   constructor(_args) {
@@ -16,10 +18,15 @@ export class User extends common.types.GQLModule {
     this._name = 'User';
     this._query = fillDefaults(this._query, query);
     this._viewer = fillDefaults(this._viewer, viewer);
-    this._resolver = fillDefaults(this._resolver, resolver, subscriptionsUnions);
+    this._resolver = fillDefaults(
+      this._resolver,
+      resolver,
+      subscriptionsUnions,
+    );
 
     this._typeDef = fillDefaults(this._typeDef, {
-      'enums': [`enum UserSortOrder {
+      enums: [
+        `enum UserSortOrder {
   userNameAsc
   userNameDesc
   passwordAsc
@@ -36,8 +43,10 @@ export class User extends common.types.GQLModule {
   updatedByDesc
   updatedAtAsc
   updatedAtDesc
-}`],
-      'type': [`
+}`,
+      ],
+      type: [
+        `
 # # The User
 
 
@@ -140,8 +149,10 @@ type User implements Node{
 }
 
 
-`],
-      'mutationTypes': [`# Input types for basic CUD
+`,
+      ],
+      mutationTypes: [
+        `# Input types for basic CUD
 
 # input type for User
 input createUserInput {
@@ -230,8 +241,10 @@ type deleteUserPayload {
   deletedItemId: ID
   user: User
 }
-`],
-      'subscriptionsTypes': [`# Input types for basic CUD
+`,
+      ],
+      subscriptionsTypes: [
+        `# Input types for basic CUD
 
 # input type for User
 
@@ -295,8 +308,10 @@ type UserBelongsToManyFollowersSubscriptionPayload {
   relation: String
 }
 
-union UserSubscriptionPayload = UpdateUserSubscriptionPayload | UserHasManyTodosSubscriptionPayload | UserHasManyFilesSubscriptionPayload | UserBelongsToManyFollowingsSubscriptionPayload | UserBelongsToManyFollowersSubscriptionPayload`],
-      'connectionsTypes': [`type UsersConnection {
+union UserSubscriptionPayload = UpdateUserSubscriptionPayload | UserHasManyTodosSubscriptionPayload | UserHasManyFilesSubscriptionPayload | UserBelongsToManyFollowingsSubscriptionPayload | UserBelongsToManyFollowersSubscriptionPayload`,
+      ],
+      connectionsTypes: [
+        `type UsersConnection {
   pageInfo: PageInfo!
   edges: [UsersEdge]
   # put here your additional connection fields
@@ -361,8 +376,10 @@ type UserBelongsToManyFollowersEdge {
   # put here your additiona edge fields
 }
 
-`],
-      'connectionsMutation': [`
+`,
+      ],
+      connectionsMutation: [
+        `
 input addToUserHasManyTodosInput {
   clientMutationId: String
   user:ID!
@@ -462,14 +479,18 @@ type removeFromUserBelongsToManyFollowersPayload {
   viewer: Viewer
   user: User
  }
-`],
+`,
+      ],
     });
 
     this._mutationEntry = fillDefaults(this._mutationEntry, {
-      'mutationEntry': [`createUser(input: createUserInput!): createUserPayload
+      mutationEntry: [
+        `createUser(input: createUserInput!): createUserPayload
 updateUser(input: updateUserInput!): updateUserPayload
-deleteUser(input: deleteUserInput!): deleteUserPayload`],
-      'connectionsMutationEntry': [`addToUserHasManyTodos(input: addToUserHasManyTodosInput):addToUserHasManyTodosPayload
+deleteUser(input: deleteUserInput!): deleteUserPayload`,
+      ],
+      connectionsMutationEntry: [
+        `addToUserHasManyTodos(input: addToUserHasManyTodosInput):addToUserHasManyTodosPayload
 removeFromUserHasManyTodos(input: removeFromUserHasManyTodosInput):removeFromUserHasManyTodosPayload
 addToUserHasManyFiles(input: addToUserHasManyFilesInput):addToUserHasManyFilesPayload
 removeFromUserHasManyFiles(input: removeFromUserHasManyFilesInput):removeFromUserHasManyFilesPayload
@@ -477,26 +498,36 @@ addToUserBelongsToManyFollowings(input: addToUserBelongsToManyFollowingsInput):a
 removeFromUserBelongsToManyFollowings(input: removeFromUserBelongsToManyFollowingsInput):removeFromUserBelongsToManyFollowingsPayload
 addToUserBelongsToManyFollowers(input: addToUserBelongsToManyFollowersInput):addToUserBelongsToManyFollowersPayload
 removeFromUserBelongsToManyFollowers(input: removeFromUserBelongsToManyFollowersInput):removeFromUserBelongsToManyFollowersPayload
-`],
+`,
+      ],
     });
 
     this._subscriptionEntry = fillDefaults(this._subscriptionEntry, {
-      'subscriptionEntry': [`User(filter: UserFilterSubscriptions): UserSubscription
-`],
+      subscriptionEntry: [
+        `User(filter: UserFilterSubscriptions): UserSubscription
+`,
+      ],
     });
 
     this._queryEntry = fillDefaults(this._queryEntry, {
-      'queryEntry': [`  users( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [UserSortOrder], filter: UserComplexFilter): UsersConnection
+      queryEntry: [
+        `  users( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [UserSortOrder], filter: UserComplexFilter): UsersConnection
 
-  user(id: ID, userName: String): User`],
+  user(id: ID, userName: String): User`,
+      ],
     });
 
-    this._mutation = fillDefaults(this._mutation, deepMerge(entityMutation, connectionMutation));
+    this._mutation = fillDefaults(
+      this._mutation,
+      deepMerge(entityMutation, connectionMutation),
+    );
     this._subscription = fillDefaults(this._subscription, entitySubscription);
 
     this._viewerEntry = fillDefaults(this._viewerEntry, {
-      'viewerEntry': [`users( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [UserSortOrder], filter: UserFilter): UsersConnection
-  user(id: ID, userName: String): User`],
+      viewerEntry: [
+        `users( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [UserSortOrder], filter: UserFilter): UsersConnection
+  user(id: ID, userName: String): User`,
+      ],
     });
   }
 }

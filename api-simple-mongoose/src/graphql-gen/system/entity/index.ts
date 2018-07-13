@@ -1,4 +1,3 @@
-
 import { common } from 'oda-gen-graphql';
 import { NodeEntity } from './node';
 import { ViewerEntity } from './viewer';
@@ -19,4 +18,3 @@ export class SystemEntities extends common.types.GQLModule {
     new Follower({}),
   ];
 }
-

@@ -1,10 +1,7 @@
 import * as log4js from 'log4js';
 let logger = log4js.getLogger('graphql:mutations:User');
 
-import {
-  fromGlobalId,
-  toGlobalId,
-} from 'oda-isomorfic';
+import { fromGlobalId, toGlobalId } from 'oda-isomorfic';
 
 import RegisterConnectors from '../../../../../data/registerConnectors';
 import { mutateAndGetPayload, idToCursor } from 'oda-api-graphql';
@@ -14,11 +11,11 @@ export const mutation = {
   addToUserHasManyTodos: mutateAndGetPayload(
     async (
       args: {
-        user?: string,
-        toDoItem?: string,
+        user?: string;
+        toDoItem?: string;
       },
-      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
-      info
+      context: { connectors: RegisterConnectors; pubsub: PubSubEngine },
+      info,
     ) => {
       logger.trace('addToUserHasManyTodos');
       let { id: user } = fromGlobalId(args.user);
@@ -44,25 +41,25 @@ export const mutation = {
                 user: args.user,
                 toDoItem: args.toDoItem,
               },
-              relation: 'todos'
-            }
-          }
+              relation: 'todos',
+            },
+          },
         });
-      
       }
       return {
         user: source,
       };
-    }),
+    },
+  ),
 
   removeFromUserHasManyTodos: mutateAndGetPayload(
     async (
       args: {
-        user?: string,
-        toDoItem?: string,
+        user?: string;
+        toDoItem?: string;
       },
-      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
-      info
+      context: { connectors: RegisterConnectors; pubsub: PubSubEngine },
+      info,
     ) => {
       logger.trace('removeFromUserHasManyTodos');
       let { id: user } = fromGlobalId(args.user);
@@ -87,27 +84,26 @@ export const mutation = {
                 user: args.user,
                 toDoItem: args.toDoItem,
               },
-              relation: 'todos'
-            }
-          }
+              relation: 'todos',
+            },
+          },
         });
+      }
 
-      
-    }
-
-    return {
-      user: source,
-    };
-  }),
+      return {
+        user: source,
+      };
+    },
+  ),
 
   addToUserHasManyFiles: mutateAndGetPayload(
     async (
       args: {
-        user?: string,
-        file?: string,
+        user?: string;
+        file?: string;
       },
-      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
-      info
+      context: { connectors: RegisterConnectors; pubsub: PubSubEngine },
+      info,
     ) => {
       logger.trace('addToUserHasManyFiles');
       let { id: user } = fromGlobalId(args.user);
@@ -133,25 +129,25 @@ export const mutation = {
                 user: args.user,
                 file: args.file,
               },
-              relation: 'files'
-            }
-          }
+              relation: 'files',
+            },
+          },
         });
-      
       }
       return {
         user: source,
       };
-    }),
+    },
+  ),
 
   removeFromUserHasManyFiles: mutateAndGetPayload(
     async (
       args: {
-        user?: string,
-        file?: string,
+        user?: string;
+        file?: string;
       },
-      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
-      info
+      context: { connectors: RegisterConnectors; pubsub: PubSubEngine },
+      info,
     ) => {
       logger.trace('removeFromUserHasManyFiles');
       let { id: user } = fromGlobalId(args.user);
@@ -176,27 +172,26 @@ export const mutation = {
                 user: args.user,
                 file: args.file,
               },
-              relation: 'files'
-            }
-          }
+              relation: 'files',
+            },
+          },
         });
+      }
 
-      
-    }
-
-    return {
-      user: source,
-    };
-  }),
+      return {
+        user: source,
+      };
+    },
+  ),
 
   addToUserBelongsToManyFollowings: mutateAndGetPayload(
     async (
       args: {
-        user?: string,
-        userFollowings?: string,
+        user?: string;
+        userFollowings?: string;
       },
-      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
-      info
+      context: { connectors: RegisterConnectors; pubsub: PubSubEngine },
+      info,
     ) => {
       logger.trace('addToUserBelongsToManyFollowings');
       let { id: user } = fromGlobalId(args.user);
@@ -222,25 +217,25 @@ export const mutation = {
                 user: args.user,
                 userFollowings: args.userFollowings,
               },
-              relation: 'followings'
-            }
-          }
+              relation: 'followings',
+            },
+          },
         });
-      
       }
       return {
         user: source,
       };
-    }),
+    },
+  ),
 
   removeFromUserBelongsToManyFollowings: mutateAndGetPayload(
     async (
       args: {
-        user?: string,
-        userFollowings?: string,
+        user?: string;
+        userFollowings?: string;
       },
-      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
-      info
+      context: { connectors: RegisterConnectors; pubsub: PubSubEngine },
+      info,
     ) => {
       logger.trace('removeFromUserBelongsToManyFollowings');
       let { id: user } = fromGlobalId(args.user);
@@ -265,27 +260,26 @@ export const mutation = {
                 user: args.user,
                 userFollowings: args.userFollowings,
               },
-              relation: 'followings'
-            }
-          }
+              relation: 'followings',
+            },
+          },
         });
+      }
 
-      
-    }
-
-    return {
-      user: source,
-    };
-  }),
+      return {
+        user: source,
+      };
+    },
+  ),
 
   addToUserBelongsToManyFollowers: mutateAndGetPayload(
     async (
       args: {
-        user?: string,
-        userFollowers?: string,
+        user?: string;
+        userFollowers?: string;
       },
-      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
-      info
+      context: { connectors: RegisterConnectors; pubsub: PubSubEngine },
+      info,
     ) => {
       logger.trace('addToUserBelongsToManyFollowers');
       let { id: user } = fromGlobalId(args.user);
@@ -311,25 +305,25 @@ export const mutation = {
                 user: args.user,
                 userFollowers: args.userFollowers,
               },
-              relation: 'followers'
-            }
-          }
+              relation: 'followers',
+            },
+          },
         });
-      
       }
       return {
         user: source,
       };
-    }),
+    },
+  ),
 
   removeFromUserBelongsToManyFollowers: mutateAndGetPayload(
     async (
       args: {
-        user?: string,
-        userFollowers?: string,
+        user?: string;
+        userFollowers?: string;
       },
-      context: { connectors: RegisterConnectors, pubsub: PubSubEngine },
-      info
+      context: { connectors: RegisterConnectors; pubsub: PubSubEngine },
+      info,
     ) => {
       logger.trace('removeFromUserBelongsToManyFollowers');
       let { id: user } = fromGlobalId(args.user);
@@ -354,17 +348,15 @@ export const mutation = {
                 user: args.user,
                 userFollowers: args.userFollowers,
               },
-              relation: 'followers'
-            }
-          }
+              relation: 'followers',
+            },
+          },
         });
+      }
 
-      
-    }
-
-    return {
-      user: source,
-    };
-  }),
-
+      return {
+        user: source,
+      };
+    },
+  ),
 };

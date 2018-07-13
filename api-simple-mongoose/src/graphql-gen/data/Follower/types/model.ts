@@ -1,12 +1,10 @@
- export interface IFollower {
+export interface IFollower {
   id: string;
   follower?: string;
   following?: string;
 }
 
-export type PartialFollower = {
-  [P in keyof IFollower]?: IFollower[P]
-}
+export type PartialFollower = { [P in keyof IFollower]?: IFollower[P] };
 
 export interface IFollowerEdge {
   cursor: String;
@@ -23,7 +21,3 @@ export interface IFollowerConnection {
   };
   edges: IFollowerEdge[];
 }
-
-
-
-

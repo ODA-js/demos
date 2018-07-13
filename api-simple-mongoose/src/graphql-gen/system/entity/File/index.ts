@@ -1,4 +1,3 @@
-
 import { common } from 'oda-gen-graphql';
 
 let { fillDefaults, deepMerge } = common.lib;
@@ -8,7 +7,10 @@ import { viewer } from './viewer/resolver';
 import { resolver } from './type/resolver';
 import { mutation as connectionMutation } from './connections/mutations/resolver';
 import { mutation as entityMutation } from './mutations/resolver';
-import { subscriptions as entitySubscription, resolver as subscriptionsUnions } from './subscriptions/resolver';
+import {
+  subscriptions as entitySubscription,
+  resolver as subscriptionsUnions,
+} from './subscriptions/resolver';
 
 export class File extends common.types.GQLModule {
   constructor(_args) {
@@ -16,10 +18,15 @@ export class File extends common.types.GQLModule {
     this._name = 'File';
     this._query = fillDefaults(this._query, query);
     this._viewer = fillDefaults(this._viewer, viewer);
-    this._resolver = fillDefaults(this._resolver, resolver, subscriptionsUnions);
+    this._resolver = fillDefaults(
+      this._resolver,
+      resolver,
+      subscriptionsUnions,
+    );
 
     this._typeDef = fillDefaults(this._typeDef, {
-      'enums': [`enum FileSortOrder {
+      enums: [
+        `enum FileSortOrder {
   pathAsc
   pathDesc
   filenameAsc
@@ -30,8 +37,10 @@ export class File extends common.types.GQLModule {
   encodingDesc
   idAsc
   idDesc
-}`],
-      'type': [`
+}`,
+      ],
+      type: [
+        `
 # # User Files
 
 
@@ -115,8 +124,10 @@ type File implements Node{
 }
 
 
-`],
-      'mutationTypes': [`# Input types for basic CUD
+`,
+      ],
+      mutationTypes: [
+        `# Input types for basic CUD
 
 # input type for File
 input createFileInput {
@@ -181,8 +192,10 @@ type deleteFilePayload {
   deletedItemId: ID
   file: File
 }
-`],
-      'subscriptionsTypes': [`# Input types for basic CUD
+`,
+      ],
+      subscriptionsTypes: [
+        `# Input types for basic CUD
 
 # input type for File
 
@@ -213,8 +226,10 @@ type FileBelongsToUserSubscriptionPayload {
   relation: String
 }
 
-union FileSubscriptionPayload = UpdateFileSubscriptionPayload | FileBelongsToUserSubscriptionPayload`],
-      'connectionsTypes': [`type FilesConnection {
+union FileSubscriptionPayload = UpdateFileSubscriptionPayload | FileBelongsToUserSubscriptionPayload`,
+      ],
+      connectionsTypes: [
+        `type FilesConnection {
   pageInfo: PageInfo!
   edges: [FilesEdge]
   # put here your additional connection fields
@@ -227,8 +242,10 @@ type FilesEdge {
 }
 
 
-`],
-      'connectionsMutation': [`
+`,
+      ],
+      connectionsMutation: [
+        `
 input addToFileBelongsToUserInput {
   clientMutationId: String
   file:ID!
@@ -253,35 +270,49 @@ type removeFromFileBelongsToUserPayload {
   viewer: Viewer
   file: File
  }
-`],
+`,
+      ],
     });
 
     this._mutationEntry = fillDefaults(this._mutationEntry, {
-      'mutationEntry': [`createFile(input: createFileInput!): createFilePayload
+      mutationEntry: [
+        `createFile(input: createFileInput!): createFilePayload
 updateFile(input: updateFileInput!): updateFilePayload
-deleteFile(input: deleteFileInput!): deleteFilePayload`],
-      'connectionsMutationEntry': [`addToFileBelongsToUser(input: addToFileBelongsToUserInput):addToFileBelongsToUserPayload
+deleteFile(input: deleteFileInput!): deleteFilePayload`,
+      ],
+      connectionsMutationEntry: [
+        `addToFileBelongsToUser(input: addToFileBelongsToUserInput):addToFileBelongsToUserPayload
 removeFromFileBelongsToUser(input: removeFromFileBelongsToUserInput):removeFromFileBelongsToUserPayload
-`],
+`,
+      ],
     });
 
     this._subscriptionEntry = fillDefaults(this._subscriptionEntry, {
-      'subscriptionEntry': [`File(filter: FileFilterSubscriptions): FileSubscription
-`],
+      subscriptionEntry: [
+        `File(filter: FileFilterSubscriptions): FileSubscription
+`,
+      ],
     });
 
     this._queryEntry = fillDefaults(this._queryEntry, {
-      'queryEntry': [`  files( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FileSortOrder], filter: FileComplexFilter): FilesConnection
+      queryEntry: [
+        `  files( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FileSortOrder], filter: FileComplexFilter): FilesConnection
 
-  file(id: ID, path: String): File`],
+  file(id: ID, path: String): File`,
+      ],
     });
 
-    this._mutation = fillDefaults(this._mutation, deepMerge(entityMutation, connectionMutation));
+    this._mutation = fillDefaults(
+      this._mutation,
+      deepMerge(entityMutation, connectionMutation),
+    );
     this._subscription = fillDefaults(this._subscription, entitySubscription);
 
     this._viewerEntry = fillDefaults(this._viewerEntry, {
-      'viewerEntry': [`files( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FileSortOrder], filter: FileFilter): FilesConnection
-  file(id: ID, path: String): File`],
+      viewerEntry: [
+        `files( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FileSortOrder], filter: FileFilter): FilesConnection
+  file(id: ID, path: String): File`,
+      ],
     });
   }
 }

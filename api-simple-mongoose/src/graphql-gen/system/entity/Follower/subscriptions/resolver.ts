@@ -11,19 +11,25 @@ function filterIt(payload, queryCheck) {
 
 export const subscriptions = {
   Follower: {
-    subscribe: Filter.withContext(withFilter(() => pubsub.asyncIterator('Follower'), ({ Follower }, args, context, info) => {
-      let allow = context.connectors.Follower.secure('read', { source: Follower.node });
-      if (allow) {
-        return filterIt(Follower, context.queryCheck);
-      } else {
-        return false;
-      }
-    }),{
-      id: '_id',
-    }),
+    subscribe: Filter.withContext(
+      withFilter(
+        () => pubsub.asyncIterator('Follower'),
+        ({ Follower }, args, context, info) => {
+          let allow = context.connectors.Follower.secure('read', {
+            source: Follower.node,
+          });
+          if (allow) {
+            return filterIt(Follower, context.queryCheck);
+          } else {
+            return false;
+          }
+        },
+      ),
+      {
+        id: '_id',
+      },
+    ),
   },
 };
 
-export const resolver = {
-  
-};
+export const resolver = {};

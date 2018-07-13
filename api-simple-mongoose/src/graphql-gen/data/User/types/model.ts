@@ -1,4 +1,4 @@
- export interface IUser {
+export interface IUser {
   id: string;
   userName: string;
   password: string;
@@ -13,9 +13,7 @@
   updatedAt?: Date;
 }
 
-export type PartialUser = {
-  [P in keyof IUser]?: IUser[P]
-}
+export type PartialUser = { [P in keyof IUser]?: IUser[P] };
 
 export interface IUserEdge {
   cursor: String;
@@ -32,7 +30,3 @@ export interface IUserConnection {
   };
   edges: IUserEdge[];
 }
-
-
-
-

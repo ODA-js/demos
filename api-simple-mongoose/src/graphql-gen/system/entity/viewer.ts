@@ -1,11 +1,8 @@
-
 import { passport } from 'oda-api-common';
 import RegisterConnectors from '../../data/registerConnectors';
 import { common } from 'oda-gen-graphql';
 import { fromGlobalId } from 'oda-isomorfic';
-import {
-  globalIdField,
-} from 'oda-api-graphql';
+import { globalIdField } from 'oda-api-graphql';
 
 let { fillDefaults } = common.lib;
 
@@ -21,10 +18,12 @@ export class ViewerEntity extends common.types.GQLModule {
     });
 
     this._query = fillDefaults(this._query, {
-      viewer: async (owner,
+      viewer: async (
+        owner,
         args,
-        context: { connectors: RegisterConnectors, user, db },
-        info) => {
+        context: { connectors: RegisterConnectors; user; db },
+        info,
+      ) => {
         return {
           id: context.user ? fromGlobalId(context.user.id).id : null,
         };
@@ -33,9 +32,12 @@ export class ViewerEntity extends common.types.GQLModule {
 
     this._viewer = fillDefaults(this._viewer, {
       Viewer: {
-        _user: async (owner: { id: string }, args,
-          context: { connectors: RegisterConnectors, user },
-          info) => {
+        _user: async (
+          owner: { id: string },
+          args,
+          context: { connectors: RegisterConnectors; user },
+          info,
+        ) => {
           if (owner.id !== undefined && owner.id !== null) {
             let result = await context.connectors.User.findOneById(owner.id);
             if (!result) {
@@ -59,16 +61,20 @@ export class ViewerEntity extends common.types.GQLModule {
     });
 
     this._queryEntry = fillDefaults(this._queryEntry, {
-      'queryEntry': [`
+      queryEntry: [
+        `
         viewer: Viewer
-      `],
+      `,
+      ],
     });
 
     this._viewerEntry = fillDefaults(this._viewerEntry, {
-      'viewerEntry': [`
+      viewerEntry: [
+        `
         # current User
         _user: User
-      `],
+      `,
+      ],
     });
   }
 }

@@ -1,4 +1,3 @@
-
 import { common } from 'oda-gen-graphql';
 
 let { fillDefaults, deepMerge } = common.lib;
@@ -8,7 +7,10 @@ import { viewer } from './viewer/resolver';
 import { resolver } from './type/resolver';
 import { mutation as connectionMutation } from './connections/mutations/resolver';
 import { mutation as entityMutation } from './mutations/resolver';
-import { subscriptions as entitySubscription, resolver as subscriptionsUnions } from './subscriptions/resolver';
+import {
+  subscriptions as entitySubscription,
+  resolver as subscriptionsUnions,
+} from './subscriptions/resolver';
 
 export class ToDoItem extends common.types.GQLModule {
   constructor(_args) {
@@ -16,10 +18,15 @@ export class ToDoItem extends common.types.GQLModule {
     this._name = 'ToDoItem';
     this._query = fillDefaults(this._query, query);
     this._viewer = fillDefaults(this._viewer, viewer);
-    this._resolver = fillDefaults(this._resolver, resolver, subscriptionsUnions);
+    this._resolver = fillDefaults(
+      this._resolver,
+      resolver,
+      subscriptionsUnions,
+    );
 
     this._typeDef = fillDefaults(this._typeDef, {
-      'enums': [`enum ToDoItemSortOrder {
+      enums: [
+        `enum ToDoItemSortOrder {
   nameAsc
   nameDesc
   descriptionAsc
@@ -38,8 +45,10 @@ export class ToDoItem extends common.types.GQLModule {
   updatedByDesc
   updatedAtAsc
   updatedAtDesc
-}`],
-      'type': [`
+}`,
+      ],
+      type: [
+        `
 # # Todo Item
 
 
@@ -147,8 +156,10 @@ type ToDoItem implements Node{
 }
 
 
-`],
-      'mutationTypes': [`# Input types for basic CUD
+`,
+      ],
+      mutationTypes: [
+        `# Input types for basic CUD
 
 # input type for ToDoItem
 input createToDoItemInput {
@@ -224,8 +235,10 @@ type deleteToDoItemPayload {
   deletedItemId: ID
   toDoItem: ToDoItem
 }
-`],
-      'subscriptionsTypes': [`# Input types for basic CUD
+`,
+      ],
+      subscriptionsTypes: [
+        `# Input types for basic CUD
 
 # input type for ToDoItem
 
@@ -260,8 +273,10 @@ type ToDoItemBelongsToUserSubscriptionPayload {
   relation: String
 }
 
-union ToDoItemSubscriptionPayload = UpdateToDoItemSubscriptionPayload | ToDoItemBelongsToUserSubscriptionPayload`],
-      'connectionsTypes': [`type ToDoItemsConnection {
+union ToDoItemSubscriptionPayload = UpdateToDoItemSubscriptionPayload | ToDoItemBelongsToUserSubscriptionPayload`,
+      ],
+      connectionsTypes: [
+        `type ToDoItemsConnection {
   pageInfo: PageInfo!
   edges: [ToDoItemsEdge]
   # put here your additional connection fields
@@ -274,8 +289,10 @@ type ToDoItemsEdge {
 }
 
 
-`],
-      'connectionsMutation': [`
+`,
+      ],
+      connectionsMutation: [
+        `
 input addToToDoItemBelongsToUserInput {
   clientMutationId: String
   toDoItem:ID!
@@ -300,35 +317,49 @@ type removeFromToDoItemBelongsToUserPayload {
   viewer: Viewer
   toDoItem: ToDoItem
  }
-`],
+`,
+      ],
     });
 
     this._mutationEntry = fillDefaults(this._mutationEntry, {
-      'mutationEntry': [`createToDoItem(input: createToDoItemInput!): createToDoItemPayload
+      mutationEntry: [
+        `createToDoItem(input: createToDoItemInput!): createToDoItemPayload
 updateToDoItem(input: updateToDoItemInput!): updateToDoItemPayload
-deleteToDoItem(input: deleteToDoItemInput!): deleteToDoItemPayload`],
-      'connectionsMutationEntry': [`addToToDoItemBelongsToUser(input: addToToDoItemBelongsToUserInput):addToToDoItemBelongsToUserPayload
+deleteToDoItem(input: deleteToDoItemInput!): deleteToDoItemPayload`,
+      ],
+      connectionsMutationEntry: [
+        `addToToDoItemBelongsToUser(input: addToToDoItemBelongsToUserInput):addToToDoItemBelongsToUserPayload
 removeFromToDoItemBelongsToUser(input: removeFromToDoItemBelongsToUserInput):removeFromToDoItemBelongsToUserPayload
-`],
+`,
+      ],
     });
 
     this._subscriptionEntry = fillDefaults(this._subscriptionEntry, {
-      'subscriptionEntry': [`ToDoItem(filter: ToDoItemFilterSubscriptions): ToDoItemSubscription
-`],
+      subscriptionEntry: [
+        `ToDoItem(filter: ToDoItemFilterSubscriptions): ToDoItemSubscription
+`,
+      ],
     });
 
     this._queryEntry = fillDefaults(this._queryEntry, {
-      'queryEntry': [`  toDoItems( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [ToDoItemSortOrder], filter: ToDoItemComplexFilter): ToDoItemsConnection
+      queryEntry: [
+        `  toDoItems( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [ToDoItemSortOrder], filter: ToDoItemComplexFilter): ToDoItemsConnection
 
-  toDoItem(id: ID): ToDoItem`],
+  toDoItem(id: ID): ToDoItem`,
+      ],
     });
 
-    this._mutation = fillDefaults(this._mutation, deepMerge(entityMutation, connectionMutation));
+    this._mutation = fillDefaults(
+      this._mutation,
+      deepMerge(entityMutation, connectionMutation),
+    );
     this._subscription = fillDefaults(this._subscription, entitySubscription);
 
     this._viewerEntry = fillDefaults(this._viewerEntry, {
-      'viewerEntry': [`toDoItems( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [ToDoItemSortOrder], filter: ToDoItemFilter): ToDoItemsConnection
-  toDoItem(id: ID): ToDoItem`],
+      viewerEntry: [
+        `toDoItems( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [ToDoItemSortOrder], filter: ToDoItemFilter): ToDoItemsConnection
+  toDoItem(id: ID): ToDoItem`,
+      ],
     });
   }
 }

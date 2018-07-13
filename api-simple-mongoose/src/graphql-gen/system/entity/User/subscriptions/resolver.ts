@@ -11,40 +11,55 @@ function filterIt(payload, queryCheck) {
 
 export const subscriptions = {
   User: {
-    subscribe: Filter.withContext(withFilter(() => pubsub.asyncIterator('User'), ({ User }, args, context, info) => {
-      let allow = context.connectors.User.secure('read', { source: User.node });
-      if (allow) {
-        return filterIt(User, context.queryCheck);
-      } else {
-        return false;
-      }
-    }),{
-      id: '_id',
-    }),
+    subscribe: Filter.withContext(
+      withFilter(
+        () => pubsub.asyncIterator('User'),
+        ({ User }, args, context, info) => {
+          let allow = context.connectors.User.secure('read', {
+            source: User.node,
+          });
+          if (allow) {
+            return filterIt(User, context.queryCheck);
+          } else {
+            return false;
+          }
+        },
+      ),
+      {
+        id: '_id',
+      },
+    ),
   },
 };
 
 export const resolver = {
-  
-  UserSubscriptionPayload : {
+  UserSubscriptionPayload: {
     __resolveType(obj, context, info) {
-      if (obj.id || obj.userName || obj.password || obj.isAdmin || obj.isSystem || obj.enabled || obj.updatedBy || obj.updatedAt) {
-        return "UpdateUserSubscriptionPayload";
+      if (
+        obj.id ||
+        obj.userName ||
+        obj.password ||
+        obj.isAdmin ||
+        obj.isSystem ||
+        obj.enabled ||
+        obj.updatedBy ||
+        obj.updatedAt
+      ) {
+        return 'UpdateUserSubscriptionPayload';
       }
       if (obj.args && obj.args.user && obj.args.toDoItem) {
-        return "UserHasManyTodosSubscriptionPayload";
+        return 'UserHasManyTodosSubscriptionPayload';
       }
       if (obj.args && obj.args.user && obj.args.file) {
-        return "UserHasManyFilesSubscriptionPayload";
+        return 'UserHasManyFilesSubscriptionPayload';
       }
       if (obj.args && obj.args.user && obj.args.userFollowings) {
-        return "UserBelongsToManyFollowingsSubscriptionPayload";
+        return 'UserBelongsToManyFollowingsSubscriptionPayload';
       }
       if (obj.args && obj.args.user && obj.args.userFollowers) {
-        return "UserBelongsToManyFollowersSubscriptionPayload";
+        return 'UserBelongsToManyFollowersSubscriptionPayload';
       }
       return null;
-    }
+    },
   },
-  
 };
