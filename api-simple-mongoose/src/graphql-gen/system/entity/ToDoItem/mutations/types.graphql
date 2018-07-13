@@ -7,6 +7,7 @@ input createToDoItemInput {
   name: String
   description: String
   done: Boolean
+  location: JSON
   dueToDate: Date
   published: Boolean
   updatedBy: ID
@@ -20,6 +21,7 @@ input embedToDoItemInput {
   name: String
   description: String
   done: Boolean
+  location: JSON
   dueToDate: Date
   published: Boolean
   updatedBy: ID
@@ -42,6 +44,7 @@ input updateToDoItemInput {
   name: String
   description: String
   done: Boolean
+  location: JSON
   dueToDate: Date
   published: Boolean
   updatedBy: ID

@@ -121,6 +121,9 @@ export default class ToDoItem extends MongooseApi<RegisterConnectors, PartialToD
       if (args.done !== undefined) {
         entity.done = args.done;
       }
+      if (args.location !== undefined) {
+        entity.location = args.location;
+      }
       if (args.dueToDate !== undefined) {
         entity.dueToDate = args.dueToDate;
       }

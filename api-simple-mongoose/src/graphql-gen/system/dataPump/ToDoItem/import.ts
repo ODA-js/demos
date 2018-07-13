@@ -22,6 +22,7 @@ export default {
           name
           description
           done
+          location
           dueToDate
           published
           updatedBy

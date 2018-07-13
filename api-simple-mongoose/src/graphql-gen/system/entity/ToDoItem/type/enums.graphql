@@ -5,6 +5,8 @@ enum ToDoItemSortOrder {
   descriptionDesc
   doneAsc
   doneDesc
+  locationAsc
+  locationDesc
   dueToDateAsc
   dueToDateDesc
   publishedAsc

@@ -1,7 +1,7 @@
 export default {
   name: 'ToDoItem',
   title: 'todo Item',
-  implements:['IUpdated'],
+  implements: ['IUpdated'],
   fields: {
     name: {
       indexed: true,
@@ -12,6 +12,10 @@ export default {
     done: {
       type: 'boolean',
       indexed: true,
+    },
+    location: {
+      type: 'JSON',
+      indexed: '2dsphere',
     },
     dueToDate: {
       type: 'Date',
@@ -25,7 +29,7 @@ export default {
       indexed: true,
       relation: {
         belongsTo: 'User#userName',
-      }
-    }
+      },
+    },
   },
 };

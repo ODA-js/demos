@@ -3,6 +3,7 @@
   name?: string;
   description?: string;
   done?: boolean;
+  location?: object;
   dueToDate?: Date;
   published?: boolean;
   user?: string;

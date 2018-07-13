@@ -11,6 +11,9 @@ export default () => {
     done: {
       type: Boolean,
     },
+    location: {
+      type: mongoose.Schema.Types.Mixed,
+    },
     dueToDate: {
       type: Date,
     },
@@ -46,6 +49,12 @@ export default () => {
 
   $ToDoItem.index({
     done: 1,
+  }, {
+    sparse: 1,
+  });
+
+  $ToDoItem.index({
+    location: '2dsphere',
   }, {
     sparse: 1,
   });

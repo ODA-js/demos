@@ -22,6 +22,7 @@ input ToDoItemFilter {
   name: WhereString
   description: WhereString
   done: WhereBoolean
+  location: WhereJSON
   dueToDate: WhereDate
   published: WhereBoolean
   user: WhereString
@@ -36,6 +37,7 @@ input ToDoItemComplexFilter {
   name: WhereString
   description: WhereString
   done: WhereBoolean
+  location: WhereJSON
   dueToDate: WhereDate
   published: WhereBoolean
   user: WhereString
@@ -48,6 +50,7 @@ input ToDoItemFilterItem {
   name: WhereString
   description: WhereString
   done: WhereBoolean
+  location: WhereJSON
   dueToDate: WhereDate
   published: WhereBoolean
   user: WhereString
@@ -60,6 +63,7 @@ input ToDoItemFilterSubscriptionsItem {
   name: WhereString
   description: WhereString
   done: WhereBoolean
+  location: WhereJSON
   dueToDate: WhereDate
   published: WhereBoolean
   user: WhereString
@@ -84,6 +88,8 @@ type ToDoItem implements Node{
   description: String
   # # Done
   done: Boolean
+  # # Location
+  location: JSON
   # # Due To Date
   dueToDate: Date
   # # Published

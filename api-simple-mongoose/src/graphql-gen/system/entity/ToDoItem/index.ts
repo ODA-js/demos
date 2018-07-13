@@ -26,6 +26,8 @@ export class ToDoItem extends common.types.GQLModule {
   descriptionDesc
   doneAsc
   doneDesc
+  locationAsc
+  locationDesc
   dueToDateAsc
   dueToDateDesc
   publishedAsc
@@ -61,6 +63,7 @@ input ToDoItemFilter {
   name: WhereString
   description: WhereString
   done: WhereBoolean
+  location: WhereJSON
   dueToDate: WhereDate
   published: WhereBoolean
   user: WhereString
@@ -75,6 +78,7 @@ input ToDoItemComplexFilter {
   name: WhereString
   description: WhereString
   done: WhereBoolean
+  location: WhereJSON
   dueToDate: WhereDate
   published: WhereBoolean
   user: WhereString
@@ -87,6 +91,7 @@ input ToDoItemFilterItem {
   name: WhereString
   description: WhereString
   done: WhereBoolean
+  location: WhereJSON
   dueToDate: WhereDate
   published: WhereBoolean
   user: WhereString
@@ -99,6 +104,7 @@ input ToDoItemFilterSubscriptionsItem {
   name: WhereString
   description: WhereString
   done: WhereBoolean
+  location: WhereJSON
   dueToDate: WhereDate
   published: WhereBoolean
   user: WhereString
@@ -123,6 +129,8 @@ type ToDoItem implements Node{
   description: String
   # # Done
   done: Boolean
+  # # Location
+  location: JSON
   # # Due To Date
   dueToDate: Date
   # # Published
@@ -149,6 +157,7 @@ input createToDoItemInput {
   name: String
   description: String
   done: Boolean
+  location: JSON
   dueToDate: Date
   published: Boolean
   updatedBy: ID
@@ -162,6 +171,7 @@ input embedToDoItemInput {
   name: String
   description: String
   done: Boolean
+  location: JSON
   dueToDate: Date
   published: Boolean
   updatedBy: ID
@@ -184,6 +194,7 @@ input updateToDoItemInput {
   name: String
   description: String
   done: Boolean
+  location: JSON
   dueToDate: Date
   published: Boolean
   updatedBy: ID
@@ -224,6 +235,7 @@ type UpdateToDoItemSubscriptionPayload {
   name: String
   description: String
   done: Boolean
+  location: JSON
   dueToDate: Date
   published: Boolean
   updatedBy: ID

@@ -11,6 +11,7 @@ fragment ViewToDoItem on ToDoItem {
   name
   description
   done
+  location
   dueToDate
   published
   updatedBy
@@ -22,6 +23,7 @@ fragment ViewToDoItemFull on ToDoItem {
   name
   description
   done
+  location
   dueToDate
   published
   updatedBy

@@ -28,7 +28,7 @@ export const resolver = {
   
   ToDoItemSubscriptionPayload : {
     __resolveType(obj, context, info) {
-      if (obj.id || obj.name || obj.description || obj.done || obj.dueToDate || obj.published || obj.updatedBy || obj.updatedAt) {
+      if (obj.id || obj.name || obj.description || obj.done || obj.location || obj.dueToDate || obj.published || obj.updatedBy || obj.updatedAt) {
         return "UpdateToDoItemSubscriptionPayload";
       }
       if (obj.args && obj.args.toDoItem && obj.args.user) {
