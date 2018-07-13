@@ -6,7 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 
 import {
-  
   TextField,
   BooleanField,
   EditButton,
@@ -31,10 +30,12 @@ Label.contextTypes = {
 
 const CommentGrid = ({ ids, data, basePath }, { translate }) => (
   <div>
-    { ids.length > 0 ? (
+    {ids.length > 0 ? (
       ids.map(id => (
         <Card key={id} style={cardStyle}>
-          <CardHeader title={<TextField record={data[id]} source="userName" />} />
+          <CardHeader
+            title={<TextField record={data[id]} source="userName" />}
+          />
           <CardContent>
             <div>
               <div>
@@ -56,7 +57,6 @@ const CommentGrid = ({ ids, data, basePath }, { translate }) => (
                 <Label label="resources.User.fields.enabled" />
                 <BooleanField record={data[id]} source="enabled" />
               </div>
-
             </div>
           </CardContent>
           <CardActions style={{ textAlign: 'right' }}>
@@ -71,7 +71,7 @@ const CommentGrid = ({ ids, data, basePath }, { translate }) => (
               record={data[id]}
             />
             <DeleteButton
-              resource="system/User"            
+              resource="system/User"
               basePath="/system/User"
               record={data[id]}
             />

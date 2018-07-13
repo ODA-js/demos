@@ -5,11 +5,10 @@ export default {
       name: 'follower |||| Followers',
       listName: 'Follower |||| Followers',
       fields: {
-
         id: 'Id',
         follower: 'Follower',
         following: 'Following',
       },
     },
   },
-}
+};

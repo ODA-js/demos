@@ -1,14 +1,12 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  
   SimpleShowLayout,
-  
   Show,
   TextField,
   BooleanField,
   ReferenceManyField,
-} from "react-admin";
+} from 'react-admin';
 
 const ShowRecordView = (props, context) => {
   const { uix } = context;
@@ -20,58 +18,44 @@ const ShowRecordView = (props, context) => {
   return (
     <Show title={<Title />} {...props}>
       <SimpleShowLayout>
-        <TextField 
-          label="resources.User.fields.userName" 
-          source="userName"
-        />
-        <BooleanField 
-          label="resources.User.fields.isAdmin" 
-          source="isAdmin"
-        />
-        <BooleanField 
-          label="resources.User.fields.isSystem" 
+        <TextField label="resources.User.fields.userName" source="userName" />
+        <BooleanField label="resources.User.fields.isAdmin" source="isAdmin" />
+        <BooleanField
+          label="resources.User.fields.isSystem"
           source="isSystem"
         />
-        <BooleanField 
-          label="resources.User.fields.enabled" 
-          source="enabled"
-        />
-        <ReferenceManyField 
+        <BooleanField label="resources.User.fields.enabled" source="enabled" />
+        <ReferenceManyField
           addLabel={false}
           reference="system/ToDoItem"
           target="user"
-          source="userName"
-        >
+          source="userName">
           <ToDoItem.Grid />
         </ReferenceManyField>
-      
-        <ReferenceManyField 
+
+        <ReferenceManyField
           addLabel={false}
           reference="system/File"
           target="user"
-          source="id"
-        >
+          source="id">
           <File.Grid />
         </ReferenceManyField>
-      
-        <ReferenceManyField 
+
+        <ReferenceManyField
           addLabel={false}
           reference="system/User"
           target="followers"
-          source="id"
-        >
+          source="id">
           <User.Grid />
         </ReferenceManyField>
-      
-        <ReferenceManyField 
+
+        <ReferenceManyField
           addLabel={false}
           reference="system/User"
           target="followings"
-          source="id"
-        >
+          source="id">
           <User.Grid />
         </ReferenceManyField>
-      
       </SimpleShowLayout>
     </Show>
   );
@@ -80,6 +64,6 @@ const ShowRecordView = (props, context) => {
 ShowRecordView.contextTypes = {
   uix: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
-}
+};
 
 export default ShowRecordView;

@@ -5,13 +5,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 
-import {
-  
-  TextField,
-  EditButton,
-  ShowButton,
-  DeleteButton,
-} from 'react-admin';
+import { TextField, EditButton, ShowButton, DeleteButton } from 'react-admin';
 
 const cardStyle = {
   width: 240,
@@ -30,7 +24,7 @@ Label.contextTypes = {
 
 const CommentGrid = ({ ids, data, basePath }, { translate }) => (
   <div>
-    { ids.length > 0 ? (
+    {ids.length > 0 ? (
       ids.map(id => (
         <Card key={id} style={cardStyle}>
           <CardHeader title={<TextField record={data[id]} source="path" />} />
@@ -40,7 +34,6 @@ const CommentGrid = ({ ids, data, basePath }, { translate }) => (
                 <Label label="resources.File.fields.path" />
                 <TextField record={data[id]} source="path" />
               </div>
-
             </div>
           </CardContent>
           <CardActions style={{ textAlign: 'right' }}>
@@ -55,7 +48,7 @@ const CommentGrid = ({ ids, data, basePath }, { translate }) => (
               record={data[id]}
             />
             <DeleteButton
-              resource="system/File"            
+              resource="system/File"
               basePath="/system/File"
               record={data[id]}
             />

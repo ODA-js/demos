@@ -1,18 +1,11 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    Filter,
+import { Filter } from 'react-admin';
 
-} from "react-admin";
-
-
-const FilterPanel = (props, {translate}) => (
-  <Filter {...props} >
-  </Filter>
-);
+const FilterPanel = (props, { translate }) => <Filter {...props} />;
 
 FilterPanel.contextTypes = {
   translate: PropTypes.func.isRequired,
-}
+};
 
 export default FilterPanel;

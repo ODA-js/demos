@@ -1,7 +1,11 @@
-import UserResource, {extension as UserExtension } from './User/queries';
-import ToDoItemResource, {extension as ToDoItemExtension } from './ToDoItem/queries';
-import FileResource, {extension as FileExtension } from './File/queries';
-import FollowerResource, {extension as FollowerExtension } from './Follower/queries';
+import UserResource, { extension as UserExtension } from './User/queries';
+import ToDoItemResource, {
+  extension as ToDoItemExtension,
+} from './ToDoItem/queries';
+import FileResource, { extension as FileExtension } from './File/queries';
+import FollowerResource, {
+  extension as FollowerExtension,
+} from './Follower/queries';
 
 import UserUIX from './User/uix';
 import ToDoItemUIX from './ToDoItem/uix';
@@ -15,7 +19,7 @@ import Admin from './admin';
 export { Admin };
 
 export class Resources extends data.resource.ResourceContainer {
-  constructor(...args){
+  constructor(...args) {
     super(...args);
     this.override([
       UserResource,
@@ -31,8 +35,8 @@ export class Resources extends data.resource.ResourceContainer {
 }
 
 export const uix = {
-  "system/User": UserUIX,
-  "system/ToDoItem": ToDoItemUIX,
-  "system/File": FileUIX,
-  "system/Follower": FollowerUIX,
+  'system/User': UserUIX,
+  'system/ToDoItem': ToDoItemUIX,
+  'system/File': FileUIX,
+  'system/Follower': FollowerUIX,
 };

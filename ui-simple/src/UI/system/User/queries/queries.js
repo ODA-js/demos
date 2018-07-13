@@ -2,315 +2,391 @@ import gql from 'graphql-tag';
 // fragments
 
 export const fragments = {
-  resultFragment: gql`fragment UserResult on User {
-    userName
-    updatedBy
-    password
-    updatedAt
-    isAdmin
-    isSystem
-    enabled
-    id
+  resultFragment: gql`
+    fragment UserResult on User {
+      userName
+      updatedBy
+      password
+      updatedAt
+      isAdmin
+      isSystem
+      enabled
+      id
 
-    todosIds: todos @_(get:"edges") {
-      edges @_( map:"node" ) {
-        node @_(get:"id")  {
-          id
+      todosIds: todos @_(get: "edges") {
+        edges @_(map: "node") {
+          node @_(get: "id") {
+            id
+          }
+        }
+      }
+      filesIds: files @_(get: "edges") {
+        edges @_(map: "node") {
+          node @_(get: "id") {
+            id
+          }
+        }
+      }
+      followingsIds: followings @_(get: "edges") {
+        edges @_(map: "node") {
+          node @_(get: "id") {
+            id
+          }
+        }
+      }
+      followersIds: followers @_(get: "edges") {
+        edges @_(map: "node") {
+          node @_(get: "id") {
+            id
+          }
         }
       }
     }
-    filesIds: files @_(get:"edges") {
-      edges @_( map:"node" ) {
-        node @_(get:"id")  {
-          id
+  `,
+  fullFragment: gql`
+    fragment UserFull on User {
+      userName
+      updatedBy
+      password
+      updatedAt
+      isAdmin
+      isSystem
+      enabled
+      id
+      todos {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+      files {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+      followings {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+      followers {
+        edges {
+          node {
+            id
+          }
         }
       }
     }
-    followingsIds: followings @_(get:"edges") {
-      edges @_( map:"node" ) {
-        node @_(get:"id")  {
-          id
-        }
-      }
-    }
-    followersIds: followers @_(get:"edges") {
-      edges @_( map:"node" ) {
-        node @_(get:"id")  {
-          id
-        }
-      }
-    }
-  }`,
-  fullFragment: gql`fragment UserFull on User {
-    userName
-    updatedBy
-    password
-    updatedAt
-    isAdmin
-    isSystem
-    enabled
-    id
-    todos {
-      edges {
-        node {
-          id
-        }
-      }
-    }
-    files {
-      edges {
-        node {
-          id
-        }
-      }
-    }
-    followings {
-      edges {
-        node {
-          id
-        }
-      }
-    }
-    followers {
-      edges {
-        node {
-          id
-        }
-      }
-    }
-  }`,
-}
+  `,
+};
 
 export const queries = {
   // getList
-  getListResult: ({ resultFragment }) => gql`query getListOfUserResult {
-    items {
-      total: pageInfo @_(get:"count") {
-        count
-      }
-      data: edges @_(each: {assign:"node"}) {
-        node {
-          ...UserResult
-        }
-      }
-    }
-  }
-  ${resultFragment}
-  `,
-  getList: ({ fullFragment }) => gql`query getListOfUser($skip: Int, $limit: Int, $orderBy: [UserSortOrder], $filter: UserComplexFilter) {
-    items: users(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
-      pageInfo {
-        count
-      }
-      edges {
-        node {
-          ...UserFull
-        }
-      }
-    }
-  }
-  ${fullFragment}
-  `,
-  //getOne
-  getOneResult: ({ resultFragment }) => gql`{
-    item {
-      ...UserResult
-    }
-  }
-  ${resultFragment}
-  `,
-  getOne: ({ fullFragment }) => gql`query User($id: ID) {
-    item: user(id: $id) {
-      ...UserFull
-    }
-  }
-  ${fullFragment}
-  `,
-  // getMany
-  getManyResult: ({ resultFragment }) => gql`{
-    items @_(get:"edges") {
-      edges @_(map: "node")  {
-        node {
-          ...UserResult
-        }
-      }
-    }
-  }
-  ${resultFragment}
-  `,
-  getMany: ({ fullFragment }) => gql`query Users($filter: UserComplexFilter) {
-    items: users(filter: $filter) {
-      edges {
-        node {
-          ...UserFull
-        }
-      }
-    }
-  }
-  ${fullFragment}
-  `,
-  //delete
-  deleteResult: ({ resultFragment }) => gql`{
-    item @_(get:"node") {
-      node {
-        ...UserResult
-      }
-    }
-  }
-  ${resultFragment}
-  `,
-  delete: ({ fullFragment }) => gql`mutation deleteUser ($input : deleteUserInput!) {
-    item: deleteUser (input: $input) {
-      node: user {
-        ...UserFull
-      }
-    }
-  }
-  ${fullFragment}
-  `,
-  //create
-  createResult: ({ resultFragment }) => gql`{
-    item @_(get: "edge.node") {
-      edge {
-        node {
-          ...UserResult
-        }
-      }
-    }
-  }
-  ${resultFragment}
-  `,
-  create: ({ fullFragment }) => gql`mutation createUser($input: createUserInput!) {
-    item : createUser (input : $input) {
-      edge: user {
-        node {
-          ...UserFull
-        }
-      }
-    }
-  }
-  ${fullFragment}
-  `,
-  //update
-  updateResult: ({ resultFragment }) => gql`{
-    item @_(get:"node") {
-      node {
-        ...UserResult
-      }
-    }
-  }
-  ${resultFragment}
-  `,
-  update: ({ fullFragment }) => gql`mutation updateUser($input: updateUserInput!) {
-        item : updateUser (input : $input) {
-          node: user {
-            ...UserFull
-          }
-        }
-      }
-    ${fullFragment}
-  `,
-  //getManyReference
-  getManyReference: ({ fullFragment }) => ({
-  
-    todos: gql`query Todos_User($skip: Int, $limit: Int, $orderBy: [UserSortOrder], $filter: UserComplexFilter) {
-      items: users(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
-        pageInfo {
-          count
-        }
-        edges {
-          node {
-            ...UserFull
-          }
-        }
-      }
-    }
-    ${fullFragment}
-  `,
-  
-    files: gql`query Files_User($skip: Int, $limit: Int, $orderBy: [UserSortOrder], $filter: UserComplexFilter) {
-      items: users(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
-        pageInfo {
-          count
-        }
-        edges {
-          node {
-            ...UserFull
-          }
-        }
-      }
-    }
-    ${fullFragment}
-  `,
-      followings: gql`query Followings_Id($id: ID, $skip: Int, $limit: Int, $orderBy: [UserSortOrder], $filter: UserComplexFilter) {
-      opposite: user(id:$id) {
-        id
-        items: followers(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
-          pageInfo {
-            count
-          }
-          edges {
-            node {
-              ...UserFull
-            }
-          }
-        }
-      }
-    }
-    ${fullFragment}
-  `,
-      followers: gql`query Followers_Id($id: ID, $skip: Int, $limit: Int, $orderBy: [UserSortOrder], $filter: UserComplexFilter) {
-      opposite: user(id:$id) {
-        id
-        items: followings(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
-          pageInfo {
-            count
-          }
-          edges {
-            node {
-              ...UserFull
-            }
-          }
-        }
-      }
-    }
-    ${fullFragment}
-  `,
-    }),
-  getManyReferenceResultOpposite: ({ resultFragment }) => gql`{
-    items: opposite @_(get:"items") {
+  getListResult: ({ resultFragment }) => gql`
+    query getListOfUserResult {
       items {
-        total: pageInfo @_(get:"count") {
+        total: pageInfo @_(get: "count") {
           count
         }
-        data: edges @_(each: {assign:"node"}) {
+        data: edges @_(each: { assign: "node" }) {
           node {
             ...UserResult
           }
         }
       }
     }
-  }
     ${resultFragment}
   `,
-  getManyReferenceResultRegular: ({ resultFragment }) => gql`{
-    items {
-      total: pageInfo @_(get:"count") {
-        count
+  getList: ({ fullFragment }) => gql`
+    query getListOfUser(
+      $skip: Int
+      $limit: Int
+      $orderBy: [UserSortOrder]
+      $filter: UserComplexFilter
+    ) {
+      items: users(
+        skip: $skip
+        limit: $limit
+        orderBy: $orderBy
+        filter: $filter
+      ) {
+        pageInfo {
+          count
+        }
+        edges {
+          node {
+            ...UserFull
+          }
+        }
       }
-      data: edges @_(each: {assign:"node"}) {
+    }
+    ${fullFragment}
+  `,
+  //getOne
+  getOneResult: ({ resultFragment }) => gql`
+    {
+      item {
+        ...UserResult
+      }
+    }
+    ${resultFragment}
+  `,
+  getOne: ({ fullFragment }) => gql`
+    query User($id: ID) {
+      item: user(id: $id) {
+        ...UserFull
+      }
+    }
+    ${fullFragment}
+  `,
+  // getMany
+  getManyResult: ({ resultFragment }) => gql`
+    {
+      items @_(get: "edges") {
+        edges @_(map: "node") {
+          node {
+            ...UserResult
+          }
+        }
+      }
+    }
+    ${resultFragment}
+  `,
+  getMany: ({ fullFragment }) => gql`
+    query Users($filter: UserComplexFilter) {
+      items: users(filter: $filter) {
+        edges {
+          node {
+            ...UserFull
+          }
+        }
+      }
+    }
+    ${fullFragment}
+  `,
+  //delete
+  deleteResult: ({ resultFragment }) => gql`
+    {
+      item @_(get: "node") {
         node {
           ...UserResult
         }
       }
     }
-  }
     ${resultFragment}
   `,
-  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite, getManyReferenceResultRegular }) => ({
+  delete: ({ fullFragment }) => gql`
+    mutation deleteUser($input: deleteUserInput!) {
+      item: deleteUser(input: $input) {
+        node: user {
+          ...UserFull
+        }
+      }
+    }
+    ${fullFragment}
+  `,
+  //create
+  createResult: ({ resultFragment }) => gql`
+    {
+      item @_(get: "edge.node") {
+        edge {
+          node {
+            ...UserResult
+          }
+        }
+      }
+    }
+    ${resultFragment}
+  `,
+  create: ({ fullFragment }) => gql`
+    mutation createUser($input: createUserInput!) {
+      item: createUser(input: $input) {
+        edge: user {
+          node {
+            ...UserFull
+          }
+        }
+      }
+    }
+    ${fullFragment}
+  `,
+  //update
+  updateResult: ({ resultFragment }) => gql`
+    {
+      item @_(get: "node") {
+        node {
+          ...UserResult
+        }
+      }
+    }
+    ${resultFragment}
+  `,
+  update: ({ fullFragment }) => gql`
+    mutation updateUser($input: updateUserInput!) {
+      item: updateUser(input: $input) {
+        node: user {
+          ...UserFull
+        }
+      }
+    }
+    ${fullFragment}
+  `,
+  //getManyReference
+  getManyReference: ({ fullFragment }) => ({
+    todos: gql`
+      query Todos_User(
+        $skip: Int
+        $limit: Int
+        $orderBy: [UserSortOrder]
+        $filter: UserComplexFilter
+      ) {
+        items: users(
+          skip: $skip
+          limit: $limit
+          orderBy: $orderBy
+          filter: $filter
+        ) {
+          pageInfo {
+            count
+          }
+          edges {
+            node {
+              ...UserFull
+            }
+          }
+        }
+      }
+      ${fullFragment}
+    `,
+
+    files: gql`
+      query Files_User(
+        $skip: Int
+        $limit: Int
+        $orderBy: [UserSortOrder]
+        $filter: UserComplexFilter
+      ) {
+        items: users(
+          skip: $skip
+          limit: $limit
+          orderBy: $orderBy
+          filter: $filter
+        ) {
+          pageInfo {
+            count
+          }
+          edges {
+            node {
+              ...UserFull
+            }
+          }
+        }
+      }
+      ${fullFragment}
+    `,
+    followings: gql`
+      query Followings_Id(
+        $id: ID
+        $skip: Int
+        $limit: Int
+        $orderBy: [UserSortOrder]
+        $filter: UserComplexFilter
+      ) {
+        opposite: user(id: $id) {
+          id
+          items: followers(
+            skip: $skip
+            limit: $limit
+            orderBy: $orderBy
+            filter: $filter
+          ) {
+            pageInfo {
+              count
+            }
+            edges {
+              node {
+                ...UserFull
+              }
+            }
+          }
+        }
+      }
+      ${fullFragment}
+    `,
+    followers: gql`
+      query Followers_Id(
+        $id: ID
+        $skip: Int
+        $limit: Int
+        $orderBy: [UserSortOrder]
+        $filter: UserComplexFilter
+      ) {
+        opposite: user(id: $id) {
+          id
+          items: followings(
+            skip: $skip
+            limit: $limit
+            orderBy: $orderBy
+            filter: $filter
+          ) {
+            pageInfo {
+              count
+            }
+            edges {
+              node {
+                ...UserFull
+              }
+            }
+          }
+        }
+      }
+      ${fullFragment}
+    `,
+  }),
+  getManyReferenceResultOpposite: ({ resultFragment }) => gql`
+    {
+      items: opposite @_(get: "items") {
+        items {
+          total: pageInfo @_(get: "count") {
+            count
+          }
+          data: edges @_(each: { assign: "node" }) {
+            node {
+              ...UserResult
+            }
+          }
+        }
+      }
+    }
+    ${resultFragment}
+  `,
+  getManyReferenceResultRegular: ({ resultFragment }) => gql`
+    {
+      items {
+        total: pageInfo @_(get: "count") {
+          count
+        }
+        data: edges @_(each: { assign: "node" }) {
+          node {
+            ...UserResult
+          }
+        }
+      }
+    }
+    ${resultFragment}
+  `,
+  getManyReferenceResult: (
+    { resultFragment },
+    { getManyReferenceResultOpposite, getManyReferenceResultRegular },
+  ) => ({
     todos: getManyReferenceResultRegular({ resultFragment }),
     files: getManyReferenceResultRegular({ resultFragment }),
     followings: getManyReferenceResultOpposite({ resultFragment }),
     followers: getManyReferenceResultOpposite({ resultFragment }),
   }),
-}
+};

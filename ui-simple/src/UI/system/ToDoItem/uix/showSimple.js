@@ -1,21 +1,18 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  
   SimpleShowLayout,
-  
   Show,
   TextField,
   BooleanField,
+  JSONField,
   DateField,
   ShowButton,
   EditButton,
   DeleteButton,
-} from "react-admin";
+} from 'react-admin';
 import { components } from 'oda-ra-ui';
-const {
-  EmbeddedField,
-} = components;
+const { EmbeddedField } = components;
 
 const ShowRecordView = (props, context) => {
   const { uix } = context;
@@ -23,47 +20,39 @@ const ShowRecordView = (props, context) => {
   return (
     <Show title={<Title />} {...props}>
       <SimpleShowLayout>
-        <TextField 
-          label="resources.ToDoItem.fields.name" 
-          source="name"
-        />
-        <TextField 
-          label="resources.ToDoItem.fields.description" 
+        <TextField label="resources.ToDoItem.fields.name" source="name" />
+        <TextField
+          label="resources.ToDoItem.fields.description"
           source="description"
         />
-        <BooleanField 
-          label="resources.ToDoItem.fields.done" 
-          source="done"
+        <BooleanField label="resources.ToDoItem.fields.done" source="done" />
+        <JSONField
+          label="resources.ToDoItem.fields.location"
+          source="location"
         />
-        <DateField 
-          label="resources.ToDoItem.fields.dueToDate" 
+        <DateField
+          label="resources.ToDoItem.fields.dueToDate"
           source="dueToDate"
         />
-        <BooleanField 
-          label="resources.ToDoItem.fields.published" 
+        <BooleanField
+          label="resources.ToDoItem.fields.published"
           source="published"
         />
-        <EmbeddedField
-          addLabel={false}
-          source="userValue"
-        >
-          <TextField 
-            label="resources.User.fields.userName"
-            source="userName"
-          />
-          <BooleanField 
+        <EmbeddedField addLabel={false} source="userValue">
+          <TextField label="resources.User.fields.userName" source="userName" />
+          <BooleanField
             label="resources.User.fields.isAdmin"
             source="isAdmin"
           />
-          <BooleanField 
+          <BooleanField
             label="resources.User.fields.isSystem"
             source="isSystem"
           />
-          <BooleanField 
+          <BooleanField
             label="resources.User.fields.enabled"
             source="enabled"
           />
-          <DeleteButton basePath="/system/User"/>
+          <DeleteButton basePath="/system/User" />
         </EmbeddedField>
       </SimpleShowLayout>
     </Show>
@@ -73,6 +62,6 @@ const ShowRecordView = (props, context) => {
 ShowRecordView.contextTypes = {
   uix: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
-}
+};
 
 export default ShowRecordView;

@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  
-  SimpleForm,
-  
-  TextInput,
-} from "react-admin";
+import { SimpleForm, TextInput } from 'react-admin';
 
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
@@ -26,39 +21,35 @@ class Form extends Component {
   render() {
     const { props } = this;
 
-
-
-
     return (
-      <SimpleForm {...props} >
+      <SimpleForm {...props}>
         <TextInput
           label="resources.Follower.fields.follower"
           source="follower"
-            allowEmpty 
+          allowEmpty
         />
         <TextInput
           label="resources.Follower.fields.following"
           source="following"
-            allowEmpty 
+          allowEmpty
         />
       </SimpleForm>
     );
   }
 }
 
-
 Form.contextTypes = {
   translate: PropTypes.func.isRequired,
   initForm: PropTypes.func.isRequired,
   finalizeForm: PropTypes.func.isRequired,
-}
+};
 
 export default compose(
   connect(
-    state => ({
-    }), {
-      initForm: initForm('record-form', {
-      }),
+    state => ({}),
+    {
+      initForm: initForm('record-form', {}),
       finalizeForm,
-    }),
+    },
+  ),
 )(Form);

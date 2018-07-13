@@ -5,7 +5,6 @@ export default {
       name: 'The User |||| The Users',
       listName: 'User |||| Users',
       fields: {
-
         userName: 'User email',
         updatedBy: 'Updated by',
         password: 'Password',
@@ -21,4 +20,4 @@ export default {
       },
     },
   },
-}
+};

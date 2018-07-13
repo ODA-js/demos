@@ -22,19 +22,19 @@ export default {
   },
   operations: {
     GET_LIST: {
-      filterBy: (params) => Object.keys(params.filter).reduce((acc, key) => {
-        if (key === 'ids') {
-          return { ...acc, id: { in: params.filter[key] } };
-        }
-        if (key === 'q') {
-          return { ...acc,
-            or: [
-              { path: { imatch: params.filter[key] } },
-            ]
-          };
-        }
-        return set(acc, key.replace('-', '.'), params.filter[key]);
-      }, {}),
+      filterBy: params =>
+        Object.keys(params.filter).reduce((acc, key) => {
+          if (key === 'ids') {
+            return { ...acc, id: { in: params.filter[key] } };
+          }
+          if (key === 'q') {
+            return {
+              ...acc,
+              or: [{ path: { imatch: params.filter[key] } }],
+            };
+          }
+          return set(acc, key.replace('-', '.'), params.filter[key]);
+        }, {}),
     },
     // GET_ONE: {},
     // GET_MANY: {},
@@ -45,5 +45,4 @@ export default {
   },
 };
 
-export const extension = [
-];
+export const extension = [];

@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  
   SimpleForm,
-  
   TextInput,
   DateInput,
   BooleanInput,
+  JSONInput,
   ReferenceInput,
   SelectInput,
   AutocompleteInput,
   required,
-} from "react-admin";
+} from 'react-admin';
 
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
@@ -36,45 +35,53 @@ class Form extends Component {
     const actionType = consts.actionType;
     const singleRelActions = props.singleRelActions;
 
-
     return (
-      <SimpleForm {...props} >
+      <SimpleForm {...props}>
         <TextInput
           label="resources.ToDoItem.fields.name"
           source="name"
-            allowEmpty 
+          allowEmpty
         />
         <TextInput
           label="resources.ToDoItem.fields.updatedBy"
           source="updatedBy"
-            allowEmpty 
+          allowEmpty
         />
         <TextInput
           label="resources.ToDoItem.fields.description"
           source="description"
-            allowEmpty 
+          allowEmpty
         />
         <DateInput
           label="resources.ToDoItem.fields.updatedAt"
           source="updatedAt"
-            allowEmpty 
+          allowEmpty
         />
         <BooleanInput
           label="resources.ToDoItem.fields.done"
           source="done"
-            allowEmpty 
+          allowEmpty
+        />
+        <JSONInput
+          label="resources.ToDoItem.fields.location"
+          source="location"
+          allowEmpty
         />
         <DateInput
           label="resources.ToDoItem.fields.dueToDate"
           source="dueToDate"
-            allowEmpty 
+          allowEmpty
         />
         <BooleanInput
           label="resources.ToDoItem.fields.published"
           source="published"
-            allowEmpty 
-        />    
-        <ReferenceInput label="resources.ToDoItem.fields.user" source="userId" reference="system/User" allowEmpty >
+          allowEmpty
+        />
+        <ReferenceInput
+          label="resources.ToDoItem.fields.user"
+          source="userId"
+          reference="system/User"
+          allowEmpty>
           <AutocompleteInput optionText="userName" />
         </ReferenceInput>
         <SelectInput
@@ -86,37 +93,37 @@ class Form extends Component {
         <TextInput
           label="resources.User.fields.userName"
           source="userName"
-          validate={required()} 
+          validate={required()}
         />
         <TextInput
           label="resources.User.fields.password"
           source="password"
-          validate={required()} 
+          validate={required()}
         />
         <BooleanInput
           label="resources.User.fields.isAdmin"
           source="isAdmin"
-          allowEmpty 
+          allowEmpty
         />
         <BooleanInput
           label="resources.User.fields.isSystem"
           source="isSystem"
-          allowEmpty 
+          allowEmpty
         />
         <BooleanInput
           label="resources.User.fields.enabled"
           source="enabled"
-          allowEmpty 
+          allowEmpty
         />
         <TextInput
           label="resources.User.fields.updatedBy"
           source="updatedBy"
-          allowEmpty 
+          allowEmpty
         />
         <DateInput
           label="resources.User.fields.updatedAt"
           source="updatedAt"
-          allowEmpty 
+          allowEmpty
         />
       </SimpleForm>
     );
@@ -126,12 +133,11 @@ class Form extends Component {
 const formName = 'record-form';
 const selector = formValueSelector(formName);
 
-
 Form.contextTypes = {
   translate: PropTypes.func.isRequired,
   initForm: PropTypes.func.isRequired,
   finalizeForm: PropTypes.func.isRequired,
-}
+};
 
 export default compose(
   connect(
@@ -139,7 +145,8 @@ export default compose(
       user: selector(state, 'user'),
       userId: selector(state, 'userId'),
       userType: selector(state, 'userType'),
-    }), {
+    }),
+    {
       initForm: initForm('record-form', {
         user: {
           resource: 'User',
@@ -147,5 +154,6 @@ export default compose(
         },
       }),
       finalizeForm,
-    }),
+    },
+  ),
 )(Form);

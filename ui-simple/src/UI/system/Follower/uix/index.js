@@ -1,4 +1,4 @@
-import loadable from 'loadable-components'
+import loadable from 'loadable-components';
 
 const Title = loadable(() => import('./title'));
 const Filter = loadable(() => import('./filter'));
@@ -27,5 +27,5 @@ export default {
   List,
   Grid,
   GridView,
-  CardView
+  CardView,
 };

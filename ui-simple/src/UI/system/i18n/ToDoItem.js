@@ -5,12 +5,12 @@ export default {
       name: 'todo Item |||| ToDoItems',
       listName: 'ToDoItem |||| ToDoItems',
       fields: {
-
         name: 'Name',
         updatedBy: 'Updated by',
         description: 'Description',
         updatedAt: 'Updated at',
         done: 'Done',
+        location: 'Location',
         dueToDate: 'Due to date',
         published: 'Published',
         user: 'User',
@@ -18,4 +18,4 @@ export default {
       },
     },
   },
-}
+};

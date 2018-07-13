@@ -5,7 +5,6 @@ export default {
       name: 'User files |||| Files',
       listName: 'File |||| Files',
       fields: {
-
         user: 'Owner',
         id: 'Id',
         path: 'Path',
@@ -15,4 +14,4 @@ export default {
       },
     },
   },
-}
+};

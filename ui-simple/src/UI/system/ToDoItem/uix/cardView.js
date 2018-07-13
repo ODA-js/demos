@@ -6,7 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 
 import {
-  
   TextField,
   BooleanField,
   DateField,
@@ -32,7 +31,7 @@ Label.contextTypes = {
 
 const CommentGrid = ({ ids, data, basePath }, { translate }) => (
   <div>
-    { ids.length > 0 ? (
+    {ids.length > 0 ? (
       ids.map(id => (
         <Card key={id} style={cardStyle}>
           <CardHeader title={<TextField record={data[id]} source="name" />} />
@@ -62,7 +61,6 @@ const CommentGrid = ({ ids, data, basePath }, { translate }) => (
                 <Label label="resources.ToDoItem.fields.published" />
                 <BooleanField record={data[id]} source="published" />
               </div>
-
             </div>
           </CardContent>
           <CardActions style={{ textAlign: 'right' }}>
@@ -77,7 +75,7 @@ const CommentGrid = ({ ids, data, basePath }, { translate }) => (
               record={data[id]}
             />
             <DeleteButton
-              resource="system/ToDoItem"            
+              resource="system/ToDoItem"
               basePath="/system/ToDoItem"
               record={data[id]}
             />
