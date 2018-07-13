@@ -1,6 +1,5 @@
-
-query findFileByPath( $path: String) {
-  file(path:$path) {
+query findFileByPath($path: String) {
+  file(path: $path) {
     ...ViewFileFull
   }
 }

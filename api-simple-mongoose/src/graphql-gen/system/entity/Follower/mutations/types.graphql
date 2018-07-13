@@ -15,7 +15,6 @@ input embedFollowerInput {
   following: String
 }
 
-
 # Payload type for Follower
 type createFollowerPayload {
   clientMutationId: String

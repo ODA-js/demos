@@ -1,8 +1,7 @@
-
 input addToToDoItemBelongsToUserInput {
   clientMutationId: String
-  toDoItem:ID!
-  user:ID!
+  toDoItem: ID!
+  user: ID!
   #additional Edge fields
 }
 
@@ -10,16 +9,16 @@ type addToToDoItemBelongsToUserPayload {
   clientMutationId: String
   viewer: Viewer
   toDoItem: ToDoItem
- }
+}
 
 input removeFromToDoItemBelongsToUserInput {
   clientMutationId: String
-  user:ID!
-  toDoItem:ID!
- }
+  user: ID!
+  toDoItem: ID!
+}
 
 type removeFromToDoItemBelongsToUserPayload {
   clientMutationId: String
   viewer: Viewer
   toDoItem: ToDoItem
- }
+}

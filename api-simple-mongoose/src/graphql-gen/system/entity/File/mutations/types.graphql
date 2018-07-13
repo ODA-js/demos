@@ -21,7 +21,6 @@ input embedFileInput {
   user: embedUserInput
 }
 
-
 # Payload type for File
 type createFilePayload {
   clientMutationId: String

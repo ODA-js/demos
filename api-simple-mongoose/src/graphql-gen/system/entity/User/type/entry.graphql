@@ -1,6 +1,4 @@
-
 # # The User
-
 
 input EmbedUserFilter {
   or: [EmbedUserFilterItem]
@@ -73,7 +71,7 @@ input UserFilterSubscriptions {
   updatedFields: WhereListOfStrings
 }
 
-type User implements Node{
+type User implements Node {
   # # User/Email
   userName: String!
   # # Password
@@ -90,14 +88,48 @@ type User implements Node{
   updatedBy: ID
   # # Updated At
   updatedAt: Date
-  # # Todo List  
-  todos(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [ToDoItemSortOrder], filter:ToDoItemComplexFilter ): UserHasManyTodosConnection  
-  # # User Files  
-  files(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FileSortOrder], filter:FileComplexFilter ): UserHasManyFilesConnection  
-  # # Followings  
-  followings(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [UserSortOrder], filter:UserComplexFilter ): UserBelongsToManyFollowingsConnection  
-  # # Followers  
-  followers(after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [UserSortOrder], filter:UserComplexFilter ): UserBelongsToManyFollowersConnection  
+  # # Todo List
+  todos(
+    after: String
+    first: Int
+    before: String
+    last: Int
+    limit: Int
+    skip: Int
+    orderBy: [ToDoItemSortOrder]
+    filter: ToDoItemComplexFilter
+  ): UserHasManyTodosConnection
+  # # User Files
+  files(
+    after: String
+    first: Int
+    before: String
+    last: Int
+    limit: Int
+    skip: Int
+    orderBy: [FileSortOrder]
+    filter: FileComplexFilter
+  ): UserHasManyFilesConnection
+  # # Followings
+  followings(
+    after: String
+    first: Int
+    before: String
+    last: Int
+    limit: Int
+    skip: Int
+    orderBy: [UserSortOrder]
+    filter: UserComplexFilter
+  ): UserBelongsToManyFollowingsConnection
+  # # Followers
+  followers(
+    after: String
+    first: Int
+    before: String
+    last: Int
+    limit: Int
+    skip: Int
+    orderBy: [UserSortOrder]
+    filter: UserComplexFilter
+  ): UserBelongsToManyFollowersConnection
 }
-
-

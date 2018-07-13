@@ -1,7 +1,6 @@
-
 # Create Follower
-mutation createFollower($follower: createFollowerInput!){
-  createFollower(input:$follower){
+mutation createFollower($follower: createFollowerInput!) {
+  createFollower(input: $follower) {
     follower {
       node {
         id
@@ -9,4 +8,3 @@ mutation createFollower($follower: createFollowerInput!){
     }
   }
 }
-

@@ -1,6 +1,4 @@
-
 # # Follower
-
 
 input EmbedFollowerFilter {
   or: [EmbedFollowerFilterItem]
@@ -53,7 +51,7 @@ input FollowerFilterSubscriptions {
   updatedFields: WhereListOfStrings
 }
 
-type Follower implements Node{
+type Follower implements Node {
   # # Follower
   follower: String
   # # Following
@@ -61,5 +59,3 @@ type Follower implements Node{
   # # Id
   id: ID!
 }
-
-

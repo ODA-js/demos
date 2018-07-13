@@ -1,4 +1,3 @@
-
 # fragments for single unique keys
 fragment EmbedFileWithId on File {
   id
@@ -6,7 +5,6 @@ fragment EmbedFileWithId on File {
 fragment EmbedFileWithPath on File {
   path
 }
-
 
 # fragments on entity
 fragment ViewFile on File {
@@ -27,5 +25,3 @@ fragment ViewFileFull on File {
     ...EmbedUserWithId
   }
 }
-
-

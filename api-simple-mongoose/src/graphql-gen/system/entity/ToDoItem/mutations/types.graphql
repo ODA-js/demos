@@ -29,7 +29,6 @@ input embedToDoItemInput {
   user: embedUserInput
 }
 
-
 # Payload type for ToDoItem
 type createToDoItemPayload {
   clientMutationId: String

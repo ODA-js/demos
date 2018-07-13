@@ -1,9 +1,7 @@
-
 # fragments for single unique keys
 fragment EmbedFollowerWithId on Follower {
   id
 }
-
 
 # fragments on entity
 fragment ViewFollower on Follower {
@@ -17,5 +15,3 @@ fragment ViewFollowerFull on Follower {
   follower
   following
 }
-
-

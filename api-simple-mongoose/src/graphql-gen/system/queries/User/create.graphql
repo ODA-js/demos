@@ -1,7 +1,6 @@
-
 # Create User
-mutation createUser($user: createUserInput!){
-  createUser(input:$user){
+mutation createUser($user: createUserInput!) {
+  createUser(input: $user) {
     user {
       node {
         id
@@ -9,4 +8,3 @@ mutation createUser($user: createUserInput!){
     }
   }
 }
-

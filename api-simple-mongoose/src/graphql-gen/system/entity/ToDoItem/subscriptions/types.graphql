@@ -3,7 +3,6 @@
 # input type for ToDoItem
 
 type UpdateToDoItemSubscriptionPayload {
-
   id: ID
   name: String
   description: String
@@ -24,13 +23,15 @@ type ToDoItemSubscription {
 }
 
 type ToDoItemBelongsToUserArgsSubscriptionPayload {
-  toDoItem:ID!
-  user:ID!
+  toDoItem: ID!
+  user: ID!
 }
 
 type ToDoItemBelongsToUserSubscriptionPayload {
-  args:ToDoItemBelongsToUserArgsSubscriptionPayload
+  args: ToDoItemBelongsToUserArgsSubscriptionPayload
   relation: String
 }
 
-union ToDoItemSubscriptionPayload = UpdateToDoItemSubscriptionPayload | ToDoItemBelongsToUserSubscriptionPayload
+union ToDoItemSubscriptionPayload =
+    UpdateToDoItemSubscriptionPayload
+  | ToDoItemBelongsToUserSubscriptionPayload

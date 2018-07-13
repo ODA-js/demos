@@ -3,7 +3,6 @@
 # input type for User
 
 type UpdateUserSubscriptionPayload {
-
   id: ID
   userName: String
   password: String
@@ -23,43 +22,48 @@ type UserSubscription {
 }
 
 type UserHasManyTodosArgsSubscriptionPayload {
-  user:ID!
-  toDoItem:ID!
+  user: ID!
+  toDoItem: ID!
 }
 
 type UserHasManyTodosSubscriptionPayload {
-  args:UserHasManyTodosArgsSubscriptionPayload
+  args: UserHasManyTodosArgsSubscriptionPayload
   relation: String
 }
 
 type UserHasManyFilesArgsSubscriptionPayload {
-  user:ID!
-  file:ID!
+  user: ID!
+  file: ID!
 }
 
 type UserHasManyFilesSubscriptionPayload {
-  args:UserHasManyFilesArgsSubscriptionPayload
+  args: UserHasManyFilesArgsSubscriptionPayload
   relation: String
 }
 
 type UserBelongsToManyFollowingsArgsSubscriptionPayload {
-  user:ID!
-  userFollowings:ID!
+  user: ID!
+  userFollowings: ID!
 }
 
 type UserBelongsToManyFollowingsSubscriptionPayload {
-  args:UserBelongsToManyFollowingsArgsSubscriptionPayload
+  args: UserBelongsToManyFollowingsArgsSubscriptionPayload
   relation: String
 }
 
 type UserBelongsToManyFollowersArgsSubscriptionPayload {
-  user:ID!
-  userFollowers:ID!
+  user: ID!
+  userFollowers: ID!
 }
 
 type UserBelongsToManyFollowersSubscriptionPayload {
-  args:UserBelongsToManyFollowersArgsSubscriptionPayload
+  args: UserBelongsToManyFollowersArgsSubscriptionPayload
   relation: String
 }
 
-union UserSubscriptionPayload = UpdateUserSubscriptionPayload | UserHasManyTodosSubscriptionPayload | UserHasManyFilesSubscriptionPayload | UserBelongsToManyFollowingsSubscriptionPayload | UserBelongsToManyFollowersSubscriptionPayload
+union UserSubscriptionPayload =
+    UpdateUserSubscriptionPayload
+  | UserHasManyTodosSubscriptionPayload
+  | UserHasManyFilesSubscriptionPayload
+  | UserBelongsToManyFollowingsSubscriptionPayload
+  | UserBelongsToManyFollowersSubscriptionPayload

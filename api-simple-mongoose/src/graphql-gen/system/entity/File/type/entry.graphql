@@ -1,6 +1,4 @@
-
 # # User Files
-
 
 input EmbedFileFilter {
   or: [EmbedFileFilterItem]
@@ -65,7 +63,7 @@ input FileFilterSubscriptions {
   updatedFields: WhereListOfStrings
 }
 
-type File implements Node{
+type File implements Node {
   # # Path
   path: String!
   # # Filename
@@ -78,7 +76,4 @@ type File implements Node{
   id: ID!
   # # Owner
   user: User
-
 }
-
-

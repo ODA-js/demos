@@ -1,7 +1,6 @@
-
 # Create File
-mutation createFile($file: createFileInput!){
-  createFile(input:$file){
+mutation createFile($file: createFileInput!) {
+  createFile(input: $file) {
     file {
       node {
         id
@@ -9,4 +8,3 @@ mutation createFile($file: createFileInput!){
     }
   }
 }
-

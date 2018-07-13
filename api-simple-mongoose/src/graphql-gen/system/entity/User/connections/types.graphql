@@ -10,8 +10,6 @@ type UsersEdge {
   # put here your additiona edge fields
 }
 
-
-
 type UserHasManyTodosConnection {
   pageInfo: PageInfo!
   edges: [UserHasManyTodosEdge]
@@ -23,7 +21,6 @@ type UserHasManyTodosEdge {
   cursor: String!
   # put here your additiona edge fields
 }
-
 
 type UserHasManyFilesConnection {
   pageInfo: PageInfo!
@@ -37,7 +34,6 @@ type UserHasManyFilesEdge {
   # put here your additiona edge fields
 }
 
-
 type UserBelongsToManyFollowingsConnection {
   pageInfo: PageInfo!
   edges: [UserBelongsToManyFollowingsEdge]
@@ -50,7 +46,6 @@ type UserBelongsToManyFollowingsEdge {
   # put here your additiona edge fields
 }
 
-
 type UserBelongsToManyFollowersConnection {
   pageInfo: PageInfo!
   edges: [UserBelongsToManyFollowersEdge]
@@ -62,4 +57,3 @@ type UserBelongsToManyFollowersEdge {
   cursor: String!
   # put here your additiona edge fields
 }
-

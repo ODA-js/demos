@@ -1,6 +1,5 @@
-
-query findUserByUserName( $userName: String) {
-  user(userName:$userName) {
+query findUserByUserName($userName: String) {
+  user(userName: $userName) {
     ...ViewUserFull
   }
 }

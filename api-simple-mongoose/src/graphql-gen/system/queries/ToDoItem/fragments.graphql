@@ -1,9 +1,7 @@
-
 # fragments for single unique keys
 fragment EmbedToDoItemWithId on ToDoItem {
   id
 }
-
 
 # fragments on entity
 fragment ViewToDoItem on ToDoItem {
@@ -32,5 +30,3 @@ fragment ViewToDoItemFull on ToDoItem {
     ...EmbedUserWithId
   }
 }
-
-

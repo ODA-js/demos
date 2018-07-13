@@ -3,7 +3,6 @@
 # input type for Follower
 
 type FollowerSubscriptionPayload {
-
   id: ID
   follower: String
   following: String

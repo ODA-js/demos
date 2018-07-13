@@ -9,5 +9,3 @@ type ToDoItemsEdge {
   cursor: String!
   # put here your additiona edge fields
 }
-
-

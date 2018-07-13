@@ -1,12 +1,10 @@
-
 # List of Followers
 query Followers {
-  Follower: followers @_(get: "edges"){
-    edges @_(map: "node"){
-      node{
+  Follower: followers @_(get: "edges") {
+    edges @_(map: "node") {
+      node {
         ...ViewFollowerFull
       }
     }
   }
 }
-

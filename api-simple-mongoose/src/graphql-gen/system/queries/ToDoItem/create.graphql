@@ -1,7 +1,6 @@
-
 # Create ToDoItem
-mutation createToDoItem($toDoItem: createToDoItemInput!){
-  createToDoItem(input:$toDoItem){
+mutation createToDoItem($toDoItem: createToDoItemInput!) {
+  createToDoItem(input: $toDoItem) {
     toDoItem {
       node {
         id
@@ -9,4 +8,3 @@ mutation createToDoItem($toDoItem: createToDoItemInput!){
     }
   }
 }
-

@@ -33,7 +33,6 @@ input embedUserInput {
   followers: [embedUserInput]
 }
 
-
 # Payload type for User
 type createUserPayload {
   clientMutationId: String

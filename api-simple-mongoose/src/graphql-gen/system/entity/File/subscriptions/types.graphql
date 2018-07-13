@@ -3,7 +3,6 @@
 # input type for File
 
 type UpdateFileSubscriptionPayload {
-
   id: ID
   path: String
   filename: String
@@ -20,13 +19,15 @@ type FileSubscription {
 }
 
 type FileBelongsToUserArgsSubscriptionPayload {
-  file:ID!
-  user:ID!
+  file: ID!
+  user: ID!
 }
 
 type FileBelongsToUserSubscriptionPayload {
-  args:FileBelongsToUserArgsSubscriptionPayload
+  args: FileBelongsToUserArgsSubscriptionPayload
   relation: String
 }
 
-union FileSubscriptionPayload = UpdateFileSubscriptionPayload | FileBelongsToUserSubscriptionPayload
+union FileSubscriptionPayload =
+    UpdateFileSubscriptionPayload
+  | FileBelongsToUserSubscriptionPayload

@@ -1,6 +1,5 @@
-
-query findFileById( $id: ID) {
-  file(id:$id) {
+query findFileById($id: ID) {
+  file(id: $id) {
     ...ViewFileFull
   }
 }

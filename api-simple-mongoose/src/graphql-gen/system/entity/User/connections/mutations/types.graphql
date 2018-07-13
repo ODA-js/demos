@@ -1,8 +1,7 @@
-
 input addToUserHasManyTodosInput {
   clientMutationId: String
-  user:ID!
-  toDoItem:ID!
+  user: ID!
+  toDoItem: ID!
   #additional Edge fields
 }
 
@@ -10,24 +9,24 @@ type addToUserHasManyTodosPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 
 input removeFromUserHasManyTodosInput {
   clientMutationId: String
-  toDoItem:ID!
-  user:ID!
- }
+  toDoItem: ID!
+  user: ID!
+}
 
 type removeFromUserHasManyTodosPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 
 input addToUserHasManyFilesInput {
   clientMutationId: String
-  user:ID!
-  file:ID!
+  user: ID!
+  file: ID!
   #additional Edge fields
 }
 
@@ -35,24 +34,24 @@ type addToUserHasManyFilesPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 
 input removeFromUserHasManyFilesInput {
   clientMutationId: String
-  file:ID!
-  user:ID!
- }
+  file: ID!
+  user: ID!
+}
 
 type removeFromUserHasManyFilesPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 
 input addToUserBelongsToManyFollowingsInput {
   clientMutationId: String
-  user:ID!
-  userFollowings:ID!
+  user: ID!
+  userFollowings: ID!
   #additional Edge fields
 }
 
@@ -60,24 +59,24 @@ type addToUserBelongsToManyFollowingsPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 
 input removeFromUserBelongsToManyFollowingsInput {
   clientMutationId: String
-  userFollowings:ID!
-  user:ID!
- }
+  userFollowings: ID!
+  user: ID!
+}
 
 type removeFromUserBelongsToManyFollowingsPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 
 input addToUserBelongsToManyFollowersInput {
   clientMutationId: String
-  user:ID!
-  userFollowers:ID!
+  user: ID!
+  userFollowers: ID!
   #additional Edge fields
 }
 
@@ -85,16 +84,16 @@ type addToUserBelongsToManyFollowersPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 
 input removeFromUserBelongsToManyFollowersInput {
   clientMutationId: String
-  userFollowers:ID!
-  user:ID!
- }
+  userFollowers: ID!
+  user: ID!
+}
 
 type removeFromUserBelongsToManyFollowersPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}

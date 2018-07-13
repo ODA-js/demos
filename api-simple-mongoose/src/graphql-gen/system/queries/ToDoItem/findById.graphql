@@ -1,6 +1,5 @@
-
-query findToDoItemById( $id: ID) {
-  toDoItem(id:$id) {
+query findToDoItemById($id: ID) {
+  toDoItem(id: $id) {
     ...ViewToDoItemFull
   }
 }
