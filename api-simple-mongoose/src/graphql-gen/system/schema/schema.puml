@@ -1,5 +1,8 @@
 @startuml system
 
+  User "followings" -- "* followers" User
+  (User, User) . Follower
+
   ToDoItem "todos" -- "1 user" User
 
   File "files" -- "1 user" User
@@ -18,6 +21,7 @@
     name: String
     description: String
     done: boolean
+    location: JSON
     dueToDate: Date
     published: boolean
     user: User#userName
@@ -30,6 +34,12 @@
     mimetype: String
     encoding: String
     user: User#id
+    id: ID
+  }
+
+  class Follower {
+    follower: String
+    following: String
     id: ID
   }
 
