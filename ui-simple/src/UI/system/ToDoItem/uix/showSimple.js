@@ -5,7 +5,6 @@ import {
   Show,
   TextField,
   BooleanField,
-  JSONField,
   DateField,
   ShowButton,
   EditButton,
@@ -26,10 +25,6 @@ const ShowRecordView = (props, context) => {
           source="description"
         />
         <BooleanField label="resources.ToDoItem.fields.done" source="done" />
-        <JSONField
-          label="resources.ToDoItem.fields.location"
-          source="location"
-        />
         <DateField
           label="resources.ToDoItem.fields.dueToDate"
           source="dueToDate"

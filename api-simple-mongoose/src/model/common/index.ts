@@ -11,7 +11,7 @@ export class CommonExtends extends common.types.GQLModule {
   protected _composite = [
     new FixupPasswordHook({}),
     new FileUploadHook({}),
-    new ToDoItemHook({}),
+    // new ToDoItemHook({}),
     new LoginUserMutation({}),
     new LodashModule({}),
     new FileType({}),

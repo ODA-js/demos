@@ -15,6 +15,7 @@ export default new Query({
     }
   `,
   resolver: async (
+    owner,
     args: {
       id?: string;
     },

@@ -25,6 +25,7 @@ export default new Type({
       id: ID!
       # # Updated By
       updatedBy: ID
+      location: JSON
       # # Updated At
       updatedAt: Date
       # # User

@@ -6,7 +6,6 @@ import {
   TextInput,
   DateInput,
   BooleanInput,
-  JSONInput,
   ReferenceInput,
   SelectInput,
   AutocompleteInput,
@@ -62,11 +61,6 @@ class Form extends Component {
           <BooleanInput
             label="resources.ToDoItem.fields.done"
             source="done"
-            allowEmpty
-          />
-          <JSONInput
-            label="resources.ToDoItem.fields.location"
-            source="location"
             allowEmpty
           />
           <DateInput

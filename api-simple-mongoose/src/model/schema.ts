@@ -6,6 +6,8 @@ import { SystemPackage } from './../graphql-gen/system';
 import { CommonExtends } from './common';
 import { pubsub } from './pubsub';
 
+import ToDoSchema from './../gql/ToDoItem';
+
 const { deepMerge } = common.lib;
 
 export class SystemSchema extends common.types.GQLModule {
@@ -13,8 +15,9 @@ export class SystemSchema extends common.types.GQLModule {
   protected _composite = [new SystemPackage({}), new CommonExtends({})];
 
   public get typeDefs() {
-    debugger;
-    return gql`
+    return `
+      ${this.todos.schema}
+
       ${this.typeDef.join('\n  ')}
 
       type Viewer implements Node {
@@ -46,18 +49,28 @@ export class SystemSchema extends common.types.GQLModule {
   public build() {
     super.build();
     debugger;
-    this._resolver = deepMerge(this.resolver, this.viewer, {
-      RootQuery: this.query,
-      RootMutation: this.mutation,
-      RootSubscription: deepMerge(this.subscription, {
-        login: {
-          subscribe: () => pubsub.asyncIterator('login'),
-        },
-      }),
-    });
+    this._resolver = deepMerge(
+      this.resolver,
+      this.viewer,
+      {
+        RootQuery: this.query,
+        RootMutation: this.mutation,
+        RootSubscription: deepMerge(this.subscription, {
+          login: {
+            subscribe: () => pubsub.asyncIterator('login'),
+          },
+        }),
+      },
+      this.todos.resolvers,
+    );
   }
 
   public get resolvers() {
     return this.applyHooks(this.resolver);
+  }
+  constructor(...args) {
+    super(...args);
+    this.todos = ToDoSchema;
+    ToDoSchema.build();
   }
 }

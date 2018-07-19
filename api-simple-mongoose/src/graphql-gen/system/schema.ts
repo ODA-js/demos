@@ -3,6 +3,7 @@ import { common } from 'oda-gen-graphql';
 const { deepMerge } = common.lib;
 
 import { SystemPackage } from './index';
+import ToDoSchema from '../../gql/ToDoItem';
 
 export class SystemSchema extends common.types.GQLModule {
   protected _name = 'SystemSchema';
@@ -10,6 +11,8 @@ export class SystemSchema extends common.types.GQLModule {
 
   public get typeDefs() {
     return `
+      ${this.todos.schema}
+
       ${this.typeDef.join('\n  ')}
 
       type Viewer implements Node {
@@ -25,6 +28,10 @@ export class SystemSchema extends common.types.GQLModule {
         ${this.mutationEntry.join('\n  ')}
       }
 
+      type RootSubscription {
+        ${this.subscriptionEntry.join('\n  ')}
+      }
+      
       schema {
         query: RootQuery
         mutation: RootMutation
@@ -33,14 +40,27 @@ export class SystemSchema extends common.types.GQLModule {
   }
 
   public build() {
+    debugger;
     super.build();
-    this._resolver = deepMerge(this.resolver, this.viewer, {
-      RootQuery: this.query,
-      RootMutation: this.mutation,
-    });
+    this._resolver = deepMerge(
+      this.resolver,
+      this.viewer,
+      {
+        RootQuery: this.query,
+        RootMutation: this.mutation,
+      },
+      this.todos.resolvers,
+    );
+    debugger;
   }
 
   public get resolvers() {
     return this.applyHooks(this.resolver);
+  }
+  constructor(...args) {
+    super(...args);
+    debugger;
+    this.todos = ToDoSchema;
+    ToDoSchema.build();
   }
 }
