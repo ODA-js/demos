@@ -18,7 +18,7 @@ export default {
       indexed: '2dsphere',
     },
     file: {
-      type: 'File',
+      type: 'string',
     },
     dueToDate: {
       type: 'Date',

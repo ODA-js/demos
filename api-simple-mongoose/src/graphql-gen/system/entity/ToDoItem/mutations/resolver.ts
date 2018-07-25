@@ -233,6 +233,7 @@ export const mutation = {
         description?: string;
         done?: boolean;
         location?: object;
+        file?: string;
         dueToDate?: Date;
         published?: boolean;
         updatedBy?: string;
@@ -248,6 +249,7 @@ export const mutation = {
         description: args.description,
         done: args.done,
         location: args.location,
+        file: args.file,
         dueToDate: args.dueToDate,
         published: args.published,
         updatedBy: args.updatedBy,
@@ -308,6 +310,7 @@ export const mutation = {
         description?: string;
         done?: boolean;
         location?: object;
+        file?: string;
         dueToDate?: Date;
         published?: boolean;
         updatedBy?: string;
@@ -325,6 +328,7 @@ export const mutation = {
         description: args.description,
         done: args.done,
         location: args.location,
+        file: args.file,
         dueToDate: args.dueToDate,
         published: args.published,
         updatedBy: args.updatedBy,

@@ -21,6 +21,7 @@ input ToDoItemFilter {
   description: WhereString
   done: WhereBoolean
   location: WhereJSON
+  file: WhereString
   dueToDate: WhereDate
   published: WhereBoolean
   user: WhereString
@@ -36,6 +37,7 @@ input ToDoItemComplexFilter {
   description: WhereString
   done: WhereBoolean
   location: WhereJSON
+  file: WhereString
   dueToDate: WhereDate
   published: WhereBoolean
   user: WhereString
@@ -49,6 +51,7 @@ input ToDoItemFilterItem {
   description: WhereString
   done: WhereBoolean
   location: WhereJSON
+  file: WhereString
   dueToDate: WhereDate
   published: WhereBoolean
   user: WhereString
@@ -62,6 +65,7 @@ input ToDoItemFilterSubscriptionsItem {
   description: WhereString
   done: WhereBoolean
   location: WhereJSON
+  file: WhereString
   dueToDate: WhereDate
   published: WhereBoolean
   user: WhereString
@@ -88,6 +92,8 @@ type ToDoItem implements Node {
   done: Boolean
   # # Location
   location: JSON
+  # # File
+  file: String
   # # Due To Date
   dueToDate: Date
   # # Published

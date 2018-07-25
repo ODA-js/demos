@@ -8,6 +8,7 @@ type UpdateToDoItemSubscriptionPayload {
   description: String
   done: Boolean
   location: JSON
+  file: String
   dueToDate: Date
   published: Boolean
   updatedBy: ID

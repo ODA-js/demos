@@ -15,6 +15,9 @@ export default () => {
       location: {
         type: mongoose.Schema.Types.Mixed,
       },
+      file: {
+        type: String,
+      },
       dueToDate: {
         type: Date,
       },

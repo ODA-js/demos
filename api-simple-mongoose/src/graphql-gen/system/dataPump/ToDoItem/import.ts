@@ -21,6 +21,7 @@ export default {
           description
           done
           location
+          file
           dueToDate
           published
           updatedBy

@@ -41,6 +41,7 @@ export const resolver = {
         obj.description ||
         obj.done ||
         obj.location ||
+        obj.file ||
         obj.dueToDate ||
         obj.published ||
         obj.updatedBy ||

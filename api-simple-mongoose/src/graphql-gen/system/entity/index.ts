@@ -13,7 +13,7 @@ export class SystemEntities extends common.types.GQLModule {
     new NodeEntity({}),
     new ViewerEntity({}),
     new User({}),
-    // new ToDoItem({}),
+    new ToDoItem({}),
     new File({}),
     new Follower({}),
   ];

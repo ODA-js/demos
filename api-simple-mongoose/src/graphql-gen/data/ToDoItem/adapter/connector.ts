@@ -121,6 +121,9 @@ export default class ToDoItem
     if (args.location !== undefined) {
       entity.location = args.location;
     }
+    if (args.file !== undefined) {
+      entity.file = args.file;
+    }
     if (args.dueToDate !== undefined) {
       entity.dueToDate = args.dueToDate;
     }

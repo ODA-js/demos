@@ -10,6 +10,7 @@ fragment ViewToDoItem on ToDoItem {
   description
   done
   location
+  file
   dueToDate
   published
   updatedBy
@@ -22,6 +23,7 @@ fragment ViewToDoItemFull on ToDoItem {
   description
   done
   location
+  file
   dueToDate
   published
   updatedBy

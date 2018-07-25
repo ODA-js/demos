@@ -4,6 +4,7 @@ export interface IToDoItem {
   description?: string;
   done?: boolean;
   location?: object;
+  file?: string;
   dueToDate?: Date;
   published?: boolean;
   user?: string;
