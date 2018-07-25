@@ -9,7 +9,6 @@ import {
   ReferenceArrayInput,
   SelectArrayInput,
 } from 'react-admin';
-
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import { actions } from 'oda-ra-ui';

@@ -4,6 +4,7 @@ import { SELECTOR_CLEAR, SELECTOR_INIT } from './../consts';
 import getEmbedForm from './embedForm';
 import getChanges from './getChanges';
 import getInitForm from './initForm';
+import clearDataOnInit from './clearDataOnInit';
 
 export default function* () {
   while (true) {
@@ -15,7 +16,8 @@ export default function* () {
       changes: call(changes),
       embedForm: call(embedForm),
       initForm: call(initForm),
-      closeForm: take(SELECTOR_CLEAR),
+      clearForm: call(clearDataOnInit(action.payload)),
+      // closeForm: take(SELECTOR_CLEAR),
     });
   }
 }

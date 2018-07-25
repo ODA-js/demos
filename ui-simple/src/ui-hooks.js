@@ -16,8 +16,9 @@ exports.ToDoItemUI = {
     'metadata.UI': {
       listName: 'name',
       list: ['name', 'description', 'done', 'dueToDate', 'published'],
-      show: ['^updatedBy', '^updatedAt', '^location'],
-      edit: ['^location'],
+      show: ['^updatedBy', '^updatedAt'],
+      // show: ['^updatedBy', '^updatedAt', '^location'],
+      // edit: ['^location'],
       embedded: ['user'],
     },
   },

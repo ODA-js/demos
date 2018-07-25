@@ -11,6 +11,8 @@ export default new Input({
       description: String
       done: Boolean
       dueToDate: Date
+      location: JSON
+      file: [Upload!]
       published: Boolean
       updatedBy: ID
       updatedAt: Date

@@ -16,6 +16,8 @@ export default new Union({
       obj.done ||
       obj.dueToDate ||
       obj.published ||
+      obj.location ||
+      obj.file ||
       obj.updatedBy ||
       obj.updatedAt
     ) {

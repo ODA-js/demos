@@ -17,6 +17,9 @@ export default {
       type: 'JSON',
       indexed: '2dsphere',
     },
+    file: {
+      type: 'File',
+    },
     dueToDate: {
       type: 'Date',
       indexed: true,

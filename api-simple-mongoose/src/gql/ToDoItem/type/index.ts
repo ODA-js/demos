@@ -8,7 +8,6 @@ import {
 import gql from 'graphql-tag';
 
 export default new Type({
-  type: ModelType.type,
   schema: gql`
     type ToDoItem implements Node {
       # # Name
@@ -21,11 +20,12 @@ export default new Type({
       dueToDate: Date
       # # Published
       published: Boolean
+      location: JSON
+      file: TempFile
       # # Id
       id: ID!
       # # Updated By
       updatedBy: ID
-      location: JSON
       # # Updated At
       updatedAt: Date
       # # User

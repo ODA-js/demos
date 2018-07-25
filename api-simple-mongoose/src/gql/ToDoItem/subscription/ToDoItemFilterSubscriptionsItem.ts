@@ -10,6 +10,7 @@ export default new Input({
       done: WhereBoolean
       dueToDate: WhereDate
       published: WhereBoolean
+      location: WhereJSON
       user: WhereString
       id: WhereID
       updatedBy: WhereID

@@ -46,7 +46,7 @@ export default ({
     if (!resource.operations[type]) {
       throw new Error(`No ${type} method found for name ${resourceName}`);
     }
-
+    debugger;
     const operation: IResourceOperation = resource.operations[type];
 
     const variables = typeof operation.variables === 'function' ? operation.variables(params) : operation.variables;

@@ -12,6 +12,8 @@ export default new Input({
       done: Boolean
       dueToDate: Date
       published: Boolean
+      location: JSON
+      file: [Upload!]
       updatedBy: ID
       updatedAt: Date
       user: embedUserInput

@@ -10,13 +10,16 @@ import {
   SelectInput,
   AutocompleteInput,
   required,
+  FileInput,
+  FileField,
 } from 'react-admin';
-
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
 
 import compose from 'recompose/compose';
 import { actions, consts } from 'oda-ra-ui';
+import { components } from 'oda-ra-ui';
+const { JSONInput } = components;
 
 const initForm = actions.initForm;
 
@@ -63,6 +66,14 @@ class Form extends Component {
             source="done"
             allowEmpty
           />
+          <JSONInput
+            label="resources.ToDoItem.fields.location"
+            source="location"
+            allowEmpty
+          />
+          <FileInput label="file" source="file">
+            <FileField source="src" title="title" />
+          </FileInput>
           <DateInput
             label="resources.ToDoItem.fields.dueToDate"
             source="dueToDate"
@@ -71,56 +82,6 @@ class Form extends Component {
           <BooleanInput
             label="resources.ToDoItem.fields.published"
             source="published"
-            allowEmpty
-          />
-        </FormTab>
-        <FormTab label="resources.ToDoItem.fields.user">
-          <ReferenceInput
-            label="resources.ToDoItem.fields.user"
-            source="userId"
-            reference="system/User"
-            allowEmpty>
-            <AutocompleteInput optionText="userName" />
-          </ReferenceInput>
-          <SelectInput
-            source="userType"
-            label="uix.actionType.ExpectedTo"
-            choices={singleRelActions}
-            defaultValue={actionType.USE}
-          />
-          <TextInput
-            label="resources.User.fields.userName"
-            source="userName"
-            validate={required()}
-          />
-          <TextInput
-            label="resources.User.fields.password"
-            source="password"
-            validate={required()}
-          />
-          <BooleanInput
-            label="resources.User.fields.isAdmin"
-            source="isAdmin"
-            allowEmpty
-          />
-          <BooleanInput
-            label="resources.User.fields.isSystem"
-            source="isSystem"
-            allowEmpty
-          />
-          <BooleanInput
-            label="resources.User.fields.enabled"
-            source="enabled"
-            allowEmpty
-          />
-          <TextInput
-            label="resources.User.fields.updatedBy"
-            source="updatedBy"
-            allowEmpty
-          />
-          <DateInput
-            label="resources.User.fields.updatedAt"
-            source="updatedAt"
             allowEmpty
           />
         </FormTab>

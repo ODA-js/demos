@@ -28,6 +28,8 @@ export default new Mutation({
         done?: boolean;
         dueToDate?: Date;
         published?: boolean;
+        location?: object;
+        file?: object;
         updatedBy?: string;
         updatedAt?: Date;
         user?: object /*User*/;
@@ -41,6 +43,8 @@ export default new Mutation({
         done: args.done,
         dueToDate: args.dueToDate,
         published: args.published,
+        location: args.location,
+        file: args.file,
         updatedBy: args.updatedBy,
         updatedAt: args.updatedAt,
       };

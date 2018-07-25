@@ -10,12 +10,13 @@ import {
   AutocompleteInput,
   required,
 } from 'react-admin';
-
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
 
 import compose from 'recompose/compose';
 import { actions, consts } from 'oda-ra-ui';
+import { components } from 'oda-ra-ui';
+const { JSONInput } = components;
 
 const initForm = actions.initForm;
 
@@ -59,6 +60,11 @@ class Form extends Component {
         <BooleanInput
           label="resources.ToDoItem.fields.done"
           source="done"
+          allowEmpty
+        />
+        <JSONInput
+          label="resources.ToDoItem.fields.location"
+          source="location"
           allowEmpty
         />
         <DateInput

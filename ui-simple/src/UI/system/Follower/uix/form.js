@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TabbedForm, FormTab, TextInput } from 'react-admin';
-
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import { actions } from 'oda-ra-ui';

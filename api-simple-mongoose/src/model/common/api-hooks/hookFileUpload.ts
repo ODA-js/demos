@@ -1,5 +1,6 @@
 import { common } from 'oda-gen-graphql';
 import { passport } from 'oda-api-common';
+import gql from 'graphql-tag';
 
 const FileUpload = target => async (
   root: any,
@@ -8,22 +9,23 @@ const FileUpload = target => async (
   info: any,
 ) => {
   //сохранить файл и передать ссылку на него в description...
-  if (Array.isArray(args.files) && args.files.length > 0) {
+  if (args.input.file) {
     console.log('HOOKED, ', args);
     const upload = await context.userGQL({
-      query: `
-      mutation uploadFiles($files: [Upload!]!) {
-        files:multipleUpload(files: $files){
-          id
-          path
-          filename
-          mimetype
-          encoding
+      query: gql`
+        mutation upload($files: [Upload!]!) {
+          files: upload(files: $files) {
+            id
+            path
+            filename
+            mimetype
+            encoding
+          }
         }
-      }
       `,
-      variables: { files: args.files },
+      variables: { files: [args.input.file] },
     });
+    debugger;
     args =
       upload.data && upload.data.files
         ? {
@@ -38,18 +40,6 @@ const FileUpload = target => async (
 
   return target(root, args, context, info);
 };
-
-export class ToDoItemHook extends common.types.GQLModule {
-  protected _name = 'ToDoItem';
-  protected _mutationEntry = {
-    mutationEntry: [
-      `
-      createToDoItem(input: createToDoItemInput!, files:[Upload]): createToDoItemPayload
-      updateToDoItem(input: updateToDoItemInput!, files:[Upload]): updateToDoItemPayload
-      deleteToDoItem(input: deleteToDoItemInput!): deleteToDoItemPayload`,
-    ],
-  };
-}
 
 export class FileUploadHook extends common.types.GQLModule {
   protected _name = 'FileUploadHook';

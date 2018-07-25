@@ -7,6 +7,7 @@ import { CommonExtends } from './common';
 import { pubsub } from './pubsub';
 
 import ToDoSchema from './../gql/ToDoItem';
+import File from './../gql/File';
 
 const { deepMerge } = common.lib;
 
@@ -17,6 +18,7 @@ export class SystemSchema extends common.types.GQLModule {
   public get typeDefs() {
     return `
       ${this.todos.schema}
+      ${this.file.schema}
 
       ${this.typeDef.join('\n  ')}
 
@@ -48,7 +50,6 @@ export class SystemSchema extends common.types.GQLModule {
 
   public build() {
     super.build();
-    debugger;
     this._resolver = deepMerge(
       this.resolver,
       this.viewer,
@@ -62,6 +63,7 @@ export class SystemSchema extends common.types.GQLModule {
         }),
       },
       this.todos.resolvers,
+      this.file.resolvers,
     );
   }
 
@@ -71,6 +73,11 @@ export class SystemSchema extends common.types.GQLModule {
   constructor(...args) {
     super(...args);
     this.todos = ToDoSchema;
+    this.file = File;
+    this._hooks = this.hooks;
+    this._hooks.push(...File.hooks);
+    this._hooks.push(...ToDoSchema.hooks);
     ToDoSchema.build();
+    File.build();
   }
 }

@@ -14,6 +14,7 @@ export default {
     updatedAt: { type: 'date' },
     done: { type: 'boolean' },
     location: { type: 'JSON' },
+    file: { type: 'Upload' },
     dueToDate: { type: 'date' },
     published: { type: 'boolean' },
     id: { type: 'string' },
