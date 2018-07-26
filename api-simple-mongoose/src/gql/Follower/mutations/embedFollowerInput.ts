@@ -1,12 +1,14 @@
 import { ModelType, Input, Type } from '../../common';
 import gql from 'graphql-tag';
 
-export default new Type({
+export default new Input({
+  type: ModelType.input,
   schema: gql`
-    type addToToDoItemBelongsToUserPayload {
+    input embedFollowerInput {
       clientMutationId: String
-      viewer: Viewer
-      toDoItem: ToDoItem
+      id: ID
+      follower: String
+      following: String
     }
   `,
 });

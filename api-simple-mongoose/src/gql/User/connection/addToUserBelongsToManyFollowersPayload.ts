@@ -1,12 +1,12 @@
-import { ModelType, Input, Type } from '../../common';
+import { ModelType, Type } from '../../common';
 import gql from 'graphql-tag';
 
 export default new Type({
   schema: gql`
-    type addToToDoItemBelongsToUserPayload {
+    type addToUserBelongsToManyFollowersPayload {
       clientMutationId: String
       viewer: Viewer
-      toDoItem: ToDoItem
+      user: User
     }
   `,
 });

@@ -6,6 +6,6 @@ import embedToDoItemInput from './embedToDoItemInput';
 import { Schema } from '../../common';
 
 export default new Schema({
-  name: 'ToDo.mutations',
+  name: 'ToDoItem.mutations',
   items: [create, _delete, update, embedToDoItemInput],
 });

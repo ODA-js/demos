@@ -3,10 +3,10 @@ import gql from 'graphql-tag';
 
 export default new Input({
   schema: gql`
-    input addToToDoItemBelongsToUserInput {
+    input addToUserBelongsToManyFollowersInput {
       clientMutationId: String
-      toDoItem: ID!
       user: ID!
+      userFollowers: ID!
       #additional Edge fields
     }
   `,

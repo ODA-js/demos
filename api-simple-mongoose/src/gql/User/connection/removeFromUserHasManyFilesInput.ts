@@ -3,11 +3,10 @@ import gql from 'graphql-tag';
 
 export default new Input({
   schema: gql`
-    input addToToDoItemBelongsToUserInput {
+    input removeFromUserHasManyFilesInput {
       clientMutationId: String
-      toDoItem: ID!
+      file: ID!
       user: ID!
-      #additional Edge fields
     }
   `,
 });

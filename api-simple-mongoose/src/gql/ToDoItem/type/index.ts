@@ -1,11 +1,11 @@
-import {
-  Type,
-  globalIdField,
-  RegisterConnectors,
-  traverse,
-} from '../../common';
-import gql from 'graphql-tag';
+import * as log4js from 'log4js';
+import * as _ from 'lodash';
+import * as get from 'lodash/get';
 
+import { RegisterConnectors } from '../../common';
+let logger = log4js.getLogger('graphql:query:ToDoItem');
+import { ModelType, Type, globalIdField, traverse } from '../../common';
+import gql from 'graphql-tag';
 export default new Type({
   schema: gql`
     type ToDoItem implements Node {
@@ -15,12 +15,14 @@ export default new Type({
       description: String
       # # Done
       done: Boolean
+      # # Location
+      location: JSON
+      # # File
+      file: String
       # # Due To Date
       dueToDate: Date
       # # Published
       published: Boolean
-      location: JSON
-      file: TempFile
       # # Id
       id: ID!
       # # Updated By
