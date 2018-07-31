@@ -13,15 +13,15 @@ export default ({
   role,
   fetchPolicy = 'network-only',
 }: {
-  client: any;
-  role?: any;
-  resources: IResourceContainer;
-  fetchPolicy: string;
-}) => {
+    client: any;
+    role?: any;
+    resources: IResourceContainer;
+    fetchPolicy: string;
+  }) => {
   const client =
     clientOptions &&
-    (clientOptions.constructor === Object ||
-      clientOptions.__proto__ === {}.__proto__)
+      (clientOptions.constructor === Object ||
+        clientOptions.__proto__ === {}.__proto__)
       ? buildApolloClient(clientOptions)
       : clientOptions;
 

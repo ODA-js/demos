@@ -20,7 +20,7 @@ import { PubSubEngine } from 'graphql-subscriptions';
 const { selectionTree: traverse } = lib;
 
 import { utils } from 'oda-api-graphql';
-import RegisterConnectors from '../graphql-gen/data/registerConnectors';
+import RegisterConnectors from '../../graphql-gen/data/registerConnectors';
 
 const { validId } = utils;
 
@@ -49,7 +49,7 @@ import {
   Union,
   Schema,
   UnionInterfaceResolverFunction,
-} from './typedef';
+} from '../typedef';
 
 export {
   Enum,
