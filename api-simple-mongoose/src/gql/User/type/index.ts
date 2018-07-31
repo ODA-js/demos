@@ -1,4 +1,3 @@
-import * as log4js from 'log4js';
 import * as _ from 'lodash';
 import * as get from 'lodash/get';
 
@@ -11,8 +10,7 @@ import {
   consts,
   Filter,
 } from 'oda-api-graphql';
-let logger = log4js.getLogger('graphql:query:User');
-import { ModelType, Type, globalIdField, traverse } from '../../common';
+import { Type, globalIdField, traverse, logger } from '../../common';
 import gql from 'graphql-tag';
 export default new Type({
   schema: gql`

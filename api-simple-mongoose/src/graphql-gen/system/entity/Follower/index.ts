@@ -91,7 +91,7 @@ input FollowerFilterSubscriptions {
   updatedFields: WhereListOfStrings
 }
 
-type Follower implements Node{
+type Follower implements Node {
   # # Follower
   follower: String
   # # Following

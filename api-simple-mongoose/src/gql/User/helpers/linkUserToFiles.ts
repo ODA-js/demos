@@ -1,7 +1,7 @@
-import { toGlobalId } from '../../../common';
+import { toGlobalId } from '../../common';
 import gql from 'graphql-tag';
 
-export default async function linkToFiles({ context, files, user }) {
+export default async function linkUserToFiles({ context, files, user }) {
   if (files) {
     await context.userGQL({
       query: gql`

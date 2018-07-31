@@ -1,7 +1,7 @@
 import buildApolloClient from './apollo';
 import { QUERY_TYPES } from './constants';
 import { IResource, IResourceContainer, IResourceOperation } from './data/resource/interfaces';
-
+const  cache = {};
 export default ({
   client: clientOptions,
   resources,

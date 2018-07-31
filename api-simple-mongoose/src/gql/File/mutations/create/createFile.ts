@@ -1,22 +1,17 @@
-import * as log4js from 'log4js';
-let logger = log4js.getLogger('graphql:mutations:File');
-
 import {
-  ModelType,
   logger,
   RegisterConnectors,
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
   fromGlobalId,
-  linkToUser,
   idToCursor,
   ensureUser,
+  linkFileToUser,
 } from '../../../common';
 import gql from 'graphql-tag';
 
 export default new Mutation({
-  type: ModelType.mutation,
   schema: gql`
     extend type RootMutation {
       createFile(input: createFileInput!): createFilePayload
@@ -74,8 +69,7 @@ export default new Mutation({
             context,
             create: true,
           });
-
-          await linkToUser({
+          await linkFileToUser({
             context,
             user,
             file: result,

@@ -1,5 +1,4 @@
-import * as log4js from 'log4js';
-let logger = log4js.getLogger('graphql:mutations:ToDoItem');
+import { logger } from '../../common';
 import gql from 'graphql-tag';
 
 export default async function unlinkToDoItemFromAll(

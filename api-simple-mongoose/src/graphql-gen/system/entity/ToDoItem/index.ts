@@ -137,7 +137,7 @@ input ToDoItemFilterSubscriptions {
   updatedFields: WhereListOfStrings
 }
 
-type ToDoItem implements Node{
+type ToDoItem implements Node {
   # # Name
   name: String
   # # Description
@@ -316,19 +316,19 @@ type addToToDoItemBelongsToUserPayload {
   clientMutationId: String
   viewer: Viewer
   toDoItem: ToDoItem
- }
+}
 
 input removeFromToDoItemBelongsToUserInput {
   clientMutationId: String
   user:ID!
   toDoItem:ID!
- }
+}
 
 type removeFromToDoItemBelongsToUserPayload {
   clientMutationId: String
   viewer: Viewer
   toDoItem: ToDoItem
- }
+}
 `,
       ],
     });

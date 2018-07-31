@@ -5,10 +5,10 @@ export interface IUser {
   isAdmin?: boolean;
   isSystem?: boolean;
   enabled?: boolean;
-  todos?: string;
-  files?: string;
-  followings?: string;
-  followers?: string;
+  todos?: string[];
+  files?: string[];
+  followings?: string[];
+  followers?: string[];
   updatedBy?: string;
   updatedAt?: Date;
 }

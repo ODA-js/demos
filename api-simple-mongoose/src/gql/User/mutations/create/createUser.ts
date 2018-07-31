@@ -1,22 +1,22 @@
-import * as log4js from 'log4js';
-let logger = log4js.getLogger('graphql:mutations:User');
-
 import {
-  ModelType,
   logger,
   RegisterConnectors,
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
   fromGlobalId,
-  linkToUser,
   idToCursor,
+  ensureToDoItem,
+  linkUserToTodos,
+  ensureFile,
+  linkUserToFiles,
   ensureUser,
+  linkUserToFollowings,
+  linkUserToFollowers,
 } from '../../../common';
 import gql from 'graphql-tag';
 
 export default new Mutation({
-  type: ModelType.mutation,
   schema: gql`
     extend type RootMutation {
       createUser(input: createUserInput!): createUserPayload
@@ -84,8 +84,7 @@ export default new Mutation({
               context,
               create: true,
             });
-
-            await linkToTodos({
+            await linkUserToTodos({
               context,
               todos,
               user: result,
@@ -103,8 +102,7 @@ export default new Mutation({
               context,
               create: true,
             });
-
-            await linkToFiles({
+            await linkUserToFiles({
               context,
               files,
               user: result,
@@ -126,8 +124,7 @@ export default new Mutation({
               context,
               create: true,
             });
-
-            await linkToFollowings({
+            await linkUserToFollowings({
               context,
               followings,
               user: result,
@@ -149,8 +146,7 @@ export default new Mutation({
               context,
               create: true,
             });
-
-            await linkToFollowers({
+            await linkUserToFollowers({
               context,
               followers,
               user: result,

@@ -1,8 +1,7 @@
-import { ModelType, Input } from '../../../common';
+import { Input } from '../../../common';
 import gql from 'graphql-tag';
 
 export default new Input({
-  type: ModelType.input,
   schema: gql`
     enum ToDoItemSortOrder {
       nameAsc

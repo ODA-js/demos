@@ -1,7 +1,11 @@
-import { toGlobalId } from '../../../common';
+import { toGlobalId } from '../../common';
 import gql from 'graphql-tag';
 
-export default async function linkToFollowings({ context, followings, user }) {
+export default async function linkUserToFollowings({
+  context,
+  followings,
+  user,
+}) {
   if (followings) {
     await context.userGQL({
       query: gql`

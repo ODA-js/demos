@@ -107,7 +107,7 @@ input FileFilterSubscriptions {
   updatedFields: WhereListOfStrings
 }
 
-type File implements Node{
+type File implements Node {
   # # Path
   path: String!
   # # Filename
@@ -257,19 +257,19 @@ type addToFileBelongsToUserPayload {
   clientMutationId: String
   viewer: Viewer
   file: File
- }
+}
 
 input removeFromFileBelongsToUserInput {
   clientMutationId: String
   user:ID!
   file:ID!
- }
+}
 
 type removeFromFileBelongsToUserPayload {
   clientMutationId: String
   viewer: Viewer
   file: File
- }
+}
 `,
       ],
     });

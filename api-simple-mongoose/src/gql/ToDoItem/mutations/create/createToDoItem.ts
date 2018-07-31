@@ -1,22 +1,17 @@
-import * as log4js from 'log4js';
-let logger = log4js.getLogger('graphql:mutations:ToDoItem');
-
 import {
-  ModelType,
   logger,
   RegisterConnectors,
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
   fromGlobalId,
-  linkToUser,
   idToCursor,
   ensureUser,
+  linkToDoItemToUser,
 } from '../../../common';
 import gql from 'graphql-tag';
 
 export default new Mutation({
-  type: ModelType.mutation,
   schema: gql`
     extend type RootMutation {
       createToDoItem(input: createToDoItemInput!): createToDoItemPayload
@@ -84,8 +79,7 @@ export default new Mutation({
             context,
             create: true,
           });
-
-          await linkToUser({
+          await linkToDoItemToUser({
             context,
             user,
             toDoItem: result,

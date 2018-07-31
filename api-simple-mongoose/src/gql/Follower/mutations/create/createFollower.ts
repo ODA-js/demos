@@ -1,22 +1,15 @@
-import * as log4js from 'log4js';
-let logger = log4js.getLogger('graphql:mutations:Follower');
-
 import {
-  ModelType,
   logger,
   RegisterConnectors,
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
   fromGlobalId,
-  linkToUser,
   idToCursor,
-  ensureUser,
 } from '../../../common';
 import gql from 'graphql-tag';
 
 export default new Mutation({
-  type: ModelType.mutation,
   schema: gql`
     extend type RootMutation {
       createFollower(input: createFollowerInput!): createFollowerPayload

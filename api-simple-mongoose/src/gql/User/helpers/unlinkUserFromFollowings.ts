@@ -1,7 +1,7 @@
-import { toGlobalId } from '../../../common';
+import { toGlobalId } from '../../common';
 import gql from 'graphql-tag';
 
-export default async function unlinkFromFollowings({
+export default async function unlinkUserFromFollowings({
   context,
   followings,
   user,

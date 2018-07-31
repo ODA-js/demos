@@ -121,7 +121,7 @@ input UserFilterSubscriptions {
   updatedFields: WhereListOfStrings
 }
 
-type User implements Node{
+type User implements Node {
   # # User/Email
   userName: String!
   # # Password
@@ -391,19 +391,19 @@ type addToUserHasManyTodosPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 
 input removeFromUserHasManyTodosInput {
   clientMutationId: String
   toDoItem:ID!
   user:ID!
- }
+}
 
 type removeFromUserHasManyTodosPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 
 input addToUserHasManyFilesInput {
   clientMutationId: String
@@ -416,19 +416,19 @@ type addToUserHasManyFilesPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 
 input removeFromUserHasManyFilesInput {
   clientMutationId: String
   file:ID!
   user:ID!
- }
+}
 
 type removeFromUserHasManyFilesPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 
 input addToUserBelongsToManyFollowingsInput {
   clientMutationId: String
@@ -441,19 +441,19 @@ type addToUserBelongsToManyFollowingsPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 
 input removeFromUserBelongsToManyFollowingsInput {
   clientMutationId: String
   userFollowings:ID!
   user:ID!
- }
+}
 
 type removeFromUserBelongsToManyFollowingsPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 
 input addToUserBelongsToManyFollowersInput {
   clientMutationId: String
@@ -466,19 +466,19 @@ type addToUserBelongsToManyFollowersPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 
 input removeFromUserBelongsToManyFollowersInput {
   clientMutationId: String
   userFollowers:ID!
   user:ID!
- }
+}
 
 type removeFromUserBelongsToManyFollowersPayload {
   clientMutationId: String
   viewer: Viewer
   user: User
- }
+}
 `,
       ],
     });
