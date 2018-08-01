@@ -8,7 +8,7 @@ import removeFromFileBelongsToUserInput from './removeFromFileBelongsToUserInput
 import removeFromFileBelongsToUserPayload from './removeFromFileBelongsToUserPayload';
 
 export default new Schema({
-  name: 'ToDo.connections',
+  name: 'File.connections',
   items: [
     addToFileBelongsToUser,
     removeFromFileBelongsToUser,

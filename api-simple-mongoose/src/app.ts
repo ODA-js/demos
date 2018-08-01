@@ -4,7 +4,7 @@ dotenv.config({ silent: true });
 import * as config from 'config';
 import { runQuery } from 'graphql-server-core';
 import * as cors from 'cors';
-import ToDoSchema from './gql/ToDoItem';
+import system from './gql/system';
 // tslint:disable-next-line:no-var-requires
 let currentModule = require('../package.json');
 
@@ -65,13 +65,14 @@ async function createContext({ schema }) {
 }
 
 function prepareSchema() {
-  let current = new SystemSchema({});
+  // let current = new SystemSchema({});
   // debugger;
-  // ToDoSchema.build();
-  // let current = ToDoSchema;
+  system.build();
+  let current = system;
   current.build();
   return makeExecutableSchema({
-    typeDefs: current.typeDefs,
+    typeDefs: current.schema,
+    // typeDefs: current.typeDefs,
     resolvers: current.resolvers,
     resolverValidationOptions: {
       requireResolversForNonScalar: false,

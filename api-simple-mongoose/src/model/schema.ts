@@ -6,8 +6,8 @@ import { SystemPackage } from './../graphql-gen/system';
 import { CommonExtends } from './common';
 import { pubsub } from './pubsub';
 
-import ToDoSchema from './../gql/ToDoItem';
-import File from './../gql/File';
+import ToDoSchema from './../gql/system/ToDoItem';
+import File from './../gql/system/File';
 
 const { deepMerge } = common.lib;
 

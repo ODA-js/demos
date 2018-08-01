@@ -26,7 +26,7 @@ import removeFromUserBelongsToManyFollowersInput from './removeFromUserBelongsTo
 import removeFromUserBelongsToManyFollowersPayload from './removeFromUserBelongsToManyFollowersPayload';
 
 export default new Schema({
-  name: 'ToDo.connections',
+  name: 'User.connections',
   items: [
     addToUserHasManyTodos,
     removeFromUserHasManyTodos,

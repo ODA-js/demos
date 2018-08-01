@@ -8,7 +8,7 @@ import removeFromToDoItemBelongsToUserInput from './removeFromToDoItemBelongsToU
 import removeFromToDoItemBelongsToUserPayload from './removeFromToDoItemBelongsToUserPayload';
 
 export default new Schema({
-  name: 'ToDo.connections',
+  name: 'ToDoItem.connections',
   items: [
     addToToDoItemBelongsToUser,
     removeFromToDoItemBelongsToUser,
