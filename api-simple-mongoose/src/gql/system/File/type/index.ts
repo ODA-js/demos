@@ -22,7 +22,7 @@ export default new Type({
     }
   `,
   resolver: {
-    id: globalIdField('File', ({ _id }) => _id),
+    id: globalIdField('File', ({ _id, id }) => _id || id),
     user: async (
       { _id: id }, // owner id
       args: {

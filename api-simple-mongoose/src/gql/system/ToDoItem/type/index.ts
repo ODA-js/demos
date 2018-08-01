@@ -32,7 +32,7 @@ export default new Type({
     }
   `,
   resolver: {
-    id: globalIdField('ToDoItem', ({ _id }) => _id),
+    id: globalIdField('ToDoItem', ({ _id, id }) => _id || id),
     user: async (
       { _id: id }, // owner id
       args: {

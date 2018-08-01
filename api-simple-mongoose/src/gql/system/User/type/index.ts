@@ -78,7 +78,7 @@ export default new Type({
     }
   `,
   resolver: {
-    id: globalIdField('User', ({ _id }) => _id),
+    id: globalIdField('User', ({ _id, id }) => _id || id),
     todos: async (
       { _id: id }, // owner id
       args: {

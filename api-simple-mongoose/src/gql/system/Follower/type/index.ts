@@ -14,6 +14,6 @@ export default new Type({
     }
   `,
   resolver: {
-    id: globalIdField('Follower', ({ _id }) => _id),
+    id: globalIdField('Follower', ({ _id, id }) => _id || id),
   },
 });

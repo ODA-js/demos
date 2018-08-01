@@ -1,7 +1,11 @@
 import users from './users';
-import { Schema } from '../../../common';
+import UserComplexFilter from './UserComplexFilter';
+import UserSortOrder from './UserSortOrder';
+import UsersConnection from './UsersConnection';
+import UsersEdge from './UsersEdge';
 
+import { Schema } from '../../../common';
 export default new Schema({
   name: 'User.queries.list',
-  items: [users],
+  items: [users, UserComplexFilter, UserSortOrder, UsersConnection, UsersEdge],
 });
