@@ -26,7 +26,7 @@ import { PubSubEngine, withFilter } from 'graphql-subscriptions';
 
 const { selectionTree: traverse } = lib;
 
-import { utils } from 'oda-api-graphql';
+import { utils, getWithType } from 'oda-api-graphql';
 import RegisterConnectors from '../../graphql-gen/data/registerConnectors';
 
 const { validId } = utils;
@@ -51,6 +51,7 @@ import {
   Resolver,
   ResolverFunction,
   Scalar,
+  Subscription,
   ScalarResolver,
   Type,
   Union,
@@ -75,10 +76,12 @@ export {
   ResolverFunction,
   Scalar,
   ScalarResolver,
+  Subscription,
   Type,
   Union,
   Schema,
   UnionInterfaceResolverFunction,
+  getWithType,
 };
 
 export function getValue(value) {

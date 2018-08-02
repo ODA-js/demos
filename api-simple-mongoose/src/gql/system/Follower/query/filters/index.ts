@@ -2,6 +2,8 @@ import EmbedFollowerFilter from './EmbedFollowerFilter';
 import EmbedFollowerFilterItem from './EmbedFollowerFilterItem';
 import FollowerFilter from './FollowerFilter';
 import FollowerFilterItem from './FollowerFilterItem';
+import FollowerFilterSubscriptions from './FollowerFilterSubscriptions';
+import FollowerFilterSubscriptionsItem from './FollowerFilterSubscriptionsItem';
 import { Schema } from '../../../common';
 
 export default new Schema({
@@ -9,6 +11,8 @@ export default new Schema({
   items: [
     FollowerFilterItem,
     FollowerFilter,
+    FollowerFilterSubscriptionsItem,
+    FollowerFilterSubscriptions,
     EmbedFollowerFilter,
     EmbedFollowerFilterItem,
   ],

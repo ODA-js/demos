@@ -1,6 +1,6 @@
 import {
   ModelType,
-  Type,
+  Subscription,
   Filter,
   filterIt,
   pubsub,
@@ -8,7 +8,7 @@ import {
 } from '../../common';
 import gql from 'graphql-tag';
 
-export default new Type({
+export default new Subscription({
   type: ModelType.type,
   schema: gql`
     extend type RootSubscription {
