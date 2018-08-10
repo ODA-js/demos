@@ -4,8 +4,6 @@ import {
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
-  fromGlobalId,
-  idToCursor,
   ensureUser,
   linkFileToUser,
 } from '../../../common';
@@ -39,7 +37,7 @@ export default new Mutation({
       };
 
       if (args.id) {
-        create.id = fromGlobalId(args.id).id;
+        create.id = args.id;
       }
 
       let result = await context.connectors.File.create(create);
@@ -57,7 +55,7 @@ export default new Mutation({
       }
 
       let fileEdge = {
-        cursor: idToCursor(result.id),
+        cursor: result.id,
         node: result,
       };
 

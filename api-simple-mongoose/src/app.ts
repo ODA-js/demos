@@ -66,10 +66,11 @@ async function createContext({ schema }) {
 
 function prepareSchema() {
   // let current = new SystemSchema({});
-  // debugger;
+  debugger;
   system.build();
   let current = system;
-  current.build();
+  // current.build();
+
   return makeExecutableSchema({
     typeDefs: current.schema,
     // typeDefs: current.typeDefs,

@@ -1,4 +1,3 @@
-import { toGlobalId } from '../../common';
 import gql from 'graphql-tag';
 
 export default async function unlinkUserFromTodos({ context, todos, user }) {
@@ -17,7 +16,7 @@ export default async function unlinkUserFromTodos({ context, todos, user }) {
       `,
       variables: {
         input: {
-          user: toGlobalId('User', user.id),
+          user: user.id,
           toDoItem: todos.id,
         },
       },

@@ -9,9 +9,7 @@ export function filterIt(payload, queryCheck) {
 }
 
 import {
-  globalIdField,
   emptyConnection,
-  idToCursor,
   pagination,
   detectCursorDirection,
   consts,
@@ -19,8 +17,6 @@ import {
   Filter,
 } from 'oda-api-graphql';
 import { lib } from 'oda-gen-common';
-
-import { fromGlobalId, toGlobalId } from 'oda-isomorfic';
 
 import { PubSubEngine, withFilter } from 'graphql-subscriptions';
 
@@ -51,6 +47,7 @@ import {
   Resolver,
   ResolverFunction,
   Scalar,
+  Directive,
   Subscription,
   ScalarResolver,
   Type,
@@ -75,6 +72,7 @@ export {
   Resolver,
   ResolverFunction,
   Scalar,
+  Directive,
   ScalarResolver,
   Subscription,
   Type,
@@ -83,14 +81,6 @@ export {
   UnionInterfaceResolverFunction,
   getWithType,
 };
-
-export function getValue(value) {
-  if (typeof value === 'string') {
-    return validId(value) ? value : fromGlobalId(value).id;
-  } else {
-    return value;
-  }
-}
 
 export async function fixCount(
   length: number,
@@ -118,7 +108,6 @@ export {
   traverse,
   pagination,
   detectCursorDirection,
-  idToCursor,
   logger,
   consts,
   emptyConnection,
@@ -127,7 +116,4 @@ export {
   Filter,
   pubsub,
   mutateAndGetPayload,
-  fromGlobalId,
-  toGlobalId,
-  globalIdField,
 };

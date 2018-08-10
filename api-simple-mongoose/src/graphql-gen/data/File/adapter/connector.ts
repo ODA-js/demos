@@ -7,7 +7,7 @@ import FileSchema from './schema';
 import RegisterConnectors from '../../registerConnectors';
 import * as Dataloader from 'dataloader';
 
-import { PartialFile } from '../types/model';
+import { PartialFile, } from '../types/model';
 import { FileConnector } from './interface';
 
 export default class File extends MongooseApi<RegisterConnectors, PartialFile>
@@ -66,7 +66,7 @@ export default class File extends MongooseApi<RegisterConnectors, PartialFile>
     let entity = this.getPayload(payload);
     let result = await this.createSecure(entity);
     this.storeToCache([result]);
-    return this.ensureId(result && result.toJSON ? result.toJSON() : result);
+    return (this.ensureId(result && result.toJSON ? result.toJSON() : result));
   }
 
   public async findOneByIdAndUpdate(id: string, payload: any) {

@@ -4,8 +4,6 @@ import {
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
-  fromGlobalId,
-  idToCursor,
   ensureUser,
   unlinkFileFromUser,
   linkFileToUser,
@@ -45,11 +43,9 @@ export default new Mutation({
       let previous;
       try {
         if (args.id) {
-          previous = await context.connectors.File.findOneById(
-            fromGlobalId(args.id).id,
-          );
+          previous = await context.connectors.File.findOneById(args.id);
           result = await context.connectors.File.findOneByIdAndUpdate(
-            fromGlobalId(args.id).id,
+            args.id,
             payload,
           );
         } else if (args.path) {

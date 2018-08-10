@@ -8,6 +8,7 @@ import UserBelongsToManyFollowingsConnection from './UserBelongsToManyFollowings
 import UserBelongsToManyFollowingsEdge from './UserBelongsToManyFollowingsEdge';
 import UserBelongsToManyFollowersConnection from './UserBelongsToManyFollowersConnection';
 import UserBelongsToManyFollowersEdge from './UserBelongsToManyFollowersEdge';
+import allUsers from './allUsers';
 import users from './users';
 import UserSortOrder from './UserSortOrder';
 import UserComplexFilter from './UserComplexFilter';
@@ -25,6 +26,7 @@ export default new Schema({
     UserBelongsToManyFollowingsEdge,
     UserBelongsToManyFollowersConnection,
     UserBelongsToManyFollowersEdge,
+    allUsers,
     users,
     UserSortOrder,
     UserComplexFilter,

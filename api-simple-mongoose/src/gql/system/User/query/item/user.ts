@@ -1,4 +1,4 @@
-import { Query, logger, RegisterConnectors, getValue } from '../../../common';
+import { Query, logger, RegisterConnectors } from '../../../common';
 import gql from 'graphql-tag';
 
 export default new Query({
@@ -19,7 +19,7 @@ export default new Query({
     logger.trace('user');
     let result;
     if (args.id) {
-      result = await context.connectors.User.findOneById(getValue(args.id));
+      result = await context.connectors.User.findOneById(args.id);
     } else if (args.userName) {
       result = await context.connectors.User.findOneByUserName(args.userName);
     }

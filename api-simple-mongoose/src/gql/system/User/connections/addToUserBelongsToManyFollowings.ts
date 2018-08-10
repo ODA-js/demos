@@ -4,7 +4,6 @@ import {
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
-  fromGlobalId,
 } from '../../common';
 import gql from 'graphql-tag';
 
@@ -26,8 +25,8 @@ export default new Mutation({
       info,
     ) => {
       logger.trace('addToUserBelongsToManyFollowings');
-      let { id: user } = fromGlobalId(args.user);
-      let { id: userFollowings } = fromGlobalId(args.userFollowings);
+      let { id: user } = args.user;
+      let { id: userFollowings } = args.userFollowings;
       let payload = {
         user,
         userFollowings,

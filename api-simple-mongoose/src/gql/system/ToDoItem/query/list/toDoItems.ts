@@ -6,7 +6,6 @@ import {
   traverse,
   pagination,
   detectCursorDirection,
-  idToCursor,
   fixCount,
   consts,
   emptyConnection,
@@ -65,7 +64,7 @@ export default new Query({
       let edges = get(selectionSet, 'edges')
         ? list.map(l => {
             return {
-              cursor: idToCursor(l.id),
+              cursor: l.id,
               node: l,
             };
           })

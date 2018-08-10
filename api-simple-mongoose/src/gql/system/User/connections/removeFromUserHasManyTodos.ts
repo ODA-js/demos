@@ -4,7 +4,6 @@ import {
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
-  fromGlobalId,
 } from '../../common';
 import gql from 'graphql-tag';
 
@@ -26,8 +25,8 @@ export default new Mutation({
       info,
     ) => {
       logger.trace('removeFromUserHasManyTodos');
-      let { id: user } = fromGlobalId(args.user);
-      let { id: toDoItem } = fromGlobalId(args.toDoItem);
+      let { id: user } = args.user;
+      let { id: toDoItem } = args.toDoItem;
       let payload = {
         user,
         toDoItem,

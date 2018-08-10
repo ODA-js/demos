@@ -1,10 +1,10 @@
 import * as _ from 'lodash';
 import * as get from 'lodash/get';
-import { Type, globalIdField, traverse, logger } from '../../common';
+import { Type, traverse, logger } from '../../common';
 import gql from 'graphql-tag';
 export default new Type({
   schema: gql`
-    type Follower implements Node {
+    type Follower {
       # # Follower
       follower: String
       # # Following
@@ -14,6 +14,6 @@ export default new Type({
     }
   `,
   resolver: {
-    id: globalIdField('Follower', ({ _id, id }) => _id || id),
+    id: ({ _id, id }) => _id || id,
   },
 });

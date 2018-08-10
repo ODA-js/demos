@@ -2,11 +2,11 @@ import * as _ from 'lodash';
 import * as get from 'lodash/get';
 
 import { RegisterConnectors } from '../../common';
-import { Type, globalIdField, traverse, logger } from '../../common';
+import { Type, traverse, logger } from '../../common';
 import gql from 'graphql-tag';
 export default new Type({
   schema: gql`
-    type ToDoItem implements Node {
+    type ToDoItem implements IUpdated {
       # # Name
       name: String
       # # Description
@@ -32,7 +32,7 @@ export default new Type({
     }
   `,
   resolver: {
-    id: globalIdField('ToDoItem', ({ _id, id }) => _id || id),
+    id: ({ _id, id }) => _id || id,
     user: async (
       { _id: id }, // owner id
       args: {

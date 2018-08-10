@@ -1,5 +1,6 @@
 import ToDoItemsEdge from './ToDoItemsEdge';
 import ToDoItemsConnection from './ToDoItemsConnection';
+import allToDoItems from './allToDoItems';
 import toDoItems from './toDoItems';
 import ToDoItemSortOrder from './ToDoItemSortOrder';
 import ToDoItemComplexFilter from './ToDoItemComplexFilter';
@@ -9,6 +10,7 @@ export default new Schema({
   items: [
     ToDoItemsEdge,
     ToDoItemsConnection,
+    allToDoItems,
     toDoItems,
     ToDoItemSortOrder,
     ToDoItemComplexFilter,

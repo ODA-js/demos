@@ -4,7 +4,6 @@ import {
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
-  fromGlobalId,
 } from '../../common';
 import gql from 'graphql-tag';
 
@@ -26,8 +25,8 @@ export default new Mutation({
       info,
     ) => {
       logger.trace('addToUserHasManyFiles');
-      let { id: user } = fromGlobalId(args.user);
-      let { id: file } = fromGlobalId(args.file);
+      let { id: user } = args.user;
+      let { id: file } = args.file;
       let payload = {
         user,
         file,

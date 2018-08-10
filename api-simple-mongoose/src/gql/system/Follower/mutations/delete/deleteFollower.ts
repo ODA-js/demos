@@ -4,9 +4,6 @@ import {
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
-  fromGlobalId,
-  toGlobalId,
-  idToCursor,
   unlinkFollowerFromAll,
 } from '../../../common';
 import gql from 'graphql-tag';
@@ -45,7 +42,7 @@ export default new Mutation({
           );
 
           result = await context.connectors.Follower.findOneByIdAndRemove(
-            fromGlobalId(args.id).id,
+            args.id,
           );
         }
       } catch (err) {
@@ -69,7 +66,7 @@ export default new Mutation({
       }
 
       return {
-        deletedItemId: toGlobalId('Follower', result.id),
+        deletedItemId: result.id,
         follower: result,
       };
     },

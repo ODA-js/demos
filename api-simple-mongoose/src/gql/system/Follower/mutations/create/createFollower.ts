@@ -4,8 +4,6 @@ import {
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
-  fromGlobalId,
-  idToCursor,
 } from '../../../common';
 import gql from 'graphql-tag';
 
@@ -32,7 +30,7 @@ export default new Mutation({
       };
 
       if (args.id) {
-        create.id = fromGlobalId(args.id).id;
+        create.id = args.id;
       }
 
       let result = await context.connectors.Follower.create(create);
@@ -50,7 +48,7 @@ export default new Mutation({
       }
 
       let followerEdge = {
-        cursor: idToCursor(result.id),
+        cursor: result.id,
         node: result,
       };
 

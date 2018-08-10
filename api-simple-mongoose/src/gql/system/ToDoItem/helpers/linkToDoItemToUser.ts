@@ -1,4 +1,3 @@
-import { toGlobalId } from '../../common';
 import gql from 'graphql-tag';
 
 export default async function linkToDoItemToUser({ context, user, toDoItem }) {
@@ -17,7 +16,7 @@ export default async function linkToDoItemToUser({ context, user, toDoItem }) {
       `,
       variables: {
         input: {
-          toDoItem: toGlobalId('ToDoItem', toDoItem.id),
+          toDoItem: toDoItem.id,
           user: user.id,
         },
       },

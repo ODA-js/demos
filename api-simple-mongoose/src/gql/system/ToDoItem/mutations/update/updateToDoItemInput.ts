@@ -4,7 +4,6 @@ import gql from 'graphql-tag';
 export default new Input({
   schema: gql`
     input updateToDoItemInput {
-      clientMutationId: String
       id: ID
       name: String
       description: String

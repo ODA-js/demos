@@ -4,8 +4,6 @@ import {
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
-  fromGlobalId,
-  idToCursor,
   ensureToDoItem,
   linkUserToTodos,
   ensureFile,
@@ -53,7 +51,7 @@ export default new Mutation({
       };
 
       if (args.id) {
-        create.id = fromGlobalId(args.id).id;
+        create.id = args.id;
       }
 
       let result = await context.connectors.User.create(create);
@@ -71,7 +69,7 @@ export default new Mutation({
       }
 
       let userEdge = {
-        cursor: idToCursor(result.id),
+        cursor: result.id,
         node: result,
       };
 

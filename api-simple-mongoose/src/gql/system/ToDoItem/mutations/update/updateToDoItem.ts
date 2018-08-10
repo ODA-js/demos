@@ -4,8 +4,6 @@ import {
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
-  fromGlobalId,
-  idToCursor,
   ensureUser,
   unlinkToDoItemFromUser,
   linkToDoItemToUser,
@@ -55,11 +53,9 @@ export default new Mutation({
       let previous;
       try {
         if (args.id) {
-          previous = await context.connectors.ToDoItem.findOneById(
-            fromGlobalId(args.id).id,
-          );
+          previous = await context.connectors.ToDoItem.findOneById(args.id);
           result = await context.connectors.ToDoItem.findOneByIdAndUpdate(
-            fromGlobalId(args.id).id,
+            args.id,
             payload,
           );
         }

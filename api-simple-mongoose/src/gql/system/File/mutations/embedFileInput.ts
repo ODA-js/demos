@@ -4,7 +4,6 @@ import gql from 'graphql-tag';
 export default new Input({
   schema: gql`
     input embedFileInput {
-      clientMutationId: String
       id: ID
       path: String
       filename: String

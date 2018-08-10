@@ -4,9 +4,6 @@ import {
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
-  fromGlobalId,
-  toGlobalId,
-  idToCursor,
   unlinkFileFromAll,
 } from '../../../common';
 import gql from 'graphql-tag';
@@ -45,9 +42,7 @@ export default new Mutation({
             context,
           );
 
-          result = await context.connectors.File.findOneByIdAndRemove(
-            fromGlobalId(args.id).id,
-          );
+          result = await context.connectors.File.findOneByIdAndRemove(args.id);
         } else if (args.path) {
           await unlinkFileFromAll(
             [
@@ -85,7 +80,7 @@ export default new Mutation({
       }
 
       return {
-        deletedItemId: toGlobalId('File', result.id),
+        deletedItemId: result.id,
         file: result,
       };
     },

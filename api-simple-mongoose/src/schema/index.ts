@@ -4,6 +4,8 @@ import entities from './entities';
 import enums from './enums';
 import mixins from './mixins';
 import unions from './unions';
+import scalars from './scalars';
+import directives from './directives';
 import queries from './queries';
 
 export default {
@@ -15,4 +17,6 @@ export default {
   enums,
   mixins,
   unions,
+  scalars,
+  directives,
 };

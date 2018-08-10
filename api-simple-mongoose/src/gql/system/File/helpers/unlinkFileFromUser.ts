@@ -1,4 +1,3 @@
-import { toGlobalId } from '../../common';
 import gql from 'graphql-tag';
 
 export default async function unlinkFileFromUser({ context, user, file }) {
@@ -17,7 +16,7 @@ export default async function unlinkFileFromUser({ context, user, file }) {
       `,
       variables: {
         input: {
-          file: toGlobalId('File', file.id),
+          file: file.id,
           user: user.id,
         },
       },

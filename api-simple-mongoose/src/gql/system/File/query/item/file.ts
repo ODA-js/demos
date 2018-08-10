@@ -1,4 +1,4 @@
-import { Query, logger, RegisterConnectors, getValue } from '../../../common';
+import { Query, logger, RegisterConnectors } from '../../../common';
 import gql from 'graphql-tag';
 
 export default new Query({
@@ -19,7 +19,7 @@ export default new Query({
     logger.trace('file');
     let result;
     if (args.id) {
-      result = await context.connectors.File.findOneById(getValue(args.id));
+      result = await context.connectors.File.findOneById(args.id);
     } else if (args.path) {
       result = await context.connectors.File.findOneByPath(args.path);
     }

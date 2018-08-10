@@ -4,7 +4,6 @@ import gql from 'graphql-tag';
 export default new Input({
   schema: gql`
     input createUserInput {
-      clientMutationId: String
       id: ID
       userName: String!
       password: String!

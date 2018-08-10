@@ -2,11 +2,11 @@ import * as _ from 'lodash';
 import * as get from 'lodash/get';
 
 import { RegisterConnectors } from '../../common';
-import { Type, globalIdField, traverse, logger } from '../../common';
+import { Type, traverse, logger } from '../../common';
 import gql from 'graphql-tag';
 export default new Type({
   schema: gql`
-    type File implements Node {
+    type File {
       # # Path
       path: String!
       # # Filename
@@ -22,7 +22,7 @@ export default new Type({
     }
   `,
   resolver: {
-    id: globalIdField('File', ({ _id, id }) => _id || id),
+    id: ({ _id, id }) => _id || id,
     user: async (
       { _id: id }, // owner id
       args: {

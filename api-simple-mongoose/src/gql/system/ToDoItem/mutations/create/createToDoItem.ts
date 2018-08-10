@@ -4,8 +4,6 @@ import {
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
-  fromGlobalId,
-  idToCursor,
   ensureUser,
   linkToDoItemToUser,
 } from '../../../common';
@@ -49,7 +47,7 @@ export default new Mutation({
       };
 
       if (args.id) {
-        create.id = fromGlobalId(args.id).id;
+        create.id = args.id;
       }
 
       let result = await context.connectors.ToDoItem.create(create);
@@ -67,7 +65,7 @@ export default new Mutation({
       }
 
       let toDoItemEdge = {
-        cursor: idToCursor(result.id),
+        cursor: result.id,
         node: result,
       };
 

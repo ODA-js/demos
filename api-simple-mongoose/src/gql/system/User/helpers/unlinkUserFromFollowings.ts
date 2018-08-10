@@ -1,4 +1,3 @@
-import { toGlobalId } from '../../common';
 import gql from 'graphql-tag';
 
 export default async function unlinkUserFromFollowings({
@@ -21,7 +20,7 @@ export default async function unlinkUserFromFollowings({
       `,
       variables: {
         input: {
-          user: toGlobalId('User', user.id),
+          user: user.id,
           userFollowings: followings.id,
         },
       },

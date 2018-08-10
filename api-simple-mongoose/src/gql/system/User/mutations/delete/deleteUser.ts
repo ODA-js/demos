@@ -4,9 +4,6 @@ import {
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
-  fromGlobalId,
-  toGlobalId,
-  idToCursor,
   unlinkUserFromAll,
 } from '../../../common';
 import gql from 'graphql-tag';
@@ -45,9 +42,7 @@ export default new Mutation({
             context,
           );
 
-          result = await context.connectors.User.findOneByIdAndRemove(
-            fromGlobalId(args.id).id,
-          );
+          result = await context.connectors.User.findOneByIdAndRemove(args.id);
         } else if (args.userName) {
           await unlinkUserFromAll(
             [
@@ -85,7 +80,7 @@ export default new Mutation({
       }
 
       return {
-        deletedItemId: toGlobalId('User', result.id),
+        deletedItemId: result.id,
         user: result,
       };
     },

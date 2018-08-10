@@ -4,8 +4,6 @@ import {
   mutateAndGetPayload,
   PubSubEngine,
   Mutation,
-  fromGlobalId,
-  idToCursor,
 } from '../../../common';
 import gql from 'graphql-tag';
 
@@ -35,11 +33,9 @@ export default new Mutation({
       let previous;
       try {
         if (args.id) {
-          previous = await context.connectors.Follower.findOneById(
-            fromGlobalId(args.id).id,
-          );
+          previous = await context.connectors.Follower.findOneById(args.id);
           result = await context.connectors.Follower.findOneByIdAndUpdate(
-            fromGlobalId(args.id).id,
+            args.id,
             payload,
           );
         }

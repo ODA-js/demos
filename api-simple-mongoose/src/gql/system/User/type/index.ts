@@ -3,18 +3,17 @@ import * as get from 'lodash/get';
 
 import { RegisterConnectors } from '../../common';
 import {
-  idToCursor,
   emptyConnection,
   pagination,
   detectCursorDirection,
   consts,
   Filter,
 } from 'oda-api-graphql';
-import { Type, globalIdField, traverse, logger } from '../../common';
+import { Type, traverse, logger } from '../../common';
 import gql from 'graphql-tag';
 export default new Type({
   schema: gql`
-    type User implements Node {
+    type User implements IUser & IUpdated {
       # # User/Email
       userName: String!
       # # Password
@@ -78,7 +77,7 @@ export default new Type({
     }
   `,
   resolver: {
-    id: globalIdField('User', ({ _id, id }) => _id || id),
+    id: ({ _id, id }) => _id || id,
     todos: async (
       { _id: id }, // owner id
       args: {
@@ -123,7 +122,7 @@ export default new Type({
           let direction = detectCursorDirection(args)._id;
           let edges = list.map(l => {
             return {
-              cursor: idToCursor(l.id),
+              cursor: l.id,
               node: l,
             };
           });
@@ -211,7 +210,7 @@ export default new Type({
           let direction = detectCursorDirection(args)._id;
           let edges = list.map(l => {
             return {
-              cursor: idToCursor(l.id),
+              cursor: l.id,
               node: l,
             };
           });
@@ -343,7 +342,7 @@ export default new Type({
             let edges = links
               .map(l => {
                 return {
-                  cursor: idToCursor(l.id),
+                  cursor: l.id,
                   node: hItems[l.follower],
                 };
               })
@@ -480,7 +479,7 @@ export default new Type({
             let edges = links
               .map(l => {
                 return {
-                  cursor: idToCursor(l.id),
+                  cursor: l.id,
                   node: hItems[l.following],
                 };
               })
