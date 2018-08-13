@@ -1,6 +1,6 @@
 import FollowersEdge from './FollowersEdge';
 import FollowersConnection from './FollowersConnection';
-import allFollowers from './allFollowers';
+import FollowerItems from './FollowerItems';
 import followers from './followers';
 import FollowerSortOrder from './FollowerSortOrder';
 import FollowerComplexFilter from './FollowerComplexFilter';
@@ -10,7 +10,7 @@ export default new Schema({
   items: [
     FollowersEdge,
     FollowersConnection,
-    allFollowers,
+    FollowerItems,
     followers,
     FollowerSortOrder,
     FollowerComplexFilter,

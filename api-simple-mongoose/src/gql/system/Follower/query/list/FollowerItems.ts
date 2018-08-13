@@ -4,16 +4,16 @@ import gql from 'graphql-tag';
 export default new Query({
   schema: gql`
     extend type RootQuery {
-      allToDoItems(
+      FollowerItems(
         after: String
         first: Int
         before: String
         last: Int
         limit: Int
         skip: Int
-        orderBy: [ToDoItemSortOrder]
-        filter: ToDoItemComplexFilter
-      ): [ToDoItem]
+        orderBy: [FollowerSortOrder]
+        filter: FollowerComplexFilter
+      ): [Follower]
     }
   `,
   resolver: async (
@@ -31,11 +31,11 @@ export default new Query({
     context: { connectors: RegisterConnectors },
     info,
   ) => {
-    logger.trace('toDoItems');
+    logger.trace('followers');
     let idMap = {
       id: '_id',
     };
-    return await context.connectors.ToDoItem.getList({
+    return await context.connectors.Follower.getList({
       ...args,
       idMap,
     });

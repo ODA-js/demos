@@ -1,6 +1,6 @@
 import FilesEdge from './FilesEdge';
 import FilesConnection from './FilesConnection';
-import allFiles from './allFiles';
+import FileItems from './FileItems';
 import files from './files';
 import FileSortOrder from './FileSortOrder';
 import FileComplexFilter from './FileComplexFilter';
@@ -10,7 +10,7 @@ export default new Schema({
   items: [
     FilesEdge,
     FilesConnection,
-    allFiles,
+    FileItems,
     files,
     FileSortOrder,
     FileComplexFilter,

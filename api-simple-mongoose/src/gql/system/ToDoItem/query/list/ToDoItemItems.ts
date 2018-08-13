@@ -4,16 +4,16 @@ import gql from 'graphql-tag';
 export default new Query({
   schema: gql`
     extend type RootQuery {
-      allFiles(
+      ToDoItemItems(
         after: String
         first: Int
         before: String
         last: Int
         limit: Int
         skip: Int
-        orderBy: [FileSortOrder]
-        filter: FileComplexFilter
-      ): [File]
+        orderBy: [ToDoItemSortOrder]
+        filter: ToDoItemComplexFilter
+      ): [ToDoItem]
     }
   `,
   resolver: async (
@@ -31,12 +31,11 @@ export default new Query({
     context: { connectors: RegisterConnectors },
     info,
   ) => {
-    logger.trace('files');
+    logger.trace('toDoItems');
     let idMap = {
       id: '_id',
-      user: 'user',
     };
-    return await context.connectors.File.getList({
+    return await context.connectors.ToDoItem.getList({
       ...args,
       idMap,
     });

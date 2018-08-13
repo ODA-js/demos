@@ -4,16 +4,16 @@ import gql from 'graphql-tag';
 export default new Query({
   schema: gql`
     extend type RootQuery {
-      allUsers(
+      FileItems(
         after: String
         first: Int
         before: String
         last: Int
         limit: Int
         skip: Int
-        orderBy: [UserSortOrder]
-        filter: UserComplexFilter
-      ): [User]
+        orderBy: [FileSortOrder]
+        filter: FileComplexFilter
+      ): [File]
     }
   `,
   resolver: async (
@@ -31,11 +31,12 @@ export default new Query({
     context: { connectors: RegisterConnectors },
     info,
   ) => {
-    logger.trace('users');
+    logger.trace('files');
     let idMap = {
       id: '_id',
+      user: 'user',
     };
-    return await context.connectors.User.getList({
+    return await context.connectors.File.getList({
       ...args,
       idMap,
     });
