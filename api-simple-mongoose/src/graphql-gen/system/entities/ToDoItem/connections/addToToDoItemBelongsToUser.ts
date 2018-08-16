@@ -1,0 +1,79 @@
+import {
+  logger,
+  RegisterConnectors,
+  mutateAndGetPayload,
+  PubSubEngine,
+  Mutation,
+} from '../../../common';
+import gql from 'graphql-tag';
+
+export default new Mutation({
+  schema: gql`
+    extend type RootMutation {
+      addToToDoItemBelongsToUser(
+        input: addToToDoItemBelongsToUserInput
+      ): addToToDoItemBelongsToUserPayload
+    }
+  `,
+  resolver: mutateAndGetPayload(
+    async (
+      args: {
+        toDoItem?: string;
+        user?: string;
+      },
+      context: { connectors: RegisterConnectors; pubsub: PubSubEngine },
+      info,
+    ) => {
+      logger.trace('addToToDoItemBelongsToUser');
+      let toDoItem = args.toDoItem;
+      let user = args.user;
+      let payload = {
+        toDoItem,
+        user,
+      };
+
+      await context.connectors.ToDoItem.addToUser(payload);
+
+      let source = await context.connectors.ToDoItem.findOneById(toDoItem);
+
+      if (context.pubsub) {
+        context.pubsub.publish('ToDoItem', {
+          ToDoItem: {
+            mutation: 'LINK',
+            node: source,
+            previous: null,
+            updatedFields: [],
+            payload: {
+              args: {
+                toDoItem: args.toDoItem,
+                user: args.user,
+              },
+              relation: 'user',
+            },
+          },
+        });
+
+        let dest = await context.connectors.User.findOneById(user);
+
+        context.pubsub.publish('User', {
+          User: {
+            mutation: 'LINK',
+            node: dest,
+            previous: null,
+            updatedFields: [],
+            payload: {
+              args: {
+                toDoItem: args.toDoItem,
+                user: args.user,
+              },
+              relation: 'todos',
+            },
+          },
+        });
+      }
+      return {
+        toDoItem: source,
+      };
+    },
+  ),
+});

@@ -1,3 +1,0 @@
-createToDoItem(input: createToDoItemInput!): createToDoItemPayload
-updateToDoItem(input: updateToDoItemInput!): updateToDoItemPayload
-deleteToDoItem(input: deleteToDoItemInput!): deleteToDoItemPayload

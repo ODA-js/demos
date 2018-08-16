@@ -1,15 +1,9 @@
-import { common } from 'oda-gen-graphql';
-import { FixupPasswordHook } from './api-hooks/fixupPassword';
-// import { FileUploadHook } from './api-hooks/hookFileUpload';
-import { LoginUserMutation } from './mutations/login.resolver';
-import { LodashModule } from 'oda-lodash';
+import { Schema } from 'oda-gen-common';
+import passwordHook from './api-hooks/fixupPassword';
+import fileUpload from './api-hooks/hookFileUpload';
+import { LodashSchema } from 'oda-lodash';
 
-export class CommonExtends extends common.types.GQLModule {
-  protected _name = 'CommonExtends';
-  protected _composite = [
-    new FixupPasswordHook({}),
-    // new FileUploadHook({}),
-    new LoginUserMutation({}),
-    new LodashModule({}),
-  ];
-}
+export default new Schema({
+  name: 'common.overrides',
+  items: [passwordHook, fileUpload, LodashSchema],
+});

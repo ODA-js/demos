@@ -10,10 +10,10 @@ import { SystemSchema } from './model';
 
 // Save JSON of full schema introspection for Babel Relay Plugin to use
 (async () => {
-  let current = new SystemSchema({});
+  let current = SystemSchema;
   current.build();
   const schema = makeExecutableSchema({
-    typeDefs: current.typeDefs,
+    typeDefs: current.schema,
     resolvers: current.resolvers,
     resolverValidationOptions: {
       requireResolversForNonScalar: false,

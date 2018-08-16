@@ -1,8 +1,0 @@
-enum FollowerSortOrder {
-  followerAsc
-  followerDesc
-  followingAsc
-  followingDesc
-  idAsc
-  idDesc
-}

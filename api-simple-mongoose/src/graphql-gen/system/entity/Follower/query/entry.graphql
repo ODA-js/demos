@@ -1,3 +1,0 @@
-  followers( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FollowerSortOrder], filter: FollowerComplexFilter): FollowersConnection
-
-  follower(id: ID): Follower

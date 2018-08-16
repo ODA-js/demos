@@ -14,12 +14,14 @@ import loaderConfig from './loaderConfig';
 import RegisterConnectors from '../model/connectors';
 import { makeExecutableSchema } from 'graphql-tools';
 
-import { SystemSchema } from '../model/schema';
+import SystemSchema from '../model/schema';
 import * as mongoose from 'mongoose';
 import * as config from 'config';
 import { runQueryLodash } from 'oda-lodash';
 
-let fn = process.argv[2] ? joinPath(process.cwd(), process.argv[2]) : joinPath(__dirname, '../../data/dump1.json');
+let fn = process.argv[2]
+  ? joinPath(process.cwd(), process.argv[2])
+  : joinPath(__dirname, '../../data/dump1.json');
 
 import { dbPool } from '../model/dbPool';
 import { SystemGraphQL, UserGQL } from '../model/runQuery';
@@ -53,10 +55,10 @@ async function createContext({ schema }) {
 }
 
 function prepareSchema() {
-  let current = new SystemSchema({});
+  let current = SystemSchema;
   current.build();
   return makeExecutableSchema({
-    typeDefs: current.typeDefs.toString(),
+    typeDefs: current.schema,
     resolvers: current.resolvers,
     resolverValidationOptions: {
       requireResolversForNonScalar: false,
@@ -67,8 +69,9 @@ function prepareSchema() {
 const schema = prepareSchema();
 
 createContext({ schema }).then(context => {
-  dataPump.dumpDataDirect(loaderConfig, storedQ, schema, context, runQueryLodash).
-    then((result) => {
+  dataPump
+    .dumpDataDirect(loaderConfig, storedQ, schema, context, runQueryLodash)
+    .then(result => {
       writeFileSync(fn, JSON.stringify(result));
       context.db.close();
     })
@@ -77,5 +80,3 @@ createContext({ schema }).then(context => {
       context.db.close();
     });
 });
-
-

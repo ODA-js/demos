@@ -1,2 +1,0 @@
-files( after: String, first: Int, before: String, last: Int, limit: Int, skip: Int, orderBy: [FileSortOrder], filter: FileFilter): FilesConnection
-  file(id: ID, path: String): File

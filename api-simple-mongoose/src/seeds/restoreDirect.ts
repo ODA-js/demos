@@ -14,7 +14,7 @@ import loaderConfig from './loaderConfig';
 import RegisterConnectors from '../model/connectors';
 import { makeExecutableSchema } from 'graphql-tools';
 
-import { SystemSchema } from '../model/schema';
+import SystemSchema from '../model/schema';
 
 import * as mongoose from 'mongoose';
 import * as config from 'config';
@@ -56,10 +56,10 @@ async function createContext({ schema }) {
 }
 
 function prepareSchema() {
-  let current = new SystemSchema({});
+  let current = SystemSchema;
   current.build();
   return makeExecutableSchema({
-    typeDefs: current.typeDefs,
+    typeDefs: current.schema,
     resolvers: current.resolvers,
     resolverValidationOptions: {
       requireResolversForNonScalar: false,

@@ -1,16 +1,3 @@
-import { fromGlobalId } from 'oda-isomorfic';
-import { utils } from 'oda-api-graphql';
-
-const { validId } = utils;
-
-export function getValue(value) {
-  if (typeof value === 'string') {
-    return validId(value) ? value : fromGlobalId(value).id;
-  } else {
-    return value;
-  }
-}
-
 export default {
   import: {
     queries: {
@@ -30,7 +17,7 @@ export default {
           // updateQuery: 'File/update.graphql',
           // dataPropName: 'file',
           findVars: {
-            id: f => (f.hasOwnProperty('id') ? { id: getValue(f.id) } : null),
+            id: f => (f.hasOwnProperty('id') ? { id: f.id } : null),
             path: f => (f.hasOwnProperty('path') ? { path: f.path } : null),
           },
         },
@@ -50,7 +37,7 @@ export default {
           // updateQuery: 'File/update.graphql',
           // dataPropName: 'file',
           findVars: {
-            id: f => (f.hasOwnProperty('id') ? { id: getValue(f.id) } : null),
+            id: f => (f.hasOwnProperty('id') ? { id: f.id } : null),
             path: f => (f.hasOwnProperty('path') ? { path: f.path } : null),
           },
         },

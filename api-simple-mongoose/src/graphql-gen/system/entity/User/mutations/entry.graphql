@@ -1,3 +1,0 @@
-createUser(input: createUserInput!): createUserPayload
-updateUser(input: updateUserInput!): updateUserPayload
-deleteUser(input: deleteUserInput!): deleteUserPayload

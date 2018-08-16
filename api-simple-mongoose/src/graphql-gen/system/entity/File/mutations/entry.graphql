@@ -1,3 +1,0 @@
-createFile(input: createFileInput!): createFilePayload
-updateFile(input: updateFileInput!): updateFilePayload
-deleteFile(input: deleteFileInput!): deleteFilePayload

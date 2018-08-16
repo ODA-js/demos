@@ -4,7 +4,8 @@ dotenv.config({ silent: true });
 import * as config from 'config';
 import { runQuery } from 'graphql-server-core';
 import * as cors from 'cors';
-import system from './gql/system';
+// import system from './graphql-gen/system';
+import system from './model/schema';
 // tslint:disable-next-line:no-var-requires
 let currentModule = require('../package.json');
 

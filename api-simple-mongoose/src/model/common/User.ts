@@ -1,17 +1,30 @@
-import { common } from 'oda-gen-graphql';
+import { Schema, Type } from 'oda-gen-common';
+import gql from 'graphql-tag';
 
-export class User extends common.types.GQLModule {
-  protected _name = 'User';
-  protected _queryEntry = {
-    'queryEntry': [`
+export const UserMock = new Type({
+  schema: gql`
+    type User {
+      id: String
+      isAdmin: Boolean
+    }
+  `,
+  resolver: {
+    id: () => 'ffffffffffffffffffffffff',
+    isAdmin: () => true,
+  },
+});
+
+export const queries = new Schema({
+  name: 'fix.UserQueries',
+  schema: gql`
+    type RootQuery {
       users: UsersConnection
       user(id: ID, userName: String): User
-`],
-  };
-  protected _resolver = {
-    User: {
-      id: () => 'false',
-      isAdmin: () => true,
-    },
-  }
-}
+    }
+  `,
+});
+
+export default new Schema({
+  name: 'User.custom',
+  items: [UserMock, queries],
+});

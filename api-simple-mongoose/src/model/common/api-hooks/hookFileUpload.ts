@@ -1,6 +1,7 @@
 import { common } from 'oda-gen-graphql';
 import { passport } from 'oda-api-common';
 import gql from 'graphql-tag';
+import { Schema } from 'oda-gen-common';
 
 const FileUpload = target => async (
   root: any,
@@ -41,12 +42,12 @@ const FileUpload = target => async (
   return target(root, args, context, info);
 };
 
-export class FileUploadHook extends common.types.GQLModule {
-  protected _name = 'FileUploadHook';
-  protected _hooks = [
+export default new Schema({
+  name: 'FileUpload.hook',
+  hooks: [
     {
-      'RootMutation.createToDoItem': FileUpload,
-      'RootMutation.updateToDoItem': FileUpload,
+      'RootMutation.createUser': FileUpload,
+      'RootMutation.updateUser': FileUpload,
     },
-  ];
-}
+  ],
+});

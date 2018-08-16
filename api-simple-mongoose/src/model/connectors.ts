@@ -1,6 +1,6 @@
-import RegisterConnectors from '../gql/system/data/registerConnectors';
+import RegisterConnectors from '../graphql-gen/system/data/registerConnectors';
 
-import User from '../gql/system/data/User/adapter/connector';
+import User from '../graphql-gen/system/data/User/adapter/connector';
 
 export default class DataConnectors extends RegisterConnectors {
   public get Viewer(): User {

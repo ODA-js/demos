@@ -4,12 +4,15 @@ import * as config from 'config';
 import RegisterConnectors from './connectors';
 import { passport } from 'oda-api-common';
 import { makeExecutableSchema } from 'graphql-tools';
-import { SystemSchema } from '../model/schema';
+import SystemSchema from '../model/schema';
 import { ExecutionResult } from 'graphql';
 import { runQueryLodash } from 'oda-lodash';
 import { dbPool } from './dbPool';
 
-let schemas = () => new SystemSchema({});
+let schemas = () => {
+  SystemSchema.build();
+  return SystemSchema;
+};
 
 export class UserGQL {
   private context: any;
@@ -46,7 +49,7 @@ export class SystemGraphQL {
     if (!SystemGraphQL._schema) {
       SystemGraphQL._schemas.build();
       SystemGraphQL._schema = makeExecutableSchema({
-        typeDefs: SystemGraphQL._schemas.typeDefs,
+        typeDefs: SystemGraphQL._schemas.schema,
         resolvers: SystemGraphQL._schemas.resolvers,
         resolverValidationOptions: {
           requireResolversForNonScalar: false,
