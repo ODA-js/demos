@@ -60,7 +60,7 @@ const processUpload = async upload => {
 
 export const singleUpload = new Mutation({
   schema: gql`
-    type RootMuataion {
+    type RootMutation {
       singleUpload(file: Upload!): File!
     }
   `,
@@ -69,7 +69,7 @@ export const singleUpload = new Mutation({
 
 export const multipleUpload = new Mutation({
   schema: gql`
-    type RootMuataion {
+    type RootMutation {
       multipleUpload(files: [Upload!]!): [File!]!
     }
   `,
