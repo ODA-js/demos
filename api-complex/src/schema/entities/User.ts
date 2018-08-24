@@ -1,5 +1,6 @@
 export default {
   name: 'User',
+  description: 'Person role to be user identified in the system',
   fields: {
     userName: {
       identity: true,
@@ -16,10 +17,5 @@ export default {
     enabled: {
       type: 'boolean',
     },
-    todos: {
-      relation: {
-        hasMany: 'userName@ToDoItem#user',
-      }
-    }
   },
 };

@@ -38,7 +38,7 @@
     "log4js": "^1.1.1",
     "lowdb": "^1.0.0",
     "mkdirp": "^0.5.1",
-    "mongoose": "^5.0.16",
+    "mongoose": "^5.1.0",
     "oda-api-common": "^0.2.38",
     "oda-api-graphql": "^0.4.42",
     "oda-api-graphql-mongoose": "0.0.5",

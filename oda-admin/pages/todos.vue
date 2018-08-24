@@ -35,14 +35,14 @@ export default {
   components: {
     ODAQuery
   },
-  data:() => ({
+  data: () => ({
     headers: [
       { text: "ID", value: "id" },
       { text: "name", value: "name" },
       { text: "description", value: "description" },
       { text: "done", value: "done" },
       { text: "dueToDate", value: "dueToDate" },
-      { text: "published", value: "published" },
+      { text: "published", value: "published" }
     ]
   })
 };

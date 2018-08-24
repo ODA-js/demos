@@ -3,7 +3,7 @@ import mutations from './mutations';
 import entities from './entities';
 
 export default {
-  name: 'api-model-editor',
+  name: 'SamanyaBhaktiSastri',
   packages,
   mutations,
   entities,
