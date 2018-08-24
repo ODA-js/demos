@@ -125,6 +125,7 @@ export class SampleApiServer extends Server {
       return {
         schema,
         context: await createContext({ schema }),
+        trace:true,
       };
     });
 
